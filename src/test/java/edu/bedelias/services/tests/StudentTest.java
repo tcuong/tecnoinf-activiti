@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.bedelias.repositories.PersonRepository;
+import edu.bedelias.repositories.StudentRepository;
 
 /**
  * @author Gas
@@ -23,11 +23,11 @@ import edu.bedelias.repositories.PersonRepository;
 @ContextConfiguration(locations={"classpath:applicationContextTest.xml"})
 @TransactionConfiguration
 @Transactional
-public class PersonTest {
+public class StudentTest {
 
 	@Autowired
-	// private PersonService personService;
-	private PersonRepository repo;
+	// private StudentService personService;
+	private StudentRepository repo;
 
 	@Test
 	public void test() {
@@ -36,19 +36,19 @@ public class PersonTest {
 
 	// Getters && Setters
 
-	// public PersonService getPersonService() {
+	// public StudentService getPersonService() {
 	// return personService;
 	// }
 	//
-	// public void setPersonService(PersonService personService) {
+	// public void setPersonService(StudentService personService) {
 	// this.personService = personService;
 	// }
 
-	public PersonRepository getRepo() {
+	public StudentRepository getRepo() {
 		return repo;
 	}
 
-	public void setRepo(PersonRepository repo) {
+	public void setRepo(StudentRepository repo) {
 		this.repo = repo;
 	}
 
