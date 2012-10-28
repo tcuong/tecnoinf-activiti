@@ -4,29 +4,28 @@
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresoDatos"></userTask>
     <serviceTask id="servicetask2" name="GuardarDatos"></serviceTask>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <subProcess id="subprocess3" name="ValidarLiceoWS">
       <startEvent id="startevent3" name="Start"></startEvent>
       <serviceTask id="servicetask3" name="ValidarPaseWS"></serviceTask>
-      <sequenceFlow id="flow15" name="" sourceRef="startevent3" targetRef="servicetask3"></sequenceFlow>
       <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway"></exclusiveGateway>
-      <sequenceFlow id="flow16" name="" sourceRef="servicetask3" targetRef="exclusivegateway5"></sequenceFlow>
       <endEvent id="endevent3" name="End"></endEvent>
+      <sequenceFlow id="flow15" name="" sourceRef="startevent3" targetRef="servicetask3"></sequenceFlow>
+      <sequenceFlow id="flow16" name="" sourceRef="servicetask3" targetRef="exclusivegateway5"></sequenceFlow>
       <sequenceFlow id="flow17" name="Ok" sourceRef="exclusivegateway5" targetRef="endevent3"></sequenceFlow>
-      <sequenceFlow id="flow18" name="NotOk" sourceRef="exclusivegateway5" targetRef="subprocess3"></sequenceFlow>
       <sequenceFlow id="flow19" name="NotOk" sourceRef="exclusivegateway5" targetRef="boundaryerror1"></sequenceFlow>
     </subProcess>
     <boundaryEvent id="boundaryerror1" cancelActivity="false" attachedToRef="subprocess3">
       <errorEventDefinition></errorEventDefinition>
     </boundaryEvent>
-    <sequenceFlow id="flow14" name="" sourceRef="usertask1" targetRef="subprocess3"></sequenceFlow>
     <userTask id="usertask3" name="AtenderError"></userTask>
-    <sequenceFlow id="flow20" name="" sourceRef="boundaryerror1" targetRef="usertask3"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway"></exclusiveGateway>
+    <endEvent id="endevent5" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow14" name="" sourceRef="usertask1" targetRef="subprocess3"></sequenceFlow>
+    <sequenceFlow id="flow20" name="" sourceRef="boundaryerror1" targetRef="usertask3"></sequenceFlow>
     <sequenceFlow id="flow21" name="" sourceRef="usertask3" targetRef="exclusivegateway6"></sequenceFlow>
     <sequenceFlow id="flow23" name="IsErrorNotOk" sourceRef="exclusivegateway6" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow24" name="" sourceRef="subprocess3" targetRef="servicetask2"></sequenceFlow>
-    <endEvent id="endevent5" name="End"></endEvent>
     <sequenceFlow id="flow25" name="" sourceRef="servicetask2" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow26" name="IsErrorOk" sourceRef="exclusivegateway6" targetRef="endevent5"></sequenceFlow>
   </process>
