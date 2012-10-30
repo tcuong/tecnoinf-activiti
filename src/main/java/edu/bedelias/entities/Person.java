@@ -9,24 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Person implements Serializable {
+public class Person extends GenericEntityName {
 
 	/**
 	 * @author Gas
 	 */
 	private static final long serialVersionUID = -2175150694352541150L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
 	@Column(unique=true, nullable=false)
 	private String email;
 	
 	@Column(unique=true, nullable=false)
 	private String cedula;
 	
-	private String name;
 	private String lastname;
 	private String phone;
 	private String address;

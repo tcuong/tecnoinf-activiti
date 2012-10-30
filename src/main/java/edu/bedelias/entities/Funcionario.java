@@ -4,6 +4,7 @@
 package edu.bedelias.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -13,6 +14,7 @@ import edu.bedelias.enums.TipoFuncionarioEnum;
  * @author Administrador
  *
  */
+@Entity
 public class Funcionario extends Person {
 	
 	private static final long serialVersionUID = 1L;
