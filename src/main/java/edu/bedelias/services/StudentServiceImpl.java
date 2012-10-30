@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bedelias.services;
+package edu.bedelias.services;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,7 +26,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	StudentRepository studentRepo;
 	
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#findStudentById(java.lang.Long)
+	 * @see edu.bedelias.services.StudentService#findStudentById(java.lang.Long)
 	 */
 	@Override
 	public Student findStudentById(Long id) {
@@ -34,7 +34,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#createStudent(edu.bedelias.entities.Student)
+	 * @see edu.bedelias.services.StudentService#createStudent(edu.bedelias.entities.Student)
 	 */
 	@Override
 	public Student createStudent(Student student) {
@@ -43,7 +43,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#updateStudent(edu.bedelias.entities.Student)
+	 * @see edu.bedelias.services.StudentService#updateStudent(edu.bedelias.entities.Student)
 	 */
 	@Override
 	public void updateStudent(Student student) {
@@ -52,7 +52,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#deleteStudent(edu.bedelias.entities.Student)
+	 * @see edu.bedelias.services.StudentService#deleteStudent(edu.bedelias.entities.Student)
 	 */
 	@Override
 	public void deleteStudent(Student student) {
@@ -61,7 +61,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#findStudentByEmail(java.lang.String)
+	 * @see edu.bedelias.services.StudentService#findStudentByEmail(java.lang.String)
 	 */
 	@Override
 	public Student findStudentByEmail(String email) {
@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#findStudentsByLastname(java.lang.String)
+	 * @see edu.bedelias.services.StudentService#findStudentsByLastname(java.lang.String)
 	 */
 	@Override
 	public List<Student> findStudentsByLastname(String lastname) {
@@ -79,7 +79,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.bedelias.services.StudentService#findStudentByCedula(java.lang.String)
+	 * @see edu.bedelias.services.StudentService#findStudentByCedula(java.lang.String)
 	 */
 	@Override
 	public Student findStudentByCedula(String cedula) {

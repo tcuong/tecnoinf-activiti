@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bedelias.services;
+package edu.bedelias.services;
 
 import java.util.List;
 
