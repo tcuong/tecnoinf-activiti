@@ -7,11 +7,11 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
-import edu.bedelias.enums.EvaluacionTipoEnum;
+import edu.bedelias.enums.TipoEvaluacionEnum;
 
 /**
  * @author Administrador
- *
+ * 
  */
 @Entity
 public class Evaluacion extends GenericEntity {
@@ -20,11 +20,11 @@ public class Evaluacion extends GenericEntity {
 
 	private Date fechaEvaluacion;
 	private Integer resultado;
-	
-	private EvaluacionTipoEnum tipoEvaluacion;
+
+	private TipoEvaluacionEnum tipoEvaluacion;
 
 	// Getters && Setters
-	
+
 	public Date getFechaEvaluacion() {
 		return fechaEvaluacion;
 	}
@@ -41,11 +41,11 @@ public class Evaluacion extends GenericEntity {
 		this.resultado = resultado;
 	}
 
-	public EvaluacionTipoEnum getTipoEvaluacion() {
+	public TipoEvaluacionEnum getTipoEvaluacion() {
 		return tipoEvaluacion;
 	}
 
-	public void setTipoEvaluacion(EvaluacionTipoEnum tipoEvaluacion) {
+	public void setTipoEvaluacion(TipoEvaluacionEnum tipoEvaluacion) {
 		this.tipoEvaluacion = tipoEvaluacion;
 	}
 

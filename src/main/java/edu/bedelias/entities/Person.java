@@ -1,40 +1,36 @@
 package edu.bedelias.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Person extends GenericEntityName {
+public class Person extends GenericEntity {
 
 	/**
 	 * @author Gas
 	 */
 	private static final long serialVersionUID = -2175150694352541150L;
 
-	@Column(unique=true, nullable=false)
+	@Column(unique = true, nullable = false)
 	private String email;
-	
-	@Column(unique=true, nullable=false)
+
+	@Column(unique = true, nullable = false)
 	private String cedula;
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String name;
 	private String lastname;
 	private String phone;
 	private String address;
 	private String cellphone;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -81,14 +77,6 @@ public class Person extends GenericEntityName {
 
 	public void setCellphone(String cellphone) {
 		this.cellphone = cellphone;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

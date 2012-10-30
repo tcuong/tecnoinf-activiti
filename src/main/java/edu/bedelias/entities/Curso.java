@@ -1,6 +1,5 @@
 package edu.bedelias.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,24 +7,24 @@ import javax.persistence.Entity;
 import edu.bedelias.enums.TurnoEnum;
 
 @Entity
-public class Curso extends GenericEntityName implements Serializable{
+public class Curso extends GenericEntityName {
 
 	private static final long serialVersionUID = 7343061410125816324L;
-	
+
 	private String descripcion;
-	
+
 	private String semestre;
-	
+
 	private String horario;
-	
+
 	private Date fechaInicio;
-	
+
 	private Date fechaFin;
-	
+
 	private TurnoEnum turno;
-	
+
 	private String salon;
-	
+
 	private Integer nota;
 
 	public String getDescripcion() {
@@ -91,7 +90,5 @@ public class Curso extends GenericEntityName implements Serializable{
 	public void setNota(Integer nota) {
 		this.nota = nota;
 	}
-	
-	
 
 }

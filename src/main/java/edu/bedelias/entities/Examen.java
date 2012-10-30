@@ -1,21 +1,20 @@
 package edu.bedelias.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 
 @Entity
-public class Examen extends GenericEntity implements Serializable{
+public class Examen extends GenericEntity {
 
 	private static final long serialVersionUID = -2023907175216649506L;
-	
+
 	private Integer nota;
-	
+
 	private String periodo;
-	
+
 	private Date fecha;
-	
+
 	private Boolean noAsistio;
 
 	public Integer getNota() {

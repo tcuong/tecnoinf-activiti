@@ -1,20 +1,18 @@
 package edu.bedelias.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 
 import edu.bedelias.enums.AprobacionEnum;
 
 @Entity
-public class Asignatura extends GenericEntityName implements Serializable{
+public class Asignatura extends GenericEntityName {
 
 	private static final long serialVersionUID = 698397770291392936L;
-		
+
 	private Integer credits;
-	
+
 	private AprobacionEnum tipoAprobacion;
-	
+
 	public Integer getCredits() {
 		return credits;
 	}

@@ -11,18 +11,18 @@ import edu.bedelias.enums.TipoInscripcionEnum;
 
 /**
  * @author Administrador
- *
+ * 
  */
 @Entity
 public class PeriodoInscripcion extends GenericEntity {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Date fechaInicio;
 	private Date fechaFin;
-	
+
 	private TipoInscripcionEnum tipoInscripcion;
-	
+
 	private Boolean isHabilitado;
 
 	public Date getFechaInicio() {
@@ -56,5 +56,5 @@ public class PeriodoInscripcion extends GenericEntity {
 	public void setIsHabilitado(Boolean isHabilitado) {
 		this.isHabilitado = isHabilitado;
 	}
-	
+
 }
