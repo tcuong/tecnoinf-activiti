@@ -6,11 +6,13 @@ package edu.bedelias.entities;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Administrador
  *
  */
+@MappedSuperclass
 public class GenericEntityName extends GenericEntity {
 
 	private static final long serialVersionUID = 1L;
