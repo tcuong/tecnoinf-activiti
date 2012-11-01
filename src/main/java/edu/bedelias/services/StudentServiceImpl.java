@@ -21,13 +21,10 @@ import edu.bedelias.repositories.StudentRepository;
 @Transactional(readOnly = true)
 public class StudentServiceImpl implements StudentService, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	StudentRepository studentRepo;
+	private StudentRepository studentRepo;
 	
 	/* (non-Javadoc)
 	 * @see edu.bedelias.services.StudentService#findStudentById(java.lang.Long)
@@ -41,18 +38,23 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	 * @see edu.bedelias.services.StudentService#createStudent(edu.bedelias.entities.Student)
 	 */
 	@Override
+	@Transactional
 	public Student createStudent(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		if (student != null) {
+			student = studentRepo.save(student);
+		}
+		return student;
 	}
 
 	/* (non-Javadoc)
 	 * @see edu.bedelias.services.StudentService#updateStudent(edu.bedelias.entities.Student)
 	 */
 	@Override
+	@Transactional
 	public void updateStudent(Student student) {
-		// TODO Auto-generated method stub
-		
+		if (student != null) {
+			studentRepo.save(student);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -61,8 +63,9 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	@Override
 	@Transactional
 	public void deleteStudent(Student student) {
-		// TODO Auto-generated method stub
-		
+		if (student != null) {
+			studentRepo.delete(student);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -70,8 +73,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	 */
 	@Override
 	public Student findStudentByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentRepo.findStudentByEmail(email);
 	}
 
 	/* (non-Javadoc)
@@ -79,8 +81,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	 */
 	@Override
 	public List<Student> findStudentsByLastname(String lastname) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentRepo.findStudentByLastname(lastname);
 	}
 
 	/* (non-Javadoc)
@@ -88,8 +89,17 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	 */
 	@Override
 	public Student findStudentByCedula(String cedula) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentRepo.findStudentByCedula(cedula);
+	}
+
+	// Getters && Setters
+
+	public StudentRepository getStudentRepo() {
+		return studentRepo;
+	}
+
+	public void setStudentRepo(StudentRepository studentRepo) {
+		this.studentRepo = studentRepo;
 	}
 
 }

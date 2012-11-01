@@ -5,6 +5,9 @@ package edu.bedelias.services.tests;
 
 //import static org.junit.Assert.*;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.bedelias.repositories.StudentRepository;
+import edu.bedelias.entities.Student;
+import edu.bedelias.services.StudentService;
 
 /**
  * @author Gas
@@ -26,30 +30,30 @@ import edu.bedelias.repositories.StudentRepository;
 public class StudentTest {
 
 	@Autowired
-	// private StudentService personService;
-	private StudentRepository repo;
+	private StudentService studentService;
 
 	@Test
 	public void test() {
-		// fail("Not yet implemented");
+		Student student = new Student();
+		student.setName("Chupito");
+		student.setEmail("chupame@eltobonia.net");
+		student.setCedula("someCedula");
+		
+		student = studentService.createStudent(student);
+		
+		assertNotNull("Student can't be null", student);
+		assertEquals("Email must be the same", student.getEmail(),
+				"chupame@eltobonia.net");
 	}
 
 	// Getters && Setters
 
-	// public StudentService getPersonService() {
-	// return personService;
-	// }
-	//
-	// public void setPersonService(StudentService personService) {
-	// this.personService = personService;
-	// }
-
-	public StudentRepository getRepo() {
-		return repo;
+	public StudentService getStudentService() {
+		return studentService;
 	}
 
-	public void setRepo(StudentRepository repo) {
-		this.repo = repo;
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
 	}
 
 }
