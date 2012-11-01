@@ -2,6 +2,7 @@ package edu.bedelias.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import edu.bedelias.enums.TurnoEnum;
@@ -13,14 +14,19 @@ public class Curso extends GenericEntityName {
 
 	private String descripcion;
 
+	@Column(nullable = false)
 	private String semestre;
 
+	@Column(nullable = false)
 	private String horario;
 
+	@Column(nullable = false)
 	private Date fechaInicio;
 
+	@Column(nullable = false)
 	private Date fechaFin;
 
+	@Column(nullable = false)
 	private TurnoEnum turno;
 
 	private String salon;

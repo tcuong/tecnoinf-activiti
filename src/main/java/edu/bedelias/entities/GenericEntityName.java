@@ -17,7 +17,7 @@ public class GenericEntityName extends GenericEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable=false)
 	private UUID code;
 	
 	@Column(nullable = false)
