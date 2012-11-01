@@ -1,9 +1,3 @@
-
-
-
-/**
- * 
- */
 package edu.bedelias.enums;
 
 /**
