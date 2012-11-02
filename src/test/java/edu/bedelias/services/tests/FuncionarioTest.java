@@ -8,16 +8,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.Funcionario;
 import edu.bedelias.services.FuncionarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContextTest.xml"})
-@TransactionConfiguration
-@Transactional
 public class FuncionarioTest {
 	
 	@Autowired
