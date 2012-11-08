@@ -11,6 +11,5 @@
 *.classpath
 *.settings
 *.target
-*.metadata
 
 target
