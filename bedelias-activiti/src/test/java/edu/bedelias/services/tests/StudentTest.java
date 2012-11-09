@@ -8,6 +8,8 @@ package edu.bedelias.services.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,8 @@ public class StudentTest {
 		student.setName("Chupito");
 		student.setEmail("chupame@eltobonia.net");
 		student.setCedula("someCedula");
-		
+		student.setFechaInscripcionFac(new Date(System.currentTimeMillis()));
+
 		student = studentService.createStudent(student);
 		
 		assertNotNull("Student can't be null", student);

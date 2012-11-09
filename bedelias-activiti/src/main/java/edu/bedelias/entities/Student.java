@@ -4,11 +4,10 @@
 package edu.bedelias.entities;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 /**
  * @author Administrador
@@ -20,19 +19,23 @@ public class Student extends Person {
 	private static final long serialVersionUID = 1L;
 
 	@Column(unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long studentNum;
+	private UUID studentNum;
 
 	@Column(nullable = false)
 	private Date fechaInscripcionFac;
 	
+	public Student() {
+		super();
+		this.studentNum = UUID.randomUUID();
+	}
+
 	// Getters && Setters
 	
-	public Long getStudentNum() {
+	public UUID getStudentNum() {
 		return studentNum;
 	}
 
-	public void setStudentNum(Long studentNum) {
+	public void setStudentNum(UUID studentNum) {
 		this.studentNum = studentNum;
 	}
 

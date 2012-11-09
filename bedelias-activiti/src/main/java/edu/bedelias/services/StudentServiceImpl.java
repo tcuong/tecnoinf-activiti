@@ -5,6 +5,7 @@ package edu.bedelias.services;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	@Override
 	public Student findStudentById(Long id) {
 		return studentRepo.findOne(id);
+	}
+
+	@Override
+	public Student findStudentByStudentNumber(UUID studentNum) {
+		return studentRepo.findStudentByStudentNum(studentNum);
 	}
 
 	/* (non-Javadoc)

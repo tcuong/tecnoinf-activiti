@@ -4,6 +4,7 @@
 package edu.bedelias.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import edu.bedelias.entities.Student;
 
@@ -32,4 +33,6 @@ public interface StudentService {
 	public List<Student> findStudentsByLastname(String lastname);
 	
 	public Student findStudentByCedula(String cedula);
+
+	Student findStudentByStudentNumber(UUID studentNum);
 }
