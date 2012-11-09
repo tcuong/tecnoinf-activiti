@@ -2,13 +2,28 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <artifactId>bedelias-super</artifactId>
-        <groupId>edu.bedelias.activiti</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>..\bedelias-super\pom.xml</relativePath>
-    </parent>
+		<artifactId>bedelias-super</artifactId>
+		<groupId>edu.bedelias.activiti</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>..\bedelias-super\pom.xml</relativePath>
+	</parent>
 	<groupId>edu.bedelias</groupId>
 	<artifactId>bedelias-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>bedelias-web</name>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+	</dependencies>
+	
 </project>
