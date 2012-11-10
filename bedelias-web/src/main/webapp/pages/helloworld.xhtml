@@ -8,15 +8,42 @@
 </h:head>
 
 <h:body>
+	<p:layout fullPage="true">
 
-	Holamundo!
-	<p:spinner />
+		<p:layoutUnit position="north" size="100px" height="130px">
+		</p:layoutUnit>
 
-<br/>
-	button
-	<p:button outcome="productDetail" value="Bookmark" icon="ui-icon-star">
-		<f:param name="productId" value="10" />
-	</p:button>
+		<p:layoutUnit position="west" size="20px">
+			<h:form>
+				<p:growl id="messages" autoUpdate="true" />
+
+				<p:panelMenu style="width:100%">
+					<p:submenu label="Inscripciones" style="font-size:0.8em;">
+						<p:menuitem value="Inscripción a Curso"
+							actionListener="#{buttonBean.save}" />
+						<p:menuitem value="Inscripción a Examen"
+							actionListener="#{buttonBean.update}" />
+					</p:submenu>
+
+					<p:submenu label="Consulta de Previas">
+						<p:menuitem value="Materias previas de otras"
+							actionListener="#{buttonBean.delete}" ajax="false" />
+						<p:menuitem value="De que materia es previa"
+							actionListener="#{buttonBean.delete}" ajax="false" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" size="60px">
+			<h:form>  
+            	This fullPage layout consists of five different layoutUnits which are resizable and closable by default.  
+        	</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
 
 </h:body>
 </html>
