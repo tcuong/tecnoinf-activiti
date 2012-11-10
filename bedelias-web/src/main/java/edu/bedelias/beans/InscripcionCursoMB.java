@@ -4,22 +4,49 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.event.ActionEvent;
 
+import edu.bedelias.activiti.TestCallActiviti;
 import edu.bedelias.entities.Curso;
 
-@ManagedBean
-public class InscripcionCursoMB extends GenericMB{
+@ManagedBean(name="inscripcionCursoMB")
+public class InscripcionCursoMB extends GenericMB {
+
+	@ManagedProperty(value="#{testCallActiviti}")
+	private TestCallActiviti test;
 	
 	List<Curso> curso;
-	
-	
-	public InscripcionCursoMB(){
+	String texto;
+
+	@PostConstruct
+	public void init() {
+
+	}
+
+	public InscripcionCursoMB() {
 		super();
 	}
-	    
-	@PostConstruct
-	public void init(){
+
+	public void guardar() {
+		test.test();
 		
 	}
 
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public TestCallActiviti getTest() {
+		return test;
+	}
+
+	public void setTest(TestCallActiviti test) {
+		this.test = test;
+	}
+	
 }
