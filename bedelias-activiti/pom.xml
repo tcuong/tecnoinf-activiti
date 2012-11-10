@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>bedelias-super</artifactId>
-		<groupId>edu.bedelias.activiti</groupId>
+		<groupId>edu.bedelias</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>..\bedelias-super\pom.xml</relativePath>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
+
 	<artifactId>bedelias-activiti</artifactId>
-	<version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>bedelias-activiti</name>
 

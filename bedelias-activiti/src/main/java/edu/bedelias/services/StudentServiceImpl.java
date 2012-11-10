@@ -107,4 +107,8 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	public void setStudentRepo(StudentRepository studentRepo) {
 		this.studentRepo = studentRepo;
 	}
+
+	public static void main() {
+		System.out.println("HolaMundo");
+	}
 }
