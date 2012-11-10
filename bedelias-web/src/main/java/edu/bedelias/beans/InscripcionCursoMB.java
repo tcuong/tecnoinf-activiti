@@ -5,33 +5,29 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.event.ActionEvent;
+import javax.faces.bean.SessionScoped;
 
-import edu.bedelias.activiti.TestCallActiviti;
-import edu.bedelias.activiti.TestCallActivitiInterface;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.services.TestCallActiviti;
 
-@ManagedBean(name="inscripcionCursoMB")
+@ManagedBean(name = "inscripcionCursoMB")
+@SessionScoped
 public class InscripcionCursoMB extends GenericMB {
 
-	@ManagedProperty(value="#{testCallActiviti}")
-	private TestCallActivitiInterface test;
-	
-	List<Curso> curso;
-	String texto;
+	@ManagedProperty(value = "#{testCallActivitiImpl}")
+	private TestCallActiviti test;
+
+	private List<Curso> curso;
+	private String texto;
 
 	@PostConstruct
 	public void init() {
 
 	}
 
-	public InscripcionCursoMB() {
-		super();
-	}
-
 	public void guardar() {
 		test.test();
-		
+		return;
 	}
 
 	public String getTexto() {
@@ -42,12 +38,20 @@ public class InscripcionCursoMB extends GenericMB {
 		this.texto = texto;
 	}
 
-	public TestCallActivitiInterface getTest() {
+	public TestCallActiviti getTest() {
 		return test;
 	}
 
-	public void setTest(TestCallActivitiInterface test) {
+	public void setTest(TestCallActiviti test) {
 		this.test = test;
 	}
-	
+
+	public List<Curso> getCurso() {
+		return curso;
+	}
+
+	public void setCurso(List<Curso> curso) {
+		this.curso = curso;
+	}
+
 }

@@ -14,13 +14,12 @@
 			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<context:property-placeholder location="classpath*:jdbc.properties" />
-
+	
 	<import resource="classpath*:/applicationContext.xml" />
 
 	<!-- Scan this classpath for annotated components that will be auto-registered 
 		as Spring beans -->
 	<context:annotation-config />
-	<context:component-scan base-package="edu.bedelias.*" />
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />

@@ -17,11 +17,6 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
 		<!-- Bedelias dependencies -->
 		<dependency>
 			<groupId>edu.bedelias</groupId>
@@ -29,7 +24,7 @@
 			<version>${bedelias.version}</version>
 		</dependency>
 		<!-- End Bedelias messages -->
-
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
