@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -11,12 +14,17 @@
 	<p:layout fullPage="true">
 
 		<p:layoutUnit position="north" size="100px" height="130px">
+			<ui:include src="header.xhtml"/>
 		</p:layoutUnit>
 
 		<p:layoutUnit position="west" size="20px">
+			
+			<ui:include src="menuIzqEst.xhtml"/>
+			
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center" size="60px">
+		<ui:insert name="content"/>
 		</p:layoutUnit>
 
 	</p:layout>
