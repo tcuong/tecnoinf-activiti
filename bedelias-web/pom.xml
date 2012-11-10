@@ -56,6 +56,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.26</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- Google's CAPTCHA repo -->
 		<dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
