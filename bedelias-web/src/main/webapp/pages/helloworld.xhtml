@@ -38,9 +38,16 @@
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center" size="60px">
-			<h:form>  
-            	This fullPage layout consists of five different layoutUnits which are resizable and closable by default.  
-        	</h:form>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Usuario" />
+					<p:inputText />
+
+					<h:outputText value="Contraseña" />
+					<!-- 					<p:password id="nonFeedback" value="#{passwordBean.password1}" /> -->
+					<p:password id="nonFeedback" value="" />
+				</h:panelGrid>
+			</h:form>
 		</p:layoutUnit>
 
 	</p:layout>
