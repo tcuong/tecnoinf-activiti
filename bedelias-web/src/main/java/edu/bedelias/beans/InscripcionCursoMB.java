@@ -8,13 +8,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 
 import edu.bedelias.activiti.TestCallActiviti;
+import edu.bedelias.activiti.TestCallActivitiInterface;
 import edu.bedelias.entities.Curso;
 
 @ManagedBean(name="inscripcionCursoMB")
 public class InscripcionCursoMB extends GenericMB {
 
 	@ManagedProperty(value="#{testCallActiviti}")
-	private TestCallActiviti test;
+	private TestCallActivitiInterface test;
 	
 	List<Curso> curso;
 	String texto;
@@ -41,11 +42,11 @@ public class InscripcionCursoMB extends GenericMB {
 		this.texto = texto;
 	}
 
-	public TestCallActiviti getTest() {
+	public TestCallActivitiInterface getTest() {
 		return test;
 	}
 
-	public void setTest(TestCallActiviti test) {
+	public void setTest(TestCallActivitiInterface test) {
 		this.test = test;
 	}
 	
