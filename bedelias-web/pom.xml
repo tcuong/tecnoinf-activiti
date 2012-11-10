@@ -23,6 +23,8 @@
 			<artifactId>bedelias-activiti</artifactId>
 			<version>${bedelias.version}</version>
 		</dependency>
+		<!-- End Bedelias messages -->
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>

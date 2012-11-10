@@ -24,7 +24,7 @@ import edu.bedelias.services.StudentService;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContextTest.xml"})
+@ContextConfiguration(locations={"classpath:applicationContextTest-c3p0.xml"})
 public class StudentTest {
 
 	@Autowired
