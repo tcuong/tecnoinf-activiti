@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition name="menuIzquierda">
+	    <h:form>
+			<p:growl id="messages" autoUpdate="true" />
+			<p:panelMenu style="width:100%">
+				<p:submenu label="Inscripciones" style="font-size:0.8em;">
+					<p:menuitem value="Inscripción a Curso"
+						actionListener="#{buttonBean.save}" />
+					<p:menuitem value="Inscripción a Examen"
+						actionListener="#{buttonBean.update}" />
+				</p:submenu>
+	
+				<p:submenu label="Consulta de Previas">
+					<p:menuitem value="Materias previas de otras"
+						actionListener="#{buttonBean.delete}" ajax="false" />
+					<p:menuitem value="De que materia es previa"
+						actionListener="#{buttonBean.delete}" ajax="false" />
+				</p:submenu>
+			</p:panelMenu>
+		</h:form>
+    </ui:composition>
+    
+   </html>
+    
