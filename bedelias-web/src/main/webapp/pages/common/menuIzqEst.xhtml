@@ -8,11 +8,9 @@
     
     <ui:composition name="menuIzquierda">
 	    <h:form>
-			<p:growl id="messages" autoUpdate="true" />
 			<p:panelMenu style="width:100%">
 				<p:submenu label="Inscripciones" style="font-size:0.8em;">
-					<p:menuitem value="Inscripción a Curso"
-						actionListener="#{buttonBean.save}" />
+					<p:menuitem value="Inscripción a Curso" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
 					<p:menuitem value="Inscripción a Examen"
 						actionListener="#{buttonBean.update}" />
 				</p:submenu>
