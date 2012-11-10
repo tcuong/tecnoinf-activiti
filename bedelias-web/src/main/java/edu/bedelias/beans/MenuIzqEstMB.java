@@ -1,25 +1,21 @@
 package edu.bedelias.beans;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import edu.bedelias.entities.Curso;
-
 @ManagedBean
-public class InscripcionCursoMB extends GenericMB{
+public class MenuIzqEstMB extends GenericMB{
 	
-	List<Curso> curso;
-	
-	
-	public InscripcionCursoMB(){
+	public MenuIzqEstMB(){
 		super();
 	}
-	    
+	
 	@PostConstruct
 	public void init(){
 		
 	}
-
+	
+	public void inscripcionCurso(){
+		redirect("../estudiante/inscripcionCurso.xhtml");
+	}
 }
