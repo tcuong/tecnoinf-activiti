@@ -37,4 +37,13 @@ public class InstitutoServiceImpl implements InstitutoService {
 		institutoRepo.delete(instituto);
 	}
 
+	// Getters && Setters
+	public InstitutoRepository getInstitutoRepo() {
+		return institutoRepo;
+	}
+
+	public void setInstitutoRepo(InstitutoRepository institutoRepo) {
+		this.institutoRepo = institutoRepo;
+	}
+
 }

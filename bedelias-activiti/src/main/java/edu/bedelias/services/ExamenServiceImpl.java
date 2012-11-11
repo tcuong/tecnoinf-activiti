@@ -37,4 +37,14 @@ public class ExamenServiceImpl implements ExamenService {
 		examenRepo.delete(examen);
 	}
 
+	// Getters && Setters
+	
+	public ExamenRepository getExamenRepo() {
+		return examenRepo;
+	}
+
+	public void setExamenRepo(ExamenRepository examenRepo) {
+		this.examenRepo = examenRepo;
+	}
+
 }

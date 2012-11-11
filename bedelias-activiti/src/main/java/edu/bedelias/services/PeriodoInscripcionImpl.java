@@ -38,4 +38,14 @@ public class PeriodoInscripcionImpl implements PeriodoInscripcionService {
 
 	}
 
+	// Getters && Setters
+	public PeriodoInscripcionRepository getPeriodoInscripcionRepo() {
+		return periodoInscripcionRepo;
+	}
+
+	public void setPeriodoInscripcionRepo(
+			PeriodoInscripcionRepository periodoInscripcionRepo) {
+		this.periodoInscripcionRepo = periodoInscripcionRepo;
+	}
+	
 }
