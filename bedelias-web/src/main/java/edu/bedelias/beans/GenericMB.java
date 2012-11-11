@@ -1,12 +1,15 @@
 package edu.bedelias.beans;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-public abstract class GenericMB{
+public abstract class GenericMB implements Serializable {
 	
+	private static final long serialVersionUID = 2680337680422935387L;
+
 	public GenericMB(){
 	}
 

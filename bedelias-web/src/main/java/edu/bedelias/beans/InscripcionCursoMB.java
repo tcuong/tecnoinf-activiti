@@ -14,6 +14,8 @@ import edu.bedelias.services.TestCallActiviti;
 @SessionScoped
 public class InscripcionCursoMB extends GenericMB {
 
+	private static final long serialVersionUID = -826514322630864126L;
+
 	@ManagedProperty(value = "#{testCallActivitiImpl}")
 	private TestCallActiviti test;
 
