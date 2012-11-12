@@ -11,21 +11,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.services.InscripcionService;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:applicationContextTest.xml"})
+@ContextConfiguration(locations = { "classpath:applicationContextTest.xml" })
 public class InscripcionTest {
-	
+
 	@Autowired
 	private InscripcionService inscripcionService;
-	
+
 	@Test
-	public void test(){
+	public void test() {
 		Inscripcion inscripcion = new Inscripcion();
 		inscripcion = inscripcionService.createInscripcion(inscripcion);
-		
+
 		assertNotNull("Inscripcion can't be null", inscripcion);
-		
+
 	}
 
 }

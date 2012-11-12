@@ -1,9 +1,11 @@
 package edu.bedelias.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 import edu.bedelias.enums.TurnoEnum;
 
@@ -32,6 +34,9 @@ public class Curso extends GenericEntityName {
 	private String salon;
 
 	private Integer nota;
+
+	@ManyToMany
+	private List<Student> estudiantes;
 
 	public String getDescripcion() {
 		return descripcion;
@@ -95,6 +100,14 @@ public class Curso extends GenericEntityName {
 
 	public void setNota(Integer nota) {
 		this.nota = nota;
+	}
+
+	public List<Student> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public void setEstudiantes(List<Student> estudiantes) {
+		this.estudiantes = estudiantes;
 	}
 
 }

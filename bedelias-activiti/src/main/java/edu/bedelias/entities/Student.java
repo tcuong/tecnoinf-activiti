@@ -8,12 +8,14 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author Administrador
- *
+ * 
  */
 @Entity
+@Table(name = "Student")
 public class Student extends Person {
 
 	private static final long serialVersionUID = 1L;
@@ -23,14 +25,14 @@ public class Student extends Person {
 
 	@Column(nullable = false)
 	private Date fechaInscripcionFac;
-	
+
 	public Student() {
 		super();
 		this.studentNum = UUID.randomUUID();
 	}
 
 	// Getters && Setters
-	
+
 	public UUID getStudentNum() {
 		return studentNum;
 	}
@@ -46,5 +48,4 @@ public class Student extends Person {
 	public void setFechaInscripcionFac(Date fechaInscripcionFac) {
 		this.fechaInscripcionFac = fechaInscripcionFac;
 	}
-	
 }

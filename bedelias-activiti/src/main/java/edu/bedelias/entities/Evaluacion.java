@@ -6,6 +6,8 @@ package edu.bedelias.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import edu.bedelias.enums.TipoEvaluacionEnum;
 
@@ -22,6 +24,10 @@ public class Evaluacion extends GenericEntity {
 	private Integer resultado;
 
 	private TipoEvaluacionEnum tipoEvaluacion;
+
+	@ManyToOne
+	@JoinColumn(name = "estudiante")
+	private Student estudiante;
 
 	// Getters && Setters
 
@@ -47,6 +53,14 @@ public class Evaluacion extends GenericEntity {
 
 	public void setTipoEvaluacion(TipoEvaluacionEnum tipoEvaluacion) {
 		this.tipoEvaluacion = tipoEvaluacion;
+	}
+
+	public Student getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(Student estudiante) {
+		this.estudiante = estudiante;
 	}
 
 }

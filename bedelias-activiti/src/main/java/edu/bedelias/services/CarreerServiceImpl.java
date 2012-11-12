@@ -1,5 +1,8 @@
 package edu.bedelias.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +40,18 @@ public class CarreerServiceImpl implements CarreerService {
 		if (carreer != null) {
 			carreerRepo.delete(carreer);
 		}
+	}
+
+	@Override
+	public List<Carreer> getCarrerasById(List<Long> ids) {
+		List<Carreer> carreras = new ArrayList<Carreer>();
+		for (Long id : ids) {
+			Carreer c = carreerRepo.findOne(id);
+			if (c != null) {
+				carreras.add(c);
+			}
+		}
+		return carreras;
 	}
 
 	// Getters && Setters

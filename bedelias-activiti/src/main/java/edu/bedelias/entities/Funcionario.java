@@ -7,26 +7,40 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import edu.bedelias.enums.TipoFuncionarioEnum;
 
 /**
  * @author Administrador
- *
+ * 
  */
 @Entity
 public class Funcionario extends Person {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long numeroFuncionario;
-	
+
 	private TipoFuncionarioEnum tipoFuncionario;
 
+	@ManyToOne
+	@JoinColumn(name = "INSTITUTO_ID")
+	private Instituto instituto;
+
 	// Getters && Setters
-	
+
+	public Instituto getInstituto() {
+		return instituto;
+	}
+
+	public void setInstituto(Instituto instituto) {
+		this.instituto = instituto;
+	}
+
 	public Long getNumeroFuncionario() {
 		return numeroFuncionario;
 	}
@@ -42,5 +56,5 @@ public class Funcionario extends Person {
 	public void setTipoFuncionario(TipoFuncionarioEnum tipoFuncionario) {
 		this.tipoFuncionario = tipoFuncionario;
 	}
-	
+
 }
