@@ -37,4 +37,14 @@ public class CursoServiceImpl implements CursoService {
 		cursoRepo.delete(curso);
 	}
 
+	// Getters && Setters
+	
+	public CursoRepository getCursoRepo() {
+		return cursoRepo;
+	}
+
+	public void setCursoRepo(CursoRepository cursoRepo) {
+		this.cursoRepo = cursoRepo;
+	}
+	
 }

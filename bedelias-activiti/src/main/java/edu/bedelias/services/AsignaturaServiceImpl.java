@@ -38,4 +38,14 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	}
 
+	// Getters && Setters
+	
+	public AsignaturaRepository getAsignaturaRepo() {
+		return asignaturaRepo;
+	}
+
+	public void setAsignaturaRepo(AsignaturaRepository asignaturaRepo) {
+		this.asignaturaRepo = asignaturaRepo;
+	}
+
 }

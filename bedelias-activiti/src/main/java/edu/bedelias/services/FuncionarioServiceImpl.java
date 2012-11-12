@@ -8,12 +8,12 @@ import edu.bedelias.entities.Funcionario;
 import edu.bedelias.repositories.FuncionarioRepository;
 
 @Service
-@Transactional(readOnly = true) 
+@Transactional(readOnly = true)
 public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepo;
-	
+
 	@Override
 	@Transactional
 	public Funcionario createFuncionario(Funcionario funcionario) {
@@ -36,6 +36,16 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	public void deleteFuncionario(Funcionario funcionario) {
 		funcionarioRepo.delete(funcionario);
 
+	}
+
+	// Getters && Setters
+
+	public FuncionarioRepository getFuncionarioRepo() {
+		return funcionarioRepo;
+	}
+
+	public void setFuncionarioRepo(FuncionarioRepository funcionarioRepo) {
+		this.funcionarioRepo = funcionarioRepo;
 	}
 
 }
