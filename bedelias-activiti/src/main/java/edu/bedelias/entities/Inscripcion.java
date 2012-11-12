@@ -33,6 +33,10 @@ public class Inscripcion extends GenericEntity {
 	@JoinColumn(name = "carrera")
 	private Carreer carrera;
 
+	@ManyToOne
+	@JoinColumn(name = "curso")
+	private Curso curso;
+
 	public Inscripcion() {
 		super();
 		this.isValid = false;
@@ -86,6 +90,14 @@ public class Inscripcion extends GenericEntity {
 
 	public void setTipo(TipoInscripcionEnum tipo) {
 		this.tipo = tipo;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 }

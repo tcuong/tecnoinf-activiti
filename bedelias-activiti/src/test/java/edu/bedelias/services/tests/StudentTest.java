@@ -22,12 +22,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import edu.bedelias.entities.Carreer;
+import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoEvaluacionEnum;
 import edu.bedelias.enums.TipoInscripcionEnum;
+import edu.bedelias.enums.TurnoEnum;
 import edu.bedelias.services.CarreerService;
+import edu.bedelias.services.CursoService;
 import edu.bedelias.services.EvaluacionService;
 import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.StudentService;
@@ -52,10 +55,14 @@ public class StudentTest {
 	@Autowired
 	private CarreerService carreraService;
 
+	@Autowired
+	private CursoService cursoService;
+
 	private Student student;
 	private Evaluacion evaluacion;
 	private Inscripcion inscripcion;
 	private List<Carreer> carreras;
+	private Curso curso;
 
 	@Before
 	public void init() {
@@ -70,6 +77,7 @@ public class StudentTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void test() {
 
@@ -131,6 +139,35 @@ public class StudentTest {
 		}
 	}
 
+	@Test
+	public void test3() {
+
+		UUID code = UUID.randomUUID();
+		curso = new Curso();
+
+		curso.setCode(code);
+		curso.setName("Plastilina 101 vesp.");
+		curso.setSemestre("Par");
+		curso.setHorario("Los jueves de 9 a 10:30");
+		curso.setFechaInicio(new Date(System.currentTimeMillis()));
+		curso.setFechaFin(new Date(System.currentTimeMillis()));
+		curso.setTurno(TurnoEnum.VESPERTINA);
+
+		curso = cursoService.createCurso(curso);
+
+		inscripcion = this.crearInscripcion();
+		inscripcion.setCurso(curso);
+		inscripcionService.updateInscripcion(inscripcion);
+
+		Student julio = studentService.findStudentByCedula(student.getCedula());
+		List<Inscripcion> ins = inscripcionService
+				.getInscripcionesByStudent(julio);
+
+		assertEquals("Los cursos deben coincidir", curso.getId(), ins.get(0)
+				.getCurso().getId());
+
+	}
+
 	private Carreer crearCarreer(String nombreCarrera) {
 
 		UUID code = UUID.randomUUID();
@@ -145,7 +182,8 @@ public class StudentTest {
 
 	private Inscripcion crearInscripcion() {
 		inscripcion = new Inscripcion();
-		inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
+		// inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
+		inscripcion.setTipo(TipoInscripcionEnum.CURSO);
 		inscripcionService.createInscripcion(inscripcion);
 
 		inscripcion.setEstudiante(student);
