@@ -48,6 +48,12 @@ public class InscripcionServiceImpl implements InscripcionService {
 		inscripcionRepo.delete(inscripcion);
 
 	}
+	
+	// Getters && Setters
+	
+	public InscripcionRepository getInscripcionRepo() {
+		return inscripcionRepo;
+	}
 
 	@Override
 	public List<Inscripcion> getInscripcionesByStudent(Student student) {
@@ -67,4 +73,8 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return carreers;
 	}
 
+	public void setInscripcionRepo(InscripcionRepository inscripcionRepo) {
+		this.inscripcionRepo = inscripcionRepo;
+	}
+	
 }

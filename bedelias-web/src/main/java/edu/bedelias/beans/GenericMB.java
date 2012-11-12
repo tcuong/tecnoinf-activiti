@@ -3,8 +3,11 @@ package edu.bedelias.beans;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.el.ELContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
+import edu.bedelias.utils.SpringUtils;
 
 public abstract class GenericMB implements Serializable {
 	
@@ -52,4 +55,16 @@ public abstract class GenericMB implements Serializable {
     protected boolean isInSession(String property) {
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().containsKey(property);
     }
+    
+	public GenericMB getManagedBean(String beanName) {
+		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+		GenericMB neededBean = (GenericMB) FacesContext.getCurrentInstance().getApplication().getELResolver()
+				.getValue(elContext, null, beanName);
+		return neededBean;
+	}
+
+	public void addManagedBeanFromSession(GenericMB bean) {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.put(SpringUtils.convertToSpringName(bean.getClass().getSimpleName()), bean);
+	}
 }

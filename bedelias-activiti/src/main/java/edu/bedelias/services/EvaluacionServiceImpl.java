@@ -47,4 +47,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		return evaluacionRepo.getEvaluacionesByStudentId(student);
 	}
 
+	// Getters && Setters
+
+	public EvaluacionRepository getEvaluacionRepo() {
+		return evaluacionRepo;
+	}
+
+	public void setEvaluacionRepo(EvaluacionRepository evaluacionRepo) {
+		this.evaluacionRepo = evaluacionRepo;
+	}
+
 }

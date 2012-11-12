@@ -70,7 +70,6 @@ public class StudentTest {
 
 	}
 
-	@Ignore
 	@Test
 	public void test() {
 
@@ -95,6 +94,7 @@ public class StudentTest {
 				eval2.getId());
 	}
 
+	@Ignore
 	@Test
 	public void test2() {
 
@@ -129,7 +129,6 @@ public class StudentTest {
 			assertEquals("Las carreras deben ser iguales", carreras.get(i)
 					.getId(), masCarreras.get(i).getId());
 		}
-
 	}
 
 	private Carreer crearCarreer(String nombreCarrera) {
