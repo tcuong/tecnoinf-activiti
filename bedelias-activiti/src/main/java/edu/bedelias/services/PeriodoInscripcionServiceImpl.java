@@ -9,7 +9,7 @@ import edu.bedelias.repositories.PeriodoInscripcionRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class PeriodoInscripcionImpl implements PeriodoInscripcionService {
+public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService {
 
 	@Autowired
 	private PeriodoInscripcionRepository periodoInscripcionRepo;

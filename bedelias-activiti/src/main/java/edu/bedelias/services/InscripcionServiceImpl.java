@@ -48,17 +48,6 @@ public class InscripcionServiceImpl implements InscripcionService {
 		inscripcionRepo.delete(inscripcion);
 
 	}
-	
-	// Getters && Setters
-	
-	public InscripcionRepository getInscripcionRepo() {
-		return inscripcionRepo;
-	}
-
-	@Override
-	public List<Inscripcion> getInscripcionesByStudent(Student student) {
-		return inscripcionRepo.getInscripcionesBySrudent(student);
-	}
 
 	@Override
 	public List<Carreer> getCarrerasByStudent(Student student) {
@@ -73,8 +62,19 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return carreers;
 	}
 
+	@Override
+	public List<Inscripcion> getInscripcionesByStudent(Student student) {
+		return inscripcionRepo.getInscripcionesBySrudent(student);
+	}
+
+	// Getters && Setters
+
+	public InscripcionRepository getInscripcionRepo() {
+		return inscripcionRepo;
+	}
+
 	public void setInscripcionRepo(InscripcionRepository inscripcionRepo) {
 		this.inscripcionRepo = inscripcionRepo;
 	}
-	
+
 }
