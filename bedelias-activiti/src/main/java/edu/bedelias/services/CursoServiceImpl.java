@@ -13,7 +13,7 @@ public class CursoServiceImpl implements CursoService {
 
 	@Autowired
 	private CursoRepository cursoRepo;
-	
+
 	@Override
 	@Transactional
 	public Curso createCurso(Curso curso) {
@@ -37,8 +37,13 @@ public class CursoServiceImpl implements CursoService {
 		cursoRepo.delete(curso);
 	}
 
+	@Override
+	public Curso findCursoById(Long id) {
+		return cursoRepo.findCursoById(id);
+	}
+
 	// Getters && Setters
-	
+
 	public CursoRepository getCursoRepo() {
 		return cursoRepo;
 	}
@@ -46,5 +51,5 @@ public class CursoServiceImpl implements CursoService {
 	public void setCursoRepo(CursoRepository cursoRepo) {
 		this.cursoRepo = cursoRepo;
 	}
-	
+
 }
