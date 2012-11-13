@@ -10,9 +10,10 @@ public class Asignatura extends GenericEntityName {
 	private static final long serialVersionUID = 698397770291392936L;
 
 	private Integer credits;
-
 	private AprobacionEnum tipoAprobacion;
-
+	private Boolean isElectiva;
+	
+	// Getters && Setters
 	public Integer getCredits() {
 		return credits;
 	}
@@ -36,7 +37,5 @@ public class Asignatura extends GenericEntityName {
 	public void setIsElectiva(Boolean isElectiva) {
 		this.isElectiva = isElectiva;
 	}
-
-	private Boolean isElectiva;
 
 }

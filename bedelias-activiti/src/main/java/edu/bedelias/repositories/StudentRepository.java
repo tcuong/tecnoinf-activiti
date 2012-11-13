@@ -1,7 +1,6 @@
 package edu.bedelias.repositories;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,7 +16,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	 */
 	public List<Student> findStudentByLastname(String lastname);
 
-	public Student findStudentByStudentNum(UUID studentNum); // FIXME usar String
+	public Student findStudentByStudentNum(String studentNum);
 
 	public Student findStudentByEmail(String email);
 

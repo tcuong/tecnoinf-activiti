@@ -21,20 +21,20 @@ public class Student extends Person {
 	private static final long serialVersionUID = 1L;
 
 	@Column(unique = true, nullable = false)
-	private UUID studentNum; // FIXME usar String
+	private String studentNum;
 
 	@Column(nullable = false)
 	private Date fechaInscripcionFac;
 
 	public Student() {
 		super();
-		this.studentNum = UUID.randomUUID();
+		this.studentNum = UUID.randomUUID().toString();
 	}
 
 	public Student(String name, String email, String cedula,
 			Date fechaInscripcionFac) {
 		super();
-		this.studentNum = UUID.randomUUID();
+		this.studentNum = UUID.randomUUID().toString();
 		this.setName(name);
 		this.setEmail(email);
 		this.setCedula(cedula);
@@ -43,11 +43,11 @@ public class Student extends Person {
 
 	// Getters && Setters
 
-	public UUID getStudentNum() {
+	public String getStudentNum() {
 		return studentNum;
 	}
 
-	public void setStudentNum(UUID studentNum) {
+	public void setStudentNum(String studentNum) {
 		this.studentNum = studentNum;
 	}
 

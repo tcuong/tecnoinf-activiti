@@ -55,7 +55,8 @@ public class StudentTest {
 	@Autowired
 	private CursoService cursoService;
 
-	@Before
+	@Ignore
+	@Test // replace this with @Before if not using the import.sql file
 	public void init() {
 		Student student = studentService.createStudent(new Student("Chupito",
 				"chupame@eltobonia.net", "someCedula", new Date(System
@@ -110,7 +111,6 @@ public class StudentTest {
 				eval2.getId());
 	}
 
-	@Ignore
 	@Test
 	public void testCarreras() {
 		Student student = studentService.findStudentByCedula("someCedula");
@@ -132,6 +132,7 @@ public class StudentTest {
 	}
 
 	// Getters && Setters
+	
 	public StudentService getStudentService() {
 		return studentService;
 	}

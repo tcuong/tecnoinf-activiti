@@ -1,7 +1,5 @@
 package edu.bedelias.repositories;
 
-import java.util.UUID;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.bedelias.entities.Asignatura;
@@ -15,5 +13,5 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Long>{
 	 * @return
 	 */
 
-	public Asignatura findAsignaturaByCode(UUID code); // FIXME usar String
+	public Asignatura findByUuid(String uuid);
 }
