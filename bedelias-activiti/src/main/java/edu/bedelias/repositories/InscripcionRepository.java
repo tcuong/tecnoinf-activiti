@@ -20,7 +20,7 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
 	public List<Inscripcion> findInscripcionByEstudianteAndTipo(Student estudiante, TipoInscripcionEnum tipo);
 	
-	// FIXME porbar hacerlo con un findBy
+	// FIXME probar hacerlo con un findBy
 	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.tipo = ?2")
 	public List<Inscripcion> getInscripcionesByTipo(Student student,
 			TipoInscripcionEnum tipoIns);

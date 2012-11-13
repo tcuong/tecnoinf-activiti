@@ -17,7 +17,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	 */
 	public List<Student> findStudentByLastname(String lastname);
 
-	public Student findStudentByStudentNum(UUID studentNum);
+	public Student findStudentByStudentNum(UUID studentNum); // FIXME usar String
 
 	public Student findStudentByEmail(String email);
 

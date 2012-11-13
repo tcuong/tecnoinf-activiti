@@ -15,5 +15,5 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Long>{
 	 * @return
 	 */
 
-	public Asignatura findAsignaturaByCode(UUID code);
+	public Asignatura findAsignaturaByCode(UUID code); // FIXME usar String
 }

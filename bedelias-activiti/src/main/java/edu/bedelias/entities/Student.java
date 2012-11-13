@@ -21,7 +21,7 @@ public class Student extends Person {
 	private static final long serialVersionUID = 1L;
 
 	@Column(unique = true, nullable = false)
-	private UUID studentNum; // FIXME
+	private UUID studentNum; // FIXME usar String
 
 	@Column(nullable = false)
 	private Date fechaInscripcionFac;
