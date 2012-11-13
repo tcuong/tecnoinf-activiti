@@ -11,4 +11,8 @@ public interface CursoService {
 	public void deleteCurso(Curso curso);
 
 	public Curso findCursoById(Long id);
+
+	boolean ExisteCursoByCodigo(String codigoCurso);
+
+	void GenerarActa(String codigoCurso);
 }
