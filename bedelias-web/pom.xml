@@ -29,14 +29,6 @@
 		</dependency>
 		<!-- End Spring project Dependencies -->
 		
-		<!-- Bedelias project dependencies -->
-		<dependency>
-			<groupId>edu.bedelias</groupId>
-			<artifactId>bedelias-activiti</artifactId>
-			<version>${bedelias.version}</version>
-		</dependency>
-		<!-- End Bedelias project messages -->
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -97,6 +89,14 @@
 			<artifactId>vt-password</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+		
+		<!-- Bedelias project dependencies -->
+		<dependency>
+			<groupId>edu.bedelias</groupId>
+			<artifactId>bedelias-activiti</artifactId>
+			<version>${bedelias.version}</version>
+		</dependency>
+		<!-- End Bedelias project messages -->
 	
 	</dependencies>
 

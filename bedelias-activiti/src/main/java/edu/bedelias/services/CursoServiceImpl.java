@@ -42,6 +42,24 @@ public class CursoServiceImpl implements CursoService {
 		return cursoRepo.findCursoById(id);
 	}
 
+	@Override
+	public boolean ExisteCursoByCodigo(String codigoCurso) {
+		if (codigoCurso != null) {
+			if (cursoRepo.findCursoByUuid(codigoCurso) != null) {
+				return Boolean.TRUE;
+			}
+		}
+		
+		return Boolean.FALSE;
+	}
+	
+	@Override
+	public void GenerarActa(String codigoCurso) {
+		
+		
+		return;
+	}
+
 	// Getters && Setters
 
 	public CursoRepository getCursoRepo() {
