@@ -2,5 +2,5 @@ package edu.bedelias.enums;
 
 public enum TurnoEnum {
 
-	MATUTINA, VESPERTINA, NOCTURNO
+	MATUTINO, VESPERTINO, NOCTURNO
 }

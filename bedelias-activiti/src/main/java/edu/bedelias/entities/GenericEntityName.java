@@ -18,23 +18,24 @@ public class GenericEntityName extends GenericEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Column(unique = true, nullable=false)
-	private UUID code;
+	private String uuid;
 	
 	@Column(nullable = false)
 	private String name;
 
 	public GenericEntityName() {
 		super();
+		this.uuid = UUID.randomUUID().toString();
 	}
 	
 	// Getters && Setters
 	
-	public UUID getCode() {
-		return code;
+	public String getCode() {
+		return uuid;
 	}
 
-	public void setCode(UUID code) {
-		this.code = code;
+	public void setCode(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getName() {

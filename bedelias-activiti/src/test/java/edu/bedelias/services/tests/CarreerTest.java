@@ -24,20 +24,13 @@ public class CarreerTest {
 	
 	@Test
 	public void test(){
-		
-		UUID code = UUID.randomUUID();
-		Carreer carreer = new Carreer();
-		carreer.setName("Ingenieria en Cachufletas");
-		carreer.setCode(code);
-		
+		Carreer carreer = new Carreer("Alguna carrera");
 		carreer = carreerService.createCarreer(carreer);
 
 		assertNotNull("Carreer can't be null", carreer);
 		assertNotNull("Carreer Name can't be null", carreer.getName());
 		assertNotNull("Carreer Code can't be null", carreer.getCode());
 		
-		assertEquals("Carreer Code must be the same", carreer.getCode(),
-				code);
 	}
 
 }

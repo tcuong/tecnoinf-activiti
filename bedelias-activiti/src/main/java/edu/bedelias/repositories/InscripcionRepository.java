@@ -11,13 +11,6 @@ import edu.bedelias.enums.TipoInscripcionEnum;
 
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> {
 
-	@Query("select i from Inscripcion i where i.estudiante = ?1")
-	public List<Inscripcion> getInscripcionesBySrudent(Student student);
-
-	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.tipo = ?2")
-	public List<Inscripcion> getInscripcionesByTipo(Student student,
-			TipoInscripcionEnum tipoIns);
-
 	/**
 	 * CRUD ops are already part of JPARepository
 	 * 
@@ -25,4 +18,12 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 	 * @return
 	 */
 
+	public List<Inscripcion> findInscripcionByEstudianteAndTipo(Student estudiante, TipoInscripcionEnum tipo);
+	
+	// FIXME porbar hacerlo con un findBy
+	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.tipo = ?2")
+	public List<Inscripcion> getInscripcionesByTipo(Student student,
+			TipoInscripcionEnum tipoIns);
+
+	public List<Inscripcion> findInscripcionByEstudiante(Student estudiante);
 }

@@ -25,11 +25,8 @@ public class InstitutoTest {
 	@Test
 	public void test() {
 
-		UUID code = UUID.randomUUID();
 		Instituto instituto = new Instituto();
-
 		instituto.setName("Comision de Mamaderas");
-		instituto.setCode(code);
 
 		instituto = institutoService.createInstituto(instituto);
 
@@ -37,8 +34,7 @@ public class InstitutoTest {
 		assertNotNull("Instituto Name can't be null", instituto.getName());
 		assertNotNull("Instituto Code can't be null", instituto.getCode());
 
-		assertEquals("instituto Code must be the same", instituto.getCode(),
-				code);
+//		assertEquals("instituto Code must be the same", instituto.getCode(),code); //FIXME
 	}
 
 }

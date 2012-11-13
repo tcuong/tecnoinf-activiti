@@ -11,7 +11,6 @@ import static org.junit.Assert.assertNotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -24,10 +23,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
-import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoEvaluacionEnum;
-import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.enums.TurnoEnum;
 import edu.bedelias.services.CarreerService;
 import edu.bedelias.services.CursoService;
@@ -58,142 +55,83 @@ public class StudentTest {
 	@Autowired
 	private CursoService cursoService;
 
-	private Student student;
-	private Evaluacion evaluacion;
-	private Inscripcion inscripcion;
-	private List<Carreer> carreras;
-	private Curso curso;
-
 	@Before
 	public void init() {
+		Student student = studentService.createStudent(new Student("Chupito",
+				"chupame@eltobonia.net", "someCedula", new Date(System
+						.currentTimeMillis())));
 
-		student = new Student();
-		student.setName("Chupito");
-		student.setEmail("chupame@eltobonia.net");
-		student.setCedula("someCedula");
-		student.setFechaInscripcionFac(new Date(System.currentTimeMillis()));
+		List<Carreer> carreras = new ArrayList<Carreer>();
+		carreras.add(new Carreer("Ingenieria Mecanica"));
+		carreras.add(new Carreer("Ingenieria Civil"));
+		carreras.add(new Carreer("Ingenieria Quimica"));
+		carreras.add(new Carreer("Ingenieria Computacion"));
 
-		student = studentService.createStudent(student);
+		carreraService.createCarreer(carreras);
 
-	}
+		carreras = carreraService.findAll();
 
-	@Ignore
-	@Test
-	public void test() {
-
-		evaluacion = new Evaluacion();
-		evaluacion.setResultado(8);
-		evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.PARCIAL);
-
-		evaluacion = evaluacionService.createEvaluacion(evaluacion);
-
-		evaluacion.setEstudiante(student);
-		evaluacionService.updateEvaluacio(evaluacion);
-
-		student = studentService.findStudentByCedula("someCedula");
-		Student julio = studentService.findStudentByCedula(student.getCedula());
-		Evaluacion eval2 = evaluacionService.getEvaluacionesByStudentId(julio)
-				.get(0);
-
-		assertNotNull("Student can't be null", student);
-		assertEquals("Email must be the same", student.getEmail(),
-				"chupame@eltobonia.net");
-		assertEquals("Evaluaciones deben ser iguales", evaluacion.getId(),
-				eval2.getId());
-	}
-
-	@Ignore
-	@Test
-	public void test2() {
-
-		student = studentService.findStudentByCedula("someCedula");
-		Student julio = studentService.findStudentByCedula(student.getCedula());
-
-		carreras = new ArrayList<Carreer>();
-
-		carreras.add(this.crearCarreer("Mamadera Negra"));
-		carreras.add(this.crearCarreer("Mamadera Bionica"));
-		carreras.add(this.crearCarreer("Saca Caca"));
-
-		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
-
-		for (int i = 0; i < carreras.size(); i++) {
-			inscripciones.add(this.crearInscripcion());
+		for (Carreer c : carreras) {
+			inscripcionService.InscripcionACarrera(student.getId(), c.getId());
 		}
 
-		for (int i = 0; i < inscripciones.size(); i++) {
-			inscripciones.get(i).setCarrera(carreras.get(i));
-			inscripcionService.updateInscripcion(inscripciones.get(i));
-		}
-
-		List<Carreer> masCarreras = inscripcionService
-				.getCarrerasByStudent(julio);
-
-		if (masCarreras.size() == 0) {
-
-			org.junit.Assert.fail("Listas de carreras vacias");
-		}
-		for (int i = 0; i < masCarreras.size(); i++) {
-			assertEquals("Las carreras deben ser iguales", carreras.get(i)
-					.getId(), masCarreras.get(i).getId());
-		}
-	}
-
-	@Test
-	public void test3() {
-
-		UUID code = UUID.randomUUID();
-		curso = new Curso();
-
-		curso.setCode(code);
+		Curso curso = new Curso();
 		curso.setName("Plastilina 101 vesp.");
 		curso.setSemestre("Par");
 		curso.setHorario("Los jueves de 9 a 10:30");
 		curso.setFechaInicio(new Date(System.currentTimeMillis()));
 		curso.setFechaFin(new Date(System.currentTimeMillis()));
-		curso.setTurno(TurnoEnum.VESPERTINA);
-
+		curso.setTurno(TurnoEnum.VESPERTINO);
 		curso = cursoService.createCurso(curso);
 
-		inscripcion = this.crearInscripcion();
-		inscripcion.setCurso(curso);
-		inscripcionService.updateInscripcion(inscripcion);
+		inscripcionService.InscripcionACurso(student.getId(), curso.getId());
 
-		Student julio = studentService.findStudentByCedula(student.getCedula());
-		List<Inscripcion> ins = inscripcionService
-				.getInscripcionesByStudent(julio);
-
-		assertEquals("Los cursos deben coincidir", curso.getId(), ins.get(0)
-				.getCurso().getId());
-
+		return;
 	}
 
-	private Carreer crearCarreer(String nombreCarrera) {
+	@Test
+	public void testEvaluacion() {
+		Evaluacion eval = new Evaluacion();
+		eval.setTipoEvaluacion(TipoEvaluacionEnum.PARCIAL);
+		eval.setResultado(8);
 
-		UUID code = UUID.randomUUID();
-		Carreer carreer = new Carreer();
-		carreer.setName(nombreCarrera);
-		carreer.setCode(code);
+		Student student = studentService.findStudentByCedula("someCedula");
 
-		carreer = carreraService.createCarreer(carreer);
+		assertNotNull("Student can't be null", student);
+		assertEquals("Email must be the same", student.getEmail(),
+				"chupame@eltobonia.net");
 
-		return carreer;
+		eval = evaluacionService.createEvaluacion(eval, student.getId());
+
+		Evaluacion eval2 = evaluacionService
+				.getEvaluacionesByStudentId(student).get(0);
+
+		assertEquals("Evaluaciones deben ser iguales", eval.getId(),
+				eval2.getId());
 	}
 
-	private Inscripcion crearInscripcion() {
-		inscripcion = new Inscripcion();
-		// inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
-		inscripcion.setTipo(TipoInscripcionEnum.CURSO);
-		inscripcionService.createInscripcion(inscripcion);
+	@Ignore
+	@Test
+	public void testCarreras() {
+		Student student = studentService.findStudentByCedula("someCedula");
+		List<Carreer> carreras = inscripcionService
+				.getCarrerasByStudent(student);
 
-		inscripcion.setEstudiante(student);
-		inscripcionService.updateInscripcion(inscripcion);
+		if (carreras.size() == 0) {
+			org.junit.Assert.fail("Lista de carreras vacia");
+		}
 
-		return inscripcion;
+		List<Carreer> allCarreers = carreraService.findAll();
+		assertNotNull("Las carreras del sistema no pueden ser NULL",
+				allCarreers);
+
+		for (Carreer c : carreras) {
+			assertNotNull("La carrera seleccionada debe existir",
+					carreraService.findCarreer(c));
+		}
 	}
 
 	// Getters && Setters
-
 	public StudentService getStudentService() {
 		return studentService;
 	}

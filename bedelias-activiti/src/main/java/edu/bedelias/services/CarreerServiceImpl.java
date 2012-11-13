@@ -64,4 +64,32 @@ public class CarreerServiceImpl implements CarreerService {
 		this.carreerRepo = carreerRepo;
 	}
 
+	@Override
+	public void createCarreer(List<Carreer> carreras) {
+		if (carreras != null) {
+			this.carreerRepo.save(carreras);
+		}
+
+	}
+
+	@Override
+	public List<Carreer> findAll() {
+		return carreerRepo.findAll();
+	}
+
+	@Override
+	public Carreer findCarreer(Carreer c) {
+		return findCarreer(c.getId());
+	}
+
+	@Override
+	public Carreer findCarreer(Long carreerId) {
+		try {
+			return carreerRepo.findOne(carreerId);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

@@ -28,7 +28,7 @@
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
 	<jdbc:embedded-database id="dataSource" type="HSQL">
-		<jdbc:script location="classpath:/schema.sql" encoding="UTF-8" />
+		<jdbc:script location="classpath:/import.sql" encoding="UTF-8" />
 	</jdbc:embedded-database>
 
 	<bean id="entityManagerFactory"

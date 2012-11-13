@@ -38,6 +38,10 @@ public class Curso extends GenericEntityName {
 	@ManyToMany
 	private List<Student> estudiantes;
 
+	public Curso() {
+		super();
+	}
+	
 	public String getDescripcion() {
 		return descripcion;
 	}

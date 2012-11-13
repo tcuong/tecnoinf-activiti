@@ -25,4 +25,8 @@ public interface InscripcionService {
 
 	public List<Curso> getCursoByStudent(Student student);
 
+	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId);
+
+	public Inscripcion InscripcionACurso(Long studentId, Long cursoId);
+
 }

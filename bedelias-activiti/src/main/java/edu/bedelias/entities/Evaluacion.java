@@ -22,9 +22,19 @@ public class Evaluacion extends GenericEntity {
 
 	private Date fechaEvaluacion;
 	private Integer resultado;
-
 	private TipoEvaluacionEnum tipoEvaluacion;
 
+	public Evaluacion() {
+		super();
+	}
+	
+	public Evaluacion(Integer resultado, Date fechaEvaluacion, TipoEvaluacionEnum tipo) {
+		super();
+		this.resultado = resultado;
+		this.fechaEvaluacion = fechaEvaluacion;
+		this.tipoEvaluacion = tipo;
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "estudiante")
 	private Student estudiante;

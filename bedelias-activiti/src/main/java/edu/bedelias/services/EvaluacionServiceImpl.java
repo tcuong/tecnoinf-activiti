@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.repositories.EvaluacionRepository;
+import edu.bedelias.repositories.StudentRepository;
 
 @Service
 @Transactional(readOnly = true)
@@ -17,6 +18,28 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Autowired
 	private EvaluacionRepository evaluacionRepo;
 
+	@Autowired
+	private StudentRepository studentRepo;
+	
+	// Getters && Setters
+
+	public EvaluacionRepository getEvaluacionRepo() {
+		return evaluacionRepo;
+	}
+
+	public void setEvaluacionRepo(EvaluacionRepository evaluacionRepo) {
+		this.evaluacionRepo = evaluacionRepo;
+	}
+
+	public StudentRepository getStudentRepo() {
+		return studentRepo;
+	}
+
+	public void setStudentRepo(StudentRepository studentRepo) {
+		this.studentRepo = studentRepo;
+	}
+
+	
 	@Override
 	@Transactional
 	public Evaluacion createEvaluacion(Evaluacion evaluacion) {
@@ -28,11 +51,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	@Override
 	@Transactional
-	public void updateEvaluacio(Evaluacion evaluacion) {
+	public void updateEvaluacion(Evaluacion evaluacion) {
 		if (evaluacion != null) {
 			evaluacion = evaluacionRepo.save(evaluacion);
 		}
-
 	}
 
 	@Override
@@ -44,17 +66,26 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	@Transactional
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student) {
-		return evaluacionRepo.getEvaluacionesByStudentId(student);
+		try {
+			return evaluacionRepo.getEvaluacionesByStudentId(student);	
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	// Getters && Setters
+	@Override
+	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId) {
+		try {
+			Student estudiante = studentRepo.findOne(studentId);
 
-	public EvaluacionRepository getEvaluacionRepo() {
-		return evaluacionRepo;
+			if (estudiante != null) {
+				evaluacion.setEstudiante(estudiante);
+				return evaluacionRepo.save(evaluacion);
+			}
+		} catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-
-	public void setEvaluacionRepo(EvaluacionRepository evaluacionRepo) {
-		this.evaluacionRepo = evaluacionRepo;
-	}
-
 }

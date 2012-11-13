@@ -8,11 +8,20 @@ public class Carreer extends GenericEntityName {
 	private static final long serialVersionUID = -7719015297725891812L;
 
 	private Integer totalCredits;
-
 	private String intermediateTitle;
-
 	private Integer intermediateCredits;
 
+	public Carreer() {
+		super();
+	}
+	
+	public Carreer(String nombreCarrera) {
+		super();
+		this.setName(nombreCarrera);
+	}
+
+	// Getters && Setters
+	
 	public Integer getTotalCredits() {
 		return totalCredits;
 	}
