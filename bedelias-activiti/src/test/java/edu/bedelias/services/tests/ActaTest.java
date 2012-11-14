@@ -10,7 +10,7 @@ public class ActaTest {
 
 	@Test
 	public void test() {
-		ReportsService.main(null);
+		ReportsService.print();
 	}
 
 }
