@@ -1,14 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:property-placeholder location="classpath*:jdbc.properties" />
 
 	<bean id="processEngineConfiguration"
 		class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
 
-		<property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000" />
-		<property name="jdbcDriver" value="org.h2.Driver" />
-		<property name="jdbcUsername" value="sa" />
-		<property name="jdbcPassword" value="" />
+		<property name="jdbcUrl" value="${jdbc.activitiUrl}" />
+		<property name="jdbcDriver" value="${jdbc.driver}" />
+		<property name="jdbcUsername" value="${jdbc.username}" />
+		<property name="jdbcPassword" value="${jdbc.password}" />
 
 		<property name="databaseSchemaUpdate" value="true" />
 
