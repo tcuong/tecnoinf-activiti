@@ -1,11 +1,13 @@
 # Files go here #
 *.class
 *.project
+*.bpmn2d
 
 # Package Files #
 *.jar
 *.war
 *.ear
+*.bar
 
 # Folders go here #
 *.classpath
