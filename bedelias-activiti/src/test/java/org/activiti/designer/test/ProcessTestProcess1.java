@@ -31,8 +31,10 @@ public class ProcessTestProcess1 {
 		RuntimeService runtimeService = activitiRule.getRuntimeService();
 		Map<String, Object> variableMap = new HashMap<String, Object>();
 		variableMap.put("name", "Activiti");
+		variableMap.put("input", "70d2ff46-7f3d-42c7-aa23-aaf1f6d7f818");
+
 		ProcessInstance processInstance = runtimeService
-				.startProcessInstanceByKey("process1", variableMap);
+				.startProcessInstanceByKey("GenerarActaDeCurso", variableMap);
 		assertNotNull(processInstance.getId());
 		System.out.println("id " + processInstance.getId() + " "
 				+ processInstance.getProcessDefinitionId());
