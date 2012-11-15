@@ -14,7 +14,7 @@
 			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<context:property-placeholder location="classpath*:jdbc.properties" />
-
+	
 	<import resource="classpath*:/applicationContext.xml" />
 
 	<!-- Scan this classpath for annotated components that will be auto-registered 
