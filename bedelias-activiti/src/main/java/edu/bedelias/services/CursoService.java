@@ -1,5 +1,7 @@
 package edu.bedelias.services;
 
+import java.util.List;
+
 import edu.bedelias.entities.Curso;
 
 public interface CursoService {
@@ -15,4 +17,6 @@ public interface CursoService {
 	boolean ExisteCursoByCodigo(String codigoCurso);
 
 	void GenerarActa(String codigoCurso);
+
+	public List<Curso> findAll();
 }

@@ -6,16 +6,34 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-		<h:form>
+		<h:form prependId="false">
 			<p:panelGrid columns="1"
 				style="width:95%; margin:20px auto; height:100%">
 
 				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
 
-				<p:selectOneMenu id="carreras" value="#{inscripcionCursoMB.carreras}">
-					<f:selectItem itemLabel="Seleccione una Carrera" itemValue="" />
-					<f:selectItems value="#{inscripcionCursoMB.carreras}" />
+				<p:selectOneMenu id="carreras"
+					value="#{inscripcionCursoMB.carrera}">
+					<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}"/>
 				</p:selectOneMenu>
+				
+				<p:commandButton value="Seleccione una Carrera" update="dataTable" actionListener="#{inscripcionCursoMB.cargarTabla}" ajax="true"/>
+
+				<p:dataTable id="dataTable" var="curso"
+					value="#{inscripcionCursoMB.cursos}" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Curso" />
+						</f:facet>
+						<h:outputText value="#{curso.descripcion}" />
+					</p:column>
+				</p:dataTable>
+
 
 			</p:panelGrid>
 
