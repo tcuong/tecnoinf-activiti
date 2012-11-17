@@ -6,7 +6,7 @@ public class ActaTest {
 
 	@Test
 	public void test() {
-		ReportsService.print();
+		// ReportsService.print();
 		// Comente esto xq me daba error y con maven update no levanto el
 		// error....
 		// ReportsService.main(null);

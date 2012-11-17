@@ -14,6 +14,9 @@ public class CursoServiceImpl implements CursoService {
 	@Autowired
 	private CursoRepository cursoRepo;
 
+	public CursoServiceImpl() {
+	}
+
 	@Override
 	@Transactional
 	public Curso createCurso(Curso curso) {
@@ -49,14 +52,13 @@ public class CursoServiceImpl implements CursoService {
 				return Boolean.TRUE;
 			}
 		}
-		
+
 		return Boolean.FALSE;
 	}
-	
+
 	@Override
 	public void GenerarActa(String codigoCurso) {
-		
-		
+
 		return;
 	}
 

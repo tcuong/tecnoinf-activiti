@@ -5,13 +5,25 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="content">
-<h:form>
-<h:outputText value="Cedula"></h:outputText>
-<br/>
-<p:inputText value="#{loginMB.cedula}" />
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid columns="2" style="width:40%; margin:50px auto;">
+				
+				<f:facet name="header">
+        			Log In
+    			</f:facet>
 
-<p:commandButton type="submit" value="Log In" action="#{loginMB.login}"/>
-</h:form>
-</ui:define>
+				<h:outputLabel value=" Cedula: " />
+				<p:inputText value="#{loginMB.cedula}" required="true" />
+
+				<h:outputLabel value="Contrasenia: " />
+<!-- 				<p:password id="nonFeedback" value="" required="false" /> -->
+
+				<f:facet name="footer">
+					<p:commandButton type="submit" value="Log In" action="#{loginMB.login}" style="float:right"/>
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+
+	</ui:define>
 </ui:composition>

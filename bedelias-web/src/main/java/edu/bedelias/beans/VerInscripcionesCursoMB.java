@@ -27,11 +27,9 @@ public class VerInscripcionesCursoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-
 		ciEst = getFromSession("ci_est").toString();
 		inscripciones = inscripcionService.getInscripcionesByTipo(ciEst,
 				TipoInscripcionEnum.CURSO);
-
 	}
 
 	public InscripcionService getInscripcionService() {

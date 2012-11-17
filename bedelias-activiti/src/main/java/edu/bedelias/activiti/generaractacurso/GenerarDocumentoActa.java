@@ -1,27 +1,38 @@
 package edu.bedelias.activiti.generaractacurso;
 
-import org.activiti.engine.delegate.DelegateExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.bedelias.activiti.GenericActiviti;
-import edu.bedelias.services.CursoService;
+import edu.bedelias.services.TestServiceDummy;
 
-public class GenerarDocumentoActa extends GenericActiviti {
+public class GenerarDocumentoActa {
+
+	// @Autowired
+	// private CursoService cursoService;
 
 	@Autowired
-	private CursoService cursoService;
+	private TestServiceDummy serviceDummy;
 
-	@Override
-	public void execute(DelegateExecution execution) throws Exception {
-		cursoService.GenerarActa(execution.getVariable("input").toString());
+	// @Override
+	public void execute() throws Exception {
+		serviceDummy.run2();
+		// execution.setVariable("existeCodigo", true);
+		// cursoService.GenerarActa(execution.getVariable("input").toString());
 	}
 
-	public CursoService getCursoService() {
-		return cursoService;
+	public TestServiceDummy getServiceDummy() {
+		return serviceDummy;
 	}
 
-	public void setCursoService(CursoService cursoService) {
-		this.cursoService = cursoService;
+	public void setServiceDummy(TestServiceDummy serviceDummy) {
+		this.serviceDummy = serviceDummy;
 	}
+
+	// public CursoService getCursoService() {
+	// return cursoService;
+	// }
+	//
+	// public void setCursoService(CursoService cursoService) {
+	// this.cursoService = cursoService;
+	// }
 
 }

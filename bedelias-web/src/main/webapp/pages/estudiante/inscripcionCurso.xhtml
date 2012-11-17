@@ -5,15 +5,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="content">
-<h:form>
-<h:outputText value="ingrese algo"></h:outputText>
-<br/>
-<p:inputText value="#{inscripcionCursoMB.texto}" />
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid columns="1"
+				style="width:95%; margin:20px auto; height:100%">
 
-<p:commandButton type="submit" value="Guardar" action="#{inscripcionCursoMB.guardar}"/>
-</h:form>
-</ui:define>
+				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
+
+				<p:selectOneMenu id="carreras" value="#{inscripcionCursoMB.carreras}">
+					<f:selectItem itemLabel="Seleccione una Carrera" itemValue="" />
+					<f:selectItems value="#{inscripcionCursoMB.carreras}" />
+				</p:selectOneMenu>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
 
 
 

@@ -12,6 +12,8 @@
 	<name>bedelias-web</name>
 
 	<properties>
+		<primefaces.version>3.4.2</primefaces.version>
+		<primefaces-theme.version>1.0.8</primefaces-theme.version>
 		<jsf.version>2.1.13</jsf.version>
 	</properties>
 
@@ -28,7 +30,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- End Spring project Dependencies -->
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -57,10 +59,15 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>3.4.1</version>
+			<version>${primefaces.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>south-street</artifactId>
+			<version>${primefaces-theme.version}</version>
 		</dependency>
 
-		<!-- web-specific dependencies  -->
+		<!-- web-specific dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>el-api</artifactId>
@@ -89,7 +96,7 @@
 			<artifactId>vt-password</artifactId>
 			<version>3.1.1</version>
 		</dependency>
-		
+
 		<!-- Bedelias project dependencies -->
 		<dependency>
 			<groupId>edu.bedelias</groupId>
@@ -97,7 +104,7 @@
 			<version>${bedelias.version}</version>
 		</dependency>
 		<!-- End Bedelias project messages -->
-	
+
 	</dependencies>
 
 </project>
