@@ -36,6 +36,8 @@
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<bean id="testServiceDummy" class="edu.bedelias.services.TestServiceDummyImpl" />
+
 	<!-- JPA Entity Manager Factory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -48,11 +50,10 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<!-- set HibernateJpaVendorAdapter's behavior: 
-					'create' = build a new DB on each run; 
-					'update' = modify an existing database; 
-					'create-drop' = 'create' and also drops tables when Hibernate closes;
-					'validate' = makes no changes to the database -->
+				<!-- set HibernateJpaVendorAdapter's behavior: 'create' = build a new 
+					DB on each run; 'update' = modify an existing database; 'create-drop' = 'create' 
+					and also drops tables when Hibernate closes; 'validate' = makes no changes 
+					to the database -->
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
@@ -82,9 +83,9 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- Hijack the current @Session scope annotation on each @Service and make it last only for 
-		the duration of the thread -->
- 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+	<!-- Hijack the current @Session scope annotation on each @Service and make 
+		it last only for the duration of the thread -->
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
 			<map>
 				<entry key="session">
@@ -92,7 +93,7 @@
 				</entry>
 			</map>
 		</property>
-	</bean> 
+	</bean>
 
 	<!-- Enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven />

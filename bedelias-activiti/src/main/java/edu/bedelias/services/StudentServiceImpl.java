@@ -18,7 +18,7 @@ import edu.bedelias.repositories.StudentRepository;
  * @author Gas
  * 
  */
-@Service
+@Service(value = "studentServiceImpl")
 @Transactional(readOnly = true)
 public class StudentServiceImpl implements StudentService, Serializable {
 
@@ -134,6 +134,12 @@ public class StudentServiceImpl implements StudentService, Serializable {
 
 	public void setStudentRepo(StudentRepository studentRepo) {
 		this.studentRepo = studentRepo;
+	}
+
+	@Override
+	public void unMetodoPistola() {
+		System.out.println("ESTOY EN SERVICE DE ESTUDIANTE");
+
 	}
 
 }
