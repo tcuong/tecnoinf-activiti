@@ -12,9 +12,9 @@ public class GenerarDocumentoActa {
 	@Autowired
 	private TestServiceDummy serviceDummy;
 
-	// @Override
-	public void execute() throws Exception {
+	public void run2() {
 		serviceDummy.run2();
+		// ${generarDocumentoActa.execute()}
 		// execution.setVariable("existeCodigo", true);
 		// cursoService.GenerarActa(execution.getVariable("input").toString());
 	}

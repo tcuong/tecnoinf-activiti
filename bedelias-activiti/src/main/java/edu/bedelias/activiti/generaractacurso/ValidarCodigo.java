@@ -10,10 +10,10 @@ public class ValidarCodigo {
 	@Autowired
 	private TestServiceDummy serviceDummy;
 
-	// @Override
-	public void execute() throws Exception {
+	public void run() {
 
 		serviceDummy.run();
+		// ${validarCodigo.execute()}
 		// boolean existeCodigo = cursoService.ExisteCursoByCodigo(execution
 		// .getVariable("input").toString());
 		// execution.setVariable("existeCodigo", existeCodigo);
