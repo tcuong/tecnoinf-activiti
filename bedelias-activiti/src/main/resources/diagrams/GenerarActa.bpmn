@@ -7,9 +7,9 @@
         <activiti:formProperty id="codigocurso" name="Codigo Curso" type="string" variable="input" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <serviceTask id="servicetask1" name="ValidarCodigo" activiti:expression="${validarCodigo.execute()}"></serviceTask>
+    <serviceTask id="servicetask1" name="ValidarCodigo" activiti:expression="${validarCodigo.run()}"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <serviceTask id="servicetask2" name="GenerarDocumentoDeActa" activiti:expression="${generarDocumentoActa.execute()}"></serviceTask>
+    <serviceTask id="servicetask2" name="GenerarDocumentoDeActa" activiti:expression="${generarDocumentoActa.run()}"></serviceTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>

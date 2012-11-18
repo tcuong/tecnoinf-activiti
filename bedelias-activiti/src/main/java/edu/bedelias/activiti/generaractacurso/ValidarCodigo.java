@@ -1,31 +1,39 @@
 package edu.bedelias.activiti.generaractacurso;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import edu.bedelias.services.TestServiceDummy;
-
 public class ValidarCodigo {
 
-	// private CursoService cursoService;
-	@Autowired
-	private TestServiceDummy serviceDummy;
+	// @Autowired
+	// private TestServiceDummy serviceDummy;
+
+	public void orto() {
+		// ClassPathXmlApplicationContext ap = new
+		// ClassPathXmlApplicationContext(
+		// "applicationContextCore.xml");
+		// serviceDummy = (TestServiceDummy) ap.getBean("testServiceDummyImpl");
+		//
+		// serviceDummy.run();
+		System.out.println("TAMOOOOOOOOOOOOO ACAAAAAAAAAAAAAAAAAAAAAAAA");
+		//
+		// serviceDummy.run();
+		// // ${validarCodigo.execute()}
+		// // boolean existeCodigo = cursoService.ExisteCursoByCodigo(execution
+		// // .getVariable("input").toString());
+		// // execution.setVariable("existeCodigo", existeCodigo);
+	}
+
+	// public TestServiceDummy getServiceDummy() {
+	// return serviceDummy;
+	// }
+	//
+	// public void setServiceDummy(TestServiceDummy serviceDummy) {
+	// this.serviceDummy = serviceDummy;
+	// }
 
 	// @Override
-	public void execute() throws Exception {
-
-		serviceDummy.run();
-		// boolean existeCodigo = cursoService.ExisteCursoByCodigo(execution
-		// .getVariable("input").toString());
-		// execution.setVariable("existeCodigo", existeCodigo);
-	}
-
-	public TestServiceDummy getServiceDummy() {
-		return serviceDummy;
-	}
-
-	public void setServiceDummy(TestServiceDummy serviceDummy) {
-		this.serviceDummy = serviceDummy;
-	}
+	// public void execute(DelegateExecution execution) throws Exception {
+	// System.out.println("TAMOOOOOOOOOOOOO ACAAAAAAAAAAAAAAAAAAAAAAAA");
+	//
+	// }
 
 	// public CursoService getCursoService() {
 	// return cursoService;

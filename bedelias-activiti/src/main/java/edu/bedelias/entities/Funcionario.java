@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import edu.bedelias.enums.TipoFuncionarioEnum;
 
@@ -27,19 +25,19 @@ public class Funcionario extends Person {
 
 	private TipoFuncionarioEnum tipoFuncionario;
 
-	@ManyToOne
-	@JoinColumn(name = "INSTITUTO_ID")
-	private Instituto instituto;
-
-	// Getters && Setters
-
-	public Instituto getInstituto() {
-		return instituto;
-	}
-
-	public void setInstituto(Instituto instituto) {
-		this.instituto = instituto;
-	}
+	// @ManyToOne
+	// @JoinColumn(name = "INSTITUTO_ID")
+	// private Instituto instituto;
+	//
+	// // Getters && Setters
+	//
+	// public Instituto getInstituto() {
+	// return instituto;
+	// }
+	//
+	// public void setInstituto(Instituto instituto) {
+	// this.instituto = instituto;
+	// }
 
 	public Long getNumeroFuncionario() {
 		return numeroFuncionario;
