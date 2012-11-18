@@ -16,7 +16,7 @@ public class LoginMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		cedula = "";
+		cedula = "someCedula";
 	}
 
 	public void login() {

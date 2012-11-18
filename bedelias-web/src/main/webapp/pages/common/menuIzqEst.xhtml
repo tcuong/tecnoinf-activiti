@@ -10,10 +10,12 @@
 	<h:form>
 		<p:menu>
 			<p:submenu label=" Inscripciones ">
-				<p:menuitem value="Inscripción a Curso"
-					actionListener="#{menuIzqEstMB.inscripcionCurso}" />
-				<p:menuitem value="Ver Inscripciones a Curso"
-					actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				<p:menuitem value="Inscripción a Curso" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				<p:menuitem value="Ver Inscripciones a Curso" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+			</p:submenu>
+			
+			<p:submenu label=" Estudiante ">
+				<p:menuitem value="Cerrar Sesion" actionListener="#{menuIzqEstMB.cerrarSesion}" />
 			</p:submenu>
 		</p:menu>
 	</h:form>
