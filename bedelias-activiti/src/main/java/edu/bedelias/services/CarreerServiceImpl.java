@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.Carreer;
-import edu.bedelias.entities.Materia;
 import edu.bedelias.repositories.CarreerRepository;
 
 @Service
@@ -55,10 +54,10 @@ public class CarreerServiceImpl implements CarreerService {
 		return carreras;
 	}
 
-	@Override
-	public List<Materia> findMateriaByCarreerId(Long id) {
-		return carreerRepo.getMateriasByCarreerId(id);
-	}
+	// @Override
+	// public List<Materia> findMateriaByCarreerId(Long id) {
+	// return carreerRepo.getMateriasByCarreerId(id);
+	// }
 
 	// Getters && Setters
 

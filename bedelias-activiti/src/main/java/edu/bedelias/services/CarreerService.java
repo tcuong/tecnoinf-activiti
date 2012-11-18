@@ -3,7 +3,6 @@ package edu.bedelias.services;
 import java.util.List;
 
 import edu.bedelias.entities.Carreer;
-import edu.bedelias.entities.Materia;
 
 public interface CarreerService {
 
@@ -23,6 +22,6 @@ public interface CarreerService {
 
 	public Carreer findCarreer(Long carreerId);
 
-	public List<Materia> findMateriaByCarreerId(Long id);
+	// public List<Materia> findMateriaByCarreerId(Long id);
 
 }
