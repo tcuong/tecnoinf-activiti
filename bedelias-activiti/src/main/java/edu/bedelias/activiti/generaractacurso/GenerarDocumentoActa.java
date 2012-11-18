@@ -1,14 +1,20 @@
 package edu.bedelias.activiti.generaractacurso;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.bedelias.services.TestServiceDummy;
 
-public class GenerarDocumentoActa {
+public class GenerarDocumentoActa implements Serializable {
 
 	// @Autowired
 	// private CursoService cursoService;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private TestServiceDummy serviceDummy;
 
