@@ -11,7 +11,7 @@ import edu.bedelias.utils.SpringUtils;
 
 public abstract class GenericMB implements Serializable {
 
-	private static final long serialVersionUID = 2680337680422935387L;
+	private static final long serialVersionUID = 1L;
 
 	public GenericMB() {
 	}

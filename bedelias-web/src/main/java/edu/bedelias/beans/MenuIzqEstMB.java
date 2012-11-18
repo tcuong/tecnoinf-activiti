@@ -24,4 +24,8 @@ public class MenuIzqEstMB extends GenericMB {
 	public void verInscripcionesCurso() {
 		redirect("../estudiante/verInscripcionesCurso.xhtml");
 	}
+	
+	public void cerrarSesion(){
+		redirect("../login.xhtml");
+	}
 }

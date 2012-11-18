@@ -6,50 +6,46 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-		<h:form prependId="false">
+		<h:form>
 			<p:panelGrid columns="1"
 				style="width:95%; margin:20px auto; height:100%">
 
+
 				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
 
-				<p:selectOneMenu id="carreras"
-					value="#{inscripcionCursoMB.carrera}">
-					<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}"/>
-				</p:selectOneMenu>
-				
-				<p:commandButton value="Seleccione una Carrera" update="dataTable" actionListener="#{inscripcionCursoMB.cargarTabla}" ajax="true"/>
+				<p:panelGrid columns="2"
+					style="margin:15px auto; border: none !important;">
+					<h:outputText value="Seleccione la Carrera" />
 
-				<p:dataTable id="dataTable" var="curso"
-					value="#{inscripcionCursoMB.cursos}" paginator="true"
-					rows="10"
+					<p:selectOneMenu value="#{inscripcionCursoMB.carrera}">
+						<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}" />
+						<p:ajax update="tabla" listener="#{inscripcionCursoMB.metodo}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+
+				<p:dataTable id="tabla" var="curso"
+					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
 					style="margin:10px">
 
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Curso" />
+							<h:outputText value="Cursos" />
 						</f:facet>
 						<h:outputText value="#{curso.descripcion}" />
 					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Seleccionar" />
+						</f:facet>
+						<p:commandButton value="Inscribirme" action="#{inscripcionCursoMB.inscribirse('putttoooo')}" style="padding:0;"/>
+						
+					</p:column>
+
 				</p:dataTable>
-
-
 			</p:panelGrid>
-
 		</h:form>
 	</ui:define>
-
-
-
-
-
-
-
-
-
-
-
-
-
 </ui:composition>

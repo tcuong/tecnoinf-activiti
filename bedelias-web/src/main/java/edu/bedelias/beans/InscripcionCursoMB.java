@@ -20,7 +20,7 @@ import edu.bedelias.services.StudentService;
 @SessionScoped
 public class InscripcionCursoMB extends GenericMB {
 
-	private static final long serialVersionUID = -826514322630864126L;
+	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty(value = "#{inscripcionServiceImpl}")
 	private InscripcionService inscripcionService;
@@ -35,7 +35,7 @@ public class InscripcionCursoMB extends GenericMB {
 	private List<Carreer> carreras;
 	private List<Curso> cursos;
 	private String ciEst;
-	private Carreer carrera;
+	private String carrera;
 
 	public InscripcionCursoMB() {
 
@@ -43,26 +43,26 @@ public class InscripcionCursoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		cursos = new ArrayList<Curso>();
 		ciEst = getFromSession("ci_est").toString();
 		Student student = studentService.findStudentByCedula(ciEst);
-
-		cursos = cursoService.findAll();
 
 		if (student != null) {
 			carreras = inscripcionService.getCarrerasByStudent(student);
 			carrerasListItem = new ArrayList<SelectItem>();
 			for (Carreer c : carreras) {
-				carrerasListItem.add(new SelectItem(c, c.getName()));
+				carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
 			}
 		} else {
-			sendErrorMessage("Estudiante no encontrado",
-					"No se han encontrado el estudiante con la cedula dada");
+			sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cedula dada");
 		}
 	}
 
-	public void cargarTabla() {
+	public void metodo() {
 		cursos = cursoService.findAll();
+	}
+	
+	public void inscribirse(String id){
+		System.out.println("EEEEELLLL id essss " + id);
 	}
 
 	public List<Curso> getCursos() {
@@ -121,11 +121,11 @@ public class InscripcionCursoMB extends GenericMB {
 		this.cursoService = cursoService;
 	}
 
-	public Carreer getCarrera() {
+	public String getCarrera() {
 		return carrera;
 	}
 
-	public void setCarrera(Carreer carrera) {
+	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
 
