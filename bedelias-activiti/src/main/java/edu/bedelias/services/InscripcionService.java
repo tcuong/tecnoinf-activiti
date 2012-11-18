@@ -18,7 +18,7 @@ public interface InscripcionService {
 
 	public List<Inscripcion> getInscripcionesByStudent(Student student);
 
-	public List<Inscripcion> getInscripcionesByTipo(Student student,
+	public List<Inscripcion> getInscripcionesByTipo(String ciEst,
 			TipoInscripcionEnum tipo);
 
 	public List<Carreer> getCarrerasByStudent(Student student);

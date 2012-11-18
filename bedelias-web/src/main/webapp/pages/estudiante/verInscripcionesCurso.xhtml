@@ -1,0 +1,60 @@
+<ui:composition template="../common/baseTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="content">
+<h:form prependId="false">
+
+<p:panelGrid columns="1" style="width:95%; margin:20px auto; height:100%">
+
+	<f:facet name="header"> Listado de Inscripciones a Cursos </f:facet>
+	
+    <p:dataTable id="dataTable" var="inscripcion" value="#{verInscripcionesCursoMB.inscripciones}"
+                 paginator="true" rows="10"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 paginatorAlwaysVisible="false" paginatorPosition="bottom" style="margin:10px">
+       
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Curso" />
+            </f:facet>
+            <h:outputText value="#{inscripcion.curso.descripcion}" />
+        </p:column>
+       
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Fecha de Inscripcion" />
+            </f:facet>
+            <h:outputText value="#{inscripcion.fechaInscripcion}" />
+        </p:column>
+
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Estado" />
+            </f:facet>
+            <h:outputText value="Confirmada" rendered="#{inscripcion.isValid}" />
+            <h:outputText value="Pendiente" rendered="#{!inscripcion.isValid}" />
+        </p:column>       
+    </p:dataTable>
+    </p:panelGrid>
+
+</h:form>
+                    
+</ui:define>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

@@ -133,10 +133,12 @@ public class InscripcionServiceImpl implements InscripcionService {
 	}
 
 	@Override
-	public List<Inscripcion> getInscripcionesByTipo(Student student,
+	public List<Inscripcion> getInscripcionesByTipo(String ciEst,
 			TipoInscripcionEnum tipo) {
 		List<Inscripcion> ins = null;
+		Student student = null;
 		try {
+			student = studentRepo.findStudentByCedula(ciEst);
 			ins = inscripcionRepo.findInscripcionByEstudianteAndTipo(student,
 					tipo);
 		} catch (IllegalArgumentException e) {
@@ -168,7 +170,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return ins;
 	}
 
@@ -180,7 +182,12 @@ public class InscripcionServiceImpl implements InscripcionService {
 		if (studentId != null && cursoId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
-				Curso curso = cursoRepo.findOne(cursoId); // FIXME traer SOLAMENTE los cursos de una carrera a la que este asociado el student
+				Curso curso = cursoRepo.findOne(cursoId); // FIXME traer
+															// SOLAMENTE los
+															// cursos de una
+															// carrera a la que
+															// este asociado el
+															// student
 
 				ins = new Inscripcion();
 				ins.setEstudiante(student);
@@ -193,7 +200,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return ins;
 	}
 

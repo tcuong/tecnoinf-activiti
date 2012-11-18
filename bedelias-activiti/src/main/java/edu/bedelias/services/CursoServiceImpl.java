@@ -1,5 +1,7 @@
 package edu.bedelias.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,9 @@ public class CursoServiceImpl implements CursoService {
 
 	@Autowired
 	private CursoRepository cursoRepo;
+
+	public CursoServiceImpl() {
+	}
 
 	@Override
 	@Transactional
@@ -49,15 +54,20 @@ public class CursoServiceImpl implements CursoService {
 				return Boolean.TRUE;
 			}
 		}
-		
+
 		return Boolean.FALSE;
 	}
-	
+
 	@Override
 	public void GenerarActa(String codigoCurso) {
-		
-		
+
 		return;
+	}
+
+	@Override
+	public List<Curso> findAll() {
+		return cursoRepo.findAll();
+
 	}
 
 	// Getters && Setters

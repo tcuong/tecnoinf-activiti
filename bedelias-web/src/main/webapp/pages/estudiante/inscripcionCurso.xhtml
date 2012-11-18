@@ -5,15 +5,40 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="content">
-<h:form>
-<h:outputText value="ingrese algo"></h:outputText>
-<br/>
-<p:inputText value="#{inscripcionCursoMB.texto}" />
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:panelGrid columns="1"
+				style="width:95%; margin:20px auto; height:100%">
 
-<p:commandButton type="submit" value="Guardar" action="#{inscripcionCursoMB.guardar}"/>
-</h:form>
-</ui:define>
+				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
+
+				<p:selectOneMenu id="carreras"
+					value="#{inscripcionCursoMB.carrera}">
+					<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}"/>
+				</p:selectOneMenu>
+				
+				<p:commandButton value="Seleccione una Carrera" update="dataTable" actionListener="#{inscripcionCursoMB.cargarTabla}" ajax="true"/>
+
+				<p:dataTable id="dataTable" var="curso"
+					value="#{inscripcionCursoMB.cursos}" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Curso" />
+						</f:facet>
+						<h:outputText value="#{curso.descripcion}" />
+					</p:column>
+				</p:dataTable>
+
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
 
 
 
