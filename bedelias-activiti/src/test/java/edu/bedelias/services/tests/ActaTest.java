@@ -6,10 +6,7 @@ public class ActaTest {
 
 	@Test
 	public void test() {
-		// ReportsService.print();
-		// Comente esto xq me daba error y con maven update no levanto el
-		// error....
-		// ReportsService.main(null);
+		ReportsService.print(); // FIXME completar la API
 	}
 
 }
