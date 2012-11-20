@@ -100,7 +100,7 @@
 		<!-- Bedelias project dependencies -->
 		<dependency>
 			<groupId>edu.bedelias</groupId>
-			<artifactId>bedelias-activiti</artifactId>
+			<artifactId>bedelias-core</artifactId>
 			<version>${bedelias.version}</version>
 		</dependency>
 		<!-- End Bedelias project messages -->

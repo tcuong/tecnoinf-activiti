@@ -34,7 +34,6 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="persistenceUnitName" value="aOrganizer-PU" /> -->
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
 		<property name="packagesToScan">
 			<list>
@@ -71,6 +70,9 @@
 		<property name="minPoolSize" value="${jdbc.minPoolSize}" />
 	</bean>
 
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven />
+
 	<!-- Transaction Manager is defined -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -87,9 +89,6 @@
 				</entry>
 			</map>
 		</property>
-	</bean> 
+	</bean>
 
-	<!-- Enable the configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven />
-	
 </beans>

@@ -15,6 +15,8 @@
 			http://www.springframework.org/schema/jee 
 			http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
 
+	<!-- <import resource="classpath*:/activiti.cfg.xml" /> -->
+	<import resource="classpath*:/applicationContextCore.xml" />
 	<context:property-placeholder location="classpath*:jdbc.properties" />
 
 	<!-- Scan this classpath for annotated components that will be auto-registered 
@@ -22,7 +24,7 @@
 	<context:annotation-config />
 	<context:spring-configured />
 
-	<!-- <context:component-scan base-package="edu.bedelias.*" /> -->
+	<context:component-scan base-package="edu.bedelias.*" />
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -92,12 +94,12 @@
 	<!-- Enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven />
 
-	<bean id="dbProperties"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:db.properties" />
-		<!-- Allow other PropertyPlaceholderConfigurer to run as well -->
-		<property name="ignoreUnresolvablePlaceholders" value="true" />
-	</bean>
+	<!-- <bean id="dbProperties" -->
+	<!-- class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+	<!-- <property name="location" value="classpath:db.properties" /> -->
+	<!-- Allow other PropertyPlaceholderConfigurer to run as well -->
+	<!-- <property name="ignoreUnresolvablePlaceholders" value="true" /> -->
+	<!-- </bean> -->
 
 	<bean id="demoDataGenerator" class="org.activiti.explorer.demo.DemoDataGenerator">
 		<property name="processEngine" ref="processEngine" />
@@ -113,24 +115,7 @@
 				<ref bean="userFormType" />
 			</list>
 		</property>
-		<!-- <property name="beans"> -->
-		<!-- <map> -->
-		<!-- <entry key="pruebaServices" value-ref="pruebaServices" /> -->
-		<!-- </map> -->
-		<!-- </property> -->
 	</bean>
-
-	<!-- <bean id="pruebaServices" name="pruebaServices" class="prueba.PruebaServices"> -->
-	<!-- <property name="searchService"> -->
-	<!-- <ref bean="searchService" /> -->
-	<!-- </property> -->
-	<!-- <property name="nodeService"> -->
-	<!-- <ref bean="nodeService" /> -->
-	<!-- </property> -->
-	<!-- <property name="workflowService"> -->
-	<!-- <ref bean="WorkflowService" /> -->
-	<!-- </property> -->
-	<!-- </bean> -->
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">

@@ -18,7 +18,7 @@ import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.repositories.InscripcionRepository;
 import edu.bedelias.repositories.StudentRepository;
 
-@Service
+@Service(value = "inscripcionServiceImpl")
 @Transactional(readOnly = true)
 public class InscripcionServiceImpl implements InscripcionService {
 

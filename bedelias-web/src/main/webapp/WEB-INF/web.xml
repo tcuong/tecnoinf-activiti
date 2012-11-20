@@ -10,7 +10,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-	    	classpath*:applicationContext.xml
+	    	classpath*:applicationContextWeb.xml
     	</param-value>
 	</context-param>
 
@@ -40,6 +40,17 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>studentExporter</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>studentExporter</servlet-name>
+		<url-pattern>/remoting/studentService</url-pattern>
+	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

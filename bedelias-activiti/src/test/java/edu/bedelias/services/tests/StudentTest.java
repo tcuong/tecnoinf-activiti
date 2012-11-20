@@ -55,8 +55,8 @@ public class StudentTest {
 	@Autowired
 	private CursoService cursoService;
 
-	@Ignore
-	@Test // replace this with @Before if not using the import.sql file
+	
+	@Before
 	public void init() {
 		Student student = studentService.createStudent(new Student("Chupito",
 				"chupame@eltobonia.net", "someCedula", new Date(System
