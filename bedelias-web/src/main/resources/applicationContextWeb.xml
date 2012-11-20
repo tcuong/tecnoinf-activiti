@@ -16,13 +16,11 @@
 	<context:property-placeholder
 		location="classpath*:mail.properties, classpath*:jdbc.properties" />
 
-	<import resource="classpath*:/applicationContextCore.xml" />
+	<import resource="classpath*:applicationContextCore.xml" />
 
 	<!-- Scan this classpath for annotated components that will be auto-registered 
 		as Spring beans -->
 	<context:annotation-config />
-
-	<jpa:repositories base-package="edu.bedelias.repositories*" />
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
