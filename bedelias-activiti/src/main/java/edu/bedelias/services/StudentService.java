@@ -24,7 +24,9 @@ public interface StudentService {
 
 	public void deleteStudent(Student student);
 
+	
 	// Misc stuff.
+
 	public Student findStudentById(Long id);
 
 	public Student findStudentByEmail(String email);
@@ -35,5 +37,4 @@ public interface StudentService {
 
 	public Student findStudentByStudentNumber(String studentNum);
 
-	public void unMetodoPistola();
 }

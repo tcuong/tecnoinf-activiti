@@ -3,10 +3,10 @@
   <process id="process1" name="process1">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="ValidarHT" name="Validar" activiti:assignee="kermit"></userTask>
+    <serviceTask id="servicetask1" name="Service" activiti:delegateExpression="${pruebaServices}"></serviceTask>
+    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="ValidarHT" targetRef="servicetask1"></sequenceFlow>
-    <serviceTask id="servicetask1" name="Service" activiti:class="edu.bedelias.services.TestServiceDummyImpl"></serviceTask>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_process1">

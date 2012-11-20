@@ -136,10 +136,4 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		this.studentRepo = studentRepo;
 	}
 
-	@Override
-	public void unMetodoPistola() {
-		System.out.println("ESTOY EN SERVICE DE ESTUDIANTE");
-
-	}
-
 }
