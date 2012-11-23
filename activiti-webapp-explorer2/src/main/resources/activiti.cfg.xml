@@ -15,7 +15,6 @@
 			http://www.springframework.org/schema/jee 
 			http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
 
-	<!-- <import resource="classpath*:activiti.cfg.xml" /> -->
 	<import resource="classpath*:applicationContextCore.xml" />
 	<context:property-placeholder location="classpath*:jdbc.properties" />
 

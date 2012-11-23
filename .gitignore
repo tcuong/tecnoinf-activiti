@@ -16,3 +16,6 @@
 *.metadata
 
 target
+*.prefs
+*.prefs
+bin
