@@ -1,6 +1,7 @@
 # Files go here #
 *.class
 *.project
+*.prefs
 
 # Package Files #
 *.jar
