@@ -136,4 +136,12 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		this.studentRepo = studentRepo;
 	}
 
+	@Override
+	public boolean existeStudentByCedula(String cedula) {
+		if (cedula.equals("TETE")) {
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+
 }

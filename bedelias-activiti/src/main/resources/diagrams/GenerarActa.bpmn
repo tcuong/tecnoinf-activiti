@@ -3,6 +3,7 @@
   <process id="GenerarActaDeCurso" name="GenerarActaDeCurso">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresarCodigoCurso" activiti:assignee="kermit">
+      <documentation>Ingrese el codigo del Curso para imprimir el acta correspondiente.</documentation>
       <extensionElements>
         <activiti:formProperty id="codigocurso" name="Codigo Curso" type="string" variable="codigoCurso" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
@@ -10,6 +11,10 @@
     <serviceTask id="servicetask1" name="ValidarCodigo" activiti:class="edu.bedelias.activiti.generaracta.ValidarCodigo"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow5"></exclusiveGateway>
     <serviceTask id="servicetask2" name="GenerarDocumentoDeActa" activiti:class="edu.bedelias.activiti.generaracta.GenerarActa"></serviceTask>
+    <userTask id="usertask2" name="Finalizar" activiti:assignee="kermit">
+      <documentation>${msj}</documentation>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
@@ -19,9 +24,7 @@
     <sequenceFlow id="flow5" name="NoExisteCodigo" sourceRef="exclusivegateway1" targetRef="usertask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeCodigo==false}]]></conditionExpression>
     </sequenceFlow>
-    <userTask id="usertask2" name="Finalizar" activiti:assignee="kermit"></userTask>
     <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow7" name="" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_GenerarActaDeCurso">
