@@ -12,30 +12,19 @@
 	<name>bedelias-web</name>
 
 	<properties>
+		<tomcat.version>7.0.30</tomcat.version>
 		<primefaces.version>3.4.2</primefaces.version>
 		<primefaces-theme.version>1.0.8</primefaces-theme.version>
 		<jsf.version>2.1.13</jsf.version>
 	</properties>
 
 	<dependencies>
-		<!-- Spring project Dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<!-- End Spring project Dependencies -->
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>jstl</artifactId> -->
+		<!-- <version>1.2</version> -->
+		<!-- </dependency> -->
 
 		<!-- JSF dependencies -->
 		<dependency>
@@ -47,12 +36,6 @@
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
 		</dependency>
 
 		<!-- Primefaces -->
@@ -68,19 +51,16 @@
 		</dependency>
 
 		<!-- web-specific dependencies -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>el-api</artifactId>
-			<version>6.0.35</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-
+		<!-- Tomcat dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
-			<version>7.0.26</version>
-			<scope>provided</scope>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-el-api</artifactId>
+			<version>${tomcat.version}</version>
 		</dependency>
 
 		<!-- Google's CAPTCHA repo -->
