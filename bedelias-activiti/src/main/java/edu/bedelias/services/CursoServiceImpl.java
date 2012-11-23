@@ -2,6 +2,7 @@ package edu.bedelias.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ public class CursoServiceImpl implements CursoService {
 
 	@Autowired
 	private CursoRepository cursoRepo;
+
+	private Logger logger = Logger.getLogger(CursoServiceImpl.class);
 
 	public CursoServiceImpl() {
 	}
@@ -48,20 +51,23 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
-	public boolean ExisteCursoByCodigo(String codigoCurso) {
-		if (codigoCurso != null) {
-			if (cursoRepo.findCursoByUuid(codigoCurso) != null) {
-				return Boolean.TRUE;
-			}
-		}
+	public boolean existeCursoByCodigo(String codigoCurso) {
+		// if (codigoCurso != null) {
+		// if (cursoRepo.findCursoByUuid(codigoCurso) != null) {
+		// return Boolean.TRUE;
+		// }
+		// }
 
+		logger.info("existeCodigoByCurso, codigoCurso = " + codigoCurso);
+		if (codigoCurso.equals("TETE")) {
+			return Boolean.TRUE;
+		}
 		return Boolean.FALSE;
 	}
 
 	@Override
-	public void GenerarActa(String codigoCurso) {
-
-		return;
+	public void generarActa(String codigoCurso) {
+		logger.info("generarActa, codigoCurso = " + codigoCurso);
 	}
 
 	@Override

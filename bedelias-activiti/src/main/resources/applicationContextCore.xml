@@ -16,9 +16,17 @@
 			http://www.springframework.org/schema/jdbc 
 			http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
 
+	<bean id="validarCodigo" class="edu.bedelias.activiti.generaracta.ValidarCodigo"/>
+	<bean id="generarActa" class="edu.bedelias.activiti.generaracta.GenerarActa"/>
+	
+	<bean id="existeCedula" class="edu.bedelias.activiti.inscribirestudiantecarrera.ExisteCedula"/>
+	<bean id="validarPase" class="edu.bedelias.activiti.inscribirestudiantecarrera.ValidarPase"/>
+	<bean id="guardarInscripcion" class="edu.bedelias.activiti.inscribirestudiantecarrera.GuardarInscripcion"/>
+	
+
 	<context:property-placeholder location="classpath*:jdbc.properties" />
 	<context:annotation-config />
-
+	
 	<context:component-scan base-package="edu.bedelias.*" />
 	<jpa:repositories base-package="edu.bedelias.repositories*" />
 

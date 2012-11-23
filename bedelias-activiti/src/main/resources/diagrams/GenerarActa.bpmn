@@ -3,13 +3,17 @@
   <process id="GenerarActaDeCurso" name="GenerarActaDeCurso">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresarCodigoCurso" activiti:assignee="kermit">
+      <documentation>Ingrese el codigo del Curso para imprimir el acta correspondiente.</documentation>
       <extensionElements>
-        <activiti:formProperty id="codigocurso" name="Codigo Curso" type="string" variable="input" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="codigocurso" name="Codigo Curso" type="string" variable="codigoCurso" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <serviceTask id="servicetask1" name="ValidarCodigo" activiti:expression="${validarCodigo.run()}"></serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <serviceTask id="servicetask2" name="GenerarDocumentoDeActa" activiti:expression="${generarDocumentoActa.run()}"></serviceTask>
+    <serviceTask id="servicetask1" name="ValidarCodigo" activiti:class="edu.bedelias.activiti.generaracta.ValidarCodigo"></serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow5"></exclusiveGateway>
+    <serviceTask id="servicetask2" name="GenerarDocumentoDeActa" activiti:class="edu.bedelias.activiti.generaracta.GenerarActa"></serviceTask>
+    <userTask id="usertask2" name="Finalizar" activiti:assignee="kermit">
+      <documentation>${msj}</documentation>
+    </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
@@ -20,7 +24,8 @@
     <sequenceFlow id="flow5" name="NoExisteCodigo" sourceRef="exclusivegateway1" targetRef="usertask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeCodigo==false}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow7" name="" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_GenerarActaDeCurso">
     <bpmndi:BPMNPlane bpmnElement="GenerarActaDeCurso" id="BPMNPlane_GenerarActaDeCurso">
@@ -39,8 +44,11 @@
       <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
         <omgdc:Bounds height="55" width="146" x="510" y="130"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55" width="105" x="690" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35" width="35" x="700" y="140"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="830" y="140"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="35" y="157"></omgdi:waypoint>
@@ -73,7 +81,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
         <omgdi:waypoint x="656" y="157"></omgdi:waypoint>
-        <omgdi:waypoint x="700" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="690" y="157"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="795" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="830" y="157"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

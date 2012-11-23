@@ -14,9 +14,9 @@ public interface CursoService {
 
 	public Curso findCursoById(Long id);
 
-	boolean ExisteCursoByCodigo(String codigoCurso);
+	public boolean existeCursoByCodigo(String codigoCurso);
 
-	void GenerarActa(String codigoCurso);
+	public void generarActa(String codigoCurso);
 
 	public List<Curso> findAll();
 }

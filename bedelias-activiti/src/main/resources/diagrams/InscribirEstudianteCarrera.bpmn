@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="InscribirEstudianteCarrera" name="Inscribir Estudiante Carrera">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="IngresarCedulaEstudiante" activiti:assignee="kermit">
+      <documentation>Por favor ingrese la cedula del estudiante para realizar la inscripcion.</documentation>
+      <extensionElements>
+        <activiti:formProperty id="IngresoCedula" name="IngresoCedula" type="string" variable="cedula" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask1" name="ExisteCedula" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.ExisteCedula"></serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
+    <userTask id="usertask2" name="IngresarDatosEstudiante" activiti:assignee="kermit">
+      <documentation>El estudiante no esta inscripto en facultad, por favor complete los campos solicitados para inscribirlo.</documentation>
+      <extensionElements>
+        <activiti:formProperty id="nombre" name="Nombre" type="string" variable="nombre" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="apellido" name="Apellido" type="string" variable="apellido" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="cedulaEs" name="Cedula" type="string" variable="cedulaEs" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="telefono" name="Telefono" type="string" variable="telefono" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="celular" name="Celular" type="string" variable="celular" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail" type="string" variable="email" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="direccion" name="Direccion" type="string" variable="direccion" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="pase" name="Pase" type="string" variable="pase" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask2" name="ValidarPase" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.ValidarPase"></serviceTask>
+    <userTask id="usertask3" name="SeleccionarCarrera" activiti:assignee="kermit"></userTask>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow8"></exclusiveGateway>
+    <userTask id="usertask4" name="InformarPaseNoValido" activiti:assignee="kermit">
+      <documentation>El pase no ha sido validado por la entidad emisora del mismo, informe al estudiante que debe regular su situacion.
+Este proceso se termina</documentation>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow4" name="NoExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst==false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" name="" sourceRef="usertask2" targetRef="servicetask2"></sequenceFlow>
+    <sequenceFlow id="flow6" name="ExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst==true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow7" name="" sourceRef="servicetask2" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow8" name="PaseNoValido" sourceRef="exclusivegateway2" targetRef="usertask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" name="PaseValido" sourceRef="exclusivegateway2" targetRef="usertask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" name="" sourceRef="usertask3" targetRef="servicetask3"></sequenceFlow>
+    <sequenceFlow id="flow11" name="" sourceRef="servicetask3" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow12" name="" sourceRef="usertask4" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask3" name="GuardarInscripcion" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.GuardarInscripcion"></serviceTask>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_InscribirEstudianteCarrera">
+    <bpmndi:BPMNPlane bpmnElement="InscribirEstudianteCarrera" id="BPMNPlane_InscribirEstudianteCarrera">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="20" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55" width="105" x="100" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55" width="105" x="260" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40" width="40" x="420" y="127"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55" width="105" x="388" y="240"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55" width="105" x="548" y="240"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="55" width="105" x="505" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40" width="40" x="708" y="247"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="55" width="105" x="790" y="193"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="825" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55" width="105" x="665" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="55" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="100" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="205" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="260" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="365" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="420" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="440" y="167"></omgdi:waypoint>
+        <omgdi:waypoint x="440" y="240"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="-76" y="-3"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="493" y="267"></omgdi:waypoint>
+        <omgdi:waypoint x="548" y="267"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="460" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="505" y="147"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="-51" y="-27"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="653" y="267"></omgdi:waypoint>
+        <omgdi:waypoint x="708" y="267"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="748" y="267"></omgdi:waypoint>
+        <omgdi:waypoint x="842" y="248"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="-8" y="11"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="728" y="247"></omgdi:waypoint>
+        <omgdi:waypoint x="557" y="175"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="610" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="665" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="770" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="825" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="842" y="193"></omgdi:waypoint>
+        <omgdi:waypoint x="842" y="165"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
