@@ -4,9 +4,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>Bedelias</display-name>
+	
 	<welcome-file-list>
 		<welcome-file>pages/helloworld.xhtml</welcome-file>
 	</welcome-file-list>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -46,7 +48,6 @@
 		<servlet-name>studentExporter</servlet-name>
 		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>studentExporter</servlet-name>
 		<url-pattern>/remoting/studentService</url-pattern>
@@ -67,4 +68,5 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
+	
 </web-app>

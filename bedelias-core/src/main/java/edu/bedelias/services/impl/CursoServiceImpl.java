@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.services.CursoService;
 
 @Service
+@Scope(value = "session")
 @Transactional(readOnly = true)
 public class CursoServiceImpl implements CursoService {
 

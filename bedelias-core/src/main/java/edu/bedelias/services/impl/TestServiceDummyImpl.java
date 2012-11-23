@@ -1,12 +1,14 @@
 package edu.bedelias.services.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.services.TestServiceDummy;
 
 @Service(value = "testServiceDummyImpl")
+@Scope(value = "session")
 @Transactional(readOnly = true)
 public class TestServiceDummyImpl implements TestServiceDummy {
 

@@ -45,13 +45,17 @@ import org.activiti.explorer.ui.task.QueuedPage;
 import org.activiti.explorer.ui.task.TaskMenuBar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.vaadin.ui.Window;
 
 /**
  * @author Joram Barrez
  */
+@Component("defaultViewManager")
+@Scope(value = "session")
 public class DefaultViewManager implements ViewManager {
 
 	private static final long serialVersionUID = 1L;
