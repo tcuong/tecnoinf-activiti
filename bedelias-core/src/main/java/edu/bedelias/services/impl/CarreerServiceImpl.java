@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.Carreer;
+import edu.bedelias.entities.Materia;
 import edu.bedelias.repositories.CarreerRepository;
 import edu.bedelias.services.CarreerService;
 
@@ -55,10 +56,12 @@ public class CarreerServiceImpl implements CarreerService {
 		return carreras;
 	}
 
-	// @Override
-	// public List<Materia> findMateriaByCarreerId(Long id) {
-	// return carreerRepo.getMateriasByCarreerId(id);
-	// }
+	@Override
+	public List<Materia> findMateriaByCarreerId(Long id) {
+
+		// return carreerRepo.getMateriasByCarreerId(id);
+		return null;
+	}
 
 	// Getters && Setters
 
@@ -96,6 +99,18 @@ public class CarreerServiceImpl implements CarreerService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public Carreer agregarMateriaACarrera(Carreer carreer, Materia materia) {
+		List<Materia> materias = carreer.getMaterias();// Ir a buscarlas al repo
+		if (materias == null) {
+			materias = new ArrayList<Materia>();
+		}
+		materias.add(materia);
+		carreer.setMaterias(materias);
+		carreer = carreerRepo.save(carreer);
+		return carreer;
 	}
 
 }

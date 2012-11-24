@@ -1,6 +1,11 @@
 package edu.bedelias.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import edu.bedelias.entities.generics.GenericEntityName;
 import edu.bedelias.enums.AprobacionEnum;
@@ -13,7 +18,11 @@ public class Asignatura extends GenericEntityName {
 	private Integer credits;
 	private AprobacionEnum tipoAprobacion;
 	private Boolean isElectiva;
-	
+
+	@ManyToMany
+	@JoinTable(name = "PREVIAS", joinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "previa_id", referencedColumnName = "id"))
+	private List<Asignatura> previas;
+
 	// Getters && Setters
 	public Integer getCredits() {
 		return credits;
@@ -37,6 +46,14 @@ public class Asignatura extends GenericEntityName {
 
 	public void setIsElectiva(Boolean isElectiva) {
 		this.isElectiva = isElectiva;
+	}
+
+	public List<Asignatura> getPrevias() {
+		return previas;
+	}
+
+	public void setPrevias(List<Asignatura> previas) {
+		this.previas = previas;
 	}
 
 }

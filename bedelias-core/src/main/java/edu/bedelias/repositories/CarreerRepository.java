@@ -13,6 +13,6 @@ public interface CarreerRepository extends JpaRepository<Carreer, Long> {
 	 * @return
 	 */
 
-	// @Query("select c from Carreer c left join fetch Materia m where m.carreer_id = ?1")
+	// @Query("select m from Carreer c left join fetch Materia m where m.carrera_id = ?1")
 	// public List<Materia> getMateriasByCarreerId(Long id);
 }
