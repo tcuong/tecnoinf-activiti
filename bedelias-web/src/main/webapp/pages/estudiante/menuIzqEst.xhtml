@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition name="menuIzquierda">
+	<h:form>
+		<p:menu>
+			<p:submenu label=" Inscripciones ">
+				
+				<p:menuitem value="Inscripción a Curso" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				<p:menuitem value="Inscripción a Examen" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				
+				<p:separator id="separator1"/>
+				
+				<p:menuitem value="Inscripciones a Cursos" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				<p:menuitem value="Inscripciones a Examenes" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				
+				<p:separator id="separator2"/>
+				
+				<p:menuitem value="Desistir a inscripción" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				
+			</p:submenu>
+			
+			<p:submenu label=" Previas ">
+				<p:menuitem value="Ver previas de asignatura" actionListener="#{menuIzqEstMB.cerrarSesion}" />
+				<p:menuitem value="De qué asignatura es previa" actionListener="#{menuIzqEstMB.cerrarSesion}" />
+			</p:submenu>
+			
+			<p:submenu label=" Estudiante ">
+				<p:menuitem value="Consultar actividad" actionListener="#{menuIzqEstMB.cerrarSesion}" />
+				<p:menuitem value="Cerrar Sesion" actionListener="#{menuIzqEstMB.cerrarSesion}" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</ui:composition>
+
+</html>

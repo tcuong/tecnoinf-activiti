@@ -63,7 +63,6 @@ public class InscripcionCursoMB extends GenericMB {
 	}
 
 	public void inscribirse(String id) {
-		System.out.println("EEEEELLLL id essss " + id);
 	}
 
 	public List<Curso> getCursos() {
