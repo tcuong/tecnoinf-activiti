@@ -1,5 +1,8 @@
 package edu.bedelias.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,7 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	@Autowired
 	private AsignaturaRepository asignaturaRepo;
-	
+
 	@Override
 	@Transactional
 	public Asignatura createAsignatura(Asignatura asignatura) {
@@ -41,8 +44,28 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	}
 
+	@Override
+	@Transactional
+	public Asignatura agregarPreviaAsignatura(Asignatura asignatura,
+			Asignatura previa) {
+		List<Asignatura> previas = asignatura.getPrevias();// Ir a buscarla al
+															// repo
+		if (previas == null) {
+			previas = new ArrayList<Asignatura>();
+		}
+		previas.add(previa);
+		asignatura.setPrevias(previas);
+		return asignaturaRepo.save(asignatura);
+	}
+
+	@Override
+	public List<Asignatura> getPrevias(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	// Getters && Setters
-	
+
 	public AsignaturaRepository getAsignaturaRepo() {
 		return asignaturaRepo;
 	}
