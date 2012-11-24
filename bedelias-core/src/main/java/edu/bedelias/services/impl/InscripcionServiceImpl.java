@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.InscripcionService;
 
 @Service(value = "inscripcionServiceImpl")
+@Scope(value = "session")
 @Transactional(readOnly = true)
 public class InscripcionServiceImpl implements InscripcionService {
 
