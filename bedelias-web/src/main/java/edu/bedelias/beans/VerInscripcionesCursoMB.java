@@ -5,12 +5,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.InscripcionService;
 
 @ManagedBean
+@SessionScoped
 public class VerInscripcionesCursoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,7 @@ public class VerInscripcionesCursoMB extends GenericMB {
 		super();
 	}
 
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		ciEst = getFromSession("ci_est").toString();
 		inscripciones = inscripcionService.getInscripcionesByTipo(ciEst,

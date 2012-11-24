@@ -1,10 +1,12 @@
 package edu.bedelias.services.impl;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.TestServiceDummy;
 
 @Service(value = "testServiceDummyImpl")
@@ -20,23 +22,23 @@ public class TestServiceDummyImpl implements TestServiceDummy {
 		logger.info("++++++++++++++++++++++++++++++++++++++++++");
 	}
 
-	// @Autowired
-	// private StudentRepository studentRepository;
-	//
+	@Autowired
+	private StudentRepository studentRepository;
+
 	// @Override
 	// @Transactional
 	// public Student create(Student student) {
 	// return studentRepository.save(student);
 	// }
-	//
-	// // Getters && Setters
-	//
-	// public StudentRepository getStudentRepository() {
-	// return studentRepository;
-	// }
-	//
-	// public void setStudentRepository(StudentRepository studentRepository) {
-	// this.studentRepository = studentRepository;
-	// }
+	
+	// Getters && Setters
+
+	public StudentRepository getStudentRepository() {
+		return studentRepository;
+	}
+
+	public void setStudentRepository(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
 
 }

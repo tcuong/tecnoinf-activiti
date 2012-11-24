@@ -4,11 +4,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>Bedelias</display-name>
-	
+
 	<welcome-file-list>
 		<welcome-file>pages/helloworld.xhtml</welcome-file>
 	</welcome-file-list>
-	
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -25,6 +25,17 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
 
+	<!-- Http Invoker servlet -->
+	<servlet>
+		<servlet-name>studentExporter</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>studentExporter</servlet-name>
+		<url-pattern>/remoting/StudentService</url-pattern>
+	</servlet-mapping>
+	<!-- End Http Invoker servlet -->
+
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
@@ -33,7 +44,7 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>south-street</param-value>
 	</context-param>
-	
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -43,16 +54,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>studentExporter</servlet-name>
-		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>studentExporter</servlet-name>
-		<url-pattern>/remoting/studentService</url-pattern>
-	</servlet-mapping>
-	
+
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
@@ -68,5 +70,5 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
-	
+
 </web-app>

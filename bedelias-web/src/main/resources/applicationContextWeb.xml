@@ -21,7 +21,6 @@
 	<!-- Scan this classpath for annotated components that will be auto-registered 
 		as Spring beans -->
 	<context:annotation-config />
-	<context:component-scan base-package="edu.bedelias.*" />
 
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -77,6 +76,13 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Http Invoker services -->
+	<bean name="studentExporter" scope="session"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="studentServiceImpl" />
+		<property name="serviceInterface" value="edu.bedelias.services.studentService" />
 	</bean>
 
 </beans>

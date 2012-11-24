@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
@@ -36,10 +37,6 @@ public class InscripcionCursoMB extends GenericMB {
 	private List<Curso> cursos;
 	private String ciEst;
 	private String carrera;
-
-	public InscripcionCursoMB() {
-
-	}
 
 	@PostConstruct
 	public void init() {

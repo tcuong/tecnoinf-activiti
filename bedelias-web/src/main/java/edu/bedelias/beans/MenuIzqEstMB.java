@@ -1,20 +1,16 @@
 package edu.bedelias.beans;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+@SessionScoped
 public class MenuIzqEstMB extends GenericMB {
 
 	private static final long serialVersionUID = 654566536803790092L;
 
 	public MenuIzqEstMB() {
 		super();
-	}
-
-	@PostConstruct
-	public void init() {
-
 	}
 
 	public void inscripcionCurso() {

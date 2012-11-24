@@ -25,7 +25,7 @@ import edu.bedelias.services.InscripcionService;
 @Transactional(readOnly = true)
 public class InscripcionServiceImpl implements InscripcionService {
 
-	private static Logger log = Logger.getLogger(InscripcionServiceImpl.class);
+	private static Logger logger = Logger.getLogger(InscripcionServiceImpl.class.getName());
 
 	@Autowired
 	private InscripcionRepository inscripcionRepo;
@@ -129,7 +129,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 		try {
 			return inscripcionRepo.findInscripcionByEstudiante(student);
 		} catch (IllegalArgumentException e) {
-			log.error("Estudiante es NULL");
+			logger.error("Estudiante es NULL");
 			e.printStackTrace();
 			return null;
 		}
@@ -145,7 +145,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 			ins = inscripcionRepo.findInscripcionByEstudianteAndTipo(student,
 					tipo);
 		} catch (IllegalArgumentException e) {
-			log.error("Estudiante o Inscripcion invalidos");
+			logger.error("Estudiante o Inscripcion invalidos");
 			e.printStackTrace();
 		}
 
@@ -169,7 +169,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 				ins = createInscripcion(ins);
 
 			} catch (IllegalArgumentException e) {
-				log.error("Student or Carreer are NULL");
+				logger.error("Student or Carreer are NULL");
 				e.printStackTrace();
 			}
 		}
@@ -199,7 +199,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 				ins = createInscripcion(ins);
 
 			} catch (IllegalArgumentException e) {
-				log.error("Estudiante o Curso NULL");
+				logger.error("Estudiante o Curso NULL");
 				e.printStackTrace();
 			}
 		}

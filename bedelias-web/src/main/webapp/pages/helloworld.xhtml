@@ -24,7 +24,6 @@
 						<p:menuitem value="Inscripción a Examen"
 							actionListener="#{buttonBean.update}" />
 					</p:submenu>
-
 					<p:submenu label="Consulta de Previas">
 						<p:menuitem value="Materias previas de otras"
 							actionListener="#{buttonBean.delete}" ajax="false" />
@@ -34,13 +33,13 @@
 				</p:panelMenu>
 			</h:form>
 
-
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center" size="60px">
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputText value="Usuario" />
+					<h:outputText value="#{testMB.name}" />
 					<p:inputText />
 
 					<h:outputText value="Contraseña" />
