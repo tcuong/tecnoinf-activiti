@@ -51,6 +51,8 @@ import org.springframework.stereotype.Component;
 
 import com.vaadin.ui.Window;
 
+import edu.bedelias.services.StudentService;
+
 /**
  * @author Joram Barrez
  */
@@ -64,6 +66,9 @@ public class DefaultViewManager implements ViewManager {
 
 	@Autowired
 	protected MainWindow mainWindow;
+	
+	@Autowired
+	private StudentService studentService;
 
 	protected TaskService taskService;
 	protected HistoryService historyService;
@@ -72,6 +77,8 @@ public class DefaultViewManager implements ViewManager {
 	public DefaultViewManager() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext(
 				"activiti.cfg.xml");
+		boolean b = studentService.existeStudentByCedula("someCedula");
+		System.out.println("Existe Student? [" + b + "]");
 		ac.getBean(ProcessEngine.class);
 		this.taskService = ProcessEngines.getDefaultProcessEngine()
 				.getTaskService();
