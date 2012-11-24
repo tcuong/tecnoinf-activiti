@@ -24,4 +24,12 @@ public class MenuIzqEstMB extends GenericMB {
 	public void cerrarSesion(){
 		redirect("../login.xhtml");
 	}
+	
+	public void iniciarSesion(){
+		redirect("login.xhtml");
+	}
+	
+	public void noImplementada(){
+		redirect("noImplementada.xhtml");
+	}
 }
