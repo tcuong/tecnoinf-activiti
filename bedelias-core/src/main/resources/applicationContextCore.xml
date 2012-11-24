@@ -18,8 +18,8 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="edu.bedelias.*" scoped-proxy="targetClass" />
+	<context:component-scan base-package="edu.bedelias*" scoped-proxy="targetClass" />
 
-	<jpa:repositories base-package="edu.bedelias.repositories.*" />
+	<jpa:repositories base-package="edu.bedelias.repositories*" />
 
 </beans>

@@ -33,6 +33,11 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	@Autowired
 	private EvaluacionRepository evaluacionRepo;
 
+	
+	public StudentServiceImpl(){
+		
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

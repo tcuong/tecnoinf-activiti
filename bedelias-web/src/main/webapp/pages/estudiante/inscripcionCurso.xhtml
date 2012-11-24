@@ -21,6 +21,9 @@
 						<p:ajax update="tabla" listener="#{inscripcionCursoMB.metodo}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
+				<p:commandButton value="Inscribirme"
+							action="#{inscripcionCursoMB.inscribirse('putttoooo')}"
+							style="padding:0;" />
 
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
