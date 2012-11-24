@@ -10,11 +10,28 @@
 	<h:form>
 		<p:menu>
 			<p:submenu label=" Inscripciones ">
+				
 				<p:menuitem value="Inscripción a Curso" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
-				<p:menuitem value="Ver Inscripciones a Curso" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				<p:menuitem value="Inscripción a Examen" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				
+				<p:separator id="separator1"/>
+				
+				<p:menuitem value="Inscripciones a Cursos" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				<p:menuitem value="Inscripciones a Examenes" actionListener="#{menuIzqEstMB.verInscripcionesCurso}" />
+				
+				<p:separator id="separator2"/>
+				
+				<p:menuitem value="Desistir a inscripción" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				
+			</p:submenu>
+			
+			<p:submenu label=" Previas ">
+				<p:menuitem value="Ver previas de asignatura" actionListener="#{menuIzqEstMB.cerrarSesion}" />
+				<p:menuitem value="De qué asignatura es previa" actionListener="#{menuIzqEstMB.cerrarSesion}" />
 			</p:submenu>
 			
 			<p:submenu label=" Estudiante ">
+				<p:menuitem value="Consultar actividad" actionListener="#{menuIzqEstMB.cerrarSesion}" />
 				<p:menuitem value="Cerrar Sesion" actionListener="#{menuIzqEstMB.cerrarSesion}" />
 			</p:submenu>
 		</p:menu>
