@@ -38,6 +38,10 @@ public class Inscripcion extends GenericEntity {
 	@JoinColumn(name = "curso")
 	private Curso curso;
 
+	@ManyToOne
+	@JoinColumn(name = "examen")
+	private Examen examen;
+
 	public Inscripcion() {
 		super();
 		this.isValid = false;
@@ -99,6 +103,14 @@ public class Inscripcion extends GenericEntity {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public Examen getExamen() {
+		return examen;
+	}
+
+	public void setExamen(Examen examen) {
+		this.examen = examen;
 	}
 
 }

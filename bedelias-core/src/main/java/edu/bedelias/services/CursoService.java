@@ -2,11 +2,12 @@ package edu.bedelias.services;
 
 import java.util.List;
 
+import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Curso;
 
 public interface CursoService {
 
-	public Curso createCurso(Curso curso);
+	public Curso createCurso(Curso curso, Asignatura asignatura);
 
 	public void updateCurso(Curso curso);
 
@@ -19,4 +20,5 @@ public interface CursoService {
 	public void generarActa(String codigoCurso);
 
 	public List<Curso> findAll();
+
 }

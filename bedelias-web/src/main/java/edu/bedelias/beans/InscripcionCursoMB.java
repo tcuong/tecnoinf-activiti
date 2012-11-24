@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import edu.bedelias.entities.Carreer;
@@ -18,7 +17,7 @@ import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean(name = "inscripcionCursoMB")
-@SessionScoped
+@RequestScoped
 public class InscripcionCursoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +37,10 @@ public class InscripcionCursoMB extends GenericMB {
 	private String ciEst;
 	private String carrera;
 
+	public InscripcionCursoMB() {
+		super();
+	}
+
 	@PostConstruct
 	public void init() {
 		ciEst = getFromSession("ci_est").toString();
@@ -50,15 +53,16 @@ public class InscripcionCursoMB extends GenericMB {
 				carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
 			}
 		} else {
-			sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cedula dada");
+			sendErrorMessage("Estudiante no encontrado",
+					"No se han encontrado el estudiante con la cedula dada");
 		}
 	}
 
 	public void metodo() {
 		cursos = cursoService.findAll();
 	}
-	
-	public void inscribirse(String id){
+
+	public void inscribirse(String id) {
 		System.out.println("EEEEELLLL id essss " + id);
 	}
 
