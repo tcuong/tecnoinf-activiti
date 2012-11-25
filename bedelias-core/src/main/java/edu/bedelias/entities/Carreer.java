@@ -20,7 +20,7 @@ public class Carreer extends GenericEntityName {
 	private Integer intermediateCredits;
 
 	@ManyToMany
-	@JoinTable(name = "CARRERA_MATERIA", joinColumns = @JoinColumn(name = "carrera_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"))
+	@JoinTable(name = "CarreraMateria", joinColumns = @JoinColumn(name = "carrera_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"))
 	private List<Materia> materias;
 
 	public Carreer() {

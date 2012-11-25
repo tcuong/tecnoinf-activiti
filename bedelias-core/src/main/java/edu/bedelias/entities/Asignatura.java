@@ -20,7 +20,7 @@ public class Asignatura extends GenericEntityName {
 	private Boolean isElectiva;
 
 	@ManyToMany
-	@JoinTable(name = "PREVIAS", joinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "previa_id", referencedColumnName = "id"))
+	@JoinTable(name = "Previas", joinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "previa_id", referencedColumnName = "id"))
 	private List<Asignatura> previas;
 
 	// Getters && Setters

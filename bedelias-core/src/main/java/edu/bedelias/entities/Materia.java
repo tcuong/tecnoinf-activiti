@@ -19,7 +19,7 @@ public class Materia extends GenericEntityName {
 	private Integer minCredits;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "ASIG_MATERIAS", joinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"))
+	@JoinTable(name = "AsigMaterias", joinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"))
 	private List<Asignatura> asignaturas;
 
 	public Materia() {

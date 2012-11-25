@@ -104,6 +104,7 @@ public class CarreerServiceImpl implements CarreerService {
 	}
 
 	@Override
+	@Transactional
 	public Carreer agregarMateriaACarrera(Carreer carreer, Materia materia) {
 		List<Materia> materias = carreer.getMaterias();// Ir a buscarlas al repo
 		if (materias == null) {
