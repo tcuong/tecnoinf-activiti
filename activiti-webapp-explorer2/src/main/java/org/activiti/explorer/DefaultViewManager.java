@@ -75,11 +75,11 @@ public class DefaultViewManager implements ViewManager {
 	protected IdentityService identityService;
 
 	public DefaultViewManager() {
-		ApplicationContext ac = new ClassPathXmlApplicationContext(
-				"activiti.cfg.xml");
+//		ApplicationContext ac = new ClassPathXmlApplicationContext(
+//				"activiti.cfg.xml");
 		boolean b = studentService.existeStudentByCedula("someCedula");
 		System.out.println("Existe Student? [" + b + "]");
-		ac.getBean(ProcessEngine.class);
+		// ac.getBean(ProcessEngine.class);
 		this.taskService = ProcessEngines.getDefaultProcessEngine()
 				.getTaskService();
 		this.historyService = ProcessEngines.getDefaultProcessEngine()
