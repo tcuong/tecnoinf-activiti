@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import edu.bedelias.entities.generics.GenericEntityName;
 import edu.bedelias.enums.TurnoEnum;
@@ -33,6 +35,10 @@ public class Curso extends GenericEntityName {
 	private String salon;
 
 	private Integer nota;
+
+	@ManyToOne
+	@JoinColumn(name = "asignatura")
+	private Asignatura asignatura;
 
 	public Curso() {
 		super();
@@ -100,6 +106,14 @@ public class Curso extends GenericEntityName {
 
 	public void setNota(Integer nota) {
 		this.nota = nota;
+	}
+
+	public Asignatura getAsignatura() {
+		return asignatura;
+	}
+
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura;
 	}
 
 }

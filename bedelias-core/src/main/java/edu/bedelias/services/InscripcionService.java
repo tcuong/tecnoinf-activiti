@@ -29,4 +29,6 @@ public interface InscripcionService {
 
 	public Inscripcion InscripcionACurso(Long studentId, Long cursoId);
 
+	public Inscripcion inscripcionAExamen(Long studentId, Long examenId);
+
 }

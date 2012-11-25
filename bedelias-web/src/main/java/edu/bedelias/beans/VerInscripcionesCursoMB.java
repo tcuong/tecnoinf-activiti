@@ -2,10 +2,8 @@ package edu.bedelias.beans;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import edu.bedelias.entities.Inscripcion;
@@ -26,14 +24,17 @@ public class VerInscripcionesCursoMB extends GenericMB {
 
 	public VerInscripcionesCursoMB() {
 		super();
-	}
-
-//	@PostConstruct
-	public void init() {
 		ciEst = getFromSession("ci_est").toString();
 		inscripciones = inscripcionService.getInscripcionesByTipo(ciEst,
 				TipoInscripcionEnum.CURSO);
 	}
+
+	// @PostConstruct
+	// public void init() {
+	// ciEst = getFromSession("ci_est").toString();
+	// inscripciones = inscripcionService.getInscripcionesByTipo(ciEst,
+	// TipoInscripcionEnum.CURSO);
+	// }
 
 	public InscripcionService getInscripcionService() {
 		return inscripcionService;

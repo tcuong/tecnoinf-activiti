@@ -4,13 +4,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.bedelias.entities.Materia;
 
-public interface MateriaRepository extends JpaRepository<Materia, Long>{
-	
+public interface MateriaRepository extends JpaRepository<Materia, Long> {
+
 	/**
 	 * CRUD ops are already part of JPARepository
 	 * 
 	 * @param name
 	 * @return
 	 */
+	// @Query("select m from Carreer c left join fetch Materia m where m.carrera_id = ?1")
+	// public List<Asignatura> getAsignaturasByMateriaId(Long id); TODO
 
 }
