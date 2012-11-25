@@ -58,11 +58,8 @@ public class InscripcionCursoMB extends GenericMB {
 		}
 	}
 
-	public void metodo() {
-		cursos = cursoService.findAll();
-	}
-
 	public void inscribirse(String id) {
+		System.out.println("Este es el id del curso = " + id);
 	}
 
 	public List<Curso> getCursos() {

@@ -32,4 +32,8 @@ public class MenuIzqEstMB extends GenericMB {
 	public void noImplementada(){
 		redirect("noImplementada.xhtml");
 	}
+	
+	public void desistirInscripcion(){
+		redirect("desistirInscripcion.xhtml");
+	}
 }

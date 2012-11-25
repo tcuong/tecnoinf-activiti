@@ -245,4 +245,11 @@ public class InscripcionServiceImpl implements InscripcionService {
 		this.examenRepo = examenRepo;
 	}
 
+	@Override
+	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst) {
+		// aca hay que poner la logica que retorne un listado con las inscripciones que el estudiante puede desistir.
+		// ie: todas las inscripciones que al dia de hoy tengan un periodo de desistimiento habilitado
+		return new ArrayList<Inscripcion>();
+	}
+
 }

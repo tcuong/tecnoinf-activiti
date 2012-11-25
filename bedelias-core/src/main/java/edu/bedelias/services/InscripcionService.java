@@ -17,7 +17,7 @@ public interface InscripcionService {
 	public void deleteInscripcion(Inscripcion inscripcion);
 
 	public List<Inscripcion> getInscripcionesByStudent(Student student);
-
+	
 	public List<Inscripcion> getInscripcionesByTipo(String ciEst,
 			TipoInscripcionEnum tipo);
 
@@ -30,5 +30,7 @@ public interface InscripcionService {
 	public Inscripcion InscripcionACurso(Long studentId, Long cursoId);
 
 	public Inscripcion inscripcionAExamen(Long studentId, Long examenId);
+
+	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst);
 
 }
