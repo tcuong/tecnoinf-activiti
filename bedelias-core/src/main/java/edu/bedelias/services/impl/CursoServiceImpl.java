@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.services.CursoService;
@@ -27,8 +28,9 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	@Transactional
-	public Curso createCurso(Curso curso) {
+	public Curso createCurso(Curso curso, Asignatura asignatura) {
 		if (curso != null) {
+			curso.setAsignatura(asignatura);
 			curso = cursoRepo.save(curso);
 		}
 		return curso;

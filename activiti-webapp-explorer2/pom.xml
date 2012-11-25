@@ -186,11 +186,11 @@
 		</dependency>
 
 		<!-- Bedelias project dependencies -->
-		<dependency>
-			<groupId>edu.bedelias</groupId>
-			<artifactId>bedelias-core</artifactId>
-			<version>${bedelias.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>edu.bedelias</groupId> -->
+<!-- 			<artifactId>bedelias-core</artifactId> -->
+<!-- 			<version>${bedelias.version}</version> -->
+<!-- 		</dependency> -->
 		<!-- End Bedelias project dependencies -->
 
 	</dependencies>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Examen;
 import edu.bedelias.repositories.ExamenRepository;
 import edu.bedelias.services.ExamenService;
@@ -16,11 +17,12 @@ public class ExamenServiceImpl implements ExamenService {
 
 	@Autowired
 	private ExamenRepository examenRepo;
-	
+
 	@Override
 	@Transactional
-	public Examen createExamen(Examen examen) {
-		if (examen != null) {
+	public Examen createExamen(Examen examen, Asignatura asignatura) {
+		if (examen != null && asignatura != null) {
+			examen.setAsignatura(asignatura);
 			examen = examenRepo.save(examen);
 		}
 		return examen;
@@ -41,7 +43,7 @@ public class ExamenServiceImpl implements ExamenService {
 	}
 
 	// Getters && Setters
-	
+
 	public ExamenRepository getExamenRepo() {
 		return examenRepo;
 	}

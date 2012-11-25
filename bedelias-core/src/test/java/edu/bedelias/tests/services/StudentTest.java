@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,6 @@ public class StudentTest {
 	@Autowired
 	private CursoService cursoService;
 
-	
 	@Before
 	public void init() {
 		Student student = studentService.createStudent(new Student("Chupito",
@@ -83,7 +81,9 @@ public class StudentTest {
 		curso.setFechaInicio(new Date(System.currentTimeMillis()));
 		curso.setFechaFin(new Date(System.currentTimeMillis()));
 		curso.setTurno(TurnoEnum.VESPERTINO);
-		curso = cursoService.createCurso(curso);
+
+		// curso = cursoService.createCurso(curso); FIXME se agrego al crear
+		// curso, meterle una asignatura
 
 		inscripcionService.InscripcionACurso(student.getId(), curso.getId());
 
@@ -102,7 +102,8 @@ public class StudentTest {
 		assertEquals("Email must be the same", student.getEmail(),
 				"chupame@eltobonia.net");
 
-		eval = evaluacionService.createEvaluacion(eval, student.getId());
+		// eval = evaluacionService.createEvaluacion(eval,
+		// student.getId());FIXME esto ya no va mas aca
 
 		Evaluacion eval2 = evaluacionService
 				.getEvaluacionesByStudentId(student).get(0);
@@ -132,7 +133,7 @@ public class StudentTest {
 	}
 
 	// Getters && Setters
-	
+
 	public StudentService getStudentService() {
 		return studentService;
 	}

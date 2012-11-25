@@ -25,20 +25,25 @@ public class Evaluacion extends GenericEntity {
 	private Integer resultado;
 	private TipoEvaluacionEnum tipoEvaluacion;
 
+	@ManyToOne
+	@JoinColumn(name = "curso")
+	private Curso curso;
+
+	@ManyToOne
+	@JoinColumn(name = "estudiante")
+	private Student estudiante;
+
 	public Evaluacion() {
 		super();
 	}
-	
-	public Evaluacion(Integer resultado, Date fechaEvaluacion, TipoEvaluacionEnum tipo) {
+
+	public Evaluacion(Integer resultado, Date fechaEvaluacion,
+			TipoEvaluacionEnum tipo) {
 		super();
 		this.resultado = resultado;
 		this.fechaEvaluacion = fechaEvaluacion;
 		this.tipoEvaluacion = tipo;
 	}
-	
-	@ManyToOne
-	@JoinColumn(name = "estudiante")
-	private Student estudiante;
 
 	// Getters && Setters
 
@@ -72,6 +77,14 @@ public class Evaluacion extends GenericEntity {
 
 	public void setEstudiante(Student estudiante) {
 		this.estudiante = estudiante;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 }

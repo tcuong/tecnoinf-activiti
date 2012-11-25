@@ -2,9 +2,6 @@ package edu.bedelias.activiti.generaracta;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import edu.bedelias.services.CursoService;
 
 public class GenerarActa implements JavaDelegate {
 

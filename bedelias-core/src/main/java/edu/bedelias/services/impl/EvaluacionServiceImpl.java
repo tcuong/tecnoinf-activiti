@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.EvaluacionService;
@@ -23,7 +25,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	@Autowired
 	private StudentRepository studentRepo;
-	
+
+	@Autowired
+	private CursoRepository cursoRepo;
+
 	// Getters && Setters
 
 	public EvaluacionRepository getEvaluacionRepo() {
@@ -42,7 +47,6 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		this.studentRepo = studentRepo;
 	}
 
-	
 	@Override
 	@Transactional
 	public Evaluacion createEvaluacion(Evaluacion evaluacion) {
@@ -70,7 +74,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Transactional
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student) {
 		try {
-			return evaluacionRepo.getEvaluacionesByStudentId(student);	
+			return evaluacionRepo.getEvaluacionesByStudentId(student);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			return null;
@@ -78,17 +82,27 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId) {
+	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId,
+			Long cursoId) {
 		try {
 			Student estudiante = studentRepo.findOne(studentId);
+			Curso curso = cursoRepo.findOne(cursoId);
 
-			if (estudiante != null) {
+			if (estudiante != null && curso != null) {
+				evaluacion.setCurso(curso);
 				evaluacion.setEstudiante(estudiante);
-				return evaluacionRepo.save(evaluacion);
 			}
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return evaluacionRepo.save(evaluacion);
+	}
+
+	public CursoRepository getCursoRepo() {
+		return cursoRepo;
+	}
+
+	public void setCursoRepo(CursoRepository cursoRepo) {
+		this.cursoRepo = cursoRepo;
 	}
 }

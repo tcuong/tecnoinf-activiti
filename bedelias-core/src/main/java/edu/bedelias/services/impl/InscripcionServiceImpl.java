@@ -11,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Examen;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.repositories.CarreerRepository;
 import edu.bedelias.repositories.CursoRepository;
+import edu.bedelias.repositories.ExamenRepository;
 import edu.bedelias.repositories.InscripcionRepository;
 import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.InscripcionService;
@@ -25,7 +27,8 @@ import edu.bedelias.services.InscripcionService;
 @Transactional(readOnly = true)
 public class InscripcionServiceImpl implements InscripcionService {
 
-	private static Logger logger = Logger.getLogger(InscripcionServiceImpl.class.getName());
+	private static Logger logger = Logger
+			.getLogger(InscripcionServiceImpl.class.getName());
 
 	@Autowired
 	private InscripcionRepository inscripcionRepo;
@@ -38,6 +41,9 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Autowired
 	private StudentRepository studentRepo;
+
+	@Autowired
+	private ExamenRepository examenRepo;
 
 	// Getters && Setters
 
@@ -205,6 +211,38 @@ public class InscripcionServiceImpl implements InscripcionService {
 		}
 
 		return ins;
+	}
+
+	@Override
+	@Transactional
+	public Inscripcion inscripcionAExamen(Long studentId, Long examenId) {
+		Inscripcion inscripcion = null;
+		if (studentId != null && examenId != null) {
+			try {
+				Student student = studentRepo.findOne(studentId);
+				Examen examen = examenRepo.findOne(examenId);
+
+				inscripcion = new Inscripcion();
+				inscripcion.setEstudiante(student);
+				inscripcion.setExamen(examen);
+				inscripcion.setTipo(TipoInscripcionEnum.EXAMEN);
+				inscripcion = this.createInscripcion(inscripcion);
+
+			} catch (Exception e) {
+				logger.error("Estudiante o Examen NULL");
+				e.printStackTrace();
+			}
+		}
+
+		return inscripcion;
+	}
+
+	public ExamenRepository getExamenRepo() {
+		return examenRepo;
+	}
+
+	public void setExamenRepo(ExamenRepository examenRepo) {
+		this.examenRepo = examenRepo;
 	}
 
 }
