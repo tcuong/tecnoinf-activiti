@@ -21,4 +21,6 @@ public interface CursoService {
 
 	public List<Curso> findAll();
 
+	public List<Curso> getCursosByCarrearId(Long id);
+
 }

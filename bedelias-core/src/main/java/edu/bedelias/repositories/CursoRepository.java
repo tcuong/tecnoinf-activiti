@@ -30,4 +30,7 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 
 	public Curso findCursoById(Long id);
 
+	// @Query("select cu from Carreer c, Materia m, Asignatura a, Curso cu where c.id = ?1 and m.id = c.id and a.id = m.id and cu.asignatura = a.id")
+	// public List<Curso> getCursosByCarreraId(Long id);
+
 }

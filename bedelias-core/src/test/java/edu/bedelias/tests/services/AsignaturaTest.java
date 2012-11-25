@@ -1,5 +1,9 @@
 package edu.bedelias.tests.services;
 
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +32,23 @@ public class AsignaturaTest {
 		asignatura.setName("Platilina 101");
 		asignatura.setCode("elcodigooo");
 
-		asignaturaService.agregarPreviaAsignatura(asignatura, previa);
+		asignatura = asignaturaService.agregarPreviaAsignatura(asignatura,
+				previa);
 
+		List<Asignatura> asignaturasPrevias = asignaturaService
+				.getPrevias(asignatura.getId());
+		Asignatura checkPrevia = asignaturasPrevias.get(0);
+
+		assertNotNull("Las previas del sistema no pueden ser NULL", checkPrevia);
+
+	}
+
+	public AsignaturaService getAsignaturaService() {
+		return asignaturaService;
+	}
+
+	public void setAsignaturaService(AsignaturaService asignaturaService) {
+		this.asignaturaService = asignaturaService;
 	}
 
 }

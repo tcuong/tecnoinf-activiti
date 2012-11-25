@@ -1,6 +1,9 @@
 package edu.bedelias.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import edu.bedelias.entities.Asignatura;
 
@@ -15,6 +18,6 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Long> {
 
 	public Asignatura findByUuid(String uuid);
 
-	// @Query() //Encajar la query aca!
-	// public List<Asignatura> getPrevias(Long id);
+	@Query("select previas from Asignatura a inner join a.previas as previas where a.id = ?1")
+	public List<Asignatura> getPrevias(Long id);
 }

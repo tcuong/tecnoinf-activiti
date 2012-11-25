@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,7 +17,7 @@ public class Materia extends GenericEntityName {
 
 	private Integer minCredits;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "AsigMaterias", joinColumns = @JoinColumn(name = "materia_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "asignatura_id", referencedColumnName = "id"))
 	private List<Asignatura> asignaturas;
 

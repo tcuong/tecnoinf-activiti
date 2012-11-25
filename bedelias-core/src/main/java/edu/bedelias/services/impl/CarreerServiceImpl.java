@@ -60,9 +60,7 @@ public class CarreerServiceImpl implements CarreerService {
 
 	@Override
 	public List<Materia> findMateriaByCarreerId(Long id) {
-
-		// return carreerRepo.getMateriasByCarreerId(id);
-		return null;
+		return carreerRepo.getMateriasByCarreerId(id);
 	}
 
 	// Getters && Setters
@@ -106,7 +104,8 @@ public class CarreerServiceImpl implements CarreerService {
 	@Override
 	@Transactional
 	public Carreer agregarMateriaACarrera(Carreer carreer, Materia materia) {
-		List<Materia> materias = carreer.getMaterias();// Ir a buscarlas al repo
+		List<Materia> materias = carreerRepo.getMateriasByCarreerId(carreer
+				.getId());
 		if (materias == null) {
 			materias = new ArrayList<Materia>();
 		}
