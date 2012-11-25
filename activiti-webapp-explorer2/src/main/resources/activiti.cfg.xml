@@ -141,4 +141,13 @@
 	<!-- Custom form types -->
 	<bean id="userFormType" class="org.activiti.explorer.form.UserFormType" />
 
+	<!-- remote beans -->
+	<bean id="httpInvokerProxy"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/remoting/StudentService" />
+		<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
+	</bean>
+
+
 </beans>

@@ -22,7 +22,7 @@
 	<!-- Scan this classpath for annotated components that will be auto-registered 
 		as Spring beans -->
 	<context:annotation-config />
-	<!-- <context:spring-configured /> -->
+<!-- 	<context:spring-configured /> -->
 
 	<context:component-scan base-package="edu.bedelias.*" />
 
@@ -145,13 +145,5 @@
 
 	<!-- Custom form types -->
 	<bean id="userFormType" class="org.activiti.explorer.form.UserFormType" />
-
-	<!-- remote beans -->
-	<bean id="httpInvokerProxy"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/remoting/StudentService" />
-		<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
-	</bean>
 
 </beans>
