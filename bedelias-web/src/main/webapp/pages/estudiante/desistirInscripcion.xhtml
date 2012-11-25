@@ -1,0 +1,48 @@
+<ui:composition template="baseTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid columns="1"
+				style="height:100%">
+
+				<f:facet name="header"> A continuación se muestran todas las inscripciones que 
+				disponen de una fecha para desistimiento habilitada.</f:facet>
+
+				<p:dataTable id="tabla" var="inscripcion"
+					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Fecha Inscripción" />
+						</f:facet>
+						<h:outputText value="#{inscripcion.descripcion}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Asignatura" />
+						</f:facet>
+						<h:outputText value="#{inscripcion.curso.nombre}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header"></f:facet>
+						<p:commandButton value="Desistir"
+							action="#{desistirInscripcionMB.desistir(inscripcion.id)}"
+							style="padding:0;" />
+
+					</p:column>
+
+				</p:dataTable>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
