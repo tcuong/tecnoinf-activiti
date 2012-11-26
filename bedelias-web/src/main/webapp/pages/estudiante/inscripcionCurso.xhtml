@@ -7,8 +7,7 @@
 
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="1"
-				style="height:100%">
+			<p:panelGrid columns="1" style="height:100%; width: 100%;" >
 
 				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
 
@@ -18,12 +17,9 @@
 
 					<p:selectOneMenu value="#{inscripcionCursoMB.carrera}">
 						<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}" />
-						<p:ajax update="tabla" listener="#{inscripcionCursoMB.metodo}" />
+						<p:ajax update="tabla" listener="#{inscripcionCursoMB.actualizarCursos}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
-				<p:commandButton value="Inscribirme"
-							action="#{inscripcionCursoMB.inscribirse('putttoooo')}"
-							style="padding:0;" />
 
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
