@@ -90,5 +90,10 @@ public class CursoServiceImpl implements CursoService {
 	public void setCursoRepo(CursoRepository cursoRepo) {
 		this.cursoRepo = cursoRepo;
 	}
+	
+	public List<Curso> getCursosByCarrera(String carreraId){
+		// este método esta sin implementar
+		return this.cursoRepo.findCursoByCarrera(carreraId);
+	}
 
 }

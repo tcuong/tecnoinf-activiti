@@ -20,5 +20,7 @@ public interface CursoService {
 	public void generarActa(String codigoCurso);
 
 	public List<Curso> findAll();
+	
+	public List<Curso> getCursosByCarrera(String carreraId);
 
 }

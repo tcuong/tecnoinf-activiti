@@ -16,5 +16,7 @@ public interface AsignaturaService {
 			Asignatura previa);
 
 	public List<Asignatura> getPrevias(Long id);
+	
+	public List<Asignatura> findAll();
 
 }
