@@ -83,8 +83,7 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public List<Curso> getCursosByCarrearId(Long id) {
-//		return cursoRepo.getCursosByCarreraId(id);
-		return null;
+		return cursoRepo.getCursosByCarreraId(id);
 	}
 
 	// Getters && Setters
@@ -96,10 +95,10 @@ public class CursoServiceImpl implements CursoService {
 	public void setCursoRepo(CursoRepository cursoRepo) {
 		this.cursoRepo = cursoRepo;
 	}
-	
-	public List<Curso> getCursosByCarrera(String carreraId){
+
+	public List<Curso> getCursosByCarrera(String carreraId) {
 		// este método esta sin implementar
-//		return this.cursoRepo.findCursoByCarrera(carreraId);
+		// return this.cursoRepo.findCursoByCarrera(carreraId);
 		return null;
 	}
 

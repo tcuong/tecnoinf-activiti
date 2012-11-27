@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import edu.bedelias.entities.Curso;
 
@@ -30,7 +31,7 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 
 	public Curso findCursoById(Long id);
 
-	// @Query("select cu from Carreer c, Materia m, Asignatura a, Curso cu where c.id = ?1 and m.id = c.id and a.id = m.id and cu.asignatura = a.id")
-	// public List<Curso> getCursosByCarreraId(Long id);
+	@Query("select cursos from Curso cursos, Carreer as carrera inner join carrera.materias as materias inner join materias.asignaturas as asignaturas where carrera.id = ?1 and cursos.asignatura = asignaturas")
+	public List<Curso> getCursosByCarreraId(Long id);
 
 }
