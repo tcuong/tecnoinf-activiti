@@ -25,15 +25,15 @@ public class MenuIzqEstMB extends GenericMB {
 		redirect("../login.xhtml");
 	}
 	
-	public void iniciarSesion(){
-		redirect("login.xhtml");
-	}
-	
 	public void noImplementada(){
 		redirect("noImplementada.xhtml");
 	}
 	
 	public void desistirInscripcion(){
 		redirect("desistirInscripcion.xhtml");
+	}
+	
+	public void verPrevias(){
+		redirect("previas.xhtml");
 	}
 }

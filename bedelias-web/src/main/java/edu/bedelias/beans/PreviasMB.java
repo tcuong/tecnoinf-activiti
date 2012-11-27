@@ -21,7 +21,7 @@ public class PreviasMB extends GenericMB {
 	@ManagedProperty(value = "#{asignaturaServiceImpl}")
 	private AsignaturaService asignaturaService;
 
-	private String asignaturaId;
+	private long asignaturaId;
 	private List<SelectItem> asignaturas;
 	private List<Asignatura> previas;
 
@@ -37,6 +37,10 @@ public class PreviasMB extends GenericMB {
 		}
 	}
 
+	public void buscarPrevias(){
+		previas = asignaturaService.getPrevias(asignaturaId);
+	}
+	
 	public AsignaturaService getAsignaturaService() {
 		return asignaturaService;
 	}
@@ -45,11 +49,11 @@ public class PreviasMB extends GenericMB {
 		this.asignaturaService = asignaturaService;
 	}
 
-	public String getAsignaturaId() {
+	public long getAsignaturaId() {
 		return asignaturaId;
 	}
 
-	public void setAsignaturaId(String asignaturaId) {
+	public void setAsignaturaId(long asignaturaId) {
 		this.asignaturaId = asignaturaId;
 	}
 

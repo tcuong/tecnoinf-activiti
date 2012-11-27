@@ -75,8 +75,7 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	@Override
 	public List<Asignatura> findAll() {
-//		return this.asignaturaRepo.findAll();
-		return null;
+		return this.asignaturaRepo.findAll();
 	}
 
 }
