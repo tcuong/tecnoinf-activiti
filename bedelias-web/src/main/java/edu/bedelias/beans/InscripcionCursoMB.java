@@ -58,6 +58,12 @@ public class InscripcionCursoMB extends GenericMB {
 		}
 	}
 
+	public void actualizarCursos(){
+		// despues que mathias suba los cambios este método debe llamar a uno que le devuelva
+		// para la carrera seleccionada todos los cursos disponibles para escribirse
+		setCursos(cursoService.findAll());
+	}
+	
 	public void inscribirse(String id) {
 		System.out.println("Este es el id del curso = " + id);
 	}

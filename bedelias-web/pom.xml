@@ -16,6 +16,7 @@
 		<primefaces.version>3.4.2</primefaces.version>
 		<primefaces-theme.version>1.0.8</primefaces-theme.version>
 		<jsf.version>2.1.13</jsf.version>
+	 <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
 	</properties>
 
 	<dependencies>
