@@ -122,7 +122,10 @@ public class CargarDatosTest {
 		// Inscripcion a Examen
 		inscripcionService.inscripcionAExamen(student.getId(), examen.getId());
 
+		List<Curso> cursos = cursoService.getCursosByCarrearId(carrera.getId());
+
 		assertNotNull("Inscripcion can't be null", examen);
+		assertNotNull("Cursos can't be null", cursos);
 	}
 
 	public StudentService getStudentService() {

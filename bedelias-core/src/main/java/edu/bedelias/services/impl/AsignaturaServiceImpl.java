@@ -48,8 +48,8 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 	@Transactional
 	public Asignatura agregarPreviaAsignatura(Asignatura asignatura,
 			Asignatura previa) {
-		List<Asignatura> previas = asignatura.getPrevias();// Ir a buscarla al
-															// repo
+		List<Asignatura> previas = asignaturaRepo
+				.getPrevias(asignatura.getId());
 		if (previas == null) {
 			previas = new ArrayList<Asignatura>();
 		}
@@ -60,8 +60,7 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	@Override
 	public List<Asignatura> getPrevias(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return asignaturaRepo.getPrevias(id);
 	}
 
 	// Getters && Setters

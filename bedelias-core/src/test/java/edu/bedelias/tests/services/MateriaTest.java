@@ -2,6 +2,8 @@ package edu.bedelias.tests.services;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +40,13 @@ public class MateriaTest {
 
 		materia = materiaService.agregarAsignaturaMateria(materia, asignatura);
 
+		List<Asignatura> asigs = materiaService
+				.getAsignaturasByMateriaId(materia.getId());
+
 		assertNotNull("Materia can't be null", materia);
-		assertNotNull("Asignaturas can't be null", materia.getAsignaturas());
+		for (Asignatura a : asigs) {
+			assertNotNull("Asignaturas can't be null", a);
+		}
 
 	}
 

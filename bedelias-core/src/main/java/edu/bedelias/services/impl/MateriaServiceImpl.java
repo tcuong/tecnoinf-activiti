@@ -50,23 +50,20 @@ public class MateriaServiceImpl implements MateriaService {
 	@Transactional
 	public Materia agregarAsignaturaMateria(Materia materia,
 			Asignatura asignatura) {
-		List<Asignatura> asignaturas = materia.getAsignaturas();// ir a
-																// buscarlas al
-																// repo TODO
+		List<Asignatura> asignaturas = materiaRepo
+				.getAsignaturasByMateriaId(materia.getId());
 		if (asignaturas == null) {
 			asignaturas = new ArrayList<Asignatura>();
 		}
 		asignaturas.add(asignatura);
 		materia.setAsignaturas(asignaturas);
 		materia = materiaRepo.save(materia);
-
 		return materia;
 	}
 
 	@Override
 	public List<Asignatura> getAsignaturasByMateriaId(Long id) {
-		// materiaRepo.getAsignaturasByMateriaId(id);
-		return null;
+		return materiaRepo.getAsignaturasByMateriaId(id);
 	}
 
 	// Getters && Setters

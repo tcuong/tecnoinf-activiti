@@ -81,6 +81,11 @@ public class CursoServiceImpl implements CursoService {
 
 	}
 
+	@Override
+	public List<Curso> getCursosByCarrearId(Long id) {
+		return cursoRepo.getCursosByCarreraId(id);
+	}
+
 	// Getters && Setters
 
 	public CursoRepository getCursoRepo() {

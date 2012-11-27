@@ -1,5 +1,9 @@
 package edu.bedelias.tests.services;
 
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +33,21 @@ public class CarreerTest {
 		materia1.setCode("codigo");
 		materia1 = materiaService.createMateria(materia1);
 
+		Materia materia2 = new Materia();
+		materia2.setName("JulianSasasa");
+		materia2.setCode("codigoQQQ");
+		materia2 = materiaService.createMateria(materia2);
+
 		Carreer carreer = new Carreer("Alguna carrera");
 		carreer.setCode("lalalla");
 		carreer = carreerService.agregarMateriaACarrera(carreer, materia1);
+		carreer = carreerService.agregarMateriaACarrera(carreer, materia2);
 
-		// List<Materia> materias =
-		// carreerService.findMateriaByCarreerId(carreer
-		// .getId());
-		// assertNotNull("Lista de materias no puede ser nula", materias);
+		List<Materia> materia = carreerService.findMateriaByCarreerId(carreer
+				.getId());
+		for (Materia m : materia) {
+			assertNotNull("Lista de materias no puede ser nula", m);
+		}
 
 	}
 
