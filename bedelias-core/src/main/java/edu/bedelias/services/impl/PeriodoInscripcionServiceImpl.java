@@ -1,7 +1,10 @@
 package edu.bedelias.services.impl;
 
+import org.activiti.engine.ProcessEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +19,14 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 
 	@Autowired
 	private PeriodoInscripcionRepository periodoInscripcionRepo;
-	
+
 	@Override
 	@Transactional
-	public PeriodoInscripcion createPeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
+	public PeriodoInscripcion createPeriodoInscripcion(
+			PeriodoInscripcion periodoInscripcion) {
 		if (periodoInscripcion != null) {
-			periodoInscripcion = periodoInscripcionRepo.save(periodoInscripcion);
+			periodoInscripcion = periodoInscripcionRepo
+					.save(periodoInscripcion);
 		}
 		return periodoInscripcion;
 	}
@@ -30,7 +35,8 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 	@Transactional
 	public void updatePeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
 		if (periodoInscripcion != null) {
-			periodoInscripcion = periodoInscripcionRepo.save(periodoInscripcion);
+			periodoInscripcion = periodoInscripcionRepo
+					.save(periodoInscripcion);
 		}
 	}
 
@@ -50,5 +56,15 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 			PeriodoInscripcionRepository periodoInscripcionRepo) {
 		this.periodoInscripcionRepo = periodoInscripcionRepo;
 	}
-	
+
+	@Override
+	public void test() {
+
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
+		ac.getBean(ProcessEngine.class);
+		ProcessEngine pe = (ProcessEngine) ac.getBean(ProcessEngine.class);
+		pe.getRuntimeService().startProcessInstanceById("GenerarActaDeCurso");
+
+	}
+
 }

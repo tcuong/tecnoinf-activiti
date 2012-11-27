@@ -22,11 +22,13 @@ public class PeriodoInscripcionTest {
 	@Test
 	public void test(){
 		
-		PeriodoInscripcion inscripcion = new PeriodoInscripcion();
+//		PeriodoInscripcion inscripcion = new PeriodoInscripcion();
+//		
+//		inscripcion = service.createPeriodoInscripcion(inscripcion);
+//		
+//		assertNotNull("PeriodoInscripcion can't be null", inscripcion);
 		
-		inscripcion = service.createPeriodoInscripcion(inscripcion);
-		
-		assertNotNull("PeriodoInscripcion can't be null", inscripcion);
+		service.test();
 		
 	}
 

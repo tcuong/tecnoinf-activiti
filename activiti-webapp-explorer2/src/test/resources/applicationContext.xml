@@ -118,24 +118,24 @@
 				<ref bean="userFormType" />
 			</list>
 		</property>
-<!-- 		<property name="beans"> -->
-<!-- 			<map> -->
-<!-- 				<entry key="pruebaServices" value-ref="pruebaServices" /> -->
-<!-- 			</map> -->
-<!-- 		</property> -->
+		<!-- <property name="beans"> -->
+		<!-- <map> -->
+		<!-- <entry key="pruebaServices" value-ref="pruebaServices" /> -->
+		<!-- </map> -->
+		<!-- </property> -->
 	</bean>
-	
-<!-- 	<bean id="pruebaServices" name="pruebaServices" class="prueba.PruebaServices"> -->
-<!--     <property name="searchService"> -->
-<!--         <ref bean="searchService" /> -->
-<!--     </property> -->
-<!--     <property name="nodeService"> -->
-<!--         <ref bean="nodeService" /> -->
-<!--     </property> -->
-<!--     <property name="workflowService"> -->
-<!--         <ref bean="WorkflowService" /> -->
-<!--     </property>      -->
-<!-- </bean> -->
+
+	<!-- <bean id="pruebaServices" name="pruebaServices" class="prueba.PruebaServices"> -->
+	<!-- <property name="searchService"> -->
+	<!-- <ref bean="searchService" /> -->
+	<!-- </property> -->
+	<!-- <property name="nodeService"> -->
+	<!-- <ref bean="nodeService" /> -->
+	<!-- </property> -->
+	<!-- <property name="workflowService"> -->
+	<!-- <ref bean="WorkflowService" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">

@@ -41,6 +41,10 @@ public class PreviasMB extends GenericMB {
 		previas = asignaturaService.getPrevias(asignaturaId);
 	}
 	
+	public void deQuienEsPrevia(){
+		previas = asignaturaService.getDeQuienEsPrevia(asignaturaId);
+	}
+	
 	public AsignaturaService getAsignaturaService() {
 		return asignaturaService;
 	}
