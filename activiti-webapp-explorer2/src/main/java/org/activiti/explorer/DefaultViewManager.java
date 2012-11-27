@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.IdentityService;
-import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.identity.Group;
@@ -38,20 +37,16 @@ import org.activiti.explorer.ui.process.ProcessDefinitionPage;
 import org.activiti.explorer.ui.process.ProcessMenuBar;
 import org.activiti.explorer.ui.profile.ProfilePopupWindow;
 import org.activiti.explorer.ui.task.ArchivedPage;
-import org.activiti.explorer.ui.task.TasksPage;
 import org.activiti.explorer.ui.task.InboxPage;
 import org.activiti.explorer.ui.task.InvolvedPage;
 import org.activiti.explorer.ui.task.QueuedPage;
 import org.activiti.explorer.ui.task.TaskMenuBar;
+import org.activiti.explorer.ui.task.TasksPage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.vaadin.ui.Window;
-
-import edu.bedelias.services.StudentService;
 
 /**
  * @author Joram Barrez
@@ -67,19 +62,11 @@ public class DefaultViewManager implements ViewManager {
 	@Autowired
 	protected MainWindow mainWindow;
 	
-	@Autowired
-	private StudentService studentService;
-
 	protected TaskService taskService;
 	protected HistoryService historyService;
 	protected IdentityService identityService;
 
 	public DefaultViewManager() {
-//		ApplicationContext ac = new ClassPathXmlApplicationContext(
-//				"activiti.cfg.xml");
-		boolean b = studentService.existeStudentByCedula("someCedula");
-		System.out.println("Existe Student? [" + b + "]");
-		// ac.getBean(ProcessEngine.class);
 		this.taskService = ProcessEngines.getDefaultProcessEngine()
 				.getTaskService();
 		this.historyService = ProcessEngines.getDefaultProcessEngine()
