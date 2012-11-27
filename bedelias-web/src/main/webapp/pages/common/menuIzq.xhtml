@@ -11,16 +11,19 @@
 		<p:menu>
 
 			<p:submenu label=" Estudiante ">
-				<p:menuitem value="Iniciar Sesion" actionListener="#{menuIzqMB.iniciarSesion}" />
-				<p:separator style="height:25px; background:none; border:none;" />  
-			</p:submenu>
-			
-			<p:submenu label=" Previas ">
-				<p:menuitem value="Previas de materias" actionListener="#{menuIzqMB.verPrevias}" />
-				<p:menuitem value="De cuáles es previa una materia" actionListener="#{menuIzqMB.noImplementada}" />
+				<p:menuitem value="Iniciar Sesion"
+					actionListener="#{menuIzqMB.iniciarSesion}" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
-			
+
+			<p:submenu label=" Previas ">
+				<p:menuitem value="Previas de asignatura"
+					actionListener="#{menuIzqMB.verPrevias}" />
+				<p:menuitem value="De cuáles es previa una asignatura"
+					actionListener="#{menuIzqMB.previasDeQuien}" />
+				<p:separator style="height:25px; background:none; border:none;" />
+			</p:submenu>
+
 		</p:menu>
 	</h:form>
 </ui:composition>

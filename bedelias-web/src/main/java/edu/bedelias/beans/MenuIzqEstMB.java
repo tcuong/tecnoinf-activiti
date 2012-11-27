@@ -36,4 +36,8 @@ public class MenuIzqEstMB extends GenericMB {
 	public void verPrevias(){
 		redirect("previas.xhtml");
 	}
+	
+	public void previasDeQuien(){
+		redirect("previasDeQuien.xhtml");
+	}
 }

@@ -9,5 +9,7 @@ public interface PeriodoInscripcionService {
 	public void updatePeriodoInscripcion(PeriodoInscripcion periodoInscripcion);
 	
 	public void deletePeriodoInscripcion(PeriodoInscripcion periodoInscripcion);
+	
+	public void test();
 
 }

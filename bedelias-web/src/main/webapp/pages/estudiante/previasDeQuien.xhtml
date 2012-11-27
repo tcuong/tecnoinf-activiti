@@ -1,0 +1,68 @@
+<ui:composition template="baseTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form>
+		
+			<p:panelGrid columns="1" style="height:100%; width: 100%;">
+
+				<f:facet name="header"> Seleccione la Asignatura para ver de quien es previa </f:facet>
+
+				<p:panelGrid columns="3"
+					style="margin:15px auto; border: none !important;">
+					<h:outputText value="Seleccione la asignatura" />
+
+					<p:selectOneMenu value="#{previasMB.asignaturaId}">
+						<f:selectItem itemLabel="-- Asignatura --" itemValue="" />  
+						<f:selectItems value="#{previasMB.asignaturas}" />
+						<p:ajax update="tabla" listener="#{previasMB.deQuienEsPrevia}" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+
+				<p:dataTable id="tabla" var="asignatura"
+					value="#{previasMB.previas}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nombre" />
+						</f:facet>
+						<h:outputText value="#{asignatura.name}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Creditos" />
+						</f:facet>
+						<h:outputText value="#{asignatura.credits}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Electiva" />
+						</f:facet>
+						<h:selectBooleanCheckbox value="#{asignatura.isElectiva}"
+							disabled="true" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Tipo aprobación" />
+						</f:facet>
+						<h:outputText value="#{asignatura.tipoAprobacion}"
+							disabled="true" />
+					</p:column>
+				</p:dataTable>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
