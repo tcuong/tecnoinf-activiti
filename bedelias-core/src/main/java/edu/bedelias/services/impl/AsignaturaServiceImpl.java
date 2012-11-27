@@ -63,6 +63,12 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 		return asignaturaRepo.getPrevias(id);
 	}
 
+	@Override
+	public List<Asignatura> getDeQuienEsPrevia(Long id) {
+		Asignatura a = asignaturaRepo.findOne(id);
+		return asignaturaRepo.getDeQuienEsPrevi(a);
+	}
+
 	// Getters && Setters
 
 	public AsignaturaRepository getAsignaturaRepo() {

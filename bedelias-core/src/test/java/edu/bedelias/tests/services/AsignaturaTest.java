@@ -32,6 +32,13 @@ public class AsignaturaTest {
 		asignatura.setName("Platilina 101");
 		asignatura.setCode("elcodigooo");
 
+		Asignatura asignatura2 = new Asignatura();
+		asignatura2.setName("Asignatura 222");
+		asignatura2.setCode("elco000");
+
+		asignatura2 = asignaturaService.agregarPreviaAsignatura(asignatura2,
+				previa);
+
 		asignatura = asignaturaService.agregarPreviaAsignatura(asignatura,
 				previa);
 
@@ -39,8 +46,14 @@ public class AsignaturaTest {
 				.getPrevias(asignatura.getId());
 		Asignatura checkPrevia = asignaturasPrevias.get(0);
 
+		List<Asignatura> asigs = asignaturaService.getDeQuienEsPrevia(previa
+				.getId());
+
 		assertNotNull("Las previas del sistema no pueden ser NULL", checkPrevia);
 
+		for (Asignatura a : asigs) {
+			assertNotNull("Las previas del sistema no pueden ser NULL", a);
+		}
 	}
 
 	public AsignaturaService getAsignaturaService() {

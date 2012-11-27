@@ -20,4 +20,7 @@ public interface AsignaturaRepository extends JpaRepository<Asignatura, Long> {
 
 	@Query("select previas from Asignatura a inner join a.previas as previas where a.id = ?1")
 	public List<Asignatura> getPrevias(Long id);
+
+	@Query("select a from Asignatura a inner join a.previas as previas where previas = ?1")
+	public List<Asignatura> getDeQuienEsPrevi(Asignatura asignatura);
 }
