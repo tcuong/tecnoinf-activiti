@@ -8,36 +8,44 @@
 
 <ui:composition name="menuIzquierda">
 	<h:form>
+
 		<p:menu style="border:none;" size="80px">
-			<p:submenu label=" Inscripciones ">
-				
-				<p:menuitem value="Inscripción a Curso" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
-				<p:menuitem value="Inscripción a Examen" actionListener="#{menuIzqEstMB.noImplementada}" />
-				
-				<p:separator style="height:15px; background:none; border:none;" />
-				
-				<p:menuitem value="Desistir a inscripción" actionListener="#{menuIzqEstMB.desistirInscripcion}" />
-				
-				<p:separator style="height:25px; background:none; border:none;" />
-				
-			</p:submenu>
-			
-			<p:submenu label=" Previas ">
-				<p:menuitem value="Previas de asignatura" actionListener="#{menuIzqEstMB.verPrevias}" />
-				<p:menuitem value="De cuáles es previa una materia" actionListener="#{menuIzqEstMB.noImplementada}" />
-				
-				<p:separator style="height:25px; background:none; border:none;" />
-			</p:submenu>
-			
+
 			<p:submenu label=" Estudiante ">
-				<p:menuitem value="Consultar actividad" actionListener="#{menuIzqEstMB.noImplementada}" />
-				
-				<p:separator style="height:15px; background:none; border:none;" />
-				
-				<p:menuitem value="Cerrar Sesion" actionListener="#{menuIzqEstMB.cerrarSesion}" />
-				
+				<p:menuitem value="Consultar actividad"
+					actionListener="#{menuIzqEstMB.noImplementada}" />
+
+				<p:menuitem value="Cerrar Sesion"
+					actionListener="#{menuIzqEstMB.cerrarSesion}" style="background:#f22929; padding: 2px;"/>
+
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
+
+			<p:submenu label=" Inscripciones ">
+
+				<p:menuitem value="Inscripción a Curso"
+					actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				<p:menuitem value="Inscripción a Examen"
+					actionListener="#{menuIzqEstMB.noImplementada}" />
+
+				<p:separator style="height:15px; background:none; border:none;" />
+
+				<p:menuitem value="Desistir a inscripción"
+					actionListener="#{menuIzqEstMB.desistirInscripcion}" />
+
+				<p:separator style="height:25px; background:none; border:none;" />
+
+			</p:submenu>
+
+			<p:submenu label=" Previas ">
+				<p:menuitem value="Previas de asignatura"
+					actionListener="#{menuIzqEstMB.verPrevias}" />
+				<p:menuitem value="De cuáles es previa una asignatura"
+					actionListener="#{menuIzqEstMB.previasDeQuien}" />
+
+				<p:separator style="height:25px; background:none; border:none;" />
+			</p:submenu>
+
 		</p:menu>
 	</h:form>
 </ui:composition>
