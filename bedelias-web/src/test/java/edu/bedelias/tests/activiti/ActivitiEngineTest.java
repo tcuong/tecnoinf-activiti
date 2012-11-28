@@ -1,7 +1,6 @@
 package edu.bedelias.tests.activiti;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import org.activiti.engine.ProcessEngine;
 import org.junit.Test;
@@ -18,7 +17,7 @@ public class ActivitiEngineTest {
 	public void CallActivitiEngine() {
 		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
 		ProcessEngine pe = (ProcessEngine)cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceById("generarActa");
+		pe.getRuntimeService().startProcessInstanceByKey("GenerarActaDeCurso");
 		
 		assertNotNull("ProcessEngine can't be null", pe);
 	}
