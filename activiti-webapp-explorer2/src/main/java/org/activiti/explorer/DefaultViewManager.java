@@ -14,6 +14,7 @@
 package org.activiti.explorer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,6 +49,8 @@ import org.springframework.stereotype.Component;
 
 import com.vaadin.ui.Window;
 
+import edu.bedelias.remote.DateService;
+
 /**
  * @author Joram Barrez
  */
@@ -61,7 +64,7 @@ public class DefaultViewManager implements ViewManager {
 
 	@Autowired
 	protected MainWindow mainWindow;
-	
+
 	protected TaskService taskService;
 	protected HistoryService historyService;
 	protected IdentityService identityService;
