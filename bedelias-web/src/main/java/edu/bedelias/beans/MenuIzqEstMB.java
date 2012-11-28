@@ -13,16 +13,17 @@ public class MenuIzqEstMB extends GenericMB {
 		super();
 	}
 
+	public String obtenerNombre(){
+		estaLogueado();
+		return (String) this.getFromSession(this.nombre);
+	}
+	
 	public void inscripcionCurso() {
 		redirect("../estudiante/inscripcionCurso.xhtml");
 	}
 
 	public void verInscripcionesCurso() {
 		redirect("../estudiante/verInscripcionesCurso.xhtml");
-	}
-	
-	public void cerrarSesion(){
-		redirect("../login.xhtml");
 	}
 	
 	public void noImplementada(){

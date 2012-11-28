@@ -1,21 +1,14 @@
 package edu.bedelias.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.SelectItem;
 
-import edu.bedelias.entities.Carreer;
-import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Inscripcion;
-import edu.bedelias.entities.Student;
-import edu.bedelias.services.CursoService;
 import edu.bedelias.services.InscripcionService;
-import edu.bedelias.services.StudentService;
 
 @ManagedBean(name = "DesistirInscripcionMB")
 @RequestScoped
@@ -34,12 +27,16 @@ public class DesistirInscripcionMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		String ciEst = getFromSession("ci_est").toString();
-		inscripcionesCuros = inscripcionService.getInscripcionesParaDesistir(ciEst);
+		if (estaLogueado()) {
+			String ciEst = getFromSession("ci_est").toString();
+			inscripcionesCuros = inscripcionService
+					.getInscripcionesParaDesistir(ciEst);
+		}
 	}
 
 	public void desistir(String id) {
-		System.out.println("El estudiante quire desistir de la incripcion id " + id);
+		System.out.println("El estudiante quire desistir de la incripcion id "
+				+ id);
 	}
 
 	public InscripcionService getInscripcionService() {
@@ -57,6 +54,5 @@ public class DesistirInscripcionMB extends GenericMB {
 	public void setInscripcionesCuros(List<Inscripcion> inscripcionesCuros) {
 		this.inscripcionesCuros = inscripcionesCuros;
 	}
-	
-	
+
 }

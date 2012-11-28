@@ -31,20 +31,22 @@ public class PreviasMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		asignaturas = new ArrayList<SelectItem>();
-		for (Asignatura asig : asignaturaService.findAll()) {
-			asignaturas.add(new SelectItem(asig.getId(), asig.getName()));
+		if (estaLogueado()) {
+			asignaturas = new ArrayList<SelectItem>();
+			for (Asignatura asig : asignaturaService.findAll()) {
+				asignaturas.add(new SelectItem(asig.getId(), asig.getName()));
+			}
 		}
 	}
 
-	public void buscarPrevias(){
+	public void buscarPrevias() {
 		previas = asignaturaService.getPrevias(asignaturaId);
 	}
-	
-	public void deQuienEsPrevia(){
+
+	public void deQuienEsPrevia() {
 		previas = asignaturaService.getDeQuienEsPrevia(asignaturaId);
 	}
-	
+
 	public AsignaturaService getAsignaturaService() {
 		return asignaturaService;
 	}
