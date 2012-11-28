@@ -35,7 +35,7 @@ public class InscripcionCursoMB extends GenericMB {
 	private List<Carreer> carreras;
 	private List<Curso> cursos;
 	private String ciEst;
-	private String carrera;
+	private long carreraId;
 
 	public InscripcionCursoMB() {
 		super();
@@ -43,27 +43,28 @@ public class InscripcionCursoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		ciEst = getFromSession("ci_est").toString();
-		Student student = studentService.findStudentByCedula(ciEst);
+		if (estaLogueado()) {
+			ciEst = getFromSession(this.cedula).toString();
+			Student student = studentService.findStudentByCedula(ciEst);
 
-		if (student != null) {
-			carreras = inscripcionService.getCarrerasByStudent(student);
-			carrerasListItem = new ArrayList<SelectItem>();
-			for (Carreer c : carreras) {
-				carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
+			if (student != null) {
+				carreras = inscripcionService.getCarrerasByStudent(student);
+				carrerasListItem = new ArrayList<SelectItem>();
+				for (Carreer c : carreras) {
+					carrerasListItem
+							.add(new SelectItem(c.getId(), c.getName()));
+				}
+			} else {
+				sendErrorMessage("Estudiante no encontrado",
+						"No se han encontrado el estudiante con la cedula dada");
 			}
-		} else {
-			sendErrorMessage("Estudiante no encontrado",
-					"No se han encontrado el estudiante con la cedula dada");
 		}
 	}
 
-	public void actualizarCursos(){
-		// despues que mathias suba los cambios este método debe llamar a uno que le devuelva
-		// para la carrera seleccionada todos los cursos disponibles para escribirse
-		setCursos(cursoService.findAll());
+	public void actualizarCursos() {
+		cursos = cursoService.getCursosByCarrearId(carreraId);
 	}
-	
+
 	public void inscribirse(String id) {
 		System.out.println("Este es el id del curso = " + id);
 	}
@@ -124,12 +125,12 @@ public class InscripcionCursoMB extends GenericMB {
 		this.cursoService = cursoService;
 	}
 
-	public String getCarrera() {
-		return carrera;
+	public long getCarreraId() {
+		return carreraId;
 	}
 
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
+	public void setCarreraId(long carreraId) {
+		this.carreraId = carreraId;
 	}
 
 }

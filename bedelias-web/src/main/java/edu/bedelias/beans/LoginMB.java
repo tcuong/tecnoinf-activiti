@@ -8,7 +8,7 @@ public class LoginMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
 
-	private String cedula;
+	private String ciEstudiante;
 
 	public LoginMB() {
 		super();
@@ -16,19 +16,26 @@ public class LoginMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		cedula = "someCedula";
+		ciEstudiante = "someCedula";
 	}
 
 	public void login() {
-		this.putInSession("ci_est", cedula);
+		this.putInSession(this.cedula, ciEstudiante);
+		this.putInSession(this.nombre, "Batman");
 		this.redirect("estudiante/home.xhtml");
 	}
 
-	public String getCedula() {
-		return cedula;
+	public void cerrarSesion() {
+		this.clearSession();
+		this.redirect("../home.xhtml");
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public String getCiEstudiante() {
+		return ciEstudiante;
 	}
+
+	public void setCiEstudiante(String ciEstudiante) {
+		this.ciEstudiante = ciEstudiante;
+	}
+
 }

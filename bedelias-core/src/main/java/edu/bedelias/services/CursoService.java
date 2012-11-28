@@ -21,8 +21,6 @@ public interface CursoService {
 
 	public List<Curso> findAll();
 	
-	public List<Curso> getCursosByCarrera(String carreraId);
-
 	public List<Curso> getCursosByCarrearId(Long id);
 
 }

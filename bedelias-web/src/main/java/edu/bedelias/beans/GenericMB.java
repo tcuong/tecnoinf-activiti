@@ -13,7 +13,19 @@ public abstract class GenericMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	protected String cedula = "ci";
+	protected String nombre = "name";
+
 	public GenericMB() {
+	}
+
+	public boolean estaLogueado() {
+		String ci = (String) getFromSession(cedula);
+		if (ci == null) {
+			redirect("../login.xhtml");
+			return false;
+		}
+		return true;
 	}
 
 	public void redirect(String url) {
@@ -55,7 +67,7 @@ public abstract class GenericMB implements Serializable {
 				.clear();
 	}
 
-	protected Object getFromSession(String property) {
+	public Object getFromSession(String property) {
 		return FacesContext.getCurrentInstance().getExternalContext()
 				.getSessionMap().get(property);
 	}
