@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="altaPeriodoInscCurso" name="AltaPeriodoInscripcionCurso">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="IngresarFechas" activiti:assignee="kermit">
+      <extensionElements>
+        <activiti:formProperty id="fechaInicio" name="Fecha Inicio" type="date" datePattern="dd-MMM-yyyy" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="fechaFinComienzoDesistir" name="Fecha fin y comienzo de desistimiento" type="date" datePattern="dd-MMM-yyyy" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="fechaFin" name="Fecha Finalizacion" type="date" datePattern="dd-MMM-yyyy" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="descripcion" name="Descripcion" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
+    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="exclusivegateway1" targetRef="servicetask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$(fechaInicio < fechaFinComienzoDesistir < fechaFin == true)]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="Guardar" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.Guardar"></serviceTask>
+    <sequenceFlow id="flow4" name="" sourceRef="exclusivegateway1" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$(fechaInicio < fechaFinComienzoDesistir < fechaFin == false)]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow5" name="" sourceRef="servicetask1" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_altaPeriodoInscCurso">
+    <bpmndi:BPMNPlane bpmnElement="altaPeriodoInscCurso" id="BPMNPlane_altaPeriodoInscCurso">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="60" y="150"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55" width="105" x="160" y="140"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40" width="40" x="320" y="147"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55" width="105" x="405" y="140"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="565" y="150"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="95" y="167"></omgdi:waypoint>
+        <omgdi:waypoint x="160" y="167"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="265" y="167"></omgdi:waypoint>
+        <omgdi:waypoint x="320" y="167"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="360" y="167"></omgdi:waypoint>
+        <omgdi:waypoint x="405" y="167"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="340" y="187"></omgdi:waypoint>
+        <omgdi:waypoint x="339" y="224"></omgdi:waypoint>
+        <omgdi:waypoint x="212" y="224"></omgdi:waypoint>
+        <omgdi:waypoint x="212" y="195"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="510" y="167"></omgdi:waypoint>
+        <omgdi:waypoint x="565" y="167"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

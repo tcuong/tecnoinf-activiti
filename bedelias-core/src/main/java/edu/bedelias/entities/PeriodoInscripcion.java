@@ -21,6 +21,8 @@ public class PeriodoInscripcion extends GenericEntity {
 
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Date fechaDesist;
+	private String descripcion;
 
 	private TipoInscripcionEnum tipoInscripcion;
 
@@ -56,6 +58,22 @@ public class PeriodoInscripcion extends GenericEntity {
 
 	public void setIsHabilitado(Boolean isHabilitado) {
 		this.isHabilitado = isHabilitado;
+	}
+
+	public Date getFechaDesist() {
+		return fechaDesist;
+	}
+
+	public void setFechaDesist(Date fechaDesist) {
+		this.fechaDesist = fechaDesist;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 }

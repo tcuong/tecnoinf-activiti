@@ -14,16 +14,16 @@ public class HomeMB extends GenericActivitiMB {
 	public HomeMB() {
 		super();
 	}
-	
-	public void instanciarProceso(){
-		
+
+	public void instanciarProceso() {
+
 		HashMap<String, Object> datos = new HashMap<>();
 		datos.put("saludo", "Hola amiguito vamos a jugar????!!!!!!");
-		
-		String key = "prueba1";
-		
+
+		String key = "GenerarActaDeCurso";
+
 		instanciarProceso(key, datos);
-		
+
 	}
 
 }
