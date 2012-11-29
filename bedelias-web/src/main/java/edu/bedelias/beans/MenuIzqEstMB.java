@@ -41,4 +41,12 @@ public class MenuIzqEstMB extends GenericMB {
 	public void previasDeQuien(){
 		redirect("previasDeQuien.xhtml");
 	}
+	
+	public String getNombre() {
+		return (String) getFromSession(nombre);
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

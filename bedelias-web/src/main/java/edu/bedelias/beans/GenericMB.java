@@ -93,4 +93,5 @@ public abstract class GenericMB implements Serializable {
 				.put(SpringUtils.convertToSpringName(bean.getClass()
 						.getSimpleName()), bean);
 	}
+	
 }

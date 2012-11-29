@@ -20,6 +20,7 @@ public class LoginMB extends GenericMB {
 	}
 
 	public void login() {
+		// acá despues hay que guardar bien los datos del estudiante
 		this.putInSession(this.cedula, ciEstudiante);
 		this.putInSession(this.nombre, "Batman");
 		this.redirect("estudiante/home.xhtml");
