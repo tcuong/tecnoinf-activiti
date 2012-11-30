@@ -71,7 +71,8 @@ public class StudentTest {
 		carreras = carreraService.findAll();
 
 		for (Carreer c : carreras) {
-			inscripcionService.InscripcionACarrera(student.getId(), c.getId());
+			// FIXME inscripcionService.InscripcionACarrera(student.getId(),
+			// c.getId());
 		}
 
 		Curso curso = new Curso();
@@ -85,7 +86,8 @@ public class StudentTest {
 		// curso = cursoService.createCurso(curso); FIXME se agrego al crear
 		// curso, meterle una asignatura
 
-		inscripcionService.InscripcionACurso(student.getId(), curso.getId());
+		// FIXME inscripcionService.InscripcionACurso(student.getId(),
+		// curso.getId());
 
 		return;
 	}

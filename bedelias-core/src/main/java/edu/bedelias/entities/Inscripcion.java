@@ -42,6 +42,10 @@ public class Inscripcion extends GenericEntity {
 	@JoinColumn(name = "examen")
 	private Examen examen;
 
+	@ManyToOne
+	@JoinColumn(name = "periodo")
+	private PeriodoInscripcion periodo;
+
 	public Inscripcion() {
 		super();
 		this.isValid = false;
@@ -113,4 +117,11 @@ public class Inscripcion extends GenericEntity {
 		this.examen = examen;
 	}
 
+	public PeriodoInscripcion getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(PeriodoInscripcion periodo) {
+		this.periodo = periodo;
+	}
 }
