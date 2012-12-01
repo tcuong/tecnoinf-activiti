@@ -11,7 +11,6 @@ public class ValidarFecha implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 
 		boolean valido = false;
-		String msg = "El orden de las fechas es incorrecto.";
 
 		Date fechaInicio = (Date) execution.getVariable("fechaInicio");
 
@@ -22,10 +21,8 @@ public class ValidarFecha implements JavaDelegate {
 		if (fechaInicio.before(fechaFinComienzoDesistir)
 				&& fechaFinComienzoDesistir.before(fechaFin)) {
 			valido = true;
-			msg = "Se ha completado la tarea correctamente";
 		}
 		execution.setVariable("validar", valido);
-		execution.setVariable("msg", msg);
 	}
 
 }
