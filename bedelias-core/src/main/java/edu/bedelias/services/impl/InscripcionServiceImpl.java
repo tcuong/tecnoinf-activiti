@@ -13,12 +13,14 @@ import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Examen;
 import edu.bedelias.entities.Inscripcion;
+import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.repositories.CarreerRepository;
 import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.repositories.ExamenRepository;
 import edu.bedelias.repositories.InscripcionRepository;
+import edu.bedelias.repositories.PeriodoInscripcionRepository;
 import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.InscripcionService;
 
@@ -32,6 +34,9 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Autowired
 	private InscripcionRepository inscripcionRepo;
+
+	@Autowired
+	private PeriodoInscripcionRepository periodoInscripcionRepo;
 
 	@Autowired
 	private CarreerRepository carreerRepo;
@@ -160,17 +165,21 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId) {
+	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId,
+			Long periodoId) {
 		Inscripcion ins = null;
 
 		if (studentId != null && carreerId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
 				Carreer carreer = carreerRepo.findOne(carreerId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo
+						.findOne(periodoId);
 
 				ins = new Inscripcion();
 				ins.setEstudiante(student);
 				ins.setCarrera(carreer);
+				ins.setPeriodo(periodo);
 				ins.setTipo(TipoInscripcionEnum.CARRERA);
 				ins = createInscripcion(ins);
 
@@ -185,23 +194,22 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion InscripcionACurso(Long studentId, Long cursoId) {
+	public Inscripcion InscripcionACurso(Long studentId, Long cursoId,
+			Long periodoId) {
 		Inscripcion ins = null;
 
 		if (studentId != null && cursoId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
-				Curso curso = cursoRepo.findOne(cursoId); // FIXME traer
-															// SOLAMENTE los
-															// cursos de una
-															// carrera a la que
-															// este asociado el
-															// student
+				Curso curso = cursoRepo.findOne(cursoId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo
+						.findOne(periodoId);
 
 				ins = new Inscripcion();
 				ins.setEstudiante(student);
 				ins.setCurso(curso);
 				ins.setTipo(TipoInscripcionEnum.CURSO);
+				ins.setPeriodo(periodo);
 				ins = createInscripcion(ins);
 
 			} catch (IllegalArgumentException e) {
@@ -215,16 +223,20 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion inscripcionAExamen(Long studentId, Long examenId) {
+	public Inscripcion inscripcionAExamen(Long studentId, Long examenId,
+			Long periodoId) {
 		Inscripcion inscripcion = null;
 		if (studentId != null && examenId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
 				Examen examen = examenRepo.findOne(examenId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo
+						.findOne(periodoId);
 
 				inscripcion = new Inscripcion();
 				inscripcion.setEstudiante(student);
 				inscripcion.setExamen(examen);
+				inscripcion.setPeriodo(periodo);
 				inscripcion.setTipo(TipoInscripcionEnum.EXAMEN);
 				inscripcion = this.createInscripcion(inscripcion);
 
@@ -247,9 +259,20 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst) {
-		// aca hay que poner la logica que retorne un listado con las inscripciones que el estudiante puede desistir.
-		// ie: todas las inscripciones que al dia de hoy tengan un periodo de desistimiento habilitado
+		// aca hay que poner la logica que retorne un listado con las
+		// inscripciones que el estudiante puede desistir.
+		// ie: todas las inscripciones que al dia de hoy tengan un periodo de
+		// desistimiento habilitado
 		return new ArrayList<Inscripcion>();
+	}
+
+	public PeriodoInscripcionRepository getPeriodoInscripcionRepo() {
+		return periodoInscripcionRepo;
+	}
+
+	public void setPeriodoInscripcionRepo(
+			PeriodoInscripcionRepository periodoInscripcionRepo) {
+		this.periodoInscripcionRepo = periodoInscripcionRepo;
 	}
 
 }

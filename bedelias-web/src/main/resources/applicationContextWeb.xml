@@ -79,10 +79,11 @@
 	</bean>
 
 	<!-- Http Invoker services -->
-	<bean name="studentExporter" scope="session"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="studentServiceImpl" />
-		<property name="serviceInterface" value="edu.bedelias.services.studentService" />
-	</bean>
+	<!-- <bean name="studentExporter" scope="session" -->
+	<!-- class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"> -->
+	<!-- <property name="service" ref="studentServiceImpl" /> -->
+	<!-- <property name="serviceInterface" value="edu.bedelias.services.studentService" 
+		/> -->
+	<!-- </bean> -->
 
 </beans>

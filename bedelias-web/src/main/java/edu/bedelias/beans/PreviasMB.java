@@ -31,11 +31,9 @@ public class PreviasMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		if (estaLogueado()) {
-			asignaturas = new ArrayList<SelectItem>();
-			for (Asignatura asig : asignaturaService.findAll()) {
-				asignaturas.add(new SelectItem(asig.getId(), asig.getName()));
-			}
+		asignaturas = new ArrayList<SelectItem>();
+		for (Asignatura asig : asignaturaService.findAll()) {
+			asignaturas.add(new SelectItem(asig.getId(), asig.getName()));
 		}
 	}
 

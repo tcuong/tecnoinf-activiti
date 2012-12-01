@@ -1,4 +1,4 @@
-package edu.bedelias.remote;
+package edu.bedelias.services;
 
 import java.util.Date;
 

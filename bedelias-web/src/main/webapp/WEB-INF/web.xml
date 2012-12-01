@@ -22,24 +22,14 @@
 
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener</listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
 
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
-
-	<!-- Http Invoker servlet -->
-	<servlet>
-		<servlet-name>studentExporter</servlet-name>
-		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>studentExporter</servlet-name>
-		<url-pattern>/remoting/StudentService</url-pattern>
-	</servlet-mapping>
-	<!-- End Http Invoker servlet -->
 
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -75,5 +65,21 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
+
+	<!-- Remoting -->
+	<servlet>
+		<servlet-name>remoting</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/remoting-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>remoting</servlet-name>
+		<url-pattern>/remote/*</url-pattern>
+	</servlet-mapping>
+	<!-- End Remoting -->
 
 </web-app>

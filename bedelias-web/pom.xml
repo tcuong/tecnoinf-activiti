@@ -10,23 +10,25 @@
 	<artifactId>bedelias-web</artifactId>
 	<packaging>war</packaging>
 	<name>bedelias-web</name>
-
 	<properties>
 		<tomcat.version>7.0.30</tomcat.version>
 		<primefaces.version>3.4.2</primefaces.version>
 		<primefaces-theme.version>1.0.8</primefaces-theme.version>
 		<jsf.version>2.1.13</jsf.version>
-	 <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
 	</properties>
-
 	<dependencies>
-
 		<!-- <dependency> -->
 		<!-- <groupId>javax.servlet</groupId> -->
 		<!-- <artifactId>jstl</artifactId> -->
 		<!-- <version>1.2</version> -->
 		<!-- </dependency> -->
-
+		<!-- web-specific dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<!-- JSF dependencies -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -38,7 +40,6 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
 		</dependency>
-
 		<!-- Primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -50,8 +51,6 @@
 			<artifactId>south-street</artifactId>
 			<version>${primefaces-theme.version}</version>
 		</dependency>
-
-		<!-- web-specific dependencies -->
 		<!-- Tomcat dependencies -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -63,27 +62,18 @@
 			<artifactId>tomcat-el-api</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.tomcat.maven</groupId> -->
-		<!-- <artifactId>tomcat7-maven-plugin</artifactId> -->
-		<!-- <version>2.0</version> -->
-		<!-- </dependency> -->
-
-
 		<!-- Google's CAPTCHA repo -->
 		<dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
 			<artifactId>recaptcha4j</artifactId>
 			<version>0.0.7</version>
 		</dependency>
-
 		<!-- Password validation ruleset -->
 		<dependency>
 			<groupId>edu.vt.middleware</groupId>
 			<artifactId>vt-password</artifactId>
 			<version>3.1.1</version>
 		</dependency>
-
 		<!-- Bedelias project dependencies -->
 		<dependency>
 			<groupId>edu.bedelias</groupId>
@@ -93,5 +83,4 @@
 		<!-- End Bedelias project messages -->
 
 	</dependencies>
-
 </project>
