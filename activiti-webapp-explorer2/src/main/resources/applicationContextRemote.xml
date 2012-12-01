@@ -23,5 +23,12 @@
 			value="http://localhost:8080/bedelias-web/remote/PeriodoInscripcionService" />
 		<property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
 	</bean>
+	
+	<bean id="studentService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/StudentService" />
+		<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
+	</bean>
 
 </beans>
