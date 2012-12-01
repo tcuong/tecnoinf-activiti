@@ -7,7 +7,7 @@
 		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"
 			value="http://localhost:8080/bedelias-web/remote/DateService" />
-		<property name="serviceInterface" value="edu.bedelias.remote.DateService" />
+		<property name="serviceInterface" value="edu.bedelias.services.DateService" />
 	</bean>
 
 </beans>

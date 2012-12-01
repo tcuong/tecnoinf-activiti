@@ -213,7 +213,8 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>../bedelias-activiti</module>
+		<module>../bedelias-common</module>
+		<module>../bedelias-core</module>
 		<module>../bedelias-web</module>
 		<module>../activiti-webapp-explorer2</module>
 	</modules>
