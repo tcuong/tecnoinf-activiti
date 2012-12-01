@@ -21,7 +21,7 @@
   <bean name="navigatorManager" class="org.activiti.explorer.navigation.NavigatorManager" />
   
   <bean name="attachmentRendererManager" class="org.activiti.explorer.ui.content.AttachmentRendererManager" />
-   
+    
   <!-- Custom form property renderers can be plugged in here -->
   <bean id="formPropertyRendererManager" class="org.activiti.explorer.ui.form.FormPropertyRendererManager" lazy-init="true">
     <!-- Default renderer -->
@@ -37,6 +37,8 @@
         <bean class="org.activiti.explorer.ui.form.DateFormPropertyRenderer" />
         <bean class="org.activiti.explorer.ui.form.UserFormPropertyRenderer" />
         <bean class="org.activiti.explorer.ui.form.BooleanFormPropertyRenderer" />
+        <bean class="org.activiti.explorer.ui.form.TextAreaFormPropertyRenderer" />
+        <bean class="org.activiti.explorer.ui.form.ComboFormPropertyRenderer" />
       </list>
     </property>
   </bean>
@@ -89,5 +91,13 @@
     <property name="mainWindow" ref="mainWindow" />
     <property name="environment" value="${activiti.ui.environment}" />
   </bean>
+  
+  
+  	<bean id="carreerService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/CarreerService" />
+		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
+	</bean>
   
 </beans>
