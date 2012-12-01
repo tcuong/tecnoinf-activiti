@@ -3,7 +3,6 @@
   <process id="altaPeriodoInscCurso" name="AltaPeriodoInscripcionCurso">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresarFechas" activiti:assignee="kermit">
-      <documentation>${msg}</documentation>
       <extensionElements>
         <activiti:formProperty id="fechaInicio" name="Fecha Inicio" type="date" datePattern="dd-MMM-yyyy" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="fechaFinComienzoDesistir" name="Fecha fin y comienzo de desistimiento" type="date" datePattern="dd-MMM-yyyy" required="true" readable="true" writable="true"></activiti:formProperty>
