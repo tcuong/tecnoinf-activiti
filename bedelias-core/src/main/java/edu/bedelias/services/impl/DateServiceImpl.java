@@ -26,7 +26,7 @@ public class DateServiceImpl implements DateService {
 	}
 
 	// Sample getters && setters
-	
+
 	public StudentRepository getRepo() {
 		return repo;
 	}
