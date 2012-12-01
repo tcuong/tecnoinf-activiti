@@ -7,11 +7,15 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+	<import resource="classpath*:*applicationContextCommon.xml" />
+	<import resource="classpath*:applicationContextCore.xml" />
+
 	<context:annotation-config />
 	<context:component-scan base-package="edu.bedelias*" />
 
 	<!-- Single beans go here -->
 	<bean id="dateService" class="edu.bedelias.services.impl.DateServiceImpl" />
+	
 	<!-- <bean id="testServiceDummy" class="edu.bedelias.services.impl.TestServiceDummyImpl" 
 		/> -->
 	<!-- <bean id="studentServiceRemote" class="edu.bedelias.services.StudentServiceRemoteImpl" 

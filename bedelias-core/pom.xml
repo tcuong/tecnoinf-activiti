@@ -8,15 +8,13 @@
 		<relativePath>..\bedelias-super\pom.xml</relativePath>
 	</parent>
 	<artifactId>bedelias-core</artifactId>
-	<packaging>jar</packaging>
 	<name>bedelias-core</name>
-
+	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -55,6 +53,11 @@
 			<version>${activiti.version}</version>
 		</dependency>
 
+		<!-- Bedelias project dependencies -->
+		<dependency>
+			<groupId>edu.bedelias</groupId>
+			<artifactId>bedelias-common</artifactId>
+			<version>${bedelias.version}</version>
+		</dependency>
 	</dependencies>
-
 </project>
