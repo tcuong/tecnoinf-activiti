@@ -4,15 +4,14 @@ import java.util.Date;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
-import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.PeriodoInscripcion;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.PeriodoInscripcionService;
 
 public class Guardar implements JavaDelegate {
 
-	private Logger logger = Logger.getLogger(Guardar.class);
 	private PeriodoInscripcionService periodoInscripcionService;
 
 	@Override
@@ -33,8 +32,14 @@ public class Guardar implements JavaDelegate {
 		periodoInscripcion.setFechaInicio(fechaInicio);
 		periodoInscripcion.setFechaDesist(fechaFinComienzoDesistir);
 		periodoInscripcion.setFechaFin(fechaFin);
-		// periodoInscripcion
+		periodoInscripcion.setDescripcion(descripcion);
+		periodoInscripcion.setTipoInscripcion(TipoInscripcionEnum.CURSO);
 
+		Date today = new Date(System.currentTimeMillis());
+		if (fechaInicio.before(today) && today.before(fechaFin)) {
+			periodoInscripcion.setIsHabilitado(true);
+		}
+
+		periodoInscripcionService.createPeriodoInscripcion(periodoInscripcion);
 	}
-
 }

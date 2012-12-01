@@ -15,13 +15,6 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
-	<!-- Global scoped beans -->
-
-	<bean name="navigatorManager" class="org.activiti.explorer.navigation.NavigatorManager" />
-
-	<bean name="attachmentRendererManager"
-		class="org.activiti.explorer.ui.content.AttachmentRendererManager" />
-
   <!-- Global scoped beans -->
   
   <bean name="navigatorManager" class="org.activiti.explorer.navigation.NavigatorManager" />

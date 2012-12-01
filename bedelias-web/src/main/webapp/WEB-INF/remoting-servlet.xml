@@ -1,55 +1,42 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
-		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="
+                http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+                http://www.springframework.org/schema/context 
+                http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<import resource="classpath*:*applicationContextCommon.xml" />
-	<import resource="classpath*:applicationContextCore.xml" />
+        <import resource="classpath*:*applicationContextCommon.xml" />
+        <import resource="classpath*:applicationContextCore.xml" />
 
-	<context:annotation-config />
-	<context:component-scan base-package="edu.bedelias*" />
+        <context:annotation-config />
+        <context:component-scan base-package="edu.bedelias*" />
 
-	<!-- Single beans go here -->
-	<bean id="dateService" class="edu.bedelias.services.impl.DateServiceImpl" />
+        <!-- Single beans go here -->
+        <bean id="dateService" class="edu.bedelias.services.impl.DateServiceImpl" />
 
-	<bean id="carreerService" class="edu.bedelias.services.impl.CarreerServiceImpl" />
+        <bean id="carreerService" class="edu.bedelias.services.impl.CarreerServiceImpl" />
+        
+        <bean id="periodoInscripcionService" class="edu.bedelias.services.impl.PeriodoInscripcionServiceImpl" />
 
-	<!-- <bean id="testServiceDummy" class="edu.bedelias.services.impl.TestServiceDummyImpl" 
-		/> -->
-	<!-- <bean id="studentServiceRemote" class="edu.bedelias.services.StudentServiceRemoteImpl" 
-		/> -->
-	<!-- End single beans -->
+        <!-- Remote beans go here -->
+        <bean name="/DateService"
+                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+                <property name="service" ref="dateService" />
+                <property name="serviceInterface" value="edu.bedelias.services.DateService" />
+        </bean>
 
-	<!-- Remote beans go here -->
-	<bean name="/DateService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="dateService" />
-		<property name="serviceInterface" value="edu.bedelias.services.DateService" />
-	</bean>
-
-	<bean name="/CarreerService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="carreerService" />
-		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
-	</bean>
-
-	<!-- <bean name="/TestServiceDummy" -->
-	<!-- class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"> -->
-	<!-- <property name="service" ref="testServiceDummy" /> -->
-	<!-- <property name="serviceInterface" value="edu.bedelias.services.TestServiceDummy" 
-		/> -->
-	<!-- </bean> -->
-
-	<!-- <bean name="/StudentServiceRemote" -->
-	<!-- class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"> -->
-	<!-- <property name="service" ref="studentServiceRemote" /> -->
-	<!-- <property name="serviceInterface" -->
-	<!-- value="edu.bedelias.services.StudentServiceRemote" /> -->
-	<!-- </bean> -->
-	<!-- End remote beans -->
-
+        <bean name="/CarreerService"
+                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+                <property name="service" ref="carreerService" />
+                <property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
+        </bean>
+        
+        <bean name="/PeriodoInscripcionService"
+                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+                <property name="service" ref="periodoInscripcionService" />
+                <property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
+        </bean>
+        
 </beans>
