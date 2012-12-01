@@ -112,7 +112,11 @@ public class InscripcionTest {
 		Inscripcion inscripcion = inscripcionService.InscripcionACurso(
 				student.getId(), curso.getId(), periodoInscripcion.getId());
 
+		PeriodoInscripcion pi = periodoInscripcionService
+				.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
+
 		assertNotNull("Asignatura can't be null", inscripcion);
+		assertNotNull("Asignatura can't be null", pi);
 
 	}
 
