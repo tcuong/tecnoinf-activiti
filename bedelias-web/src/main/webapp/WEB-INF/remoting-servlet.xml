@@ -18,7 +18,7 @@
 
 	<bean id="carreerService" class="edu.bedelias.services.impl.CarreerServiceImpl" />
 	
-	<bean id="periodoInscripcionService" class="edu.bedelias.services.impl.PeriodoInscripcionService" />
+	<bean id="periodoInscripcionService" class="edu.bedelias.services.impl.PeriodoInscripcionServiceImpl" />
 
 	<!-- <bean id="testServiceDummy" class="edu.bedelias.services.impl.TestServiceDummyImpl" 
 		/> -->
