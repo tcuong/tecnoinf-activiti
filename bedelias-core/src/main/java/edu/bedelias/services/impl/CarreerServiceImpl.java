@@ -1,5 +1,6 @@
 package edu.bedelias.services.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import edu.bedelias.services.CarreerService;
 @Service
 @Scope(value = "session")
 @Transactional(readOnly = true)
-public class CarreerServiceImpl implements CarreerService {
+public class CarreerServiceImpl implements CarreerService, Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Autowired
 	private CarreerRepository carreerRepo;
 

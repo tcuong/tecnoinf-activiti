@@ -12,15 +12,15 @@ public class ComboFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		return ComboFormPropertyRenderer.getId(propertyValue);
-//		return propertyValue;
+//		return ComboFormPropertyRenderer.getId(propertyValue);
+		return propertyValue;
 	}
 
 	@Override
 	public String convertModelValueToFormValue(Object modelValue) {
-		return "Pito convertModelValueToFormValue";
+//		return "Pito convertModelValueToFormValue";
 //		return ComboFormPropertyRenderer.getId(modelValue.toString());
-//		return (String) modelValue;
+		return (String) modelValue;
 	}
 
 }

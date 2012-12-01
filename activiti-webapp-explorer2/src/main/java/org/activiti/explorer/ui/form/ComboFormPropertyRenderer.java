@@ -14,21 +14,29 @@
 package org.activiti.explorer.ui.form;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.activiti.engine.form.FormProperty;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.ui.AbstractSelect.Filtering;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Field;
 
+import edu.bedelias.entities.Carreer;
+import edu.bedelias.services.CarreerService;
+
 /**
- * @author Frederik Heremans
+ * @author Brunos vieras
  */
-public class   extends AbstractFormPropertyRenderer {
+public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 
 	public ComboFormPropertyRenderer() {
 		super(ComboFormType.class);
 	}
+
+	@Autowired
+	private CarreerService carreerService;
 	
 	private static final String[] cities = new String[] { "Berlin", "Brussels",
         "Helsinki", "Madrid", "Oslo", "Paris", "Stockholm" };
@@ -38,9 +46,12 @@ public class   extends AbstractFormPropertyRenderer {
 			
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
+
+		List<Carreer> carreras = carreerService.findAll();
 		ComboBox combo = new ComboBox(formProperty.getName());
-        for (int i = 0; i < cities.length; i++) {
-            combo.addItem(cities[i]);
+		
+        for (Carreer carrera: carreras) {
+            combo.addItem(carrera.getName());
         }
 
         combo.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
@@ -62,4 +73,13 @@ public class   extends AbstractFormPropertyRenderer {
             ids.put(cities[i], i);
         }
 	}
+
+	public CarreerService getCarreerService() {
+		return carreerService;
+	}
+
+	public void setCarreerService(CarreerService carreerService) {
+		this.carreerService = carreerService;
+	}
+	
 }

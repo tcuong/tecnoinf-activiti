@@ -51,7 +51,7 @@
 				<ref bean="comboFormType" />
 			</list>
 		</property>
-		
+
 	</bean>
 
 	<!-- Prueba Brus -->
@@ -87,5 +87,14 @@
 
 	<!-- Custom form types -->
 	<bean id="userFormType" class="org.activiti.explorer.form.UserFormType" />
+
+	<!-- interfaces remotas -->
+	
+<!-- 	<bean id="carreerService" -->
+<!-- 		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"> -->
+<!-- 		<property name="serviceUrl" -->
+<!-- 			value="http://localhost:8080/bedelias-web/remote/CarreerService" /> -->
+<!-- 		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" /> -->
+<!-- 	</bean> -->
 
 </beans>

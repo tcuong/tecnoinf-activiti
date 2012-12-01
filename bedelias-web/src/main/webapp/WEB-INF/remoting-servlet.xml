@@ -15,7 +15,9 @@
 
 	<!-- Single beans go here -->
 	<bean id="dateService" class="edu.bedelias.services.impl.DateServiceImpl" />
-	
+
+	<bean id="carreerService" class="edu.bedelias.services.impl.CarreerServiceImpl" />
+
 	<!-- <bean id="testServiceDummy" class="edu.bedelias.services.impl.TestServiceDummyImpl" 
 		/> -->
 	<!-- <bean id="studentServiceRemote" class="edu.bedelias.services.StudentServiceRemoteImpl" 
@@ -27,6 +29,12 @@
 		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
 		<property name="service" ref="dateService" />
 		<property name="serviceInterface" value="edu.bedelias.services.DateService" />
+	</bean>
+
+	<bean name="/CarreerService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="carreerService" />
+		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
 	</bean>
 
 	<!-- <bean name="/TestServiceDummy" -->

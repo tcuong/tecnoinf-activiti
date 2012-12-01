@@ -92,4 +92,12 @@
     <property name="environment" value="${activiti.ui.environment}" />
   </bean>
   
+  
+  	<bean id="carreerService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/CarreerService" />
+		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
+	</bean>
+  
 </beans>
