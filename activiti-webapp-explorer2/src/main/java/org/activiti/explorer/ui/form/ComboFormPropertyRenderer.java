@@ -13,6 +13,8 @@
 
 package org.activiti.explorer.ui.form;
 
+import java.util.HashMap;
+
 import org.activiti.engine.form.FormProperty;
 
 import com.vaadin.ui.AbstractSelect.Filtering;
@@ -22,7 +24,7 @@ import com.vaadin.ui.Field;
 /**
  * @author Frederik Heremans
  */
-public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
+public class   extends AbstractFormPropertyRenderer {
 
 	public ComboFormPropertyRenderer() {
 		super(ComboFormType.class);
@@ -31,10 +33,12 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 	private static final String[] cities = new String[] { "Berlin", "Brussels",
         "Helsinki", "Madrid", "Oslo", "Paris", "Stockholm" };
 
+	private static HashMap<String, Integer> ids;  
+			
+			
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
-		
-		ComboBox combo = new ComboBox("");
+		ComboBox combo = new ComboBox(formProperty.getName());
         for (int i = 0; i < cities.length; i++) {
             combo.addItem(cities[i]);
         }
@@ -43,5 +47,19 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
         combo.setImmediate(true);
         
 		return combo;
+	}
+	
+	public static String getId(String seleccion){
+		if(ids == null){
+			cargarHash();
+		}
+		return ids.get(seleccion).toString();
+	}
+
+	private static void cargarHash() {
+		ids = new HashMap<>();
+		for (int i = 0; i < cities.length; i++) {
+            ids.put(cities[i], i);
+        }
 	}
 }

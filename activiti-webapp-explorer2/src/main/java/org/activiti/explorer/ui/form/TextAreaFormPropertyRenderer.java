@@ -34,7 +34,7 @@ public class TextAreaFormPropertyRenderer extends AbstractFormPropertyRenderer {
 		textArea.setRequired(formProperty.isRequired());
 		textArea.setEnabled(formProperty.isWritable());
 		textArea.setRows(10);
-		textArea.setColumns(50);
+		textArea.setColumns(40);
 		textArea.setRequiredError(getMessage(Messages.FORM_FIELD_REQUIRED,
 				getPropertyLabel(formProperty)));
 		if (formProperty.getValue() != null) {
