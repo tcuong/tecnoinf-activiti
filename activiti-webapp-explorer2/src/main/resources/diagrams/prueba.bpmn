@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="prueba1" name="prueba1">
-    <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="ValidarHT" name="MostrarDatos" activiti:assignee="kermit">
-      <documentation>${saludo} - Saludo:D</documentation>
+    <startEvent id="startevent1" name="Start" activiti:formKey="request.xhtml"></startEvent>
+    <userTask id="ValidarHT" name="MostrarDatos" activiti:assignee="kermit" activiti:formKey="request.xhtml">
+      <extensionElements>
+        <activiti:formProperty id="id" name="test" type="string" value="string" variable="prueba"></activiti:formProperty>
+        <activiti:formProperty id="idText" name="testText" type="textareaPito" value="stringText" variable="pruebaText"></activiti:formProperty>
+      </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
