@@ -16,6 +16,7 @@
 	<context:property-placeholder
 		location="classpath*:mail.properties, classpath*:jdbc.properties" />
 
+	<import resource="classpath*:*applicationContextCommon.xml" />
 	<import resource="classpath*:applicationContextCore.xml" />
 
 	<!-- Scan this classpath for annotated components that will be auto-registered 

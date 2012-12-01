@@ -16,13 +16,9 @@
 			http://www.springframework.org/schema/jdbc 
 			http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
 
-	<import resource="classpath*:applicationContextCommon.xml" />
-
 	<context:annotation-config />
 
 	<context:component-scan base-package="edu.bedelias*"
 		scoped-proxy="targetClass" />
-
-	<jpa:repositories base-package="edu.bedelias.repositories*" />
 
 </beans>
