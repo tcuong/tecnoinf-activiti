@@ -34,12 +34,12 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
 		
-		ComboBox combo = new ComboBox("Please select a city");
+		ComboBox combo = new ComboBox("");
         for (int i = 0; i < cities.length; i++) {
             combo.addItem(cities[i]);
         }
 
-        combo.setFilteringMode(Filtering.FILTERINGMODE_OFF);
+        combo.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
         combo.setImmediate(true);
         
 		return combo;

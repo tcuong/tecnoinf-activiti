@@ -12,6 +12,7 @@ public class ComboFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
+		
 		return propertyValue;
 	}
 
