@@ -10,19 +10,19 @@
         <activiti:formProperty id="descripcion" name="Descripcion" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
-    <sequenceFlow id="flow3" name="" sourceRef="exclusivegateway1" targetRef="servicetask1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validar == true}]]></conditionExpression>
-    </sequenceFlow>
     <serviceTask id="servicetask1" name="Guardar" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.Guardar"></serviceTask>
-    <sequenceFlow id="flow4" name="" sourceRef="exclusivegateway1" targetRef="usertask1">
+    <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="servicetask2" name="ValidarFecha" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.ValidarFecha"></serviceTask>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="fechasValidas" sourceRef="exclusivegateway1" targetRef="servicetask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validar == true}]]></conditionExpression>
     </sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow4" name="fechasNoValidas" sourceRef="exclusivegateway1" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validar == true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="servicetask1" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow6" name="" sourceRef="usertask1" targetRef="servicetask2"></sequenceFlow>
-    <serviceTask id="servicetask2" name="ValidarFecha" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.ValidarFecha"></serviceTask>
     <sequenceFlow id="flow7" name="" sourceRef="servicetask2" targetRef="exclusivegateway1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_altaPeriodoInscCurso">
@@ -52,12 +52,18 @@
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
         <omgdi:waypoint x="410" y="163"></omgdi:waypoint>
         <omgdi:waypoint x="470" y="163"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="-60" y="14"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
         <omgdi:waypoint x="390" y="183"></omgdi:waypoint>
         <omgdi:waypoint x="339" y="224"></omgdi:waypoint>
         <omgdi:waypoint x="212" y="224"></omgdi:waypoint>
         <omgdi:waypoint x="132" y="195"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="575" y="163"></omgdi:waypoint>
@@ -70,6 +76,9 @@
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
         <omgdi:waypoint x="325" y="167"></omgdi:waypoint>
         <omgdi:waypoint x="370" y="163"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

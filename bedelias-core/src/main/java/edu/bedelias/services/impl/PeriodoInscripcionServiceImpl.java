@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.PeriodoInscripcion;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.repositories.PeriodoInscripcionRepository;
 import edu.bedelias.services.PeriodoInscripcionService;
 
@@ -41,6 +42,12 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 	}
 
 	@Override
+	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo,
+			TipoInscripcionEnum tipo) {
+		return periodoInscripcionRepo.getPeriodoActivoByTipo(isActivo, tipo);
+	}
+
+	@Override
 	@Transactional
 	public void deletePeriodoInscripcion(PeriodoInscripcion periodoInscripcion) {
 		periodoInscripcionRepo.delete(periodoInscripcion);
@@ -60,7 +67,8 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 	@Override
 	public void test() {
 
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext(
+				"classpath:activiti.cfg.xml");
 		ac.getBean(ProcessEngine.class);
 		ProcessEngine pe = (ProcessEngine) ac.getBean(ProcessEngine.class);
 		pe.getRuntimeService().startProcessInstanceById("GenerarActaDeCurso");
