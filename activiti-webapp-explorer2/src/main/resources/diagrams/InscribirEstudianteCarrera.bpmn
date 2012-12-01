@@ -31,6 +31,7 @@
 Este proceso se termina</documentation>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="servicetask3" name="GuardarInscripcion" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.GuardarInscripcion"></serviceTask>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
@@ -51,7 +52,6 @@ Este proceso se termina</documentation>
     <sequenceFlow id="flow10" name="" sourceRef="usertask3" targetRef="servicetask3"></sequenceFlow>
     <sequenceFlow id="flow11" name="" sourceRef="servicetask3" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow12" name="" sourceRef="usertask4" targetRef="endevent1"></sequenceFlow>
-    <serviceTask id="servicetask3" name="GuardarInscripcion" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.GuardarInscripcion"></serviceTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_InscribirEstudianteCarrera">
     <bpmndi:BPMNPlane bpmnElement="InscribirEstudianteCarrera" id="BPMNPlane_InscribirEstudianteCarrera">
@@ -80,10 +80,10 @@ Este proceso se termina</documentation>
         <omgdc:Bounds height="40" width="40" x="708" y="247"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
-        <omgdc:Bounds height="55" width="105" x="790" y="193"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="875" y="240"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35" width="35" x="825" y="130"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="910" y="130"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
         <omgdc:Bounds height="55" width="105" x="665" y="120"></omgdc:Bounds>
@@ -104,7 +104,7 @@ Este proceso se termina</documentation>
         <omgdi:waypoint x="440" y="167"></omgdi:waypoint>
         <omgdi:waypoint x="440" y="240"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-76" y="-3"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="-76" y="-3"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
@@ -115,7 +115,7 @@ Este proceso se termina</documentation>
         <omgdi:waypoint x="460" y="147"></omgdi:waypoint>
         <omgdi:waypoint x="505" y="147"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-51" y="-27"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="-51" y="-27"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
@@ -124,16 +124,18 @@ Este proceso se termina</documentation>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
         <omgdi:waypoint x="748" y="267"></omgdi:waypoint>
-        <omgdi:waypoint x="842" y="248"></omgdi:waypoint>
+        <omgdi:waypoint x="875" y="267"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-8" y="11"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="-8" y="11"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
         <omgdi:waypoint x="728" y="247"></omgdi:waypoint>
+        <omgdi:waypoint x="728" y="217"></omgdi:waypoint>
+        <omgdi:waypoint x="557" y="217"></omgdi:waypoint>
         <omgdi:waypoint x="557" y="175"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="10" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
@@ -142,11 +144,11 @@ Este proceso se termina</documentation>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
         <omgdi:waypoint x="770" y="147"></omgdi:waypoint>
-        <omgdi:waypoint x="825" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="910" y="147"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
-        <omgdi:waypoint x="842" y="193"></omgdi:waypoint>
-        <omgdi:waypoint x="842" y="165"></omgdi:waypoint>
+        <omgdi:waypoint x="927" y="240"></omgdi:waypoint>
+        <omgdi:waypoint x="927" y="165"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.activiti.engine.form.FormProperty;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.vaadin.ui.AbstractSelect.Filtering;
 import com.vaadin.ui.ComboBox;
@@ -35,8 +35,9 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 		super(ComboFormType.class);
 	}
 
-	@Autowired
-	private CarreerService carreerService;
+	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
+	private CarreerService carreerService = (CarreerService) cpx.getBean("carreerService");
+	
 	
 	private static final String[] cities = new String[] { "Berlin", "Brussels",
         "Helsinki", "Madrid", "Oslo", "Paris", "Stockholm" };

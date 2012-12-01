@@ -17,8 +17,6 @@
 	<bean id="dateService" class="edu.bedelias.services.impl.DateServiceImpl" />
 
 	<bean id="carreerService" class="edu.bedelias.services.impl.CarreerServiceImpl" />
-	
-	<bean id="periodoInscripcionService" class="edu.bedelias.services.impl.PeriodoInscripcionService" />
 
 	<!-- <bean id="testServiceDummy" class="edu.bedelias.services.impl.TestServiceDummyImpl" 
 		/> -->
@@ -37,12 +35,6 @@
 		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
 		<property name="service" ref="carreerService" />
 		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
-	</bean>
-	
-	<bean name="/PeriodoInscripcionService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="periodoInscripcionService" />
-		<property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
 	</bean>
 
 	<!-- <bean name="/TestServiceDummy" -->
