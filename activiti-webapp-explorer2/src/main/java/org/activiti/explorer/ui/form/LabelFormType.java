@@ -5,9 +5,9 @@ import org.activiti.engine.impl.form.AbstractFormType;
 /**
  * @author Brus
  */
-public class ComboFormType extends AbstractFormType {
+public class LabelFormType extends AbstractFormType {
 
-	public static final String TYPE_NAME = "comboCarreras";
+	public static final String TYPE_NAME = "etiqueta";
 
 	public String getName() {
 		return TYPE_NAME;
@@ -15,8 +15,7 @@ public class ComboFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		return ComboFormPropertyRenderer.getId(propertyValue);
-//		return propertyValue;
+		return propertyValue;
 	}
 
 	@Override

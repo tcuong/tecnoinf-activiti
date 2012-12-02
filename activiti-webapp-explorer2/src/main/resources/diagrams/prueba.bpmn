@@ -6,7 +6,7 @@
       <extensionElements>
         <activiti:formProperty id="id" name="test" type="string" value="string" variable="prueba"></activiti:formProperty>
         <activiti:formProperty id="idText" name="testText" type="textareaPito" value="stringText" variable="pruebaText"></activiti:formProperty>
-        <activiti:formProperty id="idCombito" name="Combito" type="combito" variable="Combito"></activiti:formProperty>
+        <activiti:formProperty id="idCombito" name="Combito" type="comboCarreras" variable="Combito"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>

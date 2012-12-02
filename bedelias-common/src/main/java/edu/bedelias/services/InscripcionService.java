@@ -11,6 +11,8 @@ import edu.bedelias.enums.TipoInscripcionEnum;
 public interface InscripcionService {
 
 	public Inscripcion createInscripcion(Inscripcion inscripcion);
+	
+	public String createInscripcion_Activiti(long idCarrera, String cedula);
 
 	public void updateInscripcion(Inscripcion inscripcion);
 
