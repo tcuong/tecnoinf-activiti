@@ -9,16 +9,16 @@
         <activiti:formProperty id="descripcion" name="Descripcion" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <serviceTask id="servicetask1" name="ValidarFechas" activiti:class="edu.bedelias.activiti.altaPeriodoInsExamen.ValidarFechas"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow6"></exclusiveGateway>
+    <serviceTask id="servicetask2" name="Guardar" activiti:class="edu.bedelias.activiti.altaPeriodoInsExamen.Guardar"></serviceTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="flow4" name="fechaValida" sourceRef="exclusivegateway1" targetRef="servicetask2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==true}]]></conditionExpression>
     </sequenceFlow>
-    <serviceTask id="servicetask2" name="Guardar" activiti:class="edu.bedelias.activiti.altaPeriodoInsExamen.Guardar"></serviceTask>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow5" name="" sourceRef="servicetask2" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow6" name="fechaNovalida" sourceRef="exclusivegateway1" targetRef="usertask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==false}]]></conditionExpression>
