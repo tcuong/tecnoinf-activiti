@@ -20,6 +20,9 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Student;
+
 /**
  * Stolen from http://www.vogella.com/articles/JavaPDF/article.html
  * 
@@ -40,7 +43,7 @@ public class ReportsService {
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 			Font.BOLD);
 
-	public static void print() {
+	public static void print(java.util.List<Student> estuiamtes, Curso curso) {
 		try {
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(FILE));

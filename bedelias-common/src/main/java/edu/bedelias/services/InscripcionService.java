@@ -36,4 +36,6 @@ public interface InscripcionService {
 
 	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst);
 
+	public List<Inscripcion> findInscripcionesByCursoId(Curso curso);
+
 }
