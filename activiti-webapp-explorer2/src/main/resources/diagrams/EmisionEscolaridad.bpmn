@@ -2,18 +2,26 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="process1" name="process1">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="usertask1" name="IngresarDatosEst" activiti:assignee="kermit"></userTask>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
+    <userTask id="usertask1" name="IngresarDatosEst" activiti:assignee="kermit">
+      <extensionElements>
+        <activiti:formProperty id="cedula" name="Cedula" type="string" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <serviceTask id="servicetask1" name="ValidarCedula" activiti:class="edu.bedelias.activiti.emisionEscolaridad.ValidarCedula"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="flow4" name="noExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow5" name="existeCedula" sourceRef="exclusivegateway1" targetRef="servicetask2"></sequenceFlow>
     <serviceTask id="servicetask2" name="ImprimirEscolaridad" activiti:class="edu.bedelias.activiti.emisionEscolaridad.ImprimirEscolaridad"></serviceTask>
     <userTask id="usertask2" name="Finalizar"></userTask>
-    <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow4" name="noExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst == false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" name="existeCedula" sourceRef="exclusivegateway1" targetRef="servicetask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst == true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
     <sequenceFlow id="flow7" name="" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_process1">

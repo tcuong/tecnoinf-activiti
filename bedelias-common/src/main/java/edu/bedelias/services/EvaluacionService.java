@@ -2,6 +2,7 @@ package edu.bedelias.services;
 
 import java.util.List;
 
+import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 
@@ -14,6 +15,9 @@ public interface EvaluacionService {
 	public void deleteEvaluacion(Evaluacion evaluacion);
 
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student);
+
+	public List<Evaluacion> getEvaluacionesByStudentAndCurso(Student student,
+			Curso curso);
 
 	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId,
 			Long cursoId);

@@ -24,6 +24,7 @@ public class Evaluacion extends GenericEntity {
 	private Date fechaEvaluacion;
 	private Integer resultado;
 	private TipoEvaluacionEnum tipoEvaluacion;
+	private Integer nota;
 
 	@ManyToOne
 	@JoinColumn(name = "curso")
@@ -85,6 +86,14 @@ public class Evaluacion extends GenericEntity {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public Integer getNota() {
+		return nota;
+	}
+
+	public void setNota(Integer nota) {
+		this.nota = nota;
 	}
 
 }

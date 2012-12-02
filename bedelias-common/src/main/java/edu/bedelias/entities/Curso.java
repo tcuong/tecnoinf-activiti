@@ -34,8 +34,6 @@ public class Curso extends GenericEntityName {
 
 	private String salon;
 
-	private Integer nota;
-
 	@ManyToOne
 	@JoinColumn(name = "asignatura")
 	private Asignatura asignatura;
@@ -98,14 +96,6 @@ public class Curso extends GenericEntityName {
 
 	public void setSalon(String salon) {
 		this.salon = salon;
-	}
-
-	public Integer getNota() {
-		return nota;
-	}
-
-	public void setNota(Integer nota) {
-		this.nota = nota;
 	}
 
 	public Asignatura getAsignatura() {
