@@ -27,7 +27,7 @@ import edu.bedelias.entities.Carreer;
 import edu.bedelias.services.CarreerService;
 
 /**
- * @author Brunos vieras
+ * @author Brus
  */
 public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 
@@ -35,52 +35,51 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 		super(ComboFormType.class);
 	}
 
-	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
-	private CarreerService carreerService = (CarreerService) cpx.getBean("carreerService");
-	
-	
-	private static final String[] cities = new String[] { "Berlin", "Brussels",
-        "Helsinki", "Madrid", "Oslo", "Paris", "Stockholm" };
+	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
+			"classpath:applicationContextRemote.xml");
+	private static CarreerService carreerService = (CarreerService) cpx
+			.getBean("carreerService");
 
-	private static HashMap<String, Integer> ids;  
-			
-			
+	private static HashMap<String, Long> ids;
+
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
 
 		List<Carreer> carreras = carreerService.findAll();
 		ComboBox combo = new ComboBox(formProperty.getName());
-		
-        for (Carreer carrera: carreras) {
-            combo.addItem(carrera.getName());
-        }
+		ids = new HashMap<>();
+		for (Carreer carrera : carreras) {
+			ids.put(carrera.getName(), carrera.getId());
+			combo.addItem(carrera.getName());
+		}
 
-        combo.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
-        combo.setImmediate(true);
-        
+		combo.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
+		combo.setImmediate(true);
+
 		return combo;
 	}
-	
-	public static String getId(String seleccion){
-		if(ids == null){
+
+	public static String getId(String seleccion) {
+		if (ids == null) {
 			cargarHash();
 		}
 		return ids.get(seleccion).toString();
 	}
 
 	private static void cargarHash() {
+		List<Carreer> carreras = carreerService.findAll();
 		ids = new HashMap<>();
-		for (int i = 0; i < cities.length; i++) {
-            ids.put(cities[i], i);
-        }
+		for (Carreer carrera : carreras) {
+			ids.put(carrera.getName(), carrera.getId());
+		}
 	}
 
 	public CarreerService getCarreerService() {
 		return carreerService;
 	}
 
-	public void setCarreerService(CarreerService carreerService) {
-		this.carreerService = carreerService;
+	public void setCarreerService(CarreerService carreerSer) {
+		carreerService = carreerSer;
 	}
-	
+
 }

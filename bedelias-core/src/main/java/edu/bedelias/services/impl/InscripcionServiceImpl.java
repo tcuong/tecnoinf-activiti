@@ -280,4 +280,29 @@ public class InscripcionServiceImpl implements InscripcionService {
 		this.periodoInscripcionRepo = periodoInscripcionRepo;
 	}
 
+	@Override
+	public String createInscripcion_Activiti(long idCarrera, String cedula) {
+
+		String msg = "La inscripcion fue exitosa";
+		try{
+		// obtengo a partir de los datos que me envía activiti la carrera y el
+		// estudiante
+		Carreer carrera = carreerRepo.findOne(idCarrera);
+		Student estudiante = studentRepo.findStudentByCedula(cedula);
+
+		// seteo los datos en la inscripción
+		Inscripcion inscripcion = new Inscripcion();
+		inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
+		inscripcion.setCarrera(carrera);
+		inscripcion.setEstudiante(estudiante);
+
+		// guardo la carrera
+		inscripcionRepo.save(inscripcion);
+
+		}catch (Exception e) {
+			msg = "Se generó un error al guardar la inscripción" + e.getStackTrace();
+		}
+		return msg;
+	}
+
 }

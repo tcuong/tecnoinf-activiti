@@ -23,36 +23,38 @@
         <bean id="studentService" class="edu.bedelias.services.impl.StudentServiceImpl" />
         
         <bean id="cursoService" class="edu.bedelias.services.impl.CursoServiceImpl" />
+        
+        <bean id="inscripcionService" class="edu.bedelias.services.impl.InscripcionServiceImpl" />
 
         <!-- Remote beans go here -->
-        <bean name="/DateService"
-                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-                <property name="service" ref="dateService" />
-                <property name="serviceInterface" value="edu.bedelias.services.DateService" />
+        <bean name="/DateService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+            <property name="service" ref="dateService" />
+            <property name="serviceInterface" value="edu.bedelias.services.DateService" />
         </bean>
 
-        <bean name="/CarreerService"
-                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-                <property name="service" ref="carreerService" />
-                <property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
+        <bean name="/CarreerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+            <property name="service" ref="carreerService" />
+        	<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
         </bean>
         
-        <bean name="/PeriodoInscripcionService"
-                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-                <property name="service" ref="periodoInscripcionService" />
-                <property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
+        <bean name="/PeriodoInscripcionService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+            <property name="service" ref="periodoInscripcionService" />
+            <property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
         </bean>
         
-         <bean name="/StudentService"
-                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-                <property name="service" ref="studentService" />
-                <property name="serviceInterface" value="edu.bedelias.services.StudentService" />
+         <bean name="/StudentService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+            <property name="service" ref="studentService" />
+        	<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
         </bean>
         
-        <bean name="/CursoService"
-                class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-                <property name="service" ref="cursoService" />
-                <property name="serviceInterface" value="edu.bedelias.services.CursoService" />
+        <bean name="/CursoService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+            <property name="service" ref="cursoService" />
+            <property name="serviceInterface" value="edu.bedelias.services.CursoService" />
+        </bean>
+        
+        <bean name="/InscripcionService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+	        <property name="service" ref="inscripcionService" />
+            <property name="serviceInterface" value="edu.bedelias.services.InscripcionService" />
         </bean>
         
 </beans>

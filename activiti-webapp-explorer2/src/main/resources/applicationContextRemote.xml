@@ -3,39 +3,34 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="dateService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/bedelias-remoting/DateService" />
+	<bean id="dateService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-remoting/DateService" />
 		<property name="serviceInterface" value="edu.bedelias.services.DateService" />
 	</bean>
 	
-	<bean id="carreerService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/bedelias-web/remote/CarreerService" />
+	<bean id="carreerService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/CarreerService" />
 		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
 	</bean>
 	
-	<bean id="periodoInscripcionService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/bedelias-web/remote/PeriodoInscripcionService" />
+	<bean id="periodoInscripcionService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/PeriodoInscripcionService" />
 		<property name="serviceInterface" value="edu.bedelias.services.PeriodoInscripcionService" />
 	</bean>
 	
-	<bean id="studentService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/bedelias-web/remote/StudentService" />
+	<bean id="studentService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/StudentService" />
 		<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
 	</bean>
 	
-	<bean id="cursoService"
-		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-		<property name="serviceUrl"
-			value="http://localhost:8080/bedelias-web/remote/CursoService" />
+	<bean id="cursoService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/CursoService" />
 		<property name="serviceInterface" value="edu.bedelias.services.CursoService" />
+	</bean>
+	
+	<bean id="inscripcionService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/InscripcionService" />
+		<property name="serviceInterface" value="edu.bedelias.services.InscripcionService" />
 	</bean>
 
 </beans>
