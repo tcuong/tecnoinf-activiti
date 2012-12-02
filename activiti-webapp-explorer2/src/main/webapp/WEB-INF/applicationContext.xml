@@ -59,6 +59,7 @@
 	<bean id="comboFormType" class="org.activiti.explorer.ui.form.ComboFormType" />
 
 
+
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
