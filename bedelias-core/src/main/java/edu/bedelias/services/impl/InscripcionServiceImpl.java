@@ -249,6 +249,11 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return inscripcion;
 	}
 
+	@Override
+	public List<Inscripcion> findInscripcionesByCursoId(Curso curso) {
+		return inscripcionRepo.findInscripcionesByCursoId(curso);
+	}
+
 	public ExamenRepository getExamenRepo() {
 		return examenRepo;
 	}

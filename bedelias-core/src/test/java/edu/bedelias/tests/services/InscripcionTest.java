@@ -3,6 +3,7 @@ package edu.bedelias.tests.services;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -114,6 +115,9 @@ public class InscripcionTest {
 
 		PeriodoInscripcion pi = periodoInscripcionService
 				.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
+
+		List<Inscripcion> inscripciones = inscripcionService
+				.findInscripcionesByCursoId(curso);
 
 		assertNotNull("Asignatura can't be null", inscripcion);
 		assertNotNull("Asignatura can't be null", pi);
