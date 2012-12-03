@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="process1" name="process1">
+  <process id="process1" name="Alta Materia">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="IngresarDatosMateria" name="Ingresar Datos Materia" activiti:assignee="kermit">
       <extensionElements>
-      	<activiti:formProperty id="carreras" name="Asignar a las siguientes Carreras" type="multipleOpcionesCarrera" variable="carreras"></activiti:formProperty>
+        <activiti:formProperty id="carreras" name="Asignar a las siguientes Carreras" type="multipleOpcionesCarrera" variable="carreras"></activiti:formProperty>
         <activiti:formProperty id="nombre" name="Nombre Carrera" type="string" variable="nombre" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="codigo" name="Código" type="string" variable="codigo" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="minCredito" name="Mínimo de créditos" type="long" variable="minCredito" required="true" readable="true" writable="true"></activiti:formProperty>
