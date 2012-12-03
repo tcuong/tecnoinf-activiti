@@ -25,6 +25,8 @@
         <bean id="cursoService" class="edu.bedelias.services.impl.CursoServiceImpl" />
         
         <bean id="inscripcionService" class="edu.bedelias.services.impl.InscripcionServiceImpl" />
+        
+        <bean id="materiaService" class="edu.bedelias.services.impl.MateriaServiceImpl" />
 
         <!-- Remote beans go here -->
         <bean name="/DateService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
@@ -55,6 +57,11 @@
         <bean name="/InscripcionService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
 	        <property name="service" ref="inscripcionService" />
             <property name="serviceInterface" value="edu.bedelias.services.InscripcionService" />
+        </bean>
+        
+        <bean name="/MateriaService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+	        <property name="service" ref="materiaService" />
+            <property name="serviceInterface" value="edu.bedelias.services.MateriaService" />
         </bean>
         
 </beans>

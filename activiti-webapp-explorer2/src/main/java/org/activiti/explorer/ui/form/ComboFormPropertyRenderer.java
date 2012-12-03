@@ -35,10 +35,8 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 		super(ComboFormType.class);
 	}
 
-	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
-			"classpath:applicationContextRemote.xml");
-	private static CarreerService carreerService = (CarreerService) cpx
-			.getBean("carreerService");
+	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
+	private static CarreerService carreerService = (CarreerService) cpx.getBean("carreerService");
 
 	private static HashMap<String, Long> ids;
 
@@ -62,6 +60,8 @@ public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
 	public static String getId(String seleccion) {
 		if (ids == null) {
 			cargarHash();
+		} else if(seleccion == null){
+			return "";
 		}
 		return ids.get(seleccion).toString();
 	}

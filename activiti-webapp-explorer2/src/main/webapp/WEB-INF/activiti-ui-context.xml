@@ -39,6 +39,7 @@
 		<!-- Brus -->
         <bean class="org.activiti.explorer.ui.form.TextAreaFormPropertyRenderer" />
         <bean class="org.activiti.explorer.ui.form.ComboFormPropertyRenderer" />
+		<bean class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormPropertyRenderer" />
       </list>
     </property>
   </bean>

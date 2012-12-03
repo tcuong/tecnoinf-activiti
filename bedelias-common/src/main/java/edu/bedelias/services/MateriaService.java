@@ -18,4 +18,6 @@ public interface MateriaService {
 
 	public List<Asignatura> getAsignaturasByMateriaId(Long id);
 
+	public Boolean existeMateria(String nombre);
+
 }

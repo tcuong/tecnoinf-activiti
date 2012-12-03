@@ -7,12 +7,13 @@
         <activiti:formProperty id="id" name="test" type="string" value="string" variable="prueba"></activiti:formProperty>
         <activiti:formProperty id="idText" name="testText" type="textareaPito" value="stringText" variable="pruebaText"></activiti:formProperty>
         <activiti:formProperty id="idCombito" name="Combito" type="comboCarreras" variable="Combito"></activiti:formProperty>
+        <activiti:formProperty id="idOpciones" name="MultiOpciones" type="multipleOpcionesCarrera" variable="Opciones"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
     <userTask id="usertask1" name="User Task" activiti:assignee="kermit">
-      <documentation>IdCombito - ${idCombito}</documentation>
+      <documentation>IdCombito - ${Opciones}</documentation>
     </userTask>
     <sequenceFlow id="flow2" name="" sourceRef="ValidarHT" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>

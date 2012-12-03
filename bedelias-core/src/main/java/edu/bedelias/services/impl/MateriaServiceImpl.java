@@ -76,4 +76,13 @@ public class MateriaServiceImpl implements MateriaService {
 		this.materiaRepo = materiaRepo;
 	}
 
+	@Override
+	public Boolean existeMateria(String nombre) {
+		Materia materia = materiaRepo.findMateriaByName(nombre);
+		if (materia != null) {
+			return true;
+		}
+		return false;
+	}
+
 }
