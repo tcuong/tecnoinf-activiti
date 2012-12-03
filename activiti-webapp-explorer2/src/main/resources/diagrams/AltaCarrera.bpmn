@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="altaCarrera" name="Alta Carrera" activiti:candidateStarterUsers="kermit">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="IngresarDatosCarrera" name="IngresarDatosCarrera" activiti:assignee="kermit">
+      <extensionElements>
+        <activiti:formProperty id="nombre" name="Nombre" type="string" variable="nombre" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="totalCreditos" name="Total de créditos" type="string" variable="totalCreditos" default="0" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="tituloIntermedio" name="Título intermedio" type="string" variable="tituloIntermedio" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="cretidosTituloIntermedio" name="Crétidos para el título intermedio" type="string" variable="cretidosTituloIntermedio" default="0" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="IngresarDatosCarrera"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="IngresarDatosCarrera" targetRef="servicetask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="MostrarInfoUsuario" name="MostrarInfoUsuario" activiti:assignee="kermit">
+      <documentation>${mensaje}</documentation>
+    </userTask>
+    <serviceTask id="servicetask1" name="GuardarYValidar" activiti:class="edu.bedelias.activiti.altacarrera.GuardarYValidar"></serviceTask>
+    <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="MostrarInfoUsuario"></sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="MostrarInfoUsuario" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_altaCarrera">
+    <bpmndi:BPMNPlane bpmnElement="altaCarrera" id="BPMNPlane_altaCarrera">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="20" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="IngresarDatosCarrera" id="BPMNShape_IngresarDatosCarrera">
+        <omgdc:Bounds height="55" width="131" x="100" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="620" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="MostrarInfoUsuario" id="BPMNShape_MostrarInfoUsuario">
+        <omgdc:Bounds height="55" width="105" x="450" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55" width="105" x="280" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="55" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="100" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="231" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="280" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="385" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="450" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="555" y="147"></omgdi:waypoint>
+        <omgdi:waypoint x="620" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

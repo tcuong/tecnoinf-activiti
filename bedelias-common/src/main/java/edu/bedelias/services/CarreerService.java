@@ -26,5 +26,7 @@ public interface CarreerService {
 	public Carreer agregarMateriaACarrera(Carreer carreer, Materia materia);
 
 	public List<Materia> findMateriaByCarreerId(Long id);
+	
+	public boolean existeCarrera(String nombre);
 
 }

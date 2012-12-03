@@ -153,4 +153,17 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		return Boolean.TRUE;
 	}
 
+	@Override
+	public boolean validarPase(String numPase, String institucion, String cedula) {
+		String numPase1 = "1";
+		String numPase2 = "2";
+		String numPase3 = "3";
+		String numPase4 = "4";
+		
+		if(numPase.equals(numPase1) || numPase.equals(numPase2) || numPase.equals(numPase3) || numPase.equals(numPase4)){
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -25,6 +25,10 @@ public class Student extends Person {
 
 	@Column(nullable = false)
 	private Date fechaInscripcionFac;
+	
+	private String numPase;
+	
+	private String institucion;
 
 	public Student() {
 		super();
@@ -57,5 +61,21 @@ public class Student extends Person {
 
 	public void setFechaInscripcionFac(Date fechaInscripcionFac) {
 		this.fechaInscripcionFac = fechaInscripcionFac;
+	}
+
+	public String getNumPase() {
+		return numPase;
+	}
+
+	public void setNumPase(String numPase) {
+		this.numPase = numPase;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
 	}
 }

@@ -2,8 +2,10 @@ package edu.bedelias.tests.services;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,27 @@ public class CarreerTest {
 		}
 
 	}
+	
+	
+	@Test
+	public void existeCarreraByNombre() {
+		
+		String nombre = "Alguna carrera de prueba";
+		
+		Carreer carreer = new Carreer(nombre);
+		carreer.setIntermediateTitle("tituloIntermedio");
+		carreer.setIntermediateCredits(10);
+		carreer.setTotalCredits(20);
+		carreer.setCreationDate(new Date());
+		
+		carreerService.createCarreer(carreer);
+		
+		Boolean existe = carreerService.existeCarrera(nombre);
+		
+		Assert.assertTrue(existe);
+		
+	}
+
 
 	public CarreerService getCarreerService() {
 		return carreerService;

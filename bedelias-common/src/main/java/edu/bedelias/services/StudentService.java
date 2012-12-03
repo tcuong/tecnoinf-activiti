@@ -37,5 +37,7 @@ public interface StudentService {
 	public Student findStudentByStudentNumber(String studentNum);
 
 	public boolean existeStudentByCedula(String cedula);
+	
+	public boolean validarPase(String numPase, String institucion, String cedula);
 
 }

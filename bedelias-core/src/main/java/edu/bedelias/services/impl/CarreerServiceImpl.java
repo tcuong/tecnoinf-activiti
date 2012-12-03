@@ -17,10 +17,10 @@ import edu.bedelias.services.CarreerService;
 @Service
 @Scope(value = "session")
 @Transactional(readOnly = true)
-public class CarreerServiceImpl implements CarreerService, Serializable{
+public class CarreerServiceImpl implements CarreerService, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private CarreerRepository carreerRepo;
 
@@ -116,6 +116,15 @@ public class CarreerServiceImpl implements CarreerService, Serializable{
 		carreer.setMaterias(materias);
 		carreer = carreerRepo.save(carreer);
 		return carreer;
+	}
+
+	@Override
+	public boolean existeCarrera(String nombre) {
+		Carreer carrera = carreerRepo.findCarreerByName(nombre);
+		if (carrera != null) {
+			return true;
+		}
+		return false;
 	}
 
 }

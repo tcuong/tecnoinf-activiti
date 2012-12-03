@@ -19,4 +19,6 @@ public interface CarreerRepository extends JpaRepository<Carreer, Long> {
 
 	@Query("select materias from Carreer c inner join c.materias as materias where c.id = ?1")
 	public List<Materia> getMateriasByCarreerId(Long id);
+	
+	public Carreer findCarreerByName(String name);
 }
