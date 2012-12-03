@@ -1,4 +1,4 @@
-package edu.bedelias.activiti.altaasignatura;
+package edu.bedelias.activiti.altamateria;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +17,8 @@ public class GuardarYValidar implements JavaDelegate {
 
 	
 	private ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
-	private MateriaService materiaService = (MateriaService) cpx.getBean("MateriaService");
-	private CarreerService carreraService = (CarreerService) cpx.getBean("CarreerService");
+	private MateriaService materiaService = (MateriaService) cpx.getBean("materiaService");
+	private CarreerService carreraService = (CarreerService) cpx.getBean("carreerService");
 
 	
 	@Override
@@ -26,7 +26,7 @@ public class GuardarYValidar implements JavaDelegate {
 		
 		// obtengo las carreras que seleccionó el funcionario para agregar la materia
 		String carrerasArray = (String) execution.getVariable("carreras");
-		String[] idCarreras = carrerasArray.split("|");
+		String[] idCarreras = carrerasArray.split("\\|");
 		
 		List<Carreer> carreras = new ArrayList<Carreer>();
 		
@@ -39,7 +39,7 @@ public class GuardarYValidar implements JavaDelegate {
 		// obtengo los datos referentes a la materia
 		String nombre = (String) execution.getVariable("nombre");
 		String codigo = (String) execution.getVariable("codigo");
-		int minCreditos = Integer.valueOf(execution.getVariable("minCreditos").toString());
+		int minCreditos = Integer.valueOf(execution.getVariable("minCredito").toString());
 
 		// verifico que no exista una carrera con el mismo nombre
  		Boolean existe = materiaService.existeMateria(nombre);
@@ -54,7 +54,7 @@ public class GuardarYValidar implements JavaDelegate {
 				materia.setCreationDate(new Date());
 				
 				// guardo la materia
-				materiaService.createMateria(materia);
+				materia = materiaService.createMateria(materia);
 				
 				// recorro todas las carreras y le agrego la materia
 				for (Carreer carreer : carreras) {

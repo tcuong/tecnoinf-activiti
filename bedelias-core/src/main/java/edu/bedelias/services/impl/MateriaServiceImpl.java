@@ -1,5 +1,6 @@
 package edu.bedelias.services.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,10 @@ import edu.bedelias.services.MateriaService;
 @Service
 @Scope(value = "session")
 @Transactional(readOnly = true)
-public class MateriaServiceImpl implements MateriaService {
+public class MateriaServiceImpl implements MateriaService, Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Autowired
 	private MateriaRepository materiaRepo;
 
