@@ -3,17 +3,17 @@
   <process id="process1" name="process1">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresarDatosEst" activiti:assignee="kermit"></userTask>
+    <serviceTask id="servicetask1" name="ValidarCedula" activiti:class="edu.bedelias.activiti.emisionescolaridad.ValidarCedula"></serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <serviceTask id="servicetask2" name="ImprimirEscolaridad" activiti:class="edu.bedelias.activiti.emisionescolaridad.ImprimirEscolaridad"></serviceTask>
+    <userTask id="usertask2" name="Finalizar"></userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
-    <serviceTask id="servicetask1" name="ValidarCedula" activiti:class="edu.bedelias.activiti.emisionEscolaridad.ValidarCedula"></serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="flow4" name="noExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow5" name="existeCedula" sourceRef="exclusivegateway1" targetRef="servicetask2"></sequenceFlow>
-    <serviceTask id="servicetask2" name="ImprimirEscolaridad" activiti:class="edu.bedelias.activiti.emisionEscolaridad.ImprimirEscolaridad"></serviceTask>
-    <userTask id="usertask2" name="Finalizar"></userTask>
     <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow7" name="" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_process1">
@@ -57,14 +57,14 @@
         <omgdi:waypoint x="137" y="249"></omgdi:waypoint>
         <omgdi:waypoint x="137" y="195"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="10" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="445" y="167"></omgdi:waypoint>
         <omgdi:waypoint x="490" y="167"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-37" y="17"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="-37" y="17"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">

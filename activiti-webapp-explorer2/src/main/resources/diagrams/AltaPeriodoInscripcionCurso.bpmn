@@ -11,9 +11,9 @@
       </extensionElements>
     </userTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
-    <serviceTask id="servicetask1" name="Guardar" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.Guardar"></serviceTask>
+    <serviceTask id="servicetask1" name="Guardar" activiti:class="edu.bedelias.activiti.altaperiodoinsccurso.Guardar"></serviceTask>
     <endEvent id="endevent1" name="End"></endEvent>
-    <serviceTask id="servicetask2" name="ValidarFecha" activiti:class="edu.bedelias.activiti.altaPriodoInscCurso.ValidarFecha"></serviceTask>
+    <serviceTask id="servicetask2" name="ValidarFecha" activiti:class="edu.bedelias.activiti.altaperiodoinsccurso.ValidarFecha"></serviceTask>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="fechasValidas" sourceRef="exclusivegateway1" targetRef="servicetask1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validar == true}]]></conditionExpression>
@@ -53,7 +53,7 @@
         <omgdi:waypoint x="400" y="167"></omgdi:waypoint>
         <omgdi:waypoint x="450" y="167"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="-60" y="14"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="-60" y="14"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
@@ -62,7 +62,7 @@
         <omgdi:waypoint x="132" y="224"></omgdi:waypoint>
         <omgdi:waypoint x="132" y="195"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="13" width="100" x="10" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">

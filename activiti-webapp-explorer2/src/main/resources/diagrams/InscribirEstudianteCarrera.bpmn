@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="InscribirEstudianteCarrera" name="Inscribir Estudiante Carrera">
-    <documentation>${msj}</documentation>
+  <process id="InscribirEstudianteCarrera" name="Inscribir Estudiante Carrera" activiti:candidateStarterUsers="kermit">
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="usertask1" name="IngresarCedulaEstudiante" activiti:assignee="kermit">
       <documentation>Por favor ingrese la cedula del estudiante para realizar la inscripcion.</documentation>
@@ -16,26 +15,20 @@
       <extensionElements>
         <activiti:formProperty id="nombre" name="Nombre" type="string" variable="nombre" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="apellido" name="Apellido" type="string" variable="apellido" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="cedulaEs" name="Cedula" type="string" variable="cedulaEs" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="telefono" name="Telefono" type="string" variable="telefono" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="cedulaEs" name="Cédula" type="string" variable="cedula" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="telefono" name="Teléfono" type="string" variable="telefono" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="celular" name="Celular" type="string" variable="celular" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="email" name="E-Mail" type="string" variable="email" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="direccion" name="Direccion" type="string" variable="direccion" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="pase" name="Pase" type="string" variable="pase" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="direccion" name="Dirección" type="string" variable="direccion" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="pase" name="Número del Pase" type="string" variable="numPase" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="institucion" name="Institución" type="string" variable="institucion" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <serviceTask id="servicetask2" name="ValidarPase" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.ValidarPase"></serviceTask>
     <userTask id="seleccionarCarrera" name="SeleccionarCarrera" activiti:assignee="kermit">
       <documentation>Seleccione la carrera</documentation>
-            <extensionElements>
-        <activiti:formProperty id="comboCarreras" name="Seleccine la Carrera" type="comboCarreras" variable="carreraId"></activiti:formProperty>
-      </extensionElements>
     </userTask>
-    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow8"></exclusiveGateway>
-    <userTask id="usertask4" name="InformarPaseNoValido" activiti:assignee="kermit">
-      <documentation>El pase no ha sido validado por la entidad emisora del mismo, informe al estudiante que debe regular su situacion.
-Este proceso se termina</documentation>
-    </userTask>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow15"></exclusiveGateway>
     <endEvent id="endevent1" name="End"></endEvent>
     <serviceTask id="servicetask3" name="GuardarInscripcion" activiti:class="edu.bedelias.activiti.inscribirestudiantecarrera.GuardarInscripcion"></serviceTask>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
@@ -49,22 +42,18 @@ Este proceso se termina</documentation>
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst==true}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow7" name="" sourceRef="servicetask2" targetRef="exclusivegateway2"></sequenceFlow>
-    <sequenceFlow id="flow8" name="PaseNoValido" sourceRef="exclusivegateway2" targetRef="usertask4">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==false}]]></conditionExpression>
-    </sequenceFlow>
     <sequenceFlow id="flow9" name="PaseValido" sourceRef="exclusivegateway2" targetRef="seleccionarCarrera">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==false}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==true}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow10" name="" sourceRef="seleccionarCarrera" targetRef="servicetask3"></sequenceFlow>
-    <sequenceFlow id="flow12" name="" sourceRef="usertask4" targetRef="endevent1"></sequenceFlow>
-    <userTask id="mostrarMensaje" name="Mostrar mensaje">
-      <documentation>${msj}</documentation>
-      <extensionElements>
-        <activiti:formProperty id="comboCarreras" name="Seleccine la Carrera" type="comboCarreras" variable="${msj}"></activiti:formProperty>
-      </extensionElements>
+    <userTask id="mostrarMensaje" name="Mostrar mensaje" activiti:candidateUsers="kermit">
+      <documentation>${mensaje}</documentation>
     </userTask>
     <sequenceFlow id="flow13" name="" sourceRef="servicetask3" targetRef="mostrarMensaje"></sequenceFlow>
     <sequenceFlow id="flow14" name="" sourceRef="mostrarMensaje" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow15" name="pase no valido" sourceRef="exclusivegateway2" targetRef="mostrarMensaje">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${paseValido==false}]]></conditionExpression>
+    </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_InscribirEstudianteCarrera">
     <bpmndi:BPMNPlane bpmnElement="InscribirEstudianteCarrera" id="BPMNPlane_InscribirEstudianteCarrera">
@@ -91,9 +80,6 @@ Este proceso se termina</documentation>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
         <omgdc:Bounds height="40" width="40" x="708" y="247"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
-        <omgdc:Bounds height="55" width="105" x="935" y="240"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
         <omgdc:Bounds height="35" width="35" x="970" y="130"></omgdc:Bounds>
@@ -138,13 +124,6 @@ Este proceso se termina</documentation>
         <omgdi:waypoint x="653" y="267"></omgdi:waypoint>
         <omgdi:waypoint x="708" y="267"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
-        <omgdi:waypoint x="748" y="267"></omgdi:waypoint>
-        <omgdi:waypoint x="935" y="267"></omgdi:waypoint>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-8" y="11"></omgdc:Bounds>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
         <omgdi:waypoint x="728" y="247"></omgdi:waypoint>
         <omgdi:waypoint x="728" y="217"></omgdi:waypoint>
@@ -158,10 +137,6 @@ Este proceso se termina</documentation>
         <omgdi:waypoint x="610" y="147"></omgdi:waypoint>
         <omgdi:waypoint x="665" y="147"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
-        <omgdi:waypoint x="987" y="240"></omgdi:waypoint>
-        <omgdi:waypoint x="987" y="165"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
         <omgdi:waypoint x="770" y="147"></omgdi:waypoint>
         <omgdi:waypoint x="825" y="147"></omgdi:waypoint>
@@ -169,6 +144,14 @@ Este proceso se termina</documentation>
       <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
         <omgdi:waypoint x="930" y="147"></omgdi:waypoint>
         <omgdi:waypoint x="970" y="147"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="748" y="267"></omgdi:waypoint>
+        <omgdi:waypoint x="877" y="266"></omgdi:waypoint>
+        <omgdi:waypoint x="877" y="175"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13" width="100" x="-89" y="1"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

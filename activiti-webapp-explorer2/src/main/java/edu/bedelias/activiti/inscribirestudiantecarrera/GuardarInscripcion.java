@@ -17,7 +17,7 @@ public class GuardarInscripcion implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		String cedula = (String) execution.getVariable("cedula");
-		long idCarrera = (long) execution.getVariable("idCarrera");
+		long idCarrera = Long.valueOf((String)execution.getVariable("carreraId"));
 		
 		String msj = inscripcionService.createInscripcion_Activiti(idCarrera, cedula);
 		
