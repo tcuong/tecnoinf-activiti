@@ -15,10 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Examen;
 import edu.bedelias.entities.Materia;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.TipoEvaluacionEnum;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.enums.TurnoEnum;
 import edu.bedelias.services.AsignaturaService;
@@ -143,6 +145,12 @@ public class CargarDatosTest {
 		periodoExamen.setTipoInscripcion(TipoInscripcionEnum.EXAMEN);
 		periodoExamen = periodoInscripcionService
 				.createPeriodoInscripcion(periodoExamen);
+
+		Evaluacion evaluacion = new Evaluacion();
+		evaluacion.setCurso(curso);
+		evaluacion.setEstudiante(student);
+		evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.FINAL);
+		evaluacion = evaluacionService.createEvaluacion(evaluacion);
 
 		// Inscripcion a Carrera
 		inscripcionService.InscripcionACarrera(student.getId(),

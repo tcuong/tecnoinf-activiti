@@ -71,6 +71,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
+	public List<Evaluacion> getEvaluacionesByStudentAndCurso(Student student,
+			Curso curso) {
+		return evaluacionRepo.getEvaluacionesByStudentAndCurso(student, curso);
+	}
+
+	@Override
 	@Transactional
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student) {
 		try {
@@ -105,4 +111,5 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public void setCursoRepo(CursoRepository cursoRepo) {
 		this.cursoRepo = cursoRepo;
 	}
+
 }

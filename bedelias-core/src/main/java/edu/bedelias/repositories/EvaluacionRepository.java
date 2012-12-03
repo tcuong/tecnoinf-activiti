@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 
@@ -19,4 +20,8 @@ public interface EvaluacionRepository extends JpaRepository<Evaluacion, Long> {
 
 	@Query("select e from Evaluacion e where e.estudiante = ?1")
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student);
+
+	@Query("select e from Evaluacion e where e.estudiante = ?1 and e.curso = ?2")
+	public List<Evaluacion> getEvaluacionesByStudentAndCurso(Student student,
+			Curso curso);
 }
