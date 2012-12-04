@@ -20,5 +20,6 @@ public interface AsignaturaService {
 	public List<Asignatura> getDeQuienEsPrevia(Long id);
 
 	public List<Asignatura> findAll();
-
+	
+	public Asignatura findAsignatura(Long asignaturaId);
 }

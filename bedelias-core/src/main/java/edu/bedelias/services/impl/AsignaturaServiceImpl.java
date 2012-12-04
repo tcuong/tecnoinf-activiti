@@ -84,4 +84,9 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 		return this.asignaturaRepo.findAll();
 	}
 
+	@Override
+	public Asignatura findAsignatura(Long asignaturaId) {
+		return asignaturaRepo.findOne(asignaturaId);
+	}
+
 }
