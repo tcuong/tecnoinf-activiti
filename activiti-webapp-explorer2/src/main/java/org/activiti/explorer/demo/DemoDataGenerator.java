@@ -1,4 +1,4 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
+ /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -44,7 +44,7 @@ public class DemoDataGenerator {
   }
   
   protected void initDemoGroups() {
-    String[] assignmentGroups = new String[] {"management", "sales", "marketing", "engineering"};
+    String[] assignmentGroups = new String[] {"management", "sales", "marketing", "engineering", "bedelias"};
     for (String groupId : assignmentGroups) {
       createGroup(groupId, "assignment");
     }
@@ -67,17 +67,17 @@ public class DemoDataGenerator {
   protected void initDemoUsers() {
     createUser("kermit", "Kermit", "The Frog", "kermit", "kermit@activiti.org", 
             "org/activiti/explorer/images/kermit.jpg",
-            Arrays.asList("management", "sales", "marketing", "engineering", "user", "admin"),
+            Arrays.asList("management", "sales", "marketing", "engineering", "user", "admin", "bedelias"),
             Arrays.asList("birthDate", "10-10-1955", "jobTitle", "Muppet", "location", "Hollywoord",
                           "phone", "+123456789", "twitterName", "alfresco", "skype", "activiti_kermit_frog"));
     
     createUser("gonzo", "Gonzo", "The Great", "gonzo", "gonzo@activiti.org", 
             "org/activiti/explorer/images/gonzo.jpg",
-            Arrays.asList("management", "sales", "marketing", "user"),
+            Arrays.asList("management", "sales", "marketing", "user", "bedelias"),
             null);
     createUser("fozzie", "Fozzie", "Bear", "fozzie", "fozzie@activiti.org", 
             "org/activiti/explorer/images/fozzie.jpg",
-            Arrays.asList("marketing", "engineering", "user"),
+            Arrays.asList("marketing", "engineering", "user", "bedelias"),
             null);
   }
   
