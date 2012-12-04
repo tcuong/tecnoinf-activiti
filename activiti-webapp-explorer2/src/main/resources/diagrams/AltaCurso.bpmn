@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <collaboration id="Collaboration">
+    <participant id="poolAltaCurso" name="Pool" processRef="process_pool1"></participant>
+  </collaboration>
+  <process id="altaCurso" name="Alta Curso">
+    <laneSet id="laneSet_process_pool1">
+      <lane id="lane1" name="Bedelias">
+        <flowNodeRef>startevent1</flowNodeRef>
+        <flowNodeRef>ingresarDatosCurso</flowNodeRef>
+        <flowNodeRef>validarYGuardar</flowNodeRef>
+        <flowNodeRef>mostrarMensaje</flowNodeRef>
+        <flowNodeRef>endevent1</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="ingresarDatosCurso" name="Ingresar Datos Curso" activiti:candidateGroups="bedelias">
+      <extensionElements>
+        <activiti:formProperty id="asignatura" name="Seleccione la asignatura" type="comboAsignaturas" variable="asignatura" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="codigo" name="Código del Curso" type="string" variable="codigo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="descripcion" name="Descripción" type="string" variable="descripcion" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="semestre" name="Semestre" type="string" variable="semestre" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="horario" name="Horario" type="string" variable="horario" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="turno" name="Turno" type="string" variable="turno" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="salon" name="Salón" type="string" variable="salon" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="fechaInicio" name="Fecha Inicio" type="date" variable="fechaInicio" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="fechaFin" name="Fecha fin" type="date" variable="fechaFin" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="validarYGuardar" name="Validar y Guardar" activiti:class="edu.bedelias.activiti.altacurso.GuardarYValidar"></serviceTask>
+    <userTask id="mostrarMensaje" name="Mostrar Mensaje" activiti:candidateGroups="bedelias">
+      <documentation>${mensaje}</documentation>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ingresarDatosCurso"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="ingresarDatosCurso" targetRef="validarYGuardar"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="validarYGuardar" targetRef="mostrarMensaje"></sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="mostrarMensaje" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="poolAltaCurso" id="BPMNShape_poolAltaCurso" isHorizontal="true">
+        <omgdc:Bounds height="150" width="781" x="50" y="80"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lane1" id="BPMNShape_lane1" isHorizontal="true">
+        <omgdc:Bounds height="150" width="761" x="70" y="80"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="120" y="140"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ingresarDatosCurso" id="BPMNShape_ingresarDatosCurso">
+        <omgdc:Bounds height="55" width="141" x="200" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="validarYGuardar" id="BPMNShape_validarYGuardar">
+        <omgdc:Bounds height="55" width="105" x="390" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mostrarMensaje" id="BPMNShape_mostrarMensaje">
+        <omgdc:Bounds height="55" width="105" x="540" y="130"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="700" y="140"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="155" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="200" y="157"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="341" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="390" y="157"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="495" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="540" y="157"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="645" y="157"></omgdi:waypoint>
+        <omgdi:waypoint x="700" y="157"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
