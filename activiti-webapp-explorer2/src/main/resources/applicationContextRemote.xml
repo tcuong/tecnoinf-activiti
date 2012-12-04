@@ -37,5 +37,10 @@
 		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/MateriaService" />
 		<property name="serviceInterface" value="edu.bedelias.services.MateriaService" />
 	</bean>
+	
+	<bean id="asignaturaService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="http://localhost:8080/bedelias-web/remote/AsignaturaService" />
+		<property name="serviceInterface" value="edu.bedelias.services.AsignaturaService" />
+	</bean>
 
 </beans>

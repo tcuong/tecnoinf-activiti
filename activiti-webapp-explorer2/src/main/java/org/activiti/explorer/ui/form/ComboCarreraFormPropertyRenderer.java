@@ -29,10 +29,10 @@ import edu.bedelias.services.CarreerService;
 /**
  * @author Brus
  */
-public class ComboFormPropertyRenderer extends AbstractFormPropertyRenderer {
+public class ComboCarreraFormPropertyRenderer extends AbstractFormPropertyRenderer {
 
-	public ComboFormPropertyRenderer() {
-		super(ComboFormType.class);
+	public ComboCarreraFormPropertyRenderer() {
+		super(ComboCarreraFormType.class);
 	}
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");

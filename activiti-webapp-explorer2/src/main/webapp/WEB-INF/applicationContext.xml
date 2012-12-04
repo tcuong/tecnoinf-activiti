@@ -46,9 +46,10 @@
 			<list>
 				<ref bean="userFormType" />
 				<!-- Componentes de formularios - Brus -->
-				<ref bean="userFormType" />
+				<!-- <ref bean="userFormType" />  -->
 				<ref bean="textAreaFormType" />
-				<ref bean="comboFormType" />
+				<ref bean="comboCarreraFormType" />
+				<ref bean="comboAsignaturaFormType" />
 				<ref bean="multipleOpcionesCarreraFormType" />
 			</list>
 		</property>
@@ -57,7 +58,8 @@
 
 	<!-- Componentes de formularios - Brus -->
 	<bean id="textAreaFormType" class="org.activiti.explorer.ui.form.TextAreaFormType" />
-	<bean id="comboFormType" class="org.activiti.explorer.ui.form.ComboFormType" />
+	<bean id="comboCarreraFormType" class="org.activiti.explorer.ui.form.ComboCarreraFormType" />
+	<bean id="comboAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboAsignaturaFormType" />
 	<bean id="multipleOpcionesCarreraFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormType" />
 	
 
