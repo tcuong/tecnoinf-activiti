@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <collaboration id="Collaboration">
+    <participant id="pool1" name="Pool" processRef="agregarPreviasAsignatura"></participant>
+  </collaboration>
+  <process id="agregarPreviasAsignatura" name="Agregar previas asignatura">
+    <laneSet id="laneSet_agregarPreviasAsignatura">
+      <lane id="lane1" name="Bedelias">
+        <flowNodeRef>startevent1</flowNodeRef>
+        <flowNodeRef>ingresarInformaciónPrevias</flowNodeRef>
+        <flowNodeRef>validarYGuardar</flowNodeRef>
+        <flowNodeRef>mostrarInfo</flowNodeRef>
+        <flowNodeRef>endevent1</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="ingresarInformaciónPrevias" name="Ingresar Información Previas" activiti:candidateGroups="bedelias">
+      <extensionElements>
+        <activiti:formProperty id="asignatura" name="Seleccione la asignatura" type="comboAsignaturas" variable="asignatura" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="previas" name="Seleccione las previas" type="multipleOpcionesAsignatura" variable="previas" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="validarYGuardar" name="Validar y Guardar" activiti:class="edu.bedelias.activiti.agregarpreviasasignatura.GuardarYValidar"></serviceTask>
+    <userTask id="mostrarInfo" name="Informar transacción" activiti:candidateGroups="bedelias">
+      <documentation>${mensaje}</documentation>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ingresarInformaciónPrevias"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="ingresarInformaciónPrevias" targetRef="validarYGuardar"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="validarYGuardar" targetRef="mostrarInfo"></sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="mostrarInfo" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="pool1" id="BPMNShape_pool1" isHorizontal="true">
+        <omgdc:Bounds height="150" width="821" x="30" y="60"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lane1" id="BPMNShape_lane1" isHorizontal="true">
+        <omgdc:Bounds height="150" width="801" x="50" y="60"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35" width="35" x="110" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ingresarInformaciónPrevias" id="BPMNShape_ingresarInformaciónPrevias">
+        <omgdc:Bounds height="55" width="121" x="190" y="110"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="validarYGuardar" id="BPMNShape_validarYGuardar">
+        <omgdc:Bounds height="55" width="105" x="350" y="110"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mostrarInfo" id="BPMNShape_mostrarInfo">
+        <omgdc:Bounds height="55" width="105" x="510" y="110"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35" width="35" x="670" y="120"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="145" y="137"></omgdi:waypoint>
+        <omgdi:waypoint x="190" y="137"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="311" y="137"></omgdi:waypoint>
+        <omgdi:waypoint x="350" y="137"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="455" y="137"></omgdi:waypoint>
+        <omgdi:waypoint x="510" y="137"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="615" y="137"></omgdi:waypoint>
+        <omgdi:waypoint x="670" y="137"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
