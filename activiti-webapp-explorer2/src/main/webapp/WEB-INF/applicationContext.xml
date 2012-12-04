@@ -51,6 +51,7 @@
 				<ref bean="comboCarreraFormType" />
 				<ref bean="comboAsignaturaFormType" />
 				<ref bean="multipleOpcionesCarreraFormType" />
+				<ref bean="multipleOpcionesAsignaturaFormType" />
 			</list>
 		</property>
 
@@ -61,6 +62,7 @@
 	<bean id="comboCarreraFormType" class="org.activiti.explorer.ui.form.ComboCarreraFormType" />
 	<bean id="comboAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboAsignaturaFormType" />
 	<bean id="multipleOpcionesCarreraFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormType" />
+	<bean id="multipleOpcionesAsignaturaFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesAsignaturaFormType" />
 	
 
 

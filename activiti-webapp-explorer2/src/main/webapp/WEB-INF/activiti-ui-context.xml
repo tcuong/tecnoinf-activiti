@@ -41,6 +41,7 @@
         <bean class="org.activiti.explorer.ui.form.ComboCarreraFormPropertyRenderer" />
         <bean class="org.activiti.explorer.ui.form.ComboAsignaturaFormPropertyRenderer" />
 		<bean class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormPropertyRenderer" />
+		<bean class="org.activiti.explorer.ui.form.MultipleOpcionesAsignaturaFormPropertyRenderer" />
       </list>
     </property>
   </bean>
