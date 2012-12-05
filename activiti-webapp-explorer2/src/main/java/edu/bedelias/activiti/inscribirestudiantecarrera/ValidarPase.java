@@ -45,11 +45,11 @@ public class ValidarPase implements JavaDelegate {
 			studentService.createStudent(student);
 			
 			execution.setVariable("paseValido", true);
+		} else {
+			// si el pase NO es válido envío un mensaje y termina el proceso
+			execution.setVariable("paseValido", false);
+			execution.setVariable("mensaje", "El pase del estudiante " + nombre + " no ha sido validado por la Institución");
 		}
-		// si el pase NO es válido envío un mensaje y termina el proceso
-		execution.setVariable("paseValido", false);
-		execution.setVariable("mensaje", "El pase del estudiante " + nombre
-				+ " no ha sido validado por la Institución");
 	}
 
 }
