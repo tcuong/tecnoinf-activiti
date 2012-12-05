@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
@@ -33,11 +34,10 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	@Autowired
 	private EvaluacionRepository evaluacionRepo;
 
-	
-	public StudentServiceImpl(){
-		
+	public StudentServiceImpl() {
+
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -159,11 +159,18 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		String numPase2 = "2";
 		String numPase3 = "3";
 		String numPase4 = "4";
-		
-		if(numPase.equals(numPase1) || numPase.equals(numPase2) || numPase.equals(numPase3) || numPase.equals(numPase4)){
+
+		if (numPase.equals(numPase1) || numPase.equals(numPase2)
+				|| numPase.equals(numPase3) || numPase.equals(numPase4)) {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void generarEscolaridad(Student student,
+			List<Evaluacion> evaluaciones) {
+		// ReportsService.print(student, evaluaciones);
 	}
 
 }

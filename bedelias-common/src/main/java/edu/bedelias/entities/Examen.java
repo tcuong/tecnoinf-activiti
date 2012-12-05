@@ -13,25 +13,13 @@ public class Examen extends GenericEntity {
 
 	private static final long serialVersionUID = -2023907175216649506L;
 
-	private Integer nota;
-
 	private String periodo;
 
 	private Date fecha;
 
-	private Boolean noAsistio;
-
 	@ManyToOne
 	@JoinColumn(name = "asignatura")
 	private Asignatura asignatura;
-
-	public Integer getNota() {
-		return nota;
-	}
-
-	public void setNota(Integer nota) {
-		this.nota = nota;
-	}
 
 	public String getPeriodo() {
 		return periodo;
@@ -47,14 +35,6 @@ public class Examen extends GenericEntity {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public Boolean getNoAsistio() {
-		return noAsistio;
-	}
-
-	public void setNoAsistio(Boolean noAsistio) {
-		this.noAsistio = noAsistio;
 	}
 
 	public Asignatura getAsignatura() {

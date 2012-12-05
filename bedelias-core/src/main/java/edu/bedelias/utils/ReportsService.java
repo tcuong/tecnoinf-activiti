@@ -21,6 +21,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 
 /**
@@ -43,7 +44,21 @@ public class ReportsService {
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 			Font.BOLD);
 
-	public static void print(java.util.List<Student> estuiamtes, Curso curso) {
+	public static void imprimirActaCurso(java.util.List<Student> estuiamtes,
+			Curso curso) {
+		// Aca imprimir uno a uno los estudiantes y agregar un campo nota
+		// el curso lo paso para poner los datos del mismo en el documento
+	}
+
+	public static void imprimirEscolaridad(Student student,
+			java.util.List<Evaluacion> evaluaciones) {
+		// aca la joda es el estudiante con sus datos + imprimir uno a uno los
+		// cursos de cada evaluacion
+		// y su resultado correspondiente, falta ver de agregar los examenes
+		// tambien
+	}
+
+	public static void print() {
 		try {
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(FILE));

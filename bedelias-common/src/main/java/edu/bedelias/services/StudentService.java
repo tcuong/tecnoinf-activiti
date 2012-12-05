@@ -5,6 +5,7 @@ package edu.bedelias.services;
 
 import java.util.List;
 
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 
 /**
@@ -37,7 +38,10 @@ public interface StudentService {
 	public Student findStudentByStudentNumber(String studentNum);
 
 	public boolean existeStudentByCedula(String cedula);
-	
+
 	public boolean validarPase(String numPase, String institucion, String cedula);
+
+	public void generarEscolaridad(Student student,
+			List<Evaluacion> evaluaciones);
 
 }

@@ -8,8 +8,10 @@ import org.activiti.engine.delegate.JavaDelegate;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.services.EvaluacionService;
 import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.StudentService;
 
@@ -17,6 +19,7 @@ public class ImprimirEscolaridad implements JavaDelegate {
 
 	private InscripcionService inscripcionService;
 	private StudentService studentService;
+	private EvaluacionService evaluacionService;
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
@@ -29,6 +32,8 @@ public class ImprimirEscolaridad implements JavaDelegate {
 		inscripcionService = (InscripcionService) cpx
 				.getBean("inscripcionService");
 		studentService = (StudentService) cpx.getBean("studentService");
+		evaluacionService = (EvaluacionService) cpx
+				.getBean("evaluacionService");
 
 		Student student = studentService.findStudentByCedula(cedula);
 		List<Inscripcion> inscripciones = inscripcionService
@@ -38,9 +43,12 @@ public class ImprimirEscolaridad implements JavaDelegate {
 		for (Inscripcion i : inscripciones) {
 			cursos.add(i.getCurso());
 		}
-		// me falta aca ir a buscar la evaluicion por cada curso y
-		// traerme la nota
 
+		List<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
+		for (Curso c : cursos) {
+			evaluaciones.add(evaluacionService.getEvaluacionByStudentAndCurso(
+					student, c));
+		}
 	}
 
 	public InscripcionService getInscripcionService() {
@@ -57,6 +65,14 @@ public class ImprimirEscolaridad implements JavaDelegate {
 
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
+	}
+
+	public EvaluacionService getEvaluacionService() {
+		return evaluacionService;
+	}
+
+	public void setEvaluacionService(EvaluacionService evaluacionService) {
+		this.evaluacionService = evaluacionService;
 	}
 
 }
