@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.enums.TurnoEnum;
 import edu.bedelias.services.AsignaturaService;
 import edu.bedelias.services.CursoService;
 
@@ -50,7 +51,7 @@ public class GuardarYValidar implements JavaDelegate {
 					curso.setDescripcion(descripcion);
 					curso.setSemestre(semestre);
 					curso.setHorario(horario);
-					// curso.setTurno(TurnoEnum.getTurno(turno));
+					curso.setTurno(TurnoEnum.getTurno(turno));
 					curso.setSalon(salon);
 					curso.setFechaInicio(fechaInicio);
 					curso.setFechaFin(fechaFin);
