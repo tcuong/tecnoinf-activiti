@@ -33,6 +33,9 @@ public class ValidarPase implements JavaDelegate {
 
 		// si el pase es válido doy de alta el estudiante y sigo con el proceso
 		if(isValido){
+			
+			String pass = studentService.generatePass(cedula);
+			
 			Student student = new Student(nombre, email, cedula, new Date());
 			student.setLastname(apellido);
 			student.setCellphone(celular);
@@ -40,11 +43,13 @@ public class ValidarPase implements JavaDelegate {
 			student.setAddress(direccion);
 			student.setNumPase(numPase);
 			student.setInstitucion(institucion);
+			student.setPassword(pass);
 			
 			// guardo el estudiante
 			studentService.createStudent(student);
 			
 			execution.setVariable("paseValido", true);
+			execution.setVariable("mensaje", "El estudiante ya es parte de la Fing :D.  Su clave para el ingreso es:: " + pass);
 		} else {
 			// si el pase NO es válido envío un mensaje y termina el proceso
 			execution.setVariable("paseValido", false);

@@ -44,4 +44,6 @@ public interface StudentService {
 	public void generarEscolaridad(Student student,
 			List<Evaluacion> evaluaciones);
 
+	public String generatePass(String cedula);
+
 }

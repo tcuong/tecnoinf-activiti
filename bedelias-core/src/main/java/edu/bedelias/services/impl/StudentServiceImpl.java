@@ -16,6 +16,7 @@ import edu.bedelias.entities.Student;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.StudentService;
+import edu.bedelias.utils.SecUtils;
 
 /**
  * @author Gas
@@ -171,6 +172,17 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	public void generarEscolaridad(Student student,
 			List<Evaluacion> evaluaciones) {
 		// ReportsService.print(student, evaluaciones);
+	}
+
+	@Override
+	public String generatePass(String cedula) {
+		// genero la clave en base a la cédula
+		String pass = SecUtils.hashPassword(cedula);
+		
+		// casteo a una clave del tamaño que usan en bedelías
+		pass = pass.substring(0, 6);
+		return pass;
+		
 	}
 
 }

@@ -29,6 +29,9 @@ public class Student extends Person {
 	private String numPase;
 	
 	private String institucion;
+	
+	@Column(nullable = false)
+	private String password;
 
 	public Student() {
 		super();
@@ -77,5 +80,13 @@ public class Student extends Person {
 
 	public void setInstitucion(String institucion) {
 		this.institucion = institucion;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
