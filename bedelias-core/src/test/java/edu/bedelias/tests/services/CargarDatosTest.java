@@ -118,6 +118,7 @@ public class CargarDatosTest {
 
 		// Creo un Examen
 		Examen examen = new Examen();
+		examen.setCodigo("codigo");
 		examen.setFecha(new Date(System.currentTimeMillis()));
 		examen = examenService.createExamen(examen, asignatura);
 

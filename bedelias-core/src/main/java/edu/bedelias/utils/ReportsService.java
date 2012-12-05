@@ -22,6 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
+import edu.bedelias.entities.Examen;
 import edu.bedelias.entities.Student;
 
 /**
@@ -48,6 +49,11 @@ public class ReportsService {
 			Curso curso) {
 		// Aca imprimir uno a uno los estudiantes y agregar un campo nota
 		// el curso lo paso para poner los datos del mismo en el documento
+	}
+
+	public static void imprimirActaExamen(java.util.List<Student> estudiantes,
+			Examen examen) {
+		// TODO Auto-generated method stub IDEM anterior pero con examen
 	}
 
 	public static void imprimirEscolaridad(Student student,

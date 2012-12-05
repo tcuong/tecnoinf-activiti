@@ -17,6 +17,8 @@ public class Examen extends GenericEntity {
 
 	private Date fecha;
 
+	private String codigo;
+
 	@ManyToOne
 	@JoinColumn(name = "asignatura")
 	private Asignatura asignatura;
@@ -43,6 +45,14 @@ public class Examen extends GenericEntity {
 
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 }

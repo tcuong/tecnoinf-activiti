@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Examen;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
@@ -31,4 +32,7 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
 	@Query("select i from Inscripcion i where i.curso = ?1")
 	public List<Inscripcion> findInscripcionesByCursoId(Curso curso);
+
+	@Query("select i from Inscripcion i where i.examen = ?1")
+	public List<Inscripcion> findInscripcionesByExamen(Examen examen);
 }
