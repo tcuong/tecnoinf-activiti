@@ -71,9 +71,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public List<Evaluacion> getEvaluacionesByStudentAndCurso(Student student,
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
 			Curso curso) {
-		return evaluacionRepo.getEvaluacionesByStudentAndCurso(student, curso);
+		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
 	}
 
 	@Override

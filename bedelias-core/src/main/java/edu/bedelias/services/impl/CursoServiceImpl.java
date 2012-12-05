@@ -80,7 +80,7 @@ public class CursoServiceImpl implements CursoService {
 		logger.info("generarActa, codigoCurso = " + codigoCurso);
 		Curso curso = cursoRepo.findCursoByUuid(codigoCurso);
 		List<Student> estudiantes = this.getEstudiantesInsciptosACurso(curso);
-		ReportsService.print(estudiantes, curso);
+		ReportsService.imprimirActaCurso(estudiantes, curso);
 	}
 
 	@Override

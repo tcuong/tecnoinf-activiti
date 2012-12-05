@@ -118,7 +118,6 @@ public class CargarDatosTest {
 
 		// Creo un Examen
 		Examen examen = new Examen();
-		examen.setNota(8);
 		examen.setFecha(new Date(System.currentTimeMillis()));
 		examen = examenService.createExamen(examen, asignatura);
 
@@ -147,6 +146,7 @@ public class CargarDatosTest {
 				.createPeriodoInscripcion(periodoExamen);
 
 		Evaluacion evaluacion = new Evaluacion();
+		evaluacion.setResultado(8);
 		evaluacion.setCurso(curso);
 		evaluacion.setEstudiante(student);
 		evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.FINAL);
@@ -164,7 +164,10 @@ public class CargarDatosTest {
 
 		List<Curso> cursos = cursoService.getCursosByCarrearId(carrera.getId());
 
-		assertNotNull("Inscripcion can't be null", examen);
+		Evaluacion ev = evaluacionService.getEvaluacionByStudentAndCurso(
+				student, curso);
+
+		assertNotNull("Inscripcion can't be null", ev);
 		assertNotNull("Cursos can't be null", cursos);
 	}
 

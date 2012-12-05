@@ -58,7 +58,6 @@ public class InscripcionTest {
 		asignatura = asignaturaService.createAsignatura(asignatura);
 
 		Examen examen = new Examen();
-		examen.setNota(8);
 		examen.setFecha(new Date(System.currentTimeMillis()));
 		examen = examenService.createExamen(examen, asignatura);
 

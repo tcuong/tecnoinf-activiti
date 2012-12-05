@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="process1" name="process1">
+  <process id="emisionEscolaridad" name="Emision de Escolaridad">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="usertask1" name="IngresarDatosEst" activiti:assignee="kermit"></userTask>
+    <userTask id="usertask1" name="IngresarDatosEst" activiti:assignee="kermit">
+      <extensionElements>
+        <activiti:formProperty id="cedula" name="Cedula" type="string" variable="cedula" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <serviceTask id="servicetask1" name="ValidarCedula" activiti:class="edu.bedelias.activiti.emisionescolaridad.ValidarCedula"></serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <serviceTask id="servicetask2" name="ImprimirEscolaridad" activiti:class="edu.bedelias.activiti.emisionescolaridad.ImprimirEscolaridad"></serviceTask>
-    <userTask id="usertask2" name="Finalizar"></userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow5"></exclusiveGateway>
+    <serviceTask id="servicetask2" name="Imprimir Escolaridad" activiti:class="edu.bedelias.activiti.emisionescolaridad.ImprimirEscolaridad"></serviceTask>
+    <userTask id="usertask2" name="Finalizar" activiti:assignee="kermit">
+      <documentation>El documento de escolaridad se ha creado satifactoriamente.</documentation>
+    </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="flow4" name="noExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow5" name="existeCedula" sourceRef="exclusivegateway1" targetRef="servicetask2"></sequenceFlow>
+    <sequenceFlow id="flow4" name="noExisteCedula" sourceRef="exclusivegateway1" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst==false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" name="existeCedula" sourceRef="exclusivegateway1" targetRef="servicetask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${existeEst==true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
     <sequenceFlow id="flow7" name="" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_process1">
-    <bpmndi:BPMNPlane bpmnElement="process1" id="BPMNPlane_process1">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_emisionEscolaridad">
+    <bpmndi:BPMNPlane bpmnElement="emisionEscolaridad" id="BPMNPlane_emisionEscolaridad">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35" width="35" x="5" y="150"></omgdc:Bounds>
       </bpmndi:BPMNShape>
@@ -57,14 +67,14 @@
         <omgdi:waypoint x="137" y="249"></omgdi:waypoint>
         <omgdi:waypoint x="137" y="195"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="10" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="10" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="445" y="167"></omgdi:waypoint>
         <omgdi:waypoint x="490" y="167"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-37" y="17"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="-37" y="17"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
