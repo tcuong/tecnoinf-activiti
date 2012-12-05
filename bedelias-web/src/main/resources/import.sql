@@ -8,7 +8,7 @@ INSERT INTO `CarreraMateria` VALUES (5,1);
 
 INSERT INTO `Asignatura` VALUES (1,'2012-11-25 15:37:57','Una Asignatura','asigCode',NULL,NULL,NULL),(2,'2012-11-25 15:37:57','CHUKU','soyPrevia',NULL,NULL,NULL), (3,'2012-11-25 15:37:57','Asign 1','Asignatura uno',NULL,NULL,NULL), (4,'2012-11-25 15:37:57','Asign 2','Asignatura dos',NULL,NULL,NULL);
 
-INSERT INTO `AsigMaterias` VALUES (1,1),(1,2);
+INSERT INTO `AsigMaterias` VALUES (1,1),(1,2),(1,3),(1,4);
 
 INSERT INTO `Previas` VALUES (1,2);
 
