@@ -296,7 +296,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 		inscripcion.setCarrera(carrera);
 		inscripcion.setEstudiante(estudiante);
 
-		// guardo la carrera
+		// guardo la inscripcion
 		inscripcionRepo.save(inscripcion);
 
 		}catch (Exception e) {
