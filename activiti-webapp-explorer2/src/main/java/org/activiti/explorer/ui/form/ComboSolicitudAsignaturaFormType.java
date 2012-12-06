@@ -2,9 +2,12 @@ package org.activiti.explorer.ui.form;
 
 import org.activiti.engine.impl.form.AbstractFormType;
 
-public class TextAreaFormType extends AbstractFormType {
+/**
+ * @author Brus
+ */
+public class ComboSolicitudAsignaturaFormType extends AbstractFormType {
 
-	public static final String TYPE_NAME = "textarea";
+	public static final String TYPE_NAME = "comboSolicitudAsigs";
 
 	public String getName() {
 		return TYPE_NAME;
@@ -12,7 +15,8 @@ public class TextAreaFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		return propertyValue;
+		return ComboSolicitudAsignaturaFormPropertyRenderer
+				.getId(propertyValue);
 	}
 
 	@Override

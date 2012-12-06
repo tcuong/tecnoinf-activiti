@@ -20,7 +20,7 @@ import edu.bedelias.services.MateriaService;
 public class MateriaServiceImpl implements MateriaService, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private MateriaRepository materiaRepo;
 
@@ -86,6 +86,11 @@ public class MateriaServiceImpl implements MateriaService, Serializable {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<Materia> findAll() {
+		return materiaRepo.findAll();
 	}
 
 }
