@@ -52,6 +52,7 @@
 				<ref bean="comboAsignaturaFormType" />
 				<ref bean="multipleOpcionesCarreraFormType" />
 				<ref bean="multipleOpcionesAsignaturaFormType" />
+				<ref bean="tablaPruebaFormType" />
 				<ref bean="comboMateriaFormType" />
 				<ref bean="comboSolicitudAsignaturaFormType" />
 				
@@ -67,6 +68,7 @@
 	<bean id="comboAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboAsignaturaFormType" />
 	<bean id="multipleOpcionesCarreraFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormType" />
 	<bean id="multipleOpcionesAsignaturaFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesAsignaturaFormType" />
+	<bean id="tablaPruebaFormType" class="org.activiti.explorer.ui.form.TablaPruebaFormType" />
 	<bean id="comboMateriaFormType" class="org.activiti.explorer.ui.form.ComboMateriaFormType" />
 	<bean id="comboSolicitudAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboSolicitudAsignaturaFormType" />
 	
