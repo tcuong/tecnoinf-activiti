@@ -1,11 +1,13 @@
 package edu.bedelias.services;
 
-import edu.bedelias.entities.Materia;
+import java.util.List;
+
 import edu.bedelias.entities.SolicitudAsignatura;
 
 public interface SolicitudAsignaturaService {
 
 	public SolicitudAsignatura createSolicitud(
-			SolicitudAsignatura solicitudAsignatura, Materia materia);
+			SolicitudAsignatura solicitudAsignatura, Long materiaId);
 
+	public List<SolicitudAsignatura> findall();
 }

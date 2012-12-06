@@ -20,4 +20,6 @@ public interface MateriaService {
 
 	public Boolean existeMateria(String nombre);
 
+	public List<Materia> findAll();
+
 }
