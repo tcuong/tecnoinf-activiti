@@ -46,4 +46,6 @@ public interface StudentService {
 
 	public String generatePass(String cedula);
 
+	public Student login(String ciEstudiante, String pass);
+
 }

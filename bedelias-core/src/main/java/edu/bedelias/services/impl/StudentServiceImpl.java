@@ -185,4 +185,18 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		
 	}
 
+	@Override
+	public Student login(String cedula, String pass) {
+		Student student = studentRepo.findStudentByCedula(cedula);
+		// existe el estudiante, cédula ok
+		if(student != null){
+			// las claves coinciden, login ok
+			if(pass.equals(student.getPassword())){
+				return student;
+			}
+		}
+		// cédula o clave tudo cagadu
+		return null;
+	}
+
 }

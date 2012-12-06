@@ -6,8 +6,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-		<h:form>
-			<p:panelGrid columns="2" style="width:40%; margin:50px auto;">
+		<h:form id="form">
+			<p:panelGrid id="grid" columns="2" style="width:40%; margin:50px auto;">
 				
 				<f:facet name="header">
         			Log In
@@ -17,11 +17,13 @@
 				<p:inputText value="#{loginMB.ciEstudiante}" required="true" />
 
 				<h:outputLabel value="Contrasenia: " />
-<!-- 				<p:password id="nonFeedback" value="" required="false" /> -->
-
+				<p:password id="nonFeedback" value="#{loginMB.pass}" />
+				
+				<p:growl id="growl" showDetail="true" sticky="true" />
+				
 				<f:facet name="footer">
-					<p:commandButton type="submit" value="Log In" action="#{loginMB.login}" style="float:right;"/>
-				</f:facet>
+					<p:commandButton update="growl" type="submit" value="Log In" actionListener="#{loginMB.login}" style="float:right;"/>
+				</f:facet> 
 			</p:panelGrid>
 		</h:form>
 
