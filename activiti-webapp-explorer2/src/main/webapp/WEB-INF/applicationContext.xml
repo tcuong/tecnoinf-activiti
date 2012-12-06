@@ -53,6 +53,8 @@
 				<ref bean="multipleOpcionesCarreraFormType" />
 				<ref bean="multipleOpcionesAsignaturaFormType" />
 				<ref bean="comboMateriaFormType" />
+				<ref bean="comboSolicitudAsignaturaFormType" />
+				
 				
 			</list>
 		</property>
@@ -66,6 +68,7 @@
 	<bean id="multipleOpcionesCarreraFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesCarreraFormType" />
 	<bean id="multipleOpcionesAsignaturaFormType" class="org.activiti.explorer.ui.form.MultipleOpcionesAsignaturaFormType" />
 	<bean id="comboMateriaFormType" class="org.activiti.explorer.ui.form.ComboMateriaFormType" />
+	<bean id="comboSolicitudAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboSolicitudAsignaturaFormType" />
 	
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">
