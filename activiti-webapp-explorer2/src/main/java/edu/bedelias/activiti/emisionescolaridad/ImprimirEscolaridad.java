@@ -46,9 +46,9 @@ public class ImprimirEscolaridad implements JavaDelegate {
 
 		List<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
 		for (Curso c : cursos) {
-			evaluaciones.add(evaluacionService.getEvaluacionByStudentAndCurso(
-					student, c));
+			evaluaciones.add(evaluacionService.getEvaluacionByStudentAndCurso(student, c));
 		}
+		studentService.generarEscolaridad(student, evaluaciones);
 	}
 
 	public InscripcionService getInscripcionService() {

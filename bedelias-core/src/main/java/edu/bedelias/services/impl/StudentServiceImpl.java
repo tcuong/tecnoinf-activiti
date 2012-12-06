@@ -16,6 +16,7 @@ import edu.bedelias.entities.Student;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
 import edu.bedelias.services.StudentService;
+import edu.bedelias.utils.ReportsService;
 import edu.bedelias.utils.SecUtils;
 
 /**
@@ -169,9 +170,8 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	@Override
-	public void generarEscolaridad(Student student,
-			List<Evaluacion> evaluaciones) {
-		// ReportsService.print(student, evaluaciones);
+	public void generarEscolaridad(Student student, List<Evaluacion> evaluaciones) {
+		 ReportsService.imprimirEscolaridad(student, evaluaciones);
 	}
 
 	@Override
