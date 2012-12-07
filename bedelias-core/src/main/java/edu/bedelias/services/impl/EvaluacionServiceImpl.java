@@ -55,6 +55,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		}
 		return evaluacion;
 	}
+	
+	@Override
+	public void createEvaluacion(List<Evaluacion> evaluaciones) {
+		// TODO si alguien sabe como hacerlo batch mejor ahora va a lo guerrero
+		for (Evaluacion evaluacion : evaluaciones) {
+			evaluacionRepo.save(evaluacion);
+		}
+	}
 
 	@Override
 	@Transactional

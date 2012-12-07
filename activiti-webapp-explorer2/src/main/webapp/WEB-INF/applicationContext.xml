@@ -55,7 +55,7 @@
 				<ref bean="tablaPruebaFormType" />
 				<ref bean="comboMateriaFormType" />
 				<ref bean="comboSolicitudAsignaturaFormType" />
-				
+				<ref bean="comboCursoFormType" />
 				
 			</list>
 		</property>
@@ -71,6 +71,9 @@
 	<bean id="tablaPruebaFormType" class="org.activiti.explorer.ui.form.TablaPruebaFormType" />
 	<bean id="comboMateriaFormType" class="org.activiti.explorer.ui.form.ComboMateriaFormType" />
 	<bean id="comboSolicitudAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboSolicitudAsignaturaFormType" />
+	<bean id="comboCursoFormType" class="org.activiti.explorer.ui.form.ComboCursoFormType" />
+	
+	
 	
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">

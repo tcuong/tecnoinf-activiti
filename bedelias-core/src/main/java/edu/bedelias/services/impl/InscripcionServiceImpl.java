@@ -305,4 +305,11 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return msg;
 	}
 
+	@Override
+	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida) {
+		// Acá tengo que devolver todas los estudiantes que tienen una inscripcion al curso y con el tipo de inscripcion == valida
+		// y además que no tengan una evaluación creada para ese curso, es para el proceso de ingreso de resultados
+		return null;
+	}
+
 }

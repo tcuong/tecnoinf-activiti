@@ -45,6 +45,7 @@
 		<bean class="org.activiti.explorer.ui.form.TablaPruebaFormPropertyRenderer" />
 		<bean class="org.activiti.explorer.ui.form.ComboMateriaFormPropertyRenderer" />
 		<bean class="org.activiti.explorer.ui.form.ComboSolicitudAsignaturaFormPropertyRenderer" />
+		<bean class="org.activiti.explorer.ui.form.ComboCursoFormPropertyRenderer" />
       </list>
     </property>
   </bean>
