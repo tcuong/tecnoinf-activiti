@@ -59,6 +59,7 @@ public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormProper
 
 		
 		
+//		ProcessEngines.getDefaultProcessEngine().
 		Map<String, Object> concha = ProcessEngines.getDefaultProcessEngine().getRuntimeService().getVariables("6110");
 //		String datos = (String) ProcessEngines.getDefaultProcessEngine().getRuntimeService().getVariable(concha, "curso");
 				
