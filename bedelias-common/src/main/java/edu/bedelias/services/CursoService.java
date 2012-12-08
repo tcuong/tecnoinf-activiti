@@ -32,5 +32,7 @@ public interface CursoService {
 	 * @return
 	 */
 	public List<Student> getEstudiantesInsciptosACurso(Curso curso);
+	
+	public List<Student> getEstudiantesInsciptosACurso(String cursoId);
 
 }
