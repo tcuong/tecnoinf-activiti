@@ -59,6 +59,13 @@
 				
 			</list>
 		</property>
+		
+		<!-- Esto es para mandar mails desde activiti -->
+		<property name="mailServerHost" value="smtp.gmail.com"/>
+		<property name="mailServerPort" value="587"/>
+		<property name="mailServerUsername" value="carlosactiviti@gmail.com"/>
+		<property name="mailServerPassword" value="noobsaibotrules"/>
+		<property name="mailServerUseTLS" value="true"/>
 
 	</bean>
 

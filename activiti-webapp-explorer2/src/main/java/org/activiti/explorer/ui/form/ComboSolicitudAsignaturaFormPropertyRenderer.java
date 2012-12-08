@@ -33,7 +33,7 @@ public class ComboSolicitudAsignaturaFormPropertyRenderer extends
 		AbstractFormPropertyRenderer {
 
 	public ComboSolicitudAsignaturaFormPropertyRenderer() {
-		super(ComboCarreraFormType.class);
+		super(ComboSolicitudAsignaturaFormType.class);
 	}
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(

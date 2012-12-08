@@ -22,4 +22,6 @@ public interface MateriaService {
 
 	public List<Materia> findAll();
 
+	public Materia getMateriaById(Long materiaId);
+
 }

@@ -3,7 +3,7 @@
   <collaboration id="Collaboration">
     <participant id="pool1" name="Pool" processRef="process_pool1"></participant>
   </collaboration>
-  <process id="process_pool1" name="process_pool1">
+  <process id="process_pool1" name="Solicitud Aprobacion Asignatura">
     <laneSet id="laneSet_process_pool1">
       <lane id="instituto" name="Instituto">
         <flowNodeRef>startevent1</flowNodeRef>
@@ -65,17 +65,26 @@
         <activiti:formProperty id="resolucion" name="Resolucion" type="textarea" variable="resolucion" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="nombreFuncionario" name="Nombre Funcionario" type="string" variable="nombreFuncionario" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="nombreEntidad" name="Nombre Entidad" type="string" variable="nombreEntidad" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="aprobada" name="Aprobada" type="enum" variable="aprobada" required="true" readable="true" writable="true">
-          <activiti:value id="1" name="Aprobada"></activiti:value>
-          <activiti:value id="0" name="No Aprobada"></activiti:value>
-        </activiti:formProperty>
+        <activiti:formProperty id="aprobada" name="Aprobada" type="boolean" variable="aprobada" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="solicitud" name="Solicitud Aprobacion de Asignatura" type="comboSolicitudAsigs" variable="solicitud" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <serviceTask id="servicetask2" name="Guradar Minuta Ins" activiti:class="edu.bedelias.activiti.aprobacionasignatura.GuardarMinutaIns"></serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow7"></exclusiveGateway>
     <serviceTask id="mailtask1" name="Notifacion Docente" activiti:type="mail">
-      <extensionElements></extensionElements>
+      <extensionElements>
+        <activiti:field name="to" expression="brunovierag@gmail.com"></activiti:field>
+        <activiti:field name="subject" expression="Solicitud Aprobacion Asignatura"></activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[${msj}
+
+${msj2}
+
+${msj3}
+
+${msj4}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
     </serviceTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <manualTask id="manualtask2" name="Reunion Comision Carrera"></manualTask>
@@ -88,24 +97,63 @@
     <serviceTask id="servicetask4" name="Guardar Minuta Consejo" activiti:class="edu.bedelias.activiti.aprobacionasignatura.GuardarMinutaConsejo"></serviceTask>
     <userTask id="usertask5" name="Ingreso Datos Asignatura"></userTask>
     <serviceTask id="servicetask5" name="Guardar Asignatura" activiti:class="edu.bedelias.activiti.aprobacionasignatura.GuardarAsignatura"></serviceTask>
-    <userTask id="usertask6" name="Ingreso Minuta ComCarrera" activiti:candidateGroups="comisionCarrera"></userTask>
-    <userTask id="usertask7" name="Ingreso Minuta Consejo" activiti:candidateGroups="consejo"></userTask>
-    <userTask id="usertask8" name="Ingreso Datos Asignatura" activiti:candidateGroups="bedelias"></userTask>
+    <userTask id="usertask6" name="Ingreso Minuta ComCarrera" activiti:candidateGroups="comisionCarrera">
+      <extensionElements>
+        <activiti:formProperty id="resolucionCC" name="Resolucion Comision Carrera" type="textarea" variable="resolucionCC" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="nombreFuncionarioCC" name="Nombre funcionario Comision Carrera" type="string" variable="nombreFuncionarioCC" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="nombreEntidadCC" name="Nombre entidad" type="string" variable="nombreEntidadCC" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="aprobadaCC" name="Aprobada" type="boolean" variable="aprobadaCC" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="solicitudCC" name="Solicitud de aprobacion de asignatura" type="comboSolicitudAsigs" variable="solicitudCC" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask7" name="Ingreso Minuta Consejo" activiti:candidateGroups="consejo">
+      <extensionElements>
+        <activiti:formProperty id="resolucionConsejo" name="Resolucion Consejo" type="textarea" variable="resolucionConsejo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="nombreFuncConsejo" name="Nombre funcionario consejo" type="string" variable="nombreFuncConsejo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="nombreEntidadConsejo" name="Nombre Entidad" type="string" variable="nombreEntidadConsejo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="aprobadaConsejo" name="Aprobada" type="boolean" variable="aprobadaConsejo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="solicitudConsejo" name="Solicitud aprobacion asignatura" type="comboSolicitudAsigs" variable="solicitudConsejo" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask8" name="Ingreso Datos Asignatura" activiti:candidateGroups="bedelias">
+      <extensionElements>
+        <activiti:formProperty id="nombre" name="Nombre Asignatura" type="string" variable="nombre" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="creditos" name="Creditos" type="long" variable="creditos" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="codigo" name="Codigo Asignatura" type="string" variable="codigo" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="isElectiva" name="Es electiva" type="boolean" variable="isElectiva" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="tipoAprobacion" name="Tipo de aprobacion" type="enum" variable="tipoAprobacion" required="true" readable="true" writable="true">
+          <activiti:value id="1" name="EXAMEN"></activiti:value>
+          <activiti:value id="2" name="CURSO"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="servicetask1" targetRef="manualtask1"></sequenceFlow>
     <sequenceFlow id="flow4" name="" sourceRef="manualtask1" targetRef="usertask2"></sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="usertask2" targetRef="servicetask2"></sequenceFlow>
     <sequenceFlow id="flow6" name="" sourceRef="servicetask2" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="flow7" name="SolicitudNoAprobada" sourceRef="exclusivegateway1" targetRef="mailtask1"></sequenceFlow>
+    <sequenceFlow id="flow7" name="SolicitudNoAprobada" sourceRef="exclusivegateway1" targetRef="mailtask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobada == false}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow8" name="" sourceRef="mailtask1" targetRef="endevent1"></sequenceFlow>
-    <sequenceFlow id="flow9" name="SolicitudAprobada" sourceRef="exclusivegateway1" targetRef="manualtask2"></sequenceFlow>
+    <sequenceFlow id="flow9" name="SolicitudAprobada" sourceRef="exclusivegateway1" targetRef="manualtask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobada == true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow12" name="" sourceRef="servicetask3" targetRef="exclusivegateway2"></sequenceFlow>
-    <sequenceFlow id="flow13" name="SolicitudNoAprobada" sourceRef="exclusivegateway2" targetRef="mailtask1"></sequenceFlow>
-    <sequenceFlow id="flow14" name="SolicitudAprobada" sourceRef="exclusivegateway2" targetRef="manualtask3"></sequenceFlow>
+    <sequenceFlow id="flow13" name="SolicitudNoAprobada" sourceRef="exclusivegateway2" targetRef="mailtask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobadaCC == false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow14" name="SolicitudAprobada" sourceRef="exclusivegateway2" targetRef="manualtask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobadaCC == true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow17" name="" sourceRef="servicetask4" targetRef="exclusivegateway3"></sequenceFlow>
-    <sequenceFlow id="flow18" name="SolicitudNoAprobada" sourceRef="exclusivegateway3" targetRef="mailtask1"></sequenceFlow>
-    <sequenceFlow id="flow19" name="SolicitudAprobada" sourceRef="exclusivegateway3" targetRef="usertask8"></sequenceFlow>
+    <sequenceFlow id="flow18" name="SolicitudNoAprobada" sourceRef="exclusivegateway3" targetRef="mailtask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobadaConsejo == false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow19" name="SolicitudAprobada" sourceRef="exclusivegateway3" targetRef="usertask8">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${aprobadaConsejo == true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow21" name="" sourceRef="servicetask5" targetRef="mailtask1"></sequenceFlow>
     <sequenceFlow id="flow22" name="" sourceRef="manualtask2" targetRef="usertask6"></sequenceFlow>
     <sequenceFlow id="flow23" name="" sourceRef="usertask6" targetRef="servicetask3"></sequenceFlow>

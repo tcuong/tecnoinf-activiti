@@ -33,7 +33,7 @@ public class ComboMateriaFormPropertyRenderer extends
 		AbstractFormPropertyRenderer {
 
 	public ComboMateriaFormPropertyRenderer() {
-		super(ComboCarreraFormType.class);
+		super(ComboMateriaFormType.class);
 	}
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
