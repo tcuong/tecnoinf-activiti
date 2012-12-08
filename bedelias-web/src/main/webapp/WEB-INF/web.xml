@@ -6,7 +6,7 @@
 	<display-name>Bedelias</display-name>
 
 	<welcome-file-list>
-		<welcome-file>pages/helloworld.xhtml</welcome-file>
+		<welcome-file>pages/home.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

@@ -1,4 +1,3 @@
-
 <ui:composition template="baseTemplate.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -9,63 +8,55 @@
 	<ui:define name="content">
 		<h:form>
 			<p:panelGrid columns="1" style="height:100%; width: 100%;">
-
-				<f:facet name="header"> Formulario de Inscripcion a Curso </f:facet>
-
+				<f:facet name="header">#{localization['inscripciones.header']}</f:facet>
 				<p:panelGrid columns="2"
 					style="margin:15px auto; border: none !important;">
-					<h:outputText value="Seleccione la Carrera" />
-
+					<h:outputText
+						value="#{localization['inscripciones.selectCarrera']}" />
 					<p:selectOneMenu value="#{inscripcionCursoMB.carreraId}">
-						<f:selectItem itemLabel="-- Carrera --" itemValue="" />
+						<f:selectItem itemLabel="-- #{localization['common.carrera']} --"
+							itemValue="" />
 						<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}" />
 						<p:ajax update="tabla"
 							listener="#{inscripcionCursoMB.actualizarCursos}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
-
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
-					style="margin:10px">
-
+					style="margin:10px" emptyMessage="#{localization['misc.noRecordsFound']}">
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Cursos" />
+							<h:outputText value="#{localization['common.cursos']}" />
 						</f:facet>
 						<h:outputText value="#{curso.descripcion}" />
 					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Semestre" />
+							<h:outputText value="#{localization['common.semestre']}" />
 						</f:facet>
 						<h:outputText value="#{curso.semestre}" />
 					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Horario" />
+							<h:outputText value="#{localization['common.horario']}" />
 						</f:facet>
 						<h:outputText value="#{curso.horario}" />
-					</p:column> 
-					
+					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Salón" />
+							<h:outputText value="#{localization['common.salon']}" />
 						</f:facet>
 						<h:outputText value="#{curso.salon}" />
 					</p:column>
-					
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Seleccionar" />
+							<h:outputText value="#{localization['common.select']}" />
 						</f:facet>
-						<p:commandButton value="Inscribirme"
+						<p:commandButton value="#{localization['common.inscribirme']}"
 							action="#{inscripcionCursoMB.inscribirse()}" style="padding:0;" />
 					</p:column>
-
 				</p:dataTable>
 			</p:panelGrid>
 		</h:form>

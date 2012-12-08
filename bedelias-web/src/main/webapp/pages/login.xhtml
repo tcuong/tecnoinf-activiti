@@ -7,23 +7,19 @@
 
 	<ui:define name="content">
 		<h:form id="form">
-			<p:panelGrid id="grid" columns="2" style="width:40%; margin:50px auto;">
-				
-				<f:facet name="header">
-        			Log In
-    			</f:facet>
-
-				<h:outputLabel value=" Cedula: " />
+			<p:panelGrid id="grid" columns="2"
+				style="width:40%; margin:50px auto;">
+				<f:facet name="header">#{localization['login.login']}</f:facet>
+				<h:outputLabel value="#{localization['login.cedula']}:" />
 				<p:inputText value="#{loginMB.ciEstudiante}" required="true" />
-
-				<h:outputLabel value="Contrasenia: " />
-				<p:password id="nonFeedback" value="#{loginMB.pass}" />
-				
+				<h:outputLabel value="#{localization['login.password']}:" />
+				<p:password id="nonFeedback" value="#{loginMB.pass}" required="true"/>
 				<p:growl id="growl" showDetail="true" sticky="true" />
-				
 				<f:facet name="footer">
-					<p:commandButton update="growl" type="submit" value="Log In" actionListener="#{loginMB.login}" style="float:right;"/>
-				</f:facet> 
+					<p:commandButton update="growl" type="submit"
+						value="#{localization['login.login']}"
+						actionListener="#{loginMB.login}" style="float:right;" />
+				</f:facet>
 			</p:panelGrid>
 		</h:form>
 

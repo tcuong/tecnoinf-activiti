@@ -9,23 +9,19 @@
 <ui:composition name="menuIzquierda">
 	<h:form>
 		<p:menu>
-
-			<p:submenu label=" Estudiante ">
-				<p:menuitem value="Iniciar Sesion"
+			<p:submenu label="#{localization['common.estudiante']}">
+				<p:menuitem value="#{localization['login.login']}"
 					actionListener="#{menuIzqMB.iniciarSesion}" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
-
 			<p:submenu label=" Previas ">
-				<p:menuitem value="Previas de asignatura"
+				<p:menuitem value="#{localization['common.previas']}"
 					actionListener="#{menuIzqMB.verPrevias}" />
-				<p:menuitem value="De cuáles es previa una asignatura"
+				<p:menuitem value="#{localization['common.previasDe']}"
 					actionListener="#{menuIzqMB.previasDeQuien}" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
-
 		</p:menu>
 	</h:form>
 </ui:composition>
-
 </html>
