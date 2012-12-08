@@ -93,4 +93,9 @@ public class MateriaServiceImpl implements MateriaService, Serializable {
 		return materiaRepo.findAll();
 	}
 
+	@Override
+	public Materia getMateriaById(Long materiaId) {
+		return materiaRepo.findOne(materiaId);
+	}
+
 }

@@ -88,6 +88,11 @@ public class CursoServiceImpl implements CursoService {
 		return cursoRepo.findAll();
 
 	}
+	
+	public List<Student> getEstudiantesInsciptosACurso(String cursoId) {
+		Curso curso = cursoRepo.findCursoById(Long.valueOf(cursoId));
+		return getEstudiantesInsciptosACurso(curso);
+	}
 
 	@Override
 	public List<Student> getEstudiantesInsciptosACurso(Curso curso) {

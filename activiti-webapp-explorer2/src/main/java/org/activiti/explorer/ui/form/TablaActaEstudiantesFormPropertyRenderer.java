@@ -15,8 +15,17 @@ package org.activiti.explorer.ui.form;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.activiti.engine.FormService;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.form.FormData;
 import org.activiti.engine.form.FormProperty;
+import org.activiti.engine.form.TaskFormData;
+import org.activiti.engine.impl.context.Context;
+import org.activiti.engine.impl.persistence.deploy.DeploymentCache;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.runtime.ExecutionQuery;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.vaadin.data.util.BeanItemContainer;
@@ -24,7 +33,7 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.Table;
 
 import edu.bedelias.entities.Student;
-import edu.bedelias.services.StudentService;
+import edu.bedelias.services.CursoService;
 
 /**
  * @author Brus
@@ -36,24 +45,38 @@ public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormProper
 	}
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
-	private static StudentService studentService = (StudentService) cpx.getBean("studentService");
+	private static CursoService cursoService = (CursoService) cpx.getBean("cursoService");
 	
 	static Table table;
 
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
+		
+
+
+//		Curso curso = ComboCursoFormPropertyRenderer.getCurso(propertyValue);
+		String cursoId = "";
+
+		
+		
+//		ProcessEngines.getDefaultProcessEngine().
+		Map<String, Object> concha = ProcessEngines.getDefaultProcessEngine().getRuntimeService().getVariables("6110");
+//		String datos = (String) ProcessEngines.getDefaultProcessEngine().getRuntimeService().getVariable(concha, "curso");
+				
 		table = new Table();
         table.setWidth("100%");
         
         BeanItemContainer<RowActaEstudiante> bic = new BeanItemContainer<RowActaEstudiante>(RowActaEstudiante.class);
         
-        
         // falta obtener todos los estudiantes del curso seleccionado
-        Student student = studentService.findStudentByCedula("someCedula");
+        List<Student> estudiantes = cursoService.getEstudiantesInsciptosACurso(cursoId);
         
-    	RowActaEstudiante ej = new RowActaEstudiante();
-    	ej.setStudent(student);
-		bic.addItem(ej);
+        
+    	for (Student est: estudiantes) {
+    		RowActaEstudiante fila = new RowActaEstudiante();
+    		fila.setStudent(est);
+    		bic.addItem(fila);
+		}
         
         table.setContainerDataSource(bic);
         

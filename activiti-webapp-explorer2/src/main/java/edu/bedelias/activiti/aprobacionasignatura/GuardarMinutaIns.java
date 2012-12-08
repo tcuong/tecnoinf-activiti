@@ -24,11 +24,7 @@ public class GuardarMinutaIns implements JavaDelegate {
 		String nombreEntidad = execution.getVariable("nombreEntidad")
 				.toString();
 
-		String aprob = execution.getVariable("aprobado").toString();
-		boolean aprobado = false;
-		if (aprob.equals("1")) {
-			aprobado = true;
-		}
+		boolean aprobado = (boolean) execution.getVariable("aprobada");
 
 		Minuta minuta = new Minuta();
 		minuta.setResolucion(resolucion);
@@ -40,6 +36,17 @@ public class GuardarMinutaIns implements JavaDelegate {
 		Long solicitudId = Long.valueOf(solicitud);
 
 		minutaService.createMinuta(minuta, solicitudId);
+
+		if (!aprobado) {
+			execution.setVariable("msj", "Estimado docente, ");
+			execution
+					.setVariable(
+							"msj2",
+							"Lamentamos informarle que su solicitud no ha sido aprobada debido a la siguiente resolucion: ");
+			execution.setVariable("msj3", resolucion);
+			execution.setVariable("msj4",
+					"Por mas informacion por favor dirijase a Bedelias.");
+		}
 	}
 
 	public MinutaService getMinutaService() {

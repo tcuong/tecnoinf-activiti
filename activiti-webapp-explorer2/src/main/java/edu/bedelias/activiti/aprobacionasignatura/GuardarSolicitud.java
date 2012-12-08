@@ -38,7 +38,6 @@ public class GuardarSolicitud implements JavaDelegate {
 
 		solicitudAsignaturaService.createSolicitud(solicitudAsignatura,
 				materiaId);
-
 	}
 
 	public SolicitudAsignaturaService getSolicitudAsignaturaService() {

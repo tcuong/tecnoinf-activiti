@@ -5,7 +5,7 @@
 	xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
 	expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
 	<collaboration id="Collaboration">
-		<participant id="poolAltaCurso" name="Pool" processRef="process_pool1"></participant>
+		<participant id="poolAltaCurso" name="Pool" processRef="altaCurso"></participant>
 	</collaboration>
 	<process id="altaCurso" name="Alta Curso">
 		<laneSet id="laneSet_process_pool1">

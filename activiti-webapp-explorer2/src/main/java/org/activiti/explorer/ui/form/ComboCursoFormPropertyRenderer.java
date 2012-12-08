@@ -26,7 +26,7 @@ public class ComboCursoFormPropertyRenderer extends AbstractFormPropertyRenderer
 	private static CursoService cursoService = (CursoService) cpx.getBean("cursoService");
 
 	private static HashMap<String, Curso> ids;
-
+	
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
 
@@ -43,13 +43,13 @@ public class ComboCursoFormPropertyRenderer extends AbstractFormPropertyRenderer
 		return combo;
 	}
 
-	public static Curso getCurso(String seleccion) {
+	public static String getCurso(String seleccion) {
 		if (ids == null) {
 			cargarHash();
 		} else if(seleccion == null){
 			return null;
 		}
-		return ids.get(seleccion);
+		return ids.get(seleccion).getId().toString();
 	}
 
 	private static void cargarHash() {

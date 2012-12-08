@@ -85,6 +85,7 @@
     <property name="applicationMainWindow" ref="mainWindow" />
     <property name="componentFactories" ref="componentFactories" />
     <property name="loginHandler" ref="activitiLoginHandler" />
+	
   </bean>
   
   <bean name="i18nManager" class="org.activiti.explorer.I18nManager" scope="session" />

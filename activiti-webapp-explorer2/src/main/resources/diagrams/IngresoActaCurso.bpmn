@@ -10,7 +10,7 @@
     </userTask>
     <userTask id="ingresarActaCurso" name="Ingresar Acta Curso" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
       <extensionElements>
-        <activiti:formProperty id="acta" name="Acta Estudiantes" type="tablaActaEstudiantes" value="cursoId" variable="actaEstudiantes" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="acta" name="Acta Estudiantes" type="tablaActaEstudiantes" value="curso" expression="curso" variable="actaEstudiantes" required="true" readable="true" writable="true"></activiti:formProperty>
         <activiti:formProperty id="finalizada" name="Enviar a Autidar?" type="boolean" variable="finalizada" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
@@ -21,6 +21,7 @@
     <userTask id="mostrarInformacion" name="Mostrar Informacion" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
       <documentation>${mensaje}</documentation>
     </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="selecciondeCurso"></sequenceFlow>
     <sequenceFlow id="flow4" name="" sourceRef="ingresarActaCurso" targetRef="guardar"></sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="guardar" targetRef="exclusivegateway2"></sequenceFlow>
@@ -34,7 +35,6 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isOk == true}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow13" name="" sourceRef="selecciondeCurso" targetRef="ingresarActaCurso"></sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow14" name="" sourceRef="mostrarInformacion" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_ingresoActasCurso">
