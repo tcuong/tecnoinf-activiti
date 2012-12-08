@@ -15,7 +15,7 @@ public class ComboCursoFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		return ComboCursoFormPropertyRenderer.getId(propertyValue);
+		return ComboCursoFormPropertyRenderer.getCurso(propertyValue);
 	}
 
 	@Override

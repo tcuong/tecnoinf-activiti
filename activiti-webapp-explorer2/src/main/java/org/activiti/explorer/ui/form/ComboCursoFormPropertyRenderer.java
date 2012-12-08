@@ -1,16 +1,3 @@
-/* Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.activiti.explorer.ui.form;
 
 import java.util.HashMap;
@@ -38,7 +25,7 @@ public class ComboCursoFormPropertyRenderer extends AbstractFormPropertyRenderer
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
 	private static CursoService cursoService = (CursoService) cpx.getBean("cursoService");
 
-	private static HashMap<String, Long> ids;
+	private static HashMap<String, Curso> ids;
 
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
@@ -47,30 +34,29 @@ public class ComboCursoFormPropertyRenderer extends AbstractFormPropertyRenderer
 		ComboBox combo = new ComboBox(formProperty.getName());
 		ids = new HashMap<>();
 		for (Curso curso : cursos) {
-			ids.put(curso.getName(), curso.getId());
+			ids.put(curso.getName(), curso);
 			combo.addItem(curso.getName());
 		}
-
+		
 		combo.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
 		combo.setImmediate(true);
-
 		return combo;
 	}
 
-	public static String getId(String seleccion) {
+	public static Curso getCurso(String seleccion) {
 		if (ids == null) {
 			cargarHash();
 		} else if(seleccion == null){
-			return "";
+			return null;
 		}
-		return ids.get(seleccion).toString();
+		return ids.get(seleccion);
 	}
 
 	private static void cargarHash() {
 		List<Curso> cursos = cursoService.findAll();
 		ids = new HashMap<>();
 		for (Curso curso : cursos) {
-			ids.put(curso.getName(), curso.getId());
+			ids.put(curso.getName(), curso);
 		}
 	}
 

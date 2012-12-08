@@ -4,7 +4,7 @@
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="ValidarHT" name="MostrarDatos" activiti:assignee="kermit">
       <extensionElements>
-        <activiti:formProperty id="tabla" name="Tabla" type="tabla" variable="tabla" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="tabla" name="Tabla" type="tablaActaEstudiantes" variable="tabla" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>

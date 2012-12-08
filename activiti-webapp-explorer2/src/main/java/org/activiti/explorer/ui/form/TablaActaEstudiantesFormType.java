@@ -5,9 +5,9 @@ import org.activiti.engine.impl.form.AbstractFormType;
 /**
  * @author Brus
  */
-public class TablaPruebaFormType extends AbstractFormType {
+public class TablaActaEstudiantesFormType extends AbstractFormType {
 
-	public static final String TYPE_NAME = "tabla";
+	public static final String TYPE_NAME = "tablaActaEstudiantes";
 
 	public String getName() {
 		return TYPE_NAME;
@@ -15,8 +15,7 @@ public class TablaPruebaFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		System.out.println(propertyValue);
-		return TablaPruebaFormPropertyRenderer.datos();
+		return TablaActaEstudiantesFormPropertyRenderer.datos();
 	}
 
 	@Override
