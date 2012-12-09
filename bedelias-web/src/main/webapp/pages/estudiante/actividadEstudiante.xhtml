@@ -6,46 +6,36 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
+		<h:form >
+			<p:panelGrid columns="1" style="height:100%; width: 100%;">
+				<f:facet name="header"> #{localization['activEst.header']} </f:facet>
+				<h:outputLabel value="#{localization['activEst.resumen']}"></h:outputLabel>
+				
+				<p:dataTable id="tabla" var="eval" widgetVar="table"
+					value="#{consultaActividadMB.evaluaciones}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px"
+					emptyMessage="#{localization['misc.noRecordsFound']}">
+					
+					<p:column headerText="#{localization['activEst.curso']}" filterBy="#{eval.curso.name}" filterMatchMode="contains">
+						<h:outputText value="#{eval.curso.name}" />
+					</p:column>
 
-		<p:fieldset legend="Noticia 1" style="margin: 20px;">
-			<h:panelGrid columns="2" cellpadding="10">
-				<h:outputText
-					value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-            hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-            but given to ruthless violence whenever anything stands against the good of the family." />
-			</h:panelGrid>
-		</p:fieldset>
+					<p:column headerText="#{localization['activEst.actividad']}" sortBy="#{eval.curso.asignatura.tipoAprobacion}">
+						<h:outputText value="#{eval.curso.asignatura.tipoAprobacion}" />
+					</p:column>
 
-		<p:fieldset legend="Noticia 2" style="margin: 20px;">
-			<h:panelGrid columns="2" cellpadding="10">
-				<h:outputText
-					value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-            hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-            but given to ruthless violence whenever anything stands against the good of the family." />
-			</h:panelGrid>
-		</p:fieldset>
+					<p:column headerText="#{localization['activEst.calificacion']}">
+						<h:outputText value="#{eval.resultado}" />
+					</p:column>
 
-		<p:fieldset legend="Noticia 3" style="margin: 20px;">
-			<h:panelGrid columns="2" cellpadding="10">
-				<h:outputText
-					value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-            hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-            but given to ruthless violence whenever anything stands against the good of the family." />
-			</h:panelGrid>
-		</p:fieldset>
+					<p:column headerText="#{localization['activEst.fecha']}" sortBy="#{eval.fechaEvaluacion}">
+						<h:outputText value="#{eval.fechaEvaluacion}" />
+					</p:column>
 
-		<p:fieldset legend="Noticia 4" style="margin: 20px;">
-			<h:panelGrid columns="2" cellpadding="10">
-				<h:outputText
-					value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
-            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
-            hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
-            but given to ruthless violence whenever anything stands against the good of the family." />
-			</h:panelGrid>
-		</p:fieldset>
-
+				</p:dataTable>
+			</p:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>

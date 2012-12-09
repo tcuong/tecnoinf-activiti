@@ -13,11 +13,11 @@ public class MenuIzqEstMB extends GenericMB {
 		super();
 	}
 
-	public String obtenerNombre(){
+	public String obtenerNombre() {
 		estaLogueado();
 		return (String) this.getFromSession(this.nombre);
 	}
-	
+
 	public void inscripcionCurso() {
 		redirect("../estudiante/inscripcionCurso.xhtml");
 	}
@@ -25,23 +25,27 @@ public class MenuIzqEstMB extends GenericMB {
 	public void verInscripcionesCurso() {
 		redirect("../estudiante/verInscripcionesCurso.xhtml");
 	}
-	
-	public void noImplementada(){
+
+	public void consultaActividad() {
+		redirect("../estudiante/actividadEstudiante.xhtml");
+	}
+
+	public void noImplementada() {
 		redirect("noImplementada.xhtml");
 	}
-	
-	public void desistirInscripcion(){
+
+	public void desistirInscripcion() {
 		redirect("desistirInscripcion.xhtml");
 	}
-	
-	public void verPrevias(){
+
+	public void verPrevias() {
 		redirect("previas.xhtml");
 	}
-	
-	public void previasDeQuien(){
+
+	public void previasDeQuien() {
 		redirect("previasDeQuien.xhtml");
 	}
-	
+
 	public String getNombre() {
 		return (String) getFromSession(nombre);
 	}
