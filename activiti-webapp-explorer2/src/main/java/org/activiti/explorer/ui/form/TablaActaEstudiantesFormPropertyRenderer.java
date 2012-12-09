@@ -23,8 +23,10 @@ import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Table;
 
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.services.CursoService;
+import edu.bedelias.services.EvaluacionService;
 
 /**
  * @author Brus
@@ -37,55 +39,57 @@ public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormProper
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
 	private static CursoService cursoService = (CursoService) cpx.getBean("cursoService");
-	
-	static Table table;
+	private static EvaluacionService evaluacionService = (EvaluacionService) cpx.getBean("evaluacionService");
+
+	private static Table table = new Table();
 
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
-		
 
 		String cursoId = formProperty.getValue();
 		
-		table = new Table();
-        table.setWidth("100%");
-        
-        if(!cursoId.isEmpty()){
-        	 
-	        BeanItemContainer<RowActaEstudiante> bic = new BeanItemContainer<RowActaEstudiante>(RowActaEstudiante.class);
-	        
-	        // ACA 	lo que HAY QUE IR A BUSCAR SON LAS EVALUACIONES INGRESADAS PARA MOSTRARLAS NADA MAS
-	        List<Student> estudiantes = cursoService.getEstudiantesInsciptosACurso(cursoId);
-	        
-	        
-	    	for (Student est: estudiantes) {
-	    		RowActaEstudiante fila = new RowActaEstudiante();
-	    		fila.setStudent(est);
-	    		bic.addItem(fila);
+		table.setWidth("100%");
+
+		BeanItemContainer<RowActaEstudiante> bic = new BeanItemContainer<RowActaEstudiante>(RowActaEstudiante.class);
+
+		List<Student> estudiantes = cursoService.getEstudiantesInsciptosACurso(cursoId);
+
+		for (Student est : estudiantes) {
+			// armo la columna con los datos
+			RowActaEstudiante fila = new RowActaEstudiante();
+			fila.setStudent(est);
+
+			// busco la evaluación creada en otro momento, si existe
+			Evaluacion evaluacion = evaluacionService.getEvaluacionByStudentAndCurso(est, cursoId);
+
+			if (evaluacion != null) {
+				fila.setNombre(evaluacion.getResultado().toString());
 			}
-	        
-	        table.setContainerDataSource(bic);
-	        // set column headers
-	        table.setVisibleColumns(new Object[]{"nombre", "texto"});
-	        table.setColumnHeaders(new String[]{"Nombre", "Nota"});
-	        table.setEditable(false);        
-        }
-        
+			bic.addItem(fila);
+		}
+
+		table.setContainerDataSource(bic);
+		// set column headers
+		table.setVisibleColumns(new Object[] { "nombre", "texto" });
+		table.setColumnHeaders(new String[] { "Nombre", "Nota" });
+		table.setEditable(false);
+
 		return table;
 	}
-	
-	public static List<ActaCursoON> datos(){
-		 @SuppressWarnings("unchecked")
-		 // obtengo todos los objetos de la tabla
+
+	public static List<ActaCursoON> datos() {
+		@SuppressWarnings("unchecked")
+		// obtengo todos los objetos de la tabla
 		BeanItemContainer<RowActaEstudiante> bic = (BeanItemContainer<RowActaEstudiante>) table.getContainerDataSource();
-		 
-		 // creo una lista de objetos de negocio
-		 List<ActaCursoON> ejemplos = new ArrayList<>();
-		 
-		 // la cargo con los datos de la tabla
-		 for (RowActaEstudiante ej : bic.getItemIds() ) {
-			 ejemplos.add(new ActaCursoON(ej.getStudent(), ej.getTexto().getValue().toString()));
+
+		// creo una lista de objetos de negocio
+		List<ActaCursoON> ejemplos = new ArrayList<>();
+
+		// la cargo con los datos de la tabla
+		for (RowActaEstudiante ej : bic.getItemIds()) {
+			ejemplos.add(new ActaCursoON(ej.getStudent(), ej.getTexto().getValue().toString()));
 		}
-		 
+
 		return ejemplos;
 	}
 

@@ -24,8 +24,6 @@ import com.vaadin.ui.Field;
 import com.vaadin.ui.Table;
 
 import edu.bedelias.entities.Evaluacion;
-import edu.bedelias.entities.Student;
-import edu.bedelias.services.CursoService;
 import edu.bedelias.services.EvaluacionService;
 
 /**
@@ -60,8 +58,7 @@ public class TablaAuditarActaEstudiantesFormPropertyRenderer extends AbstractFor
     	for (Evaluacion evaluacion: evaluaciones) {
     		RowActaEstudiante fila = new RowActaEstudiante();
     		fila.setStudent(evaluacion.getEstudiante());
-    		
-    		/// SEGUIR ACA
+    		fila.setNota(evaluacion.getResultado().toString());
     		bic.addItem(fila);
 		}
         

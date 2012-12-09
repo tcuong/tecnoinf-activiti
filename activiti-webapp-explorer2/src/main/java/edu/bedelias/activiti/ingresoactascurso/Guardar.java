@@ -73,6 +73,7 @@ public class Guardar implements JavaDelegate {
 		evaluacionService.createEvaluacion(evaluaciones);
 		
 		execution.setVariable("isFinalizada", finalizada);
+		execution.setVariable("curso", cursoId);
 	}
 
 }

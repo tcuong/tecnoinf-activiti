@@ -1,6 +1,5 @@
 package edu.bedelias.activiti.ingresoactascurso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.activiti.engine.delegate.DelegateExecution;
@@ -8,9 +7,6 @@ import org.activiti.engine.delegate.JavaDelegate;
 import org.activiti.explorer.ui.form.ActaCursoON;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.bedelias.entities.Curso;
-import edu.bedelias.entities.Evaluacion;
-import edu.bedelias.enums.TipoEvaluacionEnum;
 import edu.bedelias.services.CursoService;
 
 public class GuardarInformacionFinal implements JavaDelegate {
@@ -28,9 +24,6 @@ public class GuardarInformacionFinal implements JavaDelegate {
 		List<ActaCursoON> actaCurso = (List<ActaCursoON>) execution.getVariable("tablaAuditar");
 
 		String cursoId = execution.getVariable("curso").toString();
-		
-		
-		
 		
 		// me tengo que fijar si ya existe la evaluación!!!
 		
