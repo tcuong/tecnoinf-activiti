@@ -42,7 +42,11 @@ public class ComboCarreraFormPropertyRenderer extends AbstractFormPropertyRender
 
 	@Override
 	public Field getPropertyField(FormProperty formProperty) {
+		
+		
+		String dato1 = formProperty.getValue();
 
+		System.out.println(dato1);
 		List<Carreer> carreras = carreerService.findAll();
 		ComboBox combo = new ComboBox(formProperty.getName());
 		ids = new HashMap<>();
