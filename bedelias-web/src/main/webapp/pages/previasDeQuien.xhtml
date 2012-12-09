@@ -7,61 +7,53 @@
 
 	<ui:define name="content">
 		<h:form>
-
 			<p:panelGrid columns="1" style="height:100%; width: 100%;">
-
-				<f:facet name="header"> Seleccione la Asignatura para ver de quien es previa </f:facet>
-
+				<f:facet name="header"> #{localization['previasDeQuien.header']}</f:facet>
 				<p:panelGrid columns="3"
 					style="margin:15px auto; border: none !important;">
-					<h:outputText value="Seleccione la asignatura" />
-
+					<h:outputText value="#{localization['previasDeQuien.selectOne']}" />
 					<p:selectOneMenu value="#{previasMB.asignaturaId}">
-						<f:selectItem itemLabel="-- Asignatura --" itemValue="" />
+						<f:selectItem
+							itemLabel="-- #{localization['common.asignatura']} --"
+							itemValue="" />
 						<f:selectItems value="#{previasMB.asignaturas}" />
 						<p:ajax update="tabla" listener="#{previasMB.deQuienEsPrevia}" />
 					</p:selectOneMenu>
-
 				</p:panelGrid>
-
 				<p:dataTable id="tabla" var="asignatura"
 					value="#{previasMB.previas}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
-					style="margin:10px">
-
+					style="margin:10px"
+					emptyMessage="#{localization['misc.noRecordsFound']}">
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Nombre" />
+							<h:outputText value="#{localization['common.nombre']}" />
 						</f:facet>
 						<h:outputText value="#{asignatura.name}" />
 					</p:column>
-
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Creditos" />
+							<h:outputText value="#{localization['common.credits']}" />
 						</f:facet>
 						<h:outputText value="#{asignatura.credits}" />
 					</p:column>
-
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Electiva" />
+							<h:outputText value="#{localization['common.electiva']}" />
 						</f:facet>
 						<h:selectBooleanCheckbox value="#{asignatura.isElectiva}"
 							disabled="true" />
 					</p:column>
-
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Tipo aprobación" />
+							<h:outputText
+								value="#{localization['previasDeQuien.aprobacion']}" />
 						</f:facet>
 						<h:outputText value="#{asignatura.tipoAprobacion}" disabled="true" />
 					</p:column>
 				</p:dataTable>
-
 			</p:panelGrid>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -13,7 +13,17 @@
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
         
- 		<!-- locale application properties -->
+		<!-- locale application properties -->
+		<resource-bundle>
+			<base-name>localization</base-name>
+			<var>localization</var>
+		</resource-bundle>
+		<message-bundle>localization</message-bundle>
+		
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>es</supported-locale>
+		</locale-config>
 			
     </application>
      
