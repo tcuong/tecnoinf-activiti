@@ -23,20 +23,22 @@ import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Table;
 
+import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.services.CursoService;
+import edu.bedelias.services.EvaluacionService;
 
 /**
  * @author Brus
  */
-public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormPropertyRenderer {
+public class TablaAuditarActaEstudiantesFormPropertyRenderer extends AbstractFormPropertyRenderer {
 
-	public TablaActaEstudiantesFormPropertyRenderer() {
+	public TablaAuditarActaEstudiantesFormPropertyRenderer() {
 		super(TablaActaEstudiantesFormType.class);
 	}
 
 	static ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
-	private static CursoService cursoService = (CursoService) cpx.getBean("cursoService");
+	private static EvaluacionService evaluacionService = (EvaluacionService) cpx.getBean("evaluacionService");
 	
 	static Table table;
 
@@ -49,26 +51,26 @@ public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormProper
 		table = new Table();
         table.setWidth("100%");
         
-        if(!cursoId.isEmpty()){
-        	 
-	        BeanItemContainer<RowActaEstudiante> bic = new BeanItemContainer<RowActaEstudiante>(RowActaEstudiante.class);
-	        
-	        // ACA 	lo que HAY QUE IR A BUSCAR SON LAS EVALUACIONES INGRESADAS PARA MOSTRARLAS NADA MAS
-	        List<Student> estudiantes = cursoService.getEstudiantesInsciptosACurso(cursoId);
-	        
-	        
-	    	for (Student est: estudiantes) {
-	    		RowActaEstudiante fila = new RowActaEstudiante();
-	    		fila.setStudent(est);
-	    		bic.addItem(fila);
-			}
-	        
-	        table.setContainerDataSource(bic);
-	        // set column headers
-	        table.setVisibleColumns(new Object[]{"nombre", "texto"});
-	        table.setColumnHeaders(new String[]{"Nombre", "Nota"});
-	        table.setEditable(false);        
-        }
+        BeanItemContainer<RowActaEstudiante> bic = new BeanItemContainer<RowActaEstudiante>(RowActaEstudiante.class);
+        
+        // falta obtener todos los estudiantes del curso seleccionado
+        List<Evaluacion> evaluaciones = evaluacionService.getEvaluacionesByCurso(Long.valueOf(cursoId));
+        
+        
+    	for (Evaluacion evaluacion: evaluaciones) {
+    		RowActaEstudiante fila = new RowActaEstudiante();
+    		fila.setStudent(evaluacion.getEstudiante());
+    		
+    		/// SEGUIR ACA
+    		bic.addItem(fila);
+		}
+        
+        table.setContainerDataSource(bic);
+        
+        // set column headers
+        table.setVisibleColumns(new Object[]{"nombre", "texto"});
+        table.setColumnHeaders(new String[]{"Nombre", "Nota"});
+        table.setEditable(false);
         
 		return table;
 	}
