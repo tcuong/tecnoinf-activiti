@@ -13,7 +13,7 @@
 				<h:outputLabel value="#{localization['login.cedula']}:" />
 				<p:inputText value="#{loginMB.ciEstudiante}" required="true" />
 				<h:outputLabel value="#{localization['login.password']}:" />
-				<p:password id="nonFeedback" value="#{loginMB.pass}" required="true"/>
+				<p:password id="nonFeedback" value="#{loginMB.pass}" required="true" />
 				<p:growl id="growl" showDetail="true" sticky="true" />
 				<f:facet name="footer">
 					<p:commandButton update="growl" type="submit"

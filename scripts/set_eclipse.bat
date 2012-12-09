@@ -1,1 +1,2 @@
-mvn -DdownloadSources=true eclipse:eclipse
+cd ..\bedelias-super
+call mvn -DdownloadSources=true eclipse:eclipse
