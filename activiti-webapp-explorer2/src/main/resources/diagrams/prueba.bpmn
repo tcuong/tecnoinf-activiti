@@ -11,9 +11,9 @@
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
     <sequenceFlow id="flow4" name="" sourceRef="ValidarHT" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
-    <userTask id="usertask1" name="User Task">
+    <userTask id="usertask1" name="User Task" activiti:assignee="kermit">
       <extensionElements>
-        <activiti:formProperty id="combo" name="Combo" type="comboCarrera" value="lalala" expression="exp" variable="combo" default="default" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="combo" name="Combo" type="comboCarreras" value="lalala" expression="exp" variable="combo" default="#{dato}" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
   </process>
