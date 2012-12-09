@@ -4,18 +4,18 @@
     <startEvent id="startevent1" name="Start"></startEvent>
     <userTask id="ValidarHT" name="MostrarDatos" activiti:assignee="kermit">
       <extensionElements>
-        <activiti:formProperty id="dato" name="Dato" type="string" variable="dato" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="dato" name="Dato" type="comboCursos" variable="dato" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
-    <sequenceFlow id="flow4" name="" sourceRef="ValidarHT" targetRef="usertask1"></sequenceFlow>
-    <sequenceFlow id="flow5" name="" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
     <userTask id="usertask1" name="User Task" activiti:assignee="kermit">
       <extensionElements>
         <activiti:formProperty id="combo" name="Combo" type="comboCarreras" value="lalala" expression="exp" variable="combo" default="#{dato}" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="ValidarHT"></sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="ValidarHT" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow5" name="" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_prueba1">
     <bpmndi:BPMNPlane bpmnElement="prueba1" id="BPMNPlane_prueba1">

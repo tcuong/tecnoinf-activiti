@@ -79,8 +79,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
-			Curso curso) {
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso) {
 		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
 	}
 
@@ -96,8 +95,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId,
-			Long cursoId) {
+	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId, Long cursoId) {
 		try {
 			Student estudiante = studentRepo.findOne(studentId);
 			Curso curso = cursoRepo.findOne(cursoId);
@@ -118,6 +116,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	public void setCursoRepo(CursoRepository cursoRepo) {
 		this.cursoRepo = cursoRepo;
+	}
+
+	@Override
+	public List<Evaluacion> getEvaluacionesByCurso(Long cursoId) {
+		Curso curso = cursoRepo.findOne(cursoId);
+		return evaluacionRepo.getEvaluacionesByCurso(curso);
 	}
 
 }
