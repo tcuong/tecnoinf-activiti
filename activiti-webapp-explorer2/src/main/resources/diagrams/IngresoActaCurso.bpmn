@@ -10,111 +10,82 @@
     </userTask>
     <userTask id="ingresarActaCurso" name="Ingresar Acta Curso" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
       <extensionElements>
-        <activiti:formProperty id="acta" name="Acta Estudiantes" type="tablaActaEstudiantes" value="curso" expression="curso" variable="actaEstudiantes" required="true" readable="true" writable="true"></activiti:formProperty>
-        <activiti:formProperty id="finalizada" name="Enviar a Autidar?" type="boolean" variable="finalizada" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="acta" name="Acta Estudiantes" type="tablaActaEstudiantes" value="curso" expression="curso" variable="actaEstudiantes" default="#{curso}" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <serviceTask id="guardar" name="Guardar" activiti:class="edu.bedelias.activiti.ingresoactascurso.Guardar"></serviceTask>
-    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow10"></exclusiveGateway>
-    <userTask id="auditar" name="Auditar" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
-    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow9"></exclusiveGateway>
+    <userTask id="auditar" name="Auditar" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
+      <extensionElements>
+        <activiti:formProperty id="tablaAuditar" name="Información a auditar" type="tablaAuditarActa" variable="tablaAuditar" default="#{curso}" required="true" readable="true" writable="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <userTask id="mostrarInformacion" name="Mostrar Informacion" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
-      <documentation>${mensaje}</documentation>
+      <documentation>Se ingreson correctamente los valores.
+${mensaje}</documentation>
     </userTask>
     <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="guardarAudicion" name="Guardar Información" activiti:class="edu.bedelias.activiti.ingresoactascurso.GuardarInformacionFinal"></serviceTask>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="selecciondeCurso"></sequenceFlow>
     <sequenceFlow id="flow4" name="" sourceRef="ingresarActaCurso" targetRef="guardar"></sequenceFlow>
-    <sequenceFlow id="flow5" name="" sourceRef="guardar" targetRef="exclusivegateway2"></sequenceFlow>
-    <sequenceFlow id="flow6" name="Finalizada" sourceRef="exclusivegateway2" targetRef="auditar">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isFinalizada== true}]]></conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="flow7" name="" sourceRef="auditar" targetRef="exclusivegateway3"></sequenceFlow>
-    <sequenceFlow id="flow9" name="" sourceRef="exclusivegateway3" targetRef="ingresarActaCurso"></sequenceFlow>
-    <sequenceFlow id="flow10" name="" sourceRef="exclusivegateway2" targetRef="ingresarActaCurso"></sequenceFlow>
-    <sequenceFlow id="flow11" name="Ok" sourceRef="exclusivegateway3" targetRef="mostrarInformacion">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isOk == true}]]></conditionExpression>
-    </sequenceFlow>
     <sequenceFlow id="flow13" name="" sourceRef="selecciondeCurso" targetRef="ingresarActaCurso"></sequenceFlow>
     <sequenceFlow id="flow14" name="" sourceRef="mostrarInformacion" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow15" name="" sourceRef="guardarAudicion" targetRef="mostrarInformacion"></sequenceFlow>
+    <sequenceFlow id="flow16" name="" sourceRef="auditar" targetRef="guardarAudicion"></sequenceFlow>
+    <sequenceFlow id="flow17" name="" sourceRef="guardar" targetRef="auditar"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_ingresoActasCurso">
     <bpmndi:BPMNPlane bpmnElement="ingresoActasCurso" id="BPMNPlane_ingresoActasCurso">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
-        <omgdc:Bounds height="35" width="35" x="95" y="83"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="10" y="65"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="selecciondeCurso" id="BPMNShape_selecciondeCurso">
-        <omgdc:Bounds height="55" width="105" x="190" y="73"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="105" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="ingresarActaCurso" id="BPMNShape_ingresarActaCurso">
-        <omgdc:Bounds height="55" width="105" x="345" y="73"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="260" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="guardar" id="BPMNShape_guardar">
-        <omgdc:Bounds height="55" width="105" x="505" y="73"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
-        <omgdc:Bounds height="40" width="40" x="665" y="80"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="420" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="auditar" id="BPMNShape_auditar">
-        <omgdc:Bounds height="55" width="105" x="750" y="73"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
-        <omgdc:Bounds height="40" width="40" x="910" y="80"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="580" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="mostrarInformacion" id="BPMNShape_mostrarInformacion">
-        <omgdc:Bounds height="55" width="105" x="995" y="73"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="857" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35" width="35" x="1155" y="83"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="995" y="65"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="guardarAudicion" id="BPMNShape_guardarAudicion">
+        <omgdc:Bounds height="55" width="105" x="715" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="130" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="190" y="100"></omgdi:waypoint>
+        <omgdi:waypoint x="45" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="105" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
-        <omgdi:waypoint x="450" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="505" y="100"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
-        <omgdi:waypoint x="610" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="665" y="100"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
-        <omgdi:waypoint x="705" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="750" y="100"></omgdi:waypoint>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-32" y="8"></omgdc:Bounds>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
-        <omgdi:waypoint x="855" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="910" y="100"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
-        <omgdi:waypoint x="930" y="120"></omgdi:waypoint>
-        <omgdi:waypoint x="929" y="157"></omgdi:waypoint>
-        <omgdi:waypoint x="397" y="157"></omgdi:waypoint>
-        <omgdi:waypoint x="397" y="128"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
-        <omgdi:waypoint x="685" y="120"></omgdi:waypoint>
-        <omgdi:waypoint x="684" y="178"></omgdi:waypoint>
-        <omgdi:waypoint x="397" y="178"></omgdi:waypoint>
-        <omgdi:waypoint x="397" y="128"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
-        <omgdi:waypoint x="950" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="995" y="100"></omgdi:waypoint>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-22" y="5"></omgdc:Bounds>
-        </bpmndi:BPMNLabel>
+        <omgdi:waypoint x="365" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="420" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
-        <omgdi:waypoint x="295" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="345" y="100"></omgdi:waypoint>
+        <omgdi:waypoint x="210" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="260" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
-        <omgdi:waypoint x="1100" y="100"></omgdi:waypoint>
-        <omgdi:waypoint x="1155" y="100"></omgdi:waypoint>
+        <omgdi:waypoint x="962" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="995" y="82"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="820" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="857" y="82"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="685" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="715" y="82"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="525" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="580" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

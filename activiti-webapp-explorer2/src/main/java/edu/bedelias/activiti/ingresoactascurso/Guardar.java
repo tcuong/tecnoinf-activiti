@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.enums.TipoEvaluacionEnum;
+import edu.bedelias.services.CursoService;
 import edu.bedelias.services.EvaluacionService;
 
 public class Guardar implements JavaDelegate {
@@ -18,6 +19,7 @@ public class Guardar implements JavaDelegate {
 	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
 
 	private EvaluacionService evaluacionService = (EvaluacionService) cpx.getBean("evaluacionService");
+	private CursoService cursoService = (CursoService) cpx.getBean("cursoService");
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
@@ -26,11 +28,13 @@ public class Guardar implements JavaDelegate {
 		@SuppressWarnings("unchecked")
 		List<ActaCursoON> actaCurso =  (List<ActaCursoON>) execution.getVariable("actaEstudiantes");
 		
-		Curso curso = (Curso)execution.getVariable("curso");
+		String cursoId = execution.getVariable("curso").toString();
 		boolean finalizada = (boolean) execution.getVariable("finalizada");
 
 		// acá guardo las evaluaciones ingresadas para luego mandarlas guardar
 		List<Evaluacion> evaluaciones = new ArrayList<>();
+		
+		Curso curso = cursoService.findCursoById(Long.valueOf(cursoId));
 		
 		for (ActaCursoON acta : actaCurso) {
 			
@@ -69,6 +73,7 @@ public class Guardar implements JavaDelegate {
 		evaluacionService.createEvaluacion(evaluaciones);
 		
 		execution.setVariable("isFinalizada", finalizada);
+		execution.setVariable("curso", cursoId);
 	}
 
 }

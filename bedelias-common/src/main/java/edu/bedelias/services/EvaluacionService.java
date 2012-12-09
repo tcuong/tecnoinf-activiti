@@ -19,6 +19,10 @@ public interface EvaluacionService {
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student);
 
 	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso);
+	
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student, String cursoId);
+	
+	public List<Evaluacion> getEvaluacionesByCurso(Long cursoId);
 
 	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId, Long cursoId);
 
