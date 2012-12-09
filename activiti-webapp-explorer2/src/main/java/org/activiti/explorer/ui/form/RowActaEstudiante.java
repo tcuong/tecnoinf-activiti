@@ -16,6 +16,10 @@ public class RowActaEstudiante implements Serializable {
 		texto = new TextField("Nota");
 		texto.setValue("No se presento");
 	}
+	
+	public void setNota(String nota){
+		texto.setValue(nota);
+	}
 
 	public TextField getTexto() {
 		return texto;

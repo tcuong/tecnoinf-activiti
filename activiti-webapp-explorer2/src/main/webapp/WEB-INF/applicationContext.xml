@@ -56,6 +56,7 @@
 				<ref bean="comboSolicitudAsignaturaFormType" />
 				<ref bean="comboCursoFormType" />
 				<ref bean="tablaActaEstudiantesFormType" />
+				<ref bean="tablaAuditarActaEstudiantesFormType" />
 				
 			</list>
 		</property>
@@ -79,7 +80,7 @@
 	<bean id="comboSolicitudAsignaturaFormType" class="org.activiti.explorer.ui.form.ComboSolicitudAsignaturaFormType" />
 	<bean id="comboCursoFormType" class="org.activiti.explorer.ui.form.ComboCursoFormType" />
 	<bean id="tablaActaEstudiantesFormType" class="org.activiti.explorer.ui.form.TablaActaEstudiantesFormType" />
-	
+	<bean id="tablaAuditarActaEstudiantesFormType" class="org.activiti.explorer.ui.form.TablaAuditarActaEstudiantesFormType" />
 	
 	
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"

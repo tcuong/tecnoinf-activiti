@@ -15,7 +15,7 @@ public class TablaAuditarActaEstudiantesFormType extends AbstractFormType {
 
 	@Override
 	public Object convertFormValueToModelValue(String propertyValue) {
-		return TablaActaEstudiantesFormPropertyRenderer.datos();
+		return TablaAuditarActaEstudiantesFormPropertyRenderer.datos();
 	}
 
 	@Override

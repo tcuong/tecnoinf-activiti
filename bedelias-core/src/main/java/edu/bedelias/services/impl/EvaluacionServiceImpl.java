@@ -82,6 +82,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso) {
 		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
 	}
+	
+	@Override
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student, String cursoId) {
+		Curso curso = cursoRepo.findOne(Long.valueOf(cursoId));
+		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
+	}
 
 	@Override
 	@Transactional
