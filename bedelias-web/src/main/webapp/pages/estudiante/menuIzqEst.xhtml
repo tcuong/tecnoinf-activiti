@@ -11,28 +11,24 @@
 		<p:menu style="border:none;" size="80px">
 			<p:submenu
 				label="#{localization['common.greet']}, #{menuIzqEstMB.nombre}">
-				<p:menuitem value="#{localization['common.actividadEstudiante']}"
-					actionListener="#{menuIzqEstMB.consultaActividad}" />
-				<p:menuitem value="#{localization['login.logout']}"
-					actionListener="#{loginMB.cerrarSesion}"
-					style="background:#f22929; padding: 2px;" />
+				<p:menuitem value="#{localization['common.actividadEstudiante']}" actionListener="#{menuIzqEstMB.consultaActividad}" />
+				<p:menuitem value="#{localization['login.logout']}" actionListener="#{loginMB.cerrarSesion}" style="background:#f22929; padding: 2px;" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
+			
 			<p:submenu label="#{localization['common.inscripciones']}">
-				<p:menuitem value="#{localization['common.inscribirCurso']}"
-					actionListener="#{menuIzqEstMB.inscripcionCurso}" />
-				<p:menuitem value="#{localization['common.inscribirExamen']}"
-					actionListener="#{menuIzqEstMB.noImplementada}" />
+				<p:menuitem value="#{localization['common.inscribirCurso']}" actionListener="#{menuIzqEstMB.inscripcionCurso}" />
+				<p:menuitem value="#{localization['common.inscribirExamen']}" actionListener="#{menuIzqEstMB.noImplementada}" />
+				<p:separator style="height:15px; background:none; border:none;" /> 
+				<p:menuitem value="#{localization['common.desistir']}" actionListener="#{menuIzqEstMB.desistirInscripcion}" />
 				<p:separator style="height:15px; background:none; border:none;" />
-				<p:menuitem value="#{localization['common.desistir']}"
-					actionListener="#{menuIzqEstMB.desistirInscripcion}" />
+				<p:menuitem value="#{localization['common.solicitarTitulo']}" actionListener="#{menuIzqEstMB.solicitarTitulo}" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
+			
 			<p:submenu label="#{localization['common.previasSimple']}">
-				<p:menuitem value="#{localization['common.previas']}"
-					actionListener="#{menuIzqEstMB.verPrevias}" />
-				<p:menuitem value="#{localization['common.previasDe']}"
-					actionListener="#{menuIzqEstMB.previasDeQuien}" />
+				<p:menuitem value="#{localization['common.previas']}" actionListener="#{menuIzqEstMB.verPrevias}" />
+				<p:menuitem value="#{localization['common.previasDe']}" actionListener="#{menuIzqEstMB.previasDeQuien}" />
 				<p:separator style="height:25px; background:none; border:none;" />
 			</p:submenu>
 		</p:menu>

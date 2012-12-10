@@ -28,6 +28,8 @@ public interface StudentService {
 	// Misc stuff.
 
 	public Student findStudentById(Long id);
+	
+	public List<Student> findAll();
 
 	public Student findStudentByEmail(String email);
 

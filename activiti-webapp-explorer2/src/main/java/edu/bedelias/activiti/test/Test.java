@@ -10,15 +10,16 @@ public class Test implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-		List<ActaCursoON> ejemplos =  (List<ActaCursoON>) execution.getVariable("tabla");
+		List<ActaCursoON> ejemplos =  (List<ActaCursoON>) execution.getVariable("dato");
 		
 		System.out.println("0000000000000000000000000000000000000");
 		System.out.println("0000000000000000000000000000000000000");
 		System.out.println("0000000000000000000000000000000000000");
 		
-//		for (Ejemplo ejemplo : ejemplos) {
-			System.out.println("****   " + ejemplos);
-//		}
+		for (ActaCursoON ejemplo : ejemplos) {
+			System.out.println("****   " + ejemplo.getStudent().getName());
+			System.out.println("****   " + ejemplo.getNota());
+		}
 		System.out.println("0000000000000000000000000000000000000");
 		System.out.println("0000000000000000000000000000000000000");
 		System.out.println("0000000000000000000000000000000000000");

@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
+import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoEvaluacionEnum;
 import edu.bedelias.services.CursoService;
 import edu.bedelias.services.EvaluacionService;
@@ -27,9 +28,7 @@ public class Guardar implements JavaDelegate {
 		
 		@SuppressWarnings("unchecked")
 		List<ActaCursoON> actaCurso =  (List<ActaCursoON>) execution.getVariable("actaEstudiantes");
-		
 		String cursoId = execution.getVariable("curso").toString();
-		boolean finalizada = (boolean) execution.getVariable("finalizada");
 
 		// acá guardo las evaluaciones ingresadas para luego mandarlas guardar
 		List<Evaluacion> evaluaciones = new ArrayList<>();
@@ -38,41 +37,42 @@ public class Guardar implements JavaDelegate {
 		
 		for (ActaCursoON acta : actaCurso) {
 			
-			Evaluacion evaluacion = new Evaluacion();
-			evaluacion.setEstudiante(acta.getStudent());
-			evaluacion.setCurso(curso);
-			evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.FINAL);
+			Student student = acta.getStudent();
+			
+			Evaluacion evaluacion = evaluacionService.getEvaluacionByStudentAndCurso(student, curso);
+			
+			if(evaluacion == null){
+				evaluacion = new Evaluacion();
+				evaluacion.setEstudiante(student);
+				evaluacion.setCurso(curso);
+				evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.FINAL);
+			}
 			
 			if(acta.getNota().equals("No se presento")){
 				evaluacion.setNoAsistio(true);
 				
 				// agrego la evaluacion
 				evaluaciones.add(evaluacion);
+				
 			} else {
 				
 				int nota = 0;
 				try {
 					nota = Integer.valueOf(acta.getNota());
 				} catch (Exception e) {
-					// si acá hay cualquier cosa y explota el casteo,  tomamos como que no era una nota válida y no se crea nada
-					// la tarea queda como no finalizada
-					finalizada = false;
+					// si acá hay cualquier cosa y explota el casteo,  tomamos como que no era una nota válida
+					// le agregamos un valor "raro" para que en la auditoria la revisen
+					nota = 999;
 				}
 				// si le ingresaron una nota la agregamos y agregamos la evaluacion
-				if(nota > 0){
-					evaluacion.setResultado(nota);
-					evaluaciones.add(evaluacion);
-				} else {
-					finalizada = false;
-				}
+				evaluacion.setResultado(nota);
+				evaluaciones.add(evaluacion);
 			}
 			
 			
 		}
-		// guaramos las evaluaciones generadas
+		// guardamos las evaluaciones generadas
 		evaluacionService.createEvaluacion(evaluaciones);
-		
-		execution.setVariable("isFinalizada", finalizada);
 		execution.setVariable("curso", cursoId);
 	}
 

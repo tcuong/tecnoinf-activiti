@@ -51,6 +51,11 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	@Override
+	public List<Student> findAll() {
+		return studentRepo.findAll();
+	}
+	
+	@Override
 	public Student findStudentByStudentNumber(String studentNum) {
 		return studentRepo.findStudentByStudentNum(studentNum);
 	}

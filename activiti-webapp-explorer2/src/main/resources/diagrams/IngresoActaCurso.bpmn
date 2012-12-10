@@ -16,7 +16,7 @@
     <serviceTask id="guardar" name="Guardar" activiti:class="edu.bedelias.activiti.ingresoactascurso.Guardar"></serviceTask>
     <userTask id="auditar" name="Auditar" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
       <extensionElements>
-        <activiti:formProperty id="tablaAuditar" name="Información a auditar" type="tablaAuditarActa" variable="tablaAuditar" default="#{curso}" required="true" readable="true" writable="true"></activiti:formProperty>
+        <activiti:formProperty id="tablaAuditarActa" name="Evaluaciones para auditar" type="tablaAuditarActa" variable="tablaAuditar" default="#{curso}" required="true" readable="true" writable="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <userTask id="mostrarInformacion" name="Mostrar Informacion" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
@@ -48,7 +48,7 @@ ${mensaje}</documentation>
         <omgdc:Bounds height="55" width="105" x="420" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="auditar" id="BPMNShape_auditar">
-        <omgdc:Bounds height="55" width="105" x="580" y="55"></omgdc:Bounds>
+        <omgdc:Bounds height="55" width="105" x="570" y="55"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="mostrarInformacion" id="BPMNShape_mostrarInformacion">
         <omgdc:Bounds height="55" width="105" x="857" y="55"></omgdc:Bounds>
@@ -80,12 +80,12 @@ ${mensaje}</documentation>
         <omgdi:waypoint x="857" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
-        <omgdi:waypoint x="685" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="675" y="82"></omgdi:waypoint>
         <omgdi:waypoint x="715" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
         <omgdi:waypoint x="525" y="82"></omgdi:waypoint>
-        <omgdi:waypoint x="580" y="82"></omgdi:waypoint>
+        <omgdi:waypoint x="570" y="82"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -63,7 +63,7 @@ public class TablaActaEstudiantesFormPropertyRenderer extends AbstractFormProper
 			Evaluacion evaluacion = evaluacionService.getEvaluacionByStudentAndCurso(est, cursoId);
 
 			if (evaluacion != null) {
-				fila.setNombre(evaluacion.getResultado().toString());
+				fila.setNota(evaluacion.getResultado().toString());
 			}
 			bic.addItem(fila);
 		}
