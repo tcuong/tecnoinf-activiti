@@ -17,7 +17,6 @@ public interface PeriodoInscripcionRepository extends
 	 */
 
 	@Query("select p from PeriodoInscripcion p where p.isHabilitado = ?1 and p.tipoInscripcion = ?2")
-	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo,
-			TipoInscripcionEnum tipo);
+	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo, TipoInscripcionEnum tipo);
 
 }

@@ -25,7 +25,7 @@ public class LoginMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		ciEstudiante = "someCedula";
+		ciEstudiante = "47720720";
 	}
 
 	public void login(ActionEvent actionEvent) {

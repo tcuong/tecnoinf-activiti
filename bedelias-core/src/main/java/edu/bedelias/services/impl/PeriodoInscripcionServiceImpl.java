@@ -42,8 +42,7 @@ public class PeriodoInscripcionServiceImpl implements PeriodoInscripcionService 
 	}
 
 	@Override
-	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo,
-			TipoInscripcionEnum tipo) {
+	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo, TipoInscripcionEnum tipo) {
 		return periodoInscripcionRepo.getPeriodoActivoByTipo(isActivo, tipo);
 	}
 

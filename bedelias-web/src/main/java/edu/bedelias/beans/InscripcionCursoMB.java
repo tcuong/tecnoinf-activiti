@@ -11,9 +11,12 @@ import javax.faces.model.SelectItem;
 
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
 import edu.bedelias.services.InscripcionService;
+import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean(name = "inscripcionCursoMB")
@@ -30,36 +33,46 @@ public class InscripcionCursoMB extends GenericMB {
 
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
+	
+	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
+	private PeriodoInscripcionService periodoService;
 
 	private List<SelectItem> carrerasListItem;
 	private List<Carreer> carreras;
 	private List<Curso> cursos;
 	private String ciEst;
 	private long carreraId;
-
+	private boolean existePeriodo;
+	
 	public InscripcionCursoMB() {
 		super();
 	}
 
 	@PostConstruct
 	public void init() {
+		
 		if (estaLogueado()) {
 			
 			// primero pregunto si existe un período de inscripcion a cursos abierto
+			PeriodoInscripcion periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 			
-			// luego si existe recien le muestro las carreras al estudiante para que se pueda inscribir.
-			
-			ciEst = getFromSession(this.cedula).toString();
-			Student student = studentService.findStudentByCedula(ciEst);
-
-			if (student != null) {
-				carreras = inscripcionService.getCarrerasByStudent(student);
-				carrerasListItem = new ArrayList<SelectItem>();
-				for (Carreer c : carreras) {
-					carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
-				}
+			if(periodo == null){
+				// muestro mensaje diciendo que no hay periodo de inscripcion habilitado
+				existePeriodo = false;
 			} else {
-				sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cedula dada");
+				existePeriodo = true;
+				ciEst = getFromSession(this.cedula).toString();
+				Student student = studentService.findStudentByCedula(ciEst);
+
+				if (student != null) {
+					carreras = inscripcionService.getCarrerasByStudent(student);
+					carrerasListItem = new ArrayList<SelectItem>();
+					for (Carreer c : carreras) {
+						carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
+					}
+				} else {
+					sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cedula dada");
+				}
 			}
 		}
 	}
@@ -136,4 +149,19 @@ public class InscripcionCursoMB extends GenericMB {
 		this.carreraId = carreraId;
 	}
 
+	public PeriodoInscripcionService getPeriodoService() {
+		return periodoService;
+	}
+
+	public void setPeriodoService(PeriodoInscripcionService periodoService) {
+		this.periodoService = periodoService;
+	}
+
+	public boolean isExistePeriodo() {
+		return existePeriodo;
+	}
+
+	public void setExistePeriodo(boolean noExistePeriodo) {
+		this.existePeriodo = noExistePeriodo;
+	}
 }

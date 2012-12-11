@@ -5,8 +5,7 @@ import edu.bedelias.enums.TipoInscripcionEnum;
 
 public interface PeriodoInscripcionService {
 
-	public PeriodoInscripcion createPeriodoInscripcion(
-			PeriodoInscripcion periodoInscripcion);
+	public PeriodoInscripcion createPeriodoInscripcion(PeriodoInscripcion periodoInscripcion);
 
 	public void updatePeriodoInscripcion(PeriodoInscripcion periodoInscripcion);
 
@@ -14,7 +13,6 @@ public interface PeriodoInscripcionService {
 
 	public void test();
 
-	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo,
-			TipoInscripcionEnum tipo);
+	public PeriodoInscripcion getPeriodoActivoByTipo(boolean isActivo,TipoInscripcionEnum tipo);
 
 }

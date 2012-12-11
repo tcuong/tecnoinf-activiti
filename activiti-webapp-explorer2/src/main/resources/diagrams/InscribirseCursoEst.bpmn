@@ -40,9 +40,9 @@
       </lane>
     </laneSet>
     <startEvent id="startevent2" name="Start"></startEvent>
-    <serviceTask id="servicetask2" name="Guardar inscripcion condicional"></serviceTask>
-    <serviceTask id="servicetask3" name="Guardar desistimiento"></serviceTask>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <serviceTask id="guardarInscripcion" name="Guardar inscripcion condicional"></serviceTask>
+    <serviceTask id="guardarDesistimiento" name="Guardar desistimiento"></serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow32"></exclusiveGateway>
     <serviceTask id="servicetask4" name="Validar previas"></serviceTask>
     <endEvent id="endevent5" name="End"></endEvent>
     <serviceTask id="mailtask1" name="Notificar inscripción exitosa" activiti:type="mail">
@@ -50,23 +50,26 @@
     </serviceTask>
     <serviceTask id="servicetask5" name="Guardar inscripcion"></serviceTask>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
-    <sequenceFlow id="flow10" name="" sourceRef="startevent2" targetRef="servicetask2"></sequenceFlow>
-    <sequenceFlow id="flow15" name="NoDesistio" sourceRef="exclusivegateway1" targetRef="servicetask4"></sequenceFlow>
+    <intermediateCatchEvent id="timerintermediatecatchevent3" name="finPeriodoDesistimiento">
+      <timerEventDefinition></timerEventDefinition>
+    </intermediateCatchEvent>
+    <serviceTask id="mailtask4" name="Confirmar Desistimiento" activiti:type="mail">
+      <extensionElements></extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow10" name="" sourceRef="startevent2" targetRef="guardarInscripcion"></sequenceFlow>
+    <sequenceFlow id="flow15" name="NoDesistio" sourceRef="exclusivegateway1" targetRef="servicetask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio==true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow21" name="" sourceRef="mailtask1" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow23" name="" sourceRef="servicetask5" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow25" name="" sourceRef="servicetask4" targetRef="parallelgateway1"></sequenceFlow>
     <sequenceFlow id="flow26" name="" sourceRef="parallelgateway1" targetRef="servicetask5"></sequenceFlow>
     <sequenceFlow id="flow27" name="" sourceRef="parallelgateway1" targetRef="mailtask1"></sequenceFlow>
-    <intermediateCatchEvent id="timerintermediatecatchevent3" name="finPeriodoDesistimiento">
-      <timerEventDefinition></timerEventDefinition>
-    </intermediateCatchEvent>
-    <sequenceFlow id="flow28" name="" sourceRef="servicetask2" targetRef="timerintermediatecatchevent3"></sequenceFlow>
-    <sequenceFlow id="flow29" name="" sourceRef="timerintermediatecatchevent3" targetRef="servicetask3"></sequenceFlow>
-    <sequenceFlow id="flow30" name="" sourceRef="servicetask3" targetRef="exclusivegateway1"></sequenceFlow>
-    <serviceTask id="mailtask4" name="Confirmar Desistimiento" activiti:type="mail">
-      <extensionElements></extensionElements>
-    </serviceTask>
+    <sequenceFlow id="flow28" name="" sourceRef="guardarInscripcion" targetRef="timerintermediatecatchevent3"></sequenceFlow>
+    <sequenceFlow id="flow29" name="" sourceRef="timerintermediatecatchevent3" targetRef="guardarDesistimiento"></sequenceFlow>
+    <sequenceFlow id="flow30" name="" sourceRef="guardarDesistimiento" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="flow31" name="" sourceRef="mailtask4" targetRef="endevent5"></sequenceFlow>
+    <sequenceFlow id="flow32" name="" sourceRef="exclusivegateway1" targetRef="mailtask4"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -79,10 +82,10 @@
       <bpmndi:BPMNShape bpmnElement="startevent2" id="BPMNShape_startevent2">
         <omgdc:Bounds height="35" width="35" x="40" y="60"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+      <bpmndi:BPMNShape bpmnElement="guardarInscripcion" id="BPMNShape_guardarInscripcion">
         <omgdc:Bounds height="55" width="105" x="120" y="50"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+      <bpmndi:BPMNShape bpmnElement="guardarDesistimiento" id="BPMNShape_guardarDesistimiento">
         <omgdc:Bounds height="55" width="105" x="360" y="50"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
@@ -158,6 +161,11 @@
         <omgdi:waypoint x="735" y="227"></omgdi:waypoint>
         <omgdi:waypoint x="1017" y="227"></omgdi:waypoint>
         <omgdi:waypoint x="1017" y="95"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="540" y="97"></omgdi:waypoint>
+        <omgdi:waypoint x="540" y="227"></omgdi:waypoint>
+        <omgdi:waypoint x="630" y="227"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
