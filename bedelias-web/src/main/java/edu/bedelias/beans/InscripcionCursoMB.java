@@ -44,6 +44,11 @@ public class InscripcionCursoMB extends GenericMB {
 	@PostConstruct
 	public void init() {
 		if (estaLogueado()) {
+			
+			// primero pregunto si existe un período de inscripcion a cursos abierto
+			
+			// luego si existe recien le muestro las carreras al estudiante para que se pueda inscribir.
+			
 			ciEst = getFromSession(this.cedula).toString();
 			Student student = studentService.findStudentByCedula(ciEst);
 
@@ -51,12 +56,10 @@ public class InscripcionCursoMB extends GenericMB {
 				carreras = inscripcionService.getCarrerasByStudent(student);
 				carrerasListItem = new ArrayList<SelectItem>();
 				for (Carreer c : carreras) {
-					carrerasListItem
-							.add(new SelectItem(c.getId(), c.getName()));
+					carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
 				}
 			} else {
-				sendErrorMessage("Estudiante no encontrado",
-						"No se han encontrado el estudiante con la cedula dada");
+				sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cedula dada");
 			}
 		}
 	}
