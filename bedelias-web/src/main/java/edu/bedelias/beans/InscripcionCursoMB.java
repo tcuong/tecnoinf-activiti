@@ -1,7 +1,9 @@
 package edu.bedelias.beans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +23,7 @@ import edu.bedelias.services.StudentService;
 
 @ManagedBean(name = "inscripcionCursoMB")
 @RequestScoped
-public class InscripcionCursoMB extends GenericMB {
+public class InscripcionCursoMB extends GenericActivitiMB{
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +45,8 @@ public class InscripcionCursoMB extends GenericMB {
 	private String ciEst;
 	private long carreraId;
 	private boolean existePeriodo;
+	private Student student;
+	private PeriodoInscripcion periodo ;
 	
 	public InscripcionCursoMB() {
 		super();
@@ -54,7 +58,7 @@ public class InscripcionCursoMB extends GenericMB {
 		if (estaLogueado()) {
 			
 			// primero pregunto si existe un período de inscripcion a cursos abierto
-			PeriodoInscripcion periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
+			periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 			
 			if(periodo == null){
 				// muestro mensaje diciendo que no hay periodo de inscripcion habilitado
@@ -62,7 +66,7 @@ public class InscripcionCursoMB extends GenericMB {
 			} else {
 				existePeriodo = true;
 				ciEst = getFromSession(this.cedula).toString();
-				Student student = studentService.findStudentByCedula(ciEst);
+				student = studentService.findStudentByCedula(ciEst);
 
 				if (student != null) {
 					carreras = inscripcionService.getCarrerasByStudent(student);
@@ -81,8 +85,14 @@ public class InscripcionCursoMB extends GenericMB {
 		cursos = cursoService.getCursosByCarrearId(carreraId);
 	}
 
-	public void inscribirse(String id) {
-		System.out.println("Este es el id del curso = " + id);
+	public void inscribirse(Curso curso) {
+		
+		Map<String, Object> datos = new HashMap<String, Object>();
+		datos.put("student", student);
+		datos.put("curso", curso);
+		datos.put("periodo", periodo);
+		
+		this.instanciarProceso("inscripcionCursoEstudiante", (HashMap<String, Object>) datos);
 	}
 
 	public List<Curso> getCursos() {

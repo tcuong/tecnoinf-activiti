@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <collaboration id="Collaboration">
-    <participant id="pool1" name="Pool" processRef="process_pool1"></participant>
+    <participant id="pool1" name="Pool" processRef="inscripcionCursoEstudiante"></participant>
   </collaboration>
-  <process id="process_pool1" name="process_pool1">
-    <laneSet id="laneSet_process_pool1">
+  <process id="inscripcionCursoEstudiante" name="Inscripcion curso estudiante" activiti:candidateStarterGroups="bedelias">
+    <laneSet id="laneSet_inscripcionCursoEstudiante">
       <lane id="lane2" name="Bedelias">
         <flowNodeRef>startevent2</flowNodeRef>
         <flowNodeRef>servicetask2</flowNodeRef>
@@ -40,21 +40,35 @@
       </lane>
     </laneSet>
     <startEvent id="startevent2" name="Start"></startEvent>
-    <serviceTask id="guardarInscripcion" name="Guardar inscripcion condicional"></serviceTask>
-    <serviceTask id="guardarDesistimiento" name="Guardar desistimiento"></serviceTask>
+    <serviceTask id="guardarInscripcion" name="Guardar inscripcion condicional" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
+    <serviceTask id="guardarDesistimiento" name="Guardar desistimiento" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow32"></exclusiveGateway>
-    <serviceTask id="servicetask4" name="Validar previas"></serviceTask>
+    <serviceTask id="servicetask4" name="Validar previas" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
     <endEvent id="endevent5" name="End"></endEvent>
     <serviceTask id="mailtask1" name="Notificar inscripción exitosa" activiti:type="mail">
-      <extensionElements></extensionElements>
+      <extensionElements>
+        <activiti:field name="to" expression="brunovierag@gmail.com"></activiti:field>
+        <activiti:field name="subject" expression="lkj"></activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[lslslsl]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
     </serviceTask>
-    <serviceTask id="servicetask5" name="Guardar inscripcion"></serviceTask>
+    <serviceTask id="servicetask5" name="Guardar inscripcion" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
     <intermediateCatchEvent id="timerintermediatecatchevent3" name="finPeriodoDesistimiento">
-      <timerEventDefinition></timerEventDefinition>
+      <timerEventDefinition>
+        <timeDuration>100</timeDuration>
+      </timerEventDefinition>
     </intermediateCatchEvent>
     <serviceTask id="mailtask4" name="Confirmar Desistimiento" activiti:type="mail">
-      <extensionElements></extensionElements>
+      <extensionElements>
+        <activiti:field name="to" expression="brunovierag@gmail.com"></activiti:field>
+        <activiti:field name="subject" expression="gggg"></activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[sdsd]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
     </serviceTask>
     <sequenceFlow id="flow10" name="" sourceRef="startevent2" targetRef="guardarInscripcion"></sequenceFlow>
     <sequenceFlow id="flow15" name="NoDesistio" sourceRef="exclusivegateway1" targetRef="servicetask4">
