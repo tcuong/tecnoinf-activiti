@@ -7,7 +7,12 @@
 
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="1" style="height:100%; width: 100%;">
+
+			<p:panel header="Aviso" rendered="#{!inscripcionCursoMB.existePeriodo}" style="margin:30px;">
+				<h:outputText value="#{localization['inscripciones.noExisteMessage']}" />
+			</p:panel>
+
+			<p:panelGrid columns="1" style="height:100%; width: 100%;" rendered="#{inscripcionCursoMB.existePeriodo}">
 				<f:facet name="header">#{localization['inscripciones.header']}</f:facet>
 				<p:panelGrid columns="2"
 					style="margin:15px auto; border: none !important;">
@@ -25,7 +30,8 @@
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
-					style="margin:10px" emptyMessage="#{localization['misc.noRecordsFound']}">
+					style="margin:10px"
+					emptyMessage="#{localization['misc.noRecordsFound']}">
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="#{localization['common.cursos']}" />
@@ -55,7 +61,7 @@
 							<h:outputText value="#{localization['common.select']}" />
 						</f:facet>
 						<p:commandButton value="#{localization['common.inscribirme']}"
-							action="#{inscripcionCursoMB.inscribirse()}" style="padding:0;" />
+							action="#{inscripcionCursoMB.inscribirse(curso)}" style="padding:0;" />
 					</p:column>
 				</p:dataTable>
 			</p:panelGrid>

@@ -124,4 +124,5 @@ public class Inscripcion extends GenericEntity {
 	public void setPeriodo(PeriodoInscripcion periodo) {
 		this.periodo = periodo;
 	}
+	
 }

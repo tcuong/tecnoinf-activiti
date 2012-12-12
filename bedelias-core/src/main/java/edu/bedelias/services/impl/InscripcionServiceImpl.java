@@ -110,8 +110,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Carreer> getCarrerasByStudent(Student student) {
-		List<Inscripcion> inscripciones = this
-				.getInscripcionesByStudent(student);
+		List<Inscripcion> inscripciones = this.getInscripcionesByStudent(student);
 		List<Carreer> carreers = new ArrayList<Carreer>();
 		for (Inscripcion ins : inscripciones) {
 			if (ins.getTipo() == TipoInscripcionEnum.CARRERA) {
