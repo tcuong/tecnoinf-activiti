@@ -2,22 +2,41 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="entregaTitulo" name="Entrega Título" activiti:candidateStarterUsers="kermit" activiti:candidateStarterGroups="bedelias">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <serviceTask id="validarInformacion" name="Validar Información"></serviceTask>
+    <serviceTask id="validarInformacion" name="Validar Información" activiti:class="edu.bedelias.activiti.entregatitulo.ValidarInformacion"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="error"></exclusiveGateway>
-    <sequenceFlow id="flow3" name="" sourceRef="validarInformacion" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="siOk" name="Ok" sourceRef="exclusivegateway1" targetRef="udelar"></sequenceFlow>
     <manualTask id="udelar" name="Envio documentos UdelaR"></manualTask>
-    <userTask id="firmaDecano" name="Firma Decano" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
+    <userTask id="firmaDecano" name="Firma Decano" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
+      <documentation>Complete esta tarea unicamente cuando el titulo a otorgar este ya firmado por el Decano.</documentation>
+    </userTask>
+    <serviceTask id="envioEmail" name="Aviso estudiante a que pase a levantar" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to" expression="${mailEstudiante}"></activiti:field>
+        <activiti:field name="subject" expression="Firma de titulo"></activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Estimado Estudiante,
+
+Su titulo ya ha sido firmado por el Decano, le solicitamos
+se acerque a Bedelias para que usted fime el titulo.
+
+Gracias.]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="entrega" name="Titulo Entregue" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
+      <documentation>Por favor complete esta tarea una vez que haya entregado el titulo al estudiante ${nombreEstudiante}.</documentation>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" name="" sourceRef="validarInformacion" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="siOk" name="Ok" sourceRef="exclusivegateway1" targetRef="udelar">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==true}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="udelar" targetRef="firmaDecano"></sequenceFlow>
     <sequenceFlow id="flow6" name="" sourceRef="firmaDecano" targetRef="envioEmail"></sequenceFlow>
-    <serviceTask id="envioEmail" name="Aviso estudiante a que pase a levantar" activiti:type="mail">
-      <extensionElements></extensionElements>
-    </serviceTask>
-    <userTask id="entrega" name="Titulo Entregue" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
     <sequenceFlow id="flow7" name="" sourceRef="envioEmail" targetRef="entrega"></sequenceFlow>
-    <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow8" name="" sourceRef="entrega" targetRef="endevent1"></sequenceFlow>
-    <sequenceFlow id="error" name="Error en la info. ingresada" sourceRef="exclusivegateway1" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="error" name="Error en la info. ingresada" sourceRef="exclusivegateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==false}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow10" name="" sourceRef="startevent1" targetRef="validarInformacion"></sequenceFlow>
     <textAnnotation id="textannotation1" textFormat="text/plain">
       <text><![CDATA[Acá se valida la cédula del  estudiante, cual es la carrera por la cual tramita el título y si cumple con los créditos necesarios para el mismo.]]></text>
@@ -58,7 +77,7 @@
         <omgdi:waypoint x="520" y="97"></omgdi:waypoint>
         <omgdi:waypoint x="565" y="97"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-12" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="-12" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
@@ -83,7 +102,7 @@
         <omgdi:waypoint x="1222" y="158"></omgdi:waypoint>
         <omgdi:waypoint x="1222" y="115"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="39" width="100" x="-292" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="42" width="100" x="-292" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">

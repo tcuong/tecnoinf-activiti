@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Materia;
+import edu.bedelias.enums.AprobacionEnum;
 import edu.bedelias.repositories.MateriaRepository;
 import edu.bedelias.services.MateriaService;
 
@@ -96,6 +97,32 @@ public class MateriaServiceImpl implements MateriaService, Serializable {
 	@Override
 	public Materia getMateriaById(Long materiaId) {
 		return materiaRepo.findOne(materiaId);
+	}
+
+	@Override
+	public List<Asignatura> getAsignaturasByMateriaIdAndTipoAprobacionExamen(
+			Long materiaId) {
+		List<Asignatura> asignaturas = materiaRepo
+				.getAsignaturasByMateriaId(materiaId);
+		for (Asignatura a : asignaturas) {
+			if (a.getTipoAprobacion().equals(AprobacionEnum.CURSO)) {
+				asignaturas.remove(a);
+			}
+		}
+		return asignaturas;
+	}
+
+	@Override
+	public List<Asignatura> getAsignaturasByMateriaIdAndTipoAprobacionCurso(
+			Long materiaId) {
+		List<Asignatura> asignaturasCurso = materiaRepo
+				.getAsignaturasByMateriaId(materiaId);
+		for (Asignatura asig : asignaturasCurso) {
+			if (asig.getTipoAprobacion().equals(AprobacionEnum.EXAMEN)) {
+				asignaturasCurso.remove(asig);
+			}
+		}
+		return asignaturasCurso;
 	}
 
 }
