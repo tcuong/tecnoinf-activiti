@@ -79,12 +79,15 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- Http Invoker services -->
-	<!-- <bean name="studentExporter" scope="session" -->
-	<!-- class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"> -->
-	<!-- <property name="service" ref="studentServiceImpl" /> -->
-	<!-- <property name="serviceInterface" value="edu.bedelias.services.studentService" 
-		/> -->
-	<!-- </bean> -->
+
+
+
+	<bean id="inscripcionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/InscripcionService" />
+		<property name="serviceInterface" value="edu.bedelias.services.InscripcionService" />
+	</bean>
+
 
 </beans>

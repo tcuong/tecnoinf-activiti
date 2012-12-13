@@ -6,26 +6,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
+	
+		<p:panel header="Aviso" rendered="#{!inscripcionCursoMB.existePeriodo}" style="margin:30px;">
+			<h:outputText value="#{localization['inscripciones.noExisteMessage']}" />
+		</p:panel>
 		<h:form>
 
-			<p:panel header="Aviso" rendered="#{!inscripcionCursoMB.existePeriodo}" style="margin:30px;">
-				<h:outputText value="#{localization['inscripciones.noExisteMessage']}" />
-			</p:panel>
-
-			<p:panelGrid columns="1" style="height:100%; width: 100%;" rendered="#{inscripcionCursoMB.existePeriodo}">
-				<f:facet name="header">#{localization['inscripciones.header']}</f:facet>
-				<p:panelGrid columns="2"
-					style="margin:15px auto; border: none !important;">
-					<h:outputText
-						value="#{localization['inscripciones.selectCarrera']}" />
-					<p:selectOneMenu value="#{inscripcionCursoMB.carreraId}">
-						<f:selectItem itemLabel="-- #{localization['common.carrera']} --"
-							itemValue="" />
-						<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}" />
-						<p:ajax update="tabla"
-							listener="#{inscripcionCursoMB.actualizarCursos}" />
-					</p:selectOneMenu>
-				</p:panelGrid>
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -61,10 +47,9 @@
 							<h:outputText value="#{localization['common.select']}" />
 						</f:facet>
 						<p:commandButton value="#{localization['common.inscribirme']}"
-							action="#{inscripcionCursoMB.inscribirse(curso)}" style="padding:0;" />
+							action="#{inscripcionCursoMB.inscribirse(curso)}" />
 					</p:column>
 				</p:dataTable>
-			</p:panelGrid>
-		</h:form>
+			</h:form>
 	</ui:define>
 </ui:composition>
