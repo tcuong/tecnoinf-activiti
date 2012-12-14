@@ -112,7 +112,7 @@ public class CargarDatosTest {
 		Materia materia = new Materia();
 		materia.setName("Didactica");
 		materia.setCode("codigoMateria");
-		materia.setMinCredits(15);
+		materia.setMinCredits(13);
 		materia = materiaService.agregarAsignaturaMateria(materia, asignatura);
 		materia = materiaService.agregarAsignaturaMateria(materia, previa);
 
@@ -216,10 +216,10 @@ public class CargarDatosTest {
 			List<Asignatura> asignaturasExamen = materiaService
 					.getAsignaturasByMateriaIdAndTipoAprobacionExamen(m.getId());
 
-			// Recorro las asignaturas de examen
+			// // Recorro las asignaturas de examen
 			for (Asignatura a : asignaturasExamen) {
 				for (Evaluacion e : evaluacionesExamen) {
-					if (e.getExamen().getAsignatura().equals(a)) {
+					if (e.getExamen().getAsignatura().getId() == a.getId()) {
 						creditosEstudiantes += a.getCredits();
 					}
 				}
@@ -227,10 +227,11 @@ public class CargarDatosTest {
 
 			List<Asignatura> asignaturasCurso = materiaService
 					.getAsignaturasByMateriaIdAndTipoAprobacionCurso((m.getId()));
+
 			// Recorro promero las asignaturas de curso
 			for (Asignatura a : asignaturasCurso) {
 				for (Evaluacion e : evaluacionesCurso) {
-					if (e.getCurso().getAsignatura().equals(a)) {
+					if (e.getCurso().getAsignatura().getId() == a.getId()) {
 						creditosEstudiantes += a.getCredits();
 					}
 				}
@@ -241,6 +242,9 @@ public class CargarDatosTest {
 			} else {
 				creditosTotales += creditosMateria;
 			}
+
+			System.out.println("lalallalal");
+
 		}
 	}
 

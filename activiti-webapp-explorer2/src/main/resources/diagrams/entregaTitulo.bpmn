@@ -28,14 +28,14 @@ Gracias.]]></activiti:expression>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow3" name="" sourceRef="validarInformacion" targetRef="exclusivegateway1"></sequenceFlow>
     <sequenceFlow id="siOk" name="Ok" sourceRef="exclusivegateway1" targetRef="udelar">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==true}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${seRecibe==true}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow5" name="" sourceRef="udelar" targetRef="firmaDecano"></sequenceFlow>
     <sequenceFlow id="flow6" name="" sourceRef="firmaDecano" targetRef="envioEmail"></sequenceFlow>
     <sequenceFlow id="flow7" name="" sourceRef="envioEmail" targetRef="entrega"></sequenceFlow>
     <sequenceFlow id="flow8" name="" sourceRef="entrega" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="error" name="Error en la info. ingresada" sourceRef="exclusivegateway1" targetRef="endevent1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${valido==false}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${seRecibe==false}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow10" name="" sourceRef="startevent1" targetRef="validarInformacion"></sequenceFlow>
     <textAnnotation id="textannotation1" textFormat="text/plain">

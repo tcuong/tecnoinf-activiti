@@ -104,25 +104,30 @@ public class MateriaServiceImpl implements MateriaService, Serializable {
 			Long materiaId) {
 		List<Asignatura> asignaturas = materiaRepo
 				.getAsignaturasByMateriaId(materiaId);
+		List<Asignatura> asigFiltradas = new ArrayList<Asignatura>();
+
 		for (Asignatura a : asignaturas) {
-			if (a.getTipoAprobacion().equals(AprobacionEnum.CURSO)) {
-				asignaturas.remove(a);
+			if (a.getTipoAprobacion().equals(AprobacionEnum.EXAMEN)) {
+				asigFiltradas.add(a);
 			}
 		}
-		return asignaturas;
+		return asigFiltradas;
 	}
 
 	@Override
 	public List<Asignatura> getAsignaturasByMateriaIdAndTipoAprobacionCurso(
 			Long materiaId) {
+
 		List<Asignatura> asignaturasCurso = materiaRepo
 				.getAsignaturasByMateriaId(materiaId);
+		List<Asignatura> asigFiltradas = new ArrayList<Asignatura>();
+
 		for (Asignatura asig : asignaturasCurso) {
-			if (asig.getTipoAprobacion().equals(AprobacionEnum.EXAMEN)) {
-				asignaturasCurso.remove(asig);
+			if (asig.getTipoAprobacion().equals(AprobacionEnum.CURSO)) {
+				asigFiltradas.add(asig);
 			}
 		}
-		return asignaturasCurso;
+		return asigFiltradas;
 	}
 
 }

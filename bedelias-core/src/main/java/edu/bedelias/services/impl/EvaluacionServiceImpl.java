@@ -1,5 +1,6 @@
 package edu.bedelias.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,48 +126,54 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndCurso(
 			Long studentId) {
 		Student student = studentRepo.findOne(studentId);
-		List<Evaluacion> evaluaciones = evaluacionRepo
+		List<Evaluacion> evaluaciones = this
 				.getEvaluacionesByStudentId(student);
+		List<Evaluacion> evalSinExamen = new ArrayList<Evaluacion>();
+
 		for (Evaluacion eval : evaluaciones) {
-			if (eval.getExamen() != null) {
-				evaluaciones.remove(eval);
+			if (eval.getExamen() == null) {
+				evalSinExamen.add(eval);
 			}
 		}
-		for (Evaluacion e : evaluaciones) {
+
+		List<Evaluacion> evaluacionesFiltradas = new ArrayList<Evaluacion>();
+		for (Evaluacion e : evalSinExamen) {
 			if (e.getCurso() != null) {
-				if (!e.getCurso().getAsignatura().getTipoAprobacion()
+				if (e.getCurso().getAsignatura().getTipoAprobacion()
 						.equals(AprobacionEnum.CURSO)
-						|| e.getEstado()
-								.equals(EstadoAprobacionEnum.NOAPROBADO)) {
-					evaluaciones.remove(e);
+						&& e.getEstado().equals(EstadoAprobacionEnum.APROBADO)) {
+					evaluacionesFiltradas.add(e);
 				}
 			}
 		}
-		return evaluaciones;
+		return evaluacionesFiltradas;
 	}
 
 	@Override
 	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndExamen(
 			Long studentId) {
+
 		Student student = studentRepo.findOne(studentId);
-		List<Evaluacion> evaluaciones = evaluacionRepo
+		List<Evaluacion> evaluaciones = this
 				.getEvaluacionesByStudentId(student);
+		List<Evaluacion> evalSinCurso = new ArrayList<Evaluacion>();
+
 		for (Evaluacion eval : evaluaciones) {
-			if (eval.getCurso() != null) {
-				evaluaciones.remove(eval);
+			if (eval.getCurso() == null) {
+				evalSinCurso.add(eval);
 			}
 		}
-		for (Evaluacion e : evaluaciones) {
+		List<Evaluacion> evaluacionesFiltradas = new ArrayList<Evaluacion>();
+		for (Evaluacion e : evalSinCurso) {
 			if (e.getExamen() != null) {
-				if (!e.getExamen().getAsignatura().getTipoAprobacion()
+				if (e.getExamen().getAsignatura().getTipoAprobacion()
 						.equals(AprobacionEnum.EXAMEN)
-						|| e.getEstado()
-								.equals(EstadoAprobacionEnum.NOAPROBADO)) {
-					evaluaciones.remove(e);
+						&& e.getEstado().equals(EstadoAprobacionEnum.APROBADO)) {
+					evaluacionesFiltradas.add(e);
 				}
 			}
 		}
-		return evaluaciones;
+		return evaluacionesFiltradas;
 	}
 
 	public CursoRepository getCursoRepo() {
