@@ -42,4 +42,6 @@ public interface InscripcionService {
 	
 	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida);
 
+	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso);
+
 }

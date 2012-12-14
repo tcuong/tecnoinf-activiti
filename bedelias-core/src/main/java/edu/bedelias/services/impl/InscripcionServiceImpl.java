@@ -110,8 +110,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Carreer> getCarrerasByStudent(Student student) {
-		List<Inscripcion> inscripciones = this
-				.getInscripcionesByStudent(student);
+		List<Inscripcion> inscripciones = this.getInscripcionesByStudent(student);
 		List<Carreer> carreers = new ArrayList<Carreer>();
 		for (Inscripcion ins : inscripciones) {
 			if (ins.getTipo() == TipoInscripcionEnum.CARRERA) {
@@ -309,6 +308,12 @@ public class InscripcionServiceImpl implements InscripcionService {
 	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida) {
 		// Acá tengo que devolver todas los estudiantes que tienen una inscripcion al curso y con el tipo de inscripcion == valida
 		// y además que no tengan una evaluación creada para ese curso, es para el proceso de ingreso de resultados
+		return null;
+	}
+
+	@Override
+	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso) {
+		// por ahora retorno null pero hay que implementarla
 		return null;
 	}
 

@@ -22,8 +22,10 @@ public interface EvaluacionRepository extends JpaRepository<Evaluacion, Long> {
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student);
 
 	@Query("select e from Evaluacion e where e.estudiante = ?1 and e.curso = ?2")
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso);
-	
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
+			Curso curso);
+
 	@Query("select e from Evaluacion e where e.curso = ?1")
 	public List<Evaluacion> getEvaluacionesByCurso(Curso curso);
+
 }

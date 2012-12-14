@@ -24,4 +24,10 @@ public interface MateriaService {
 
 	public Materia getMateriaById(Long materiaId);
 
+	public List<Asignatura> getAsignaturasByMateriaIdAndTipoAprobacionExamen(
+			Long materiaId);
+
+	public List<Asignatura> getAsignaturasByMateriaIdAndTipoAprobacionCurso(
+			Long materiaId);
+
 }

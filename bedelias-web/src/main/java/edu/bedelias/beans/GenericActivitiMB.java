@@ -10,6 +10,7 @@ public abstract class GenericActivitiMB extends GenericMB {
 	private static final long serialVersionUID = 1L;
 
 	public GenericActivitiMB() {
+		super();
 	}
 
 	public void instanciarProceso(String key, HashMap<String, Object> datos) {

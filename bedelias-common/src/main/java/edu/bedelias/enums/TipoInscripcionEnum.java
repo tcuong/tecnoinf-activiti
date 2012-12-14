@@ -9,5 +9,5 @@ package edu.bedelias.enums;
  */
 public enum TipoInscripcionEnum {
 
-	CARRERA, CURSO, EXAMEN, DESISTIR
+	CARRERA, CURSO, EXAMEN, DESISTIO
 }

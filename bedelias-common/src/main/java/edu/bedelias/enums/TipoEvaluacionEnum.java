@@ -6,5 +6,5 @@ package edu.bedelias.enums;
  */
 public enum TipoEvaluacionEnum {
 
-	PARCIAL, TRABAJO, FINAL
+	PARCIAL, TRABAJO, FINAL, EXAMEN, CURSO
 }

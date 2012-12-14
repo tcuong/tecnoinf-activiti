@@ -9,7 +9,7 @@ import edu.bedelias.entities.Student;
 public interface EvaluacionService {
 
 	public Evaluacion createEvaluacion(Evaluacion evaluacion);
-	
+
 	public void createEvaluacion(List<Evaluacion> evaluaciones);
 
 	public void updateEvaluacion(Evaluacion evaluacion);
@@ -18,12 +18,21 @@ public interface EvaluacionService {
 
 	public List<Evaluacion> getEvaluacionesByStudentId(Student student);
 
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso);
-	
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student, String cursoId);
-	
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
+			Curso curso);
+
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
+			String cursoId);
+
 	public List<Evaluacion> getEvaluacionesByCurso(Long cursoId);
 
-	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId, Long cursoId);
+	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId,
+			Long cursoId);
+
+	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndCurso(
+			Long studentId);
+
+	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndExamen(
+			Long studentId);
 
 }

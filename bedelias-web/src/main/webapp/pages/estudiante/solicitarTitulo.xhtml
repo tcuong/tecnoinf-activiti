@@ -9,11 +9,20 @@
 
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="2" style="width:40%; margin:50px auto;">
-				<f:facet name="header">
-        			#{localization['misc.notYetAvailable']}
-    			</f:facet>
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:panelGrid columns="3" style="margin:50px auto; border: none !important;">
+				
+				<h:outputText value="#{localization['inscripciones.selectCarrera']}" />
+	
+				<p:selectOneMenu value="#{solicitarTituloMB.carreraId}">
+					<f:selectItem itemLabel="-- #{localization['common.carrera']} --" itemValue="" />
+					<f:selectItems value="#{solicitarTituloMB.carrerasListItem}" />
+				</p:selectOneMenu>
+				
+				<p:commandButton value="#{localization['common.confirmarsolicitarTitulo']}" action="#{solicitarTituloMB.solicitar}" update="growl"/>
+				
 			</p:panelGrid>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

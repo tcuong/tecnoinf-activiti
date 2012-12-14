@@ -11,12 +11,15 @@ import javax.faces.model.SelectItem;
 
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
 import edu.bedelias.services.InscripcionService;
+import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
-@ManagedBean(name = "inscripcionCursoMB")
+@ManagedBean
 @RequestScoped
 public class InscripcionCursoMB extends GenericMB {
 
@@ -31,11 +34,17 @@ public class InscripcionCursoMB extends GenericMB {
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
 
+	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
+	private PeriodoInscripcionService periodoService;
+
 	private List<SelectItem> carrerasListItem;
 	private List<Carreer> carreras;
 	private List<Curso> cursos;
 	private String ciEst;
-	private long carreraId;
+	private long carreraId = 0;
+	private boolean existePeriodo;
+	private Student student;
+	private PeriodoInscripcion periodo;
 
 	public InscripcionCursoMB() {
 		super();
@@ -43,33 +52,41 @@ public class InscripcionCursoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		if (estaLogueado()) {
-			
-			// primero pregunto si existe un período de inscripcion a cursos abierto
-			
-			// luego si existe recien le muestro las carreras al estudiante para que se pueda inscribir.
-			
-			ciEst = getFromSession(this.cedula).toString();
-			Student student = studentService.findStudentByCedula(ciEst);
 
-			if (student != null) {
-				carreras = inscripcionService.getCarrerasByStudent(student);
-				carrerasListItem = new ArrayList<SelectItem>();
-				for (Carreer c : carreras) {
-					carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
-				}
+		if (estaLogueado()) {
+
+			// primero pregunto si existe un período de inscripcion a cursos
+			// abierto
+			periodo = periodoService.getPeriodoActivoByTipo(true,
+					TipoInscripcionEnum.CURSO);
+
+			if (periodo == null) {
+				// muestro mensaje diciendo que no hay periodo de inscripcion
+				// habilitado
+				existePeriodo = false;
 			} else {
-				sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cedula dada");
+				existePeriodo = true;
+				ciEst = getFromSession(this.cedula).toString();
+				student = studentService.findStudentByCedula(ciEst);
+
+				if (student != null) {
+					carreras = inscripcionService.getCarrerasByStudent(student);
+					carrerasListItem = new ArrayList<SelectItem>();
+					for (Carreer c : carreras) {
+						carrerasListItem.add(new SelectItem(c.getId(), c
+								.getName()));
+					}
+				} else {
+					sendErrorMessage("Estudiante no encontrado",
+							"No se han encontrado el estudiante con la cedula dada");
+				}
 			}
 		}
 	}
 
-	public void actualizarCursos() {
-		cursos = cursoService.getCursosByCarrearId(carreraId);
-	}
-
-	public void inscribirse(String id) {
-		System.out.println("Este es el id del curso = " + id);
+	public void cargarCursos() {
+		this.putInSession("carrera", carreraId);
+		this.redirect("inscripcionCursoListado.xhtml");
 	}
 
 	public List<Curso> getCursos() {
@@ -134,6 +151,38 @@ public class InscripcionCursoMB extends GenericMB {
 
 	public void setCarreraId(long carreraId) {
 		this.carreraId = carreraId;
+	}
+
+	public PeriodoInscripcionService getPeriodoService() {
+		return periodoService;
+	}
+
+	public void setPeriodoService(PeriodoInscripcionService periodoService) {
+		this.periodoService = periodoService;
+	}
+
+	public boolean isExistePeriodo() {
+		return existePeriodo;
+	}
+
+	public void setExistePeriodo(boolean noExistePeriodo) {
+		this.existePeriodo = noExistePeriodo;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public PeriodoInscripcion getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(PeriodoInscripcion periodo) {
+		this.periodo = periodo;
 	}
 
 }

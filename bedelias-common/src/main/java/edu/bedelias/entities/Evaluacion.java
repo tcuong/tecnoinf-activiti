@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import edu.bedelias.entities.generics.GenericEntity;
+import edu.bedelias.enums.EstadoAprobacionEnum;
 import edu.bedelias.enums.TipoEvaluacionEnum;
 
 /**
@@ -25,10 +26,15 @@ public class Evaluacion extends GenericEntity {
 	private Integer resultado;
 	private TipoEvaluacionEnum tipoEvaluacion;
 	private boolean noAsistio;
+	private EstadoAprobacionEnum estado;
 
 	@ManyToOne
 	@JoinColumn(name = "curso")
 	private Curso curso;
+
+	@ManyToOne
+	@JoinColumn(name = "examen")
+	private Examen examen;
 
 	@ManyToOne
 	@JoinColumn(name = "estudiante")
@@ -94,6 +100,22 @@ public class Evaluacion extends GenericEntity {
 
 	public void setNoAsistio(boolean noAsistio) {
 		this.noAsistio = noAsistio;
+	}
+
+	public EstadoAprobacionEnum getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoAprobacionEnum estado) {
+		this.estado = estado;
+	}
+
+	public Examen getExamen() {
+		return examen;
+	}
+
+	public void setExamen(Examen examen) {
+		this.examen = examen;
 	}
 
 }

@@ -1,5 +1,6 @@
 package edu.bedelias.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.AprobacionEnum;
+import edu.bedelias.enums.EstadoAprobacionEnum;
 import edu.bedelias.repositories.CursoRepository;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
@@ -55,7 +58,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		}
 		return evaluacion;
 	}
-	
+
 	@Override
 	public void createEvaluacion(List<Evaluacion> evaluaciones) {
 		// TODO si alguien sabe como hacerlo batch mejor ahora va a lo guerrero
@@ -79,12 +82,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student, Curso curso) {
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
+			Curso curso) {
 		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
 	}
-	
+
 	@Override
-	public Evaluacion getEvaluacionByStudentAndCurso(Student student, String cursoId) {
+	public Evaluacion getEvaluacionByStudentAndCurso(Student student,
+			String cursoId) {
 		Curso curso = cursoRepo.findOne(Long.valueOf(cursoId));
 		return evaluacionRepo.getEvaluacionByStudentAndCurso(student, curso);
 	}
@@ -101,7 +106,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	}
 
 	@Override
-	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId, Long cursoId) {
+	public Evaluacion createEvaluacion(Evaluacion evaluacion, Long studentId,
+			Long cursoId) {
 		try {
 			Student estudiante = studentRepo.findOne(studentId);
 			Curso curso = cursoRepo.findOne(cursoId);
@@ -114,6 +120,60 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			e.printStackTrace();
 		}
 		return evaluacionRepo.save(evaluacion);
+	}
+
+	@Override
+	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndCurso(
+			Long studentId) {
+		Student student = studentRepo.findOne(studentId);
+		List<Evaluacion> evaluaciones = this
+				.getEvaluacionesByStudentId(student);
+		List<Evaluacion> evalSinExamen = new ArrayList<Evaluacion>();
+
+		for (Evaluacion eval : evaluaciones) {
+			if (eval.getExamen() == null) {
+				evalSinExamen.add(eval);
+			}
+		}
+
+		List<Evaluacion> evaluacionesFiltradas = new ArrayList<Evaluacion>();
+		for (Evaluacion e : evalSinExamen) {
+			if (e.getCurso() != null) {
+				if (e.getCurso().getAsignatura().getTipoAprobacion()
+						.equals(AprobacionEnum.CURSO)
+						&& e.getEstado().equals(EstadoAprobacionEnum.APROBADO)) {
+					evaluacionesFiltradas.add(e);
+				}
+			}
+		}
+		return evaluacionesFiltradas;
+	}
+
+	@Override
+	public List<Evaluacion> getEvaluacionesAprobadasByStudentAndExamen(
+			Long studentId) {
+
+		Student student = studentRepo.findOne(studentId);
+		List<Evaluacion> evaluaciones = this
+				.getEvaluacionesByStudentId(student);
+		List<Evaluacion> evalSinCurso = new ArrayList<Evaluacion>();
+
+		for (Evaluacion eval : evaluaciones) {
+			if (eval.getCurso() == null) {
+				evalSinCurso.add(eval);
+			}
+		}
+		List<Evaluacion> evaluacionesFiltradas = new ArrayList<Evaluacion>();
+		for (Evaluacion e : evalSinCurso) {
+			if (e.getExamen() != null) {
+				if (e.getExamen().getAsignatura().getTipoAprobacion()
+						.equals(AprobacionEnum.EXAMEN)
+						&& e.getEstado().equals(EstadoAprobacionEnum.APROBADO)) {
+					evaluacionesFiltradas.add(e);
+				}
+			}
+		}
+		return evaluacionesFiltradas;
 	}
 
 	public CursoRepository getCursoRepo() {
