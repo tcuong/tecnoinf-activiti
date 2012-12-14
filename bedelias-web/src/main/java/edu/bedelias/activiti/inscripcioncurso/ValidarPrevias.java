@@ -22,7 +22,7 @@ public class ValidarPrevias implements JavaDelegate {
 		
 		// si esta todo ok, ya seteo las variables para el email y para la tarea de guardado final
 		
-		execution.setVariable("validacion", false);
+		execution.setVariable("validacion", true);
 		execution.setVariable("student", student);
 		execution.setVariable("curso", curso);
 		execution.setVariable("para", "brunovierag@gmail.com");

@@ -49,7 +49,7 @@ public class GuardarInscripcionCondicional implements JavaDelegate {
 		String fecha = "2012-12-14T12:35:00";
 		
 		execution.setVariable("fechaFinDesistimiento", fecha);
-		execution.setVariable("estudiante", student);
+		execution.setVariable("student", student);
 		execution.setVariable("curso", curso);
 		 
 	}

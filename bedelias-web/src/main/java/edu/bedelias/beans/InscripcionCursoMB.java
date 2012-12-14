@@ -1,19 +1,13 @@
 package edu.bedelias.beans;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
-
-import org.activiti.engine.ProcessEngine;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
@@ -25,9 +19,9 @@ import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
-@ManagedBean(name = "inscripcionCursoMB")
+@ManagedBean
 @RequestScoped
-public class InscripcionCursoMB extends GenericMB{
+public class InscripcionCursoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +33,7 @@ public class InscripcionCursoMB extends GenericMB{
 
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
-	
+
 	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
 	private PeriodoInscripcionService periodoService;
 
@@ -47,25 +41,28 @@ public class InscripcionCursoMB extends GenericMB{
 	private List<Carreer> carreras;
 	private List<Curso> cursos;
 	private String ciEst;
-	private long carreraId;
+	private long carreraId = 0;
 	private boolean existePeriodo;
 	private Student student;
-	private PeriodoInscripcion periodo ;
-	
+	private PeriodoInscripcion periodo;
+
 	public InscripcionCursoMB() {
 		super();
 	}
 
 	@PostConstruct
 	public void init() {
-		
+
 		if (estaLogueado()) {
-			
-			// primero pregunto si existe un período de inscripcion a cursos abierto
-			periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
-			
-			if(periodo == null){
-				// muestro mensaje diciendo que no hay periodo de inscripcion habilitado
+
+			// primero pregunto si existe un período de inscripcion a cursos
+			// abierto
+			periodo = periodoService.getPeriodoActivoByTipo(true,
+					TipoInscripcionEnum.CURSO);
+
+			if (periodo == null) {
+				// muestro mensaje diciendo que no hay periodo de inscripcion
+				// habilitado
 				existePeriodo = false;
 			} else {
 				existePeriodo = true;
@@ -76,37 +73,20 @@ public class InscripcionCursoMB extends GenericMB{
 					carreras = inscripcionService.getCarrerasByStudent(student);
 					carrerasListItem = new ArrayList<SelectItem>();
 					for (Carreer c : carreras) {
-						carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
-//						cursos = cursoService.getCursosByCarrearId(c.getId());
+						carrerasListItem.add(new SelectItem(c.getId(), c
+								.getName()));
 					}
 				} else {
-					sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cedula dada");
+					sendErrorMessage("Estudiante no encontrado",
+							"No se han encontrado el estudiante con la cedula dada");
 				}
 			}
 		}
 	}
 
-	public void cargarCursos(ActionEvent event) {
-		actualizarCursos();
-	}
-	
-	public void actualizarCursos() {
-		cursos = cursoService.getCursosByCarrearId(carreraId);
-	}
-	
-	public void inscribirse(Curso curso) {
-		
-		redirect("noImplementada.xhtml");
-		Map<String, Object> datos = new HashMap<String, Object>();
-		datos.put("student", student);
-		datos.put("curso", curso);
-		datos.put("periodo", periodo);
-		
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
-		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
-		
-
+	public void cargarCursos() {
+		this.putInSession("carrera", carreraId);
+		this.redirect("inscripcionCursoListado.xhtml");
 	}
 
 	public List<Curso> getCursos() {
@@ -204,6 +184,5 @@ public class InscripcionCursoMB extends GenericMB{
 	public void setPeriodo(PeriodoInscripcion periodo) {
 		this.periodo = periodo;
 	}
-	
-	
+
 }
