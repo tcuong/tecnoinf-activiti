@@ -77,7 +77,7 @@ Gracias.]]></activiti:expression>
         <omgdi:waypoint x="520" y="97"></omgdi:waypoint>
         <omgdi:waypoint x="565" y="97"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="13" width="100" x="-12" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="14" width="100" x="-12" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
@@ -102,7 +102,7 @@ Gracias.]]></activiti:expression>
         <omgdi:waypoint x="1222" y="158"></omgdi:waypoint>
         <omgdi:waypoint x="1222" y="115"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="39" width="100" x="-292" y="0"></omgdc:Bounds>
+          <omgdc:Bounds height="42" width="100" x="-292" y="0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">

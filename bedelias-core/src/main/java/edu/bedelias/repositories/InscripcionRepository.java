@@ -31,7 +31,7 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 	public List<Inscripcion> findInscripcionByEstudiante(Student estudiante);
 
 	@Query("select i from Inscripcion i where i.curso = ?1")
-	public List<Inscripcion> findInscripcionesByCursoId(Curso curso);
+	public List<Inscripcion> getInscripcionesByCurso(Curso curso);
 
 	@Query("select i from Inscripcion i where i.examen = ?1")
 	public List<Inscripcion> findInscripcionesByExamen(Examen examen);

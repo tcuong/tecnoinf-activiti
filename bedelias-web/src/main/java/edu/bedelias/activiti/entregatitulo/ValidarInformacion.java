@@ -28,7 +28,7 @@ public class ValidarInformacion implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 
 		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
-				"classpath:applicationContextRemote.xml");
+				"classpath:applicationContextWeb.xml");
 
 		evaluacionService = (EvaluacionService) cpx
 				.getBean("evaluacionService");

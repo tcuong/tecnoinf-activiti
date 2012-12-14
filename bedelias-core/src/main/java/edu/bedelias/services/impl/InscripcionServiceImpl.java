@@ -110,7 +110,8 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Carreer> getCarrerasByStudent(Student student) {
-		List<Inscripcion> inscripciones = this.getInscripcionesByStudent(student);
+		List<Inscripcion> inscripciones = this
+				.getInscripcionesByStudent(student);
 		List<Carreer> carreers = new ArrayList<Carreer>();
 		for (Inscripcion ins : inscripciones) {
 			if (ins.getTipo() == TipoInscripcionEnum.CARRERA) {
@@ -250,7 +251,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Inscripcion> findInscripcionesByCursoId(Curso curso) {
-		return inscripcionRepo.findInscripcionesByCursoId(curso);
+		return inscripcionRepo.getInscripcionesByCurso(curso);
 	}
 
 	public ExamenRepository getExamenRepo() {
@@ -283,36 +284,42 @@ public class InscripcionServiceImpl implements InscripcionService {
 	public String createInscripcion_Activiti(long idCarrera, String cedula) {
 
 		String msg = "La inscripcion fue exitosa";
-		try{
-		// obtengo a partir de los datos que me envía activiti la carrera y el
-		// estudiante
-		Carreer carrera = carreerRepo.findOne(idCarrera);
-		Student estudiante = studentRepo.findStudentByCedula(cedula);
+		try {
+			// obtengo a partir de los datos que me envía activiti la carrera y
+			// el
+			// estudiante
+			Carreer carrera = carreerRepo.findOne(idCarrera);
+			Student estudiante = studentRepo.findStudentByCedula(cedula);
 
-		// seteo los datos en la inscripción
-		Inscripcion inscripcion = new Inscripcion();
-		inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
-		inscripcion.setCarrera(carrera);
-		inscripcion.setEstudiante(estudiante);
+			// seteo los datos en la inscripción
+			Inscripcion inscripcion = new Inscripcion();
+			inscripcion.setTipo(TipoInscripcionEnum.CARRERA);
+			inscripcion.setCarrera(carrera);
+			inscripcion.setEstudiante(estudiante);
 
-		// guardo la inscripcion
-		inscripcionRepo.save(inscripcion);
+			// guardo la inscripcion
+			inscripcionRepo.save(inscripcion);
 
-		}catch (Exception e) {
-			msg = "Se generó un error al guardar la inscripción" + e.getStackTrace();
+		} catch (Exception e) {
+			msg = "Se generó un error al guardar la inscripción"
+					+ e.getStackTrace();
 		}
 		return msg;
 	}
 
 	@Override
-	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida) {
-		// Acá tengo que devolver todas los estudiantes que tienen una inscripcion al curso y con el tipo de inscripcion == valida
-		// y además que no tengan una evaluación creada para ese curso, es para el proceso de ingreso de resultados
+	public List<Student> getInscriptosCursoSinEvaluar(long idCurso,
+			boolean valida) {
+		// Acá tengo que devolver todas los estudiantes que tienen una
+		// inscripcion al curso y con el tipo de inscripcion == valida
+		// y además que no tengan una evaluación creada para ese curso, es para
+		// el proceso de ingreso de resultados
 		return null;
 	}
 
 	@Override
-	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso) {
+	public Inscripcion getInscripcionByStudentYCurso(Student student,
+			Curso curso) {
 		// por ahora retorno null pero hay que implementarla
 		return null;
 	}

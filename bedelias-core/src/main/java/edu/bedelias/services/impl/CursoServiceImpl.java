@@ -88,7 +88,7 @@ public class CursoServiceImpl implements CursoService {
 		return cursoRepo.findAll();
 
 	}
-	
+
 	public List<Student> getEstudiantesInsciptosACurso(String cursoId) {
 		Curso curso = cursoRepo.findCursoById(Long.valueOf(cursoId));
 		return getEstudiantesInsciptosACurso(curso);
@@ -97,7 +97,7 @@ public class CursoServiceImpl implements CursoService {
 	@Override
 	public List<Student> getEstudiantesInsciptosACurso(Curso curso) {
 		List<Inscripcion> inscripciones = inscripcionRepo
-				.findInscripcionesByCursoId(curso);
+				.getInscripcionesByCurso(curso);
 		List<Student> estudiantes = new ArrayList<Student>();
 		for (Inscripcion i : inscripciones) {
 			if (i.getIsValid()) {

@@ -34,7 +34,8 @@ public class ReportsService {
 	private static final String PDF_KEYWORDS = "Bedelias, Activiti, UdelaR, Java, PDF, iText";
 	private static final String PDF_AUTHOR = "SGB TecnoInf - Activiti";
 
-	private static String FILE_PATH = "$catalina.home/reports/";
+	private static String FILE_PATH = System.getProperty("user.home");
+	private static String FILE_FOLDER = FILE_PATH + "\\reportes\\";
 
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 			Font.BOLD);
@@ -49,7 +50,7 @@ public class ReportsService {
 			String keywords, String creator, String filename) {
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(FILE_PATH
+			PdfWriter.getInstance(document, new FileOutputStream(FILE_FOLDER
 					+ filename));
 			document.open();
 			addMetaData(document);
@@ -143,8 +144,8 @@ public class ReportsService {
 			Curso curso) {
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(FILE_PATH
-					+ "acta_" + curso.getName() + ".pdf"));
+			String a = FILE_FOLDER + "acta_" + curso.getName() + ".pdf";
+			PdfWriter.getInstance(document, new FileOutputStream(a));
 			document.open();
 
 			StringBuilder title = new StringBuilder("Resultados ");
@@ -177,7 +178,7 @@ public class ReportsService {
 
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(FILE_PATH
+			PdfWriter.getInstance(document, new FileOutputStream(FILE_FOLDER
 					+ "acta_" + examen.getAsignatura().getName() + ".pdf"));
 			document.open();
 
