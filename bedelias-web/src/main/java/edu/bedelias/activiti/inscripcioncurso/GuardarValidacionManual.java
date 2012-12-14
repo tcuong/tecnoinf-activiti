@@ -9,7 +9,7 @@ import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.services.InscripcionService;
 
-public class GuardarDesistimiento implements JavaDelegate {
+public class GuardarValidacionManual implements JavaDelegate {
 
 	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 	private InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");

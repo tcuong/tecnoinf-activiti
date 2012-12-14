@@ -79,9 +79,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-
-
-
 	<bean id="inscripcionService"
 		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
 		<property name="serviceUrl"

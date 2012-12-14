@@ -11,6 +11,23 @@
 			<h:outputText value="#{localization['inscripciones.noExisteMessage']}" />
 		</p:panel>
 		<h:form>
+		
+			
+			<p:panelGrid columns="2" style="margin:15px auto; border: none !important;">
+					<h:outputText value="#{localization['inscripciones.selectCarrera']}" />
+
+					<p:selectOneMenu value="#{inscripcionCursoMB.carreraId}">
+						<f:selectItem itemLabel="-- #{localization['common.carrera']} --" itemValue="" />
+						<f:selectItems value="#{inscripcionCursoMB.carrerasListItem}" />
+						<p:ajax update="tabla" listener="#{inscripcionCursoMB.actualizarCursos}" />
+					</p:selectOneMenu>
+					
+					<p:commandButton value="Ver cursos" action="inscripcionCursoMB.cargarCursos()" update="tabla"/>
+					
+				</p:panelGrid>
+		
+		
+			
 
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"

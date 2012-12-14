@@ -44,7 +44,7 @@ public class GuardarInscripcionCondicional implements JavaDelegate {
 		// ejemplo de como tiene que ir la fecha "2007-04-05T24:00" formato ISO 8601 
 //		SimpleDateFormat formato = new SimpleDateFormat("YYYY-mm-ddThh:mm:ss");
 //		String fecha = formato.format(periodo.getFechaFin());
-		String fecha = "2012-12-13T00:05:00";
+		String fecha = "2012-12-14T11:37:00";
 		
 		execution.setVariable("fechaFinDesistimiento", fecha);
 		execution.setVariable("estudiante", student);

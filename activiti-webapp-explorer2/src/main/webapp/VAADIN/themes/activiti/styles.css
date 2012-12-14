@@ -225,7 +225,8 @@ body {
 .login-general {
   color: white; /* color of text */
   font-family:  Helvetica, Arial, sans-serif;
-  background: #1b7ec3; /* non-white part of page */
+/*   background: #1b7ec3; non-white part of page */
+  background: #7AB93D; /* non-white part of page */
   font-size: 14px;
   font-weight: bold;
    min-width:20px;
@@ -240,7 +241,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background: white;
+/*   background: white; */
+  background: #FAF9F2;
   height: 250px;
   width: 100%;
   border-bottom: solid 3px #a9b3ba; /* gray-blueish horitzontal line in the middle */
@@ -272,8 +274,13 @@ input.login-field {
   background: white;
   border: solid 1px transparent;
   margin-bottom: 5px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  /*   arreglo el css de Activiti que no tenia el borde redondeado en firefox :D */
+  -moz-border-radius: 4px; /* Firefox*/ 
+  -ms-border-radius: 4px; /* IE 8.*/ 
+  -webkit-border-radius: 4px; /* Safari,Chrome.*/ 
+  border-radius: 4px; /* El estándar.*/
+/*   -moz-border-radius: 4px;  */
+/*   -webkit-border-radius: 4px; */
 }
 
 .login-field-caption {
@@ -291,13 +298,16 @@ input.login-field {
   margin-right: 3px;
   color: white;
   font-size: 14px;
-  background-color: #55ba49;
+/*   background-color: #55ba49; */
+  background-color: #1b7ec3;
   border: solid 1px transparent;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px; /* Firefox*/ 
+  -ms-border-radius: 4px; /* IE 8.*/ 
+  -webkit-border-radius: 4px; /* Safari,Chrome.*/ 
+  border-radius: 4px; /* El estándar.*/
 }
       
 .login-button:hover {
@@ -416,7 +426,7 @@ input.login-field {
 }
  
 .v-menubar-popup .v-menubar-submenu-person .v-menubar-menuitem-selected {
- 	background: #1B7EC3;
+ 	background: #green;
 }
 
 /* -------

@@ -85,6 +85,10 @@ public class InscripcionCursoMB extends GenericMB{
 		}
 	}
 
+	public void cargarCursos() {
+		actualizarCursos();
+	}
+	
 	public void actualizarCursos() {
 		cursos = cursoService.getCursosByCarrearId(carreraId);
 	}
