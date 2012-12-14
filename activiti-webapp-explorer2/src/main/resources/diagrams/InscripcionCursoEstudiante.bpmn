@@ -2,21 +2,15 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="inscribirseCursoEstudiante" name="inscribirseCursoEstudiante" activiti:candidateStarterGroups="bedelias">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="guardarInscripcionCondicional"></sequenceFlow>
     <serviceTask id="guardarInscripcionCondicional" name="Guardar Inscripcion Condicional" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
     <intermediateCatchEvent id="timerintermediatecatchevent1" name="TimerCatchEvent">
       <timerEventDefinition>
         <timeDate>${fechaFinDesistimiento}</timeDate>
       </timerEventDefinition>
     </intermediateCatchEvent>
-    <sequenceFlow id="flow2" name="" sourceRef="guardarInscripcionCondicional" targetRef="timerintermediatecatchevent1"></sequenceFlow>
     <serviceTask id="gaurdarDesistimiento" name="Guardar Desistimiento" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarDesistimiento"></serviceTask>
-    <sequenceFlow id="flow3" name="" sourceRef="timerintermediatecatchevent1" targetRef="gaurdarDesistimiento"></sequenceFlow>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <sequenceFlow id="flow4" name="" sourceRef="gaurdarDesistimiento" targetRef="exclusivegateway1"></sequenceFlow>
-    <sequenceFlow id="desistio" name="desistio" sourceRef="exclusivegateway1" targetRef="confirmarDesistimiento"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="desistio"></exclusiveGateway>
     <endEvent id="endevent1" name="End"></endEvent>
-    <sequenceFlow id="flow6" name="" sourceRef="confirmarDesistimiento" targetRef="endevent1"></sequenceFlow>
     <serviceTask id="confirmarDesistimiento" name="Confirmar Desistimiento" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to" expression="${para}"></activiti:field>
@@ -26,20 +20,9 @@
         </activiti:field>
       </extensionElements>
     </serviceTask>
-    <sequenceFlow id="noDesistio" name="noDesistio" sourceRef="exclusivegateway1" targetRef="validarPrevias">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio == false}]]></conditionExpression>
-    </sequenceFlow>
     <serviceTask id="validarPrevias" name="Validar Previas" activiti:class="edu.bedelias.activiti.inscripcioncurso.ValidarPrevias"></serviceTask>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="noValida"></exclusiveGateway>
-    <sequenceFlow id="flow8" name="" sourceRef="validarPrevias" targetRef="exclusivegateway2"></sequenceFlow>
-    <sequenceFlow id="validacionOk" name="validacionOk" sourceRef="exclusivegateway2" targetRef="parallelgateway1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validacion ==true}]]></conditionExpression>
-    </sequenceFlow>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
-    <sequenceFlow id="flow10" name="" sourceRef="parallelgateway1" targetRef="notificarInscripcion"></sequenceFlow>
-    <sequenceFlow id="flow11" name="" sourceRef="parallelgateway1" targetRef="guardarInscripcionFinal"></sequenceFlow>
-    <sequenceFlow id="flow12" name="" sourceRef="notificarInscripcion" targetRef="endevent1"></sequenceFlow>
-    <sequenceFlow id="flow13" name="" sourceRef="guardarInscripcionFinal" targetRef="endevent1"></sequenceFlow>
     <serviceTask id="guardarInscripcionFinal" name="Guardar Inscripcion Final" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionFinal"></serviceTask>
     <serviceTask id="notificarInscripcion" name="Notificar Inscripcion" activiti:type="mail">
       <extensionElements>
@@ -51,10 +34,29 @@
       </extensionElements>
     </serviceTask>
     <userTask id="validacionManual" name="Validacion Manual" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
+    <serviceTask id="servicetask1" name="Guardar Validacion Manual" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarValidacionManual"></serviceTask>
+    <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="guardarInscripcionCondicional"></sequenceFlow>
+    <sequenceFlow id="flow2" name="" sourceRef="guardarInscripcionCondicional" targetRef="timerintermediatecatchevent1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="" sourceRef="timerintermediatecatchevent1" targetRef="gaurdarDesistimiento"></sequenceFlow>
+    <sequenceFlow id="flow4" name="" sourceRef="gaurdarDesistimiento" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="desistio" name="desistio" sourceRef="exclusivegateway1" targetRef="confirmarDesistimiento"></sequenceFlow>
+    <sequenceFlow id="flow6" name="" sourceRef="confirmarDesistimiento" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="noDesistio" name="noDesistio" sourceRef="exclusivegateway1" targetRef="validarPrevias">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio == false}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" name="" sourceRef="validarPrevias" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="validacionOk" name="validacionOk" sourceRef="exclusivegateway2" targetRef="parallelgateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${validacion ==true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" name="" sourceRef="parallelgateway1" targetRef="notificarInscripcion"></sequenceFlow>
+    <sequenceFlow id="flow11" name="" sourceRef="parallelgateway1" targetRef="guardarInscripcionFinal"></sequenceFlow>
+    <sequenceFlow id="flow12" name="" sourceRef="notificarInscripcion" targetRef="inclusivegateway1"></sequenceFlow>
     <sequenceFlow id="noValida" name="noValida" sourceRef="exclusivegateway2" targetRef="validacionManual"></sequenceFlow>
     <sequenceFlow id="flow15" name="" sourceRef="validacionManual" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow16" name="" sourceRef="servicetask1" targetRef="parallelgateway1"></sequenceFlow>
-    <serviceTask id="servicetask1" name="Guardar Validacion Manual" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarValidacionManual"></serviceTask>
+    <sequenceFlow id="flow17" name="" sourceRef="guardarInscripcionFinal" targetRef="inclusivegateway1"></sequenceFlow>
+    <inclusiveGateway id="inclusivegateway1" name="Exclusive Gateway"></inclusiveGateway>
+    <sequenceFlow id="flow18" name="" sourceRef="inclusivegateway1" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_inscribirseCursoEstudiante">
     <bpmndi:BPMNPlane bpmnElement="inscribirseCursoEstudiante" id="BPMNPlane_inscribirseCursoEstudiante">
@@ -74,7 +76,7 @@
         <omgdc:Bounds height="40" width="40" x="515" y="167"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-        <omgdc:Bounds height="35" width="35" x="1345" y="170"></omgdc:Bounds>
+        <omgdc:Bounds height="35" width="35" x="1420" y="170"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="confirmarDesistimiento" id="BPMNShape_confirmarDesistimiento">
         <omgdc:Bounds height="55" width="105" x="630" y="389"></omgdc:Bounds>
@@ -100,6 +102,9 @@
       <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
         <omgdc:Bounds height="55" width="105" x="941" y="300"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway1" id="BPMNShape_inclusivegateway1">
+        <omgdc:Bounds height="40" width="40" x="1330" y="167"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="70" y="187"></omgdi:waypoint>
         <omgdi:waypoint x="115" y="187"></omgdi:waypoint>
@@ -118,7 +123,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="desistio" id="BPMNEdge_desistio">
         <omgdi:waypoint x="535" y="207"></omgdi:waypoint>
-        <omgdi:waypoint x="532" y="416"></omgdi:waypoint>
+        <omgdi:waypoint x="535" y="416"></omgdi:waypoint>
         <omgdi:waypoint x="630" y="416"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="13" width="100" x="10" y="0"></omgdc:Bounds>
@@ -126,8 +131,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
         <omgdi:waypoint x="735" y="416"></omgdi:waypoint>
-        <omgdi:waypoint x="1360" y="416"></omgdi:waypoint>
-        <omgdi:waypoint x="1362" y="205"></omgdi:waypoint>
+        <omgdi:waypoint x="1437" y="416"></omgdi:waypoint>
+        <omgdi:waypoint x="1437" y="205"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="noDesistio" id="BPMNEdge_noDesistio">
         <omgdi:waypoint x="555" y="187"></omgdi:waypoint>
@@ -153,17 +158,12 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
         <omgdi:waypoint x="1065" y="167"></omgdi:waypoint>
-        <omgdi:waypoint x="1064" y="76"></omgdi:waypoint>
+        <omgdi:waypoint x="1064" y="77"></omgdi:waypoint>
         <omgdi:waypoint x="1160" y="77"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
         <omgdi:waypoint x="1265" y="187"></omgdi:waypoint>
-        <omgdi:waypoint x="1345" y="187"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
-        <omgdi:waypoint x="1265" y="77"></omgdi:waypoint>
-        <omgdi:waypoint x="1362" y="77"></omgdi:waypoint>
-        <omgdi:waypoint x="1362" y="170"></omgdi:waypoint>
+        <omgdi:waypoint x="1330" y="187"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="noValida" id="BPMNEdge_noValida">
         <omgdi:waypoint x="780" y="207"></omgdi:waypoint>
@@ -181,6 +181,15 @@
         <omgdi:waypoint x="1046" y="327"></omgdi:waypoint>
         <omgdi:waypoint x="1064" y="328"></omgdi:waypoint>
         <omgdi:waypoint x="1065" y="207"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1265" y="77"></omgdi:waypoint>
+        <omgdi:waypoint x="1350" y="77"></omgdi:waypoint>
+        <omgdi:waypoint x="1350" y="167"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1370" y="187"></omgdi:waypoint>
+        <omgdi:waypoint x="1420" y="187"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

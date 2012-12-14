@@ -17,7 +17,7 @@ import edu.bedelias.services.InscripcionService;
 
 public class GuardarInscripcionCondicional implements JavaDelegate {
 
-	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
+	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
 	private InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");
 	
 	@Override
@@ -46,8 +46,8 @@ public class GuardarInscripcionCondicional implements JavaDelegate {
 //		SimpleDateFormat formato = new SimpleDateFormat("YYYY-mm-ddThh:mm:ss");
 //		String fecha = formato.format(periodo.getFechaFin());
 		
-		String fecha = "2012-12-14T12:35:00";
-		
+		String fecha = "2012-12-14T12:52:00";
+		// estoy en Activiti
 		execution.setVariable("fechaFinDesistimiento", fecha);
 		execution.setVariable("estudiante", student);
 		execution.setVariable("curso", curso);

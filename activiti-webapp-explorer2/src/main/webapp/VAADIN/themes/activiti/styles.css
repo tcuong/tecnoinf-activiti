@@ -5,7 +5,7 @@ body {
 	font:12px/14px Arial, Helvetica, sans-serif;
 	color:#3c3c3c;
 	min-width:980px;
-	background:#f9f9f9;
+	background:#F5F3E5;
 	max-width:1920px;
 }
 
@@ -179,13 +179,13 @@ body {
    Table - default style
    --------------------- */
 .v-table-row-odd, .v-table-row {
- 	background-color: #fff;
+ 	background-color: #F5F3E5;
 	overflow:hidden;
 	font:12px/14px Arial, Helvetica, sans-serif;
 }
 
 .v-table-row-odd.v-selected, .v-table-row.v-selected {
-	background: #dff5ff;
+	background: #F5F3E5;
 	color: #000000;
 	font-weight: bold;
 	text-shadow: none;
@@ -214,7 +214,7 @@ body {
 }
 
 .v-table .v-table-header-wrap {
-	background:#fff url(img/bg-table.png) repeat-x 0 100%;
+	background:#F5F3E5;
 }
 
 /* -----
@@ -333,11 +333,11 @@ input.login-field {
    Main content
    ------------ */
 .main {
-	background-color: #fff;	
+	background-color: #F5F3E5;	
 }
 
 .main-content {
-	background-color: #fff;	
+	background-color: #F5F3E5;	
 }
 
 /* ------
@@ -347,18 +347,20 @@ input.login-field {
 	padding:0 12px 0 10px;
 	height:1%;
 	position:relative;
-	background:#007dc3 url(img/bg-header.gif) repeat-x;
+	background:#5E823B url(img/bg-header.gif) repeat-x;
 }
 
 .header .v-button .v-button-wrap {
 	display: block;
 	height: 100%;
 	width: 100%;	
-	background:url(img/separator-1.gif) no-repeat 100% 50%;	
+/* 	background:url(img/separator-1.gif) no-repeat 100% 50%;	 */
+	background-color: #5C913C;
 }
 
 .header .v-button:hover, .header .v-button.active {
-	background:url(img/bg-nav-hover.gif) no-repeat 50% 0;
+/* 	background:url(img/bg-nav-hover.gif) no-repeat 50% 0; */
+	background-color: #78B93A;
 	text-decoration:none;
 }
 
@@ -493,7 +495,7 @@ input.login-field {
 }
 
 .toolbar .v-button-link.active .v-button-wrap .v-button-caption {
-	color:#007dc3;
+	color:#5E823B;
 }
 
 .toolbar .toolbar-count .v-button-wrap  {
@@ -535,7 +537,7 @@ input.login-field {
 }
 
 .toolbar .v-menubar.active {
-	color:#007dc3;
+	color:#5E823B;
 }
 
 /* Toolbar popup */
@@ -587,7 +589,7 @@ div.v-menubar-toolbar-popup {
 div.searchbox {
 	border-right: 1px solid #c5c5c5;
 	margin-left: -1px;
-	background: none;	
+	background:  #F5F3E5;	
 }
 
 .v-textfield.v-textfield-searchbox.searchbox, .v-textfield-focus.v-textfield-searchbox.searchbox  {
@@ -625,7 +627,7 @@ div.searchbox {
 .v-menubar-searchbox-sortmenu .v-menubar-menuitem:hover,
 .v-menubar-searchbox-sortmenu .v-menubar-menuitem-selected {
 	color:#3c3c3c;
-	background: none;
+	background:  #F5F3E5;
 	text-shadow: none;
 }
 
@@ -646,11 +648,11 @@ div.searchbox {
    --------- */
 
 .v-panel-task-event-panel .v-panel-content > div {
-	background:#f2f2f2 url(img/bg-sidebar.gif) repeat-y;
+	background:#F5F3E5;
 }
 
 .v-panel-task-event-panel .v-label-h2 {
-	color:#007dc3;
+	color:#5E823B;
 	font:18px Arial, Helvetica, sans-serif;
 }
 
@@ -843,7 +845,7 @@ div.searchbox {
    ---------------------- */
 .v-table-related-content-list,
 .v-table-related-content-list .v-table-body {
-	background: none;
+	background: #F5F3E5;
 	border: none;	
 }
 
@@ -851,7 +853,7 @@ div.searchbox {
 .v-table-related-content-list .v-table-body .v-table-row-odd, 
 .v-table-related-content-list .v-table-body .v-table-row .v-table-cell-content,
 .v-table-related-content-list .v-table-body .v-table-row-odd .v-table-cell-content{
-	background: none;
+	background: #F5F3E5;
 	border: none;
 	height: 28px;
 }

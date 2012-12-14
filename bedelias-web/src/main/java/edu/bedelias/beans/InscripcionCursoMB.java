@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import org.activiti.engine.ProcessEngine;
@@ -76,7 +77,7 @@ public class InscripcionCursoMB extends GenericMB{
 					carrerasListItem = new ArrayList<SelectItem>();
 					for (Carreer c : carreras) {
 						carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
-						cursos = cursoService.getCursosByCarrearId(c.getId());
+//						cursos = cursoService.getCursosByCarrearId(c.getId());
 					}
 				} else {
 					sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cedula dada");
@@ -85,7 +86,7 @@ public class InscripcionCursoMB extends GenericMB{
 		}
 	}
 
-	public void cargarCursos() {
+	public void cargarCursos(ActionEvent event) {
 		actualizarCursos();
 	}
 	
@@ -95,7 +96,7 @@ public class InscripcionCursoMB extends GenericMB{
 	
 	public void inscribirse(Curso curso) {
 		
-		
+		redirect("noImplementada.xhtml");
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
 		datos.put("curso", curso);
@@ -103,9 +104,9 @@ public class InscripcionCursoMB extends GenericMB{
 		
 		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceByKey("inscripcionCursoEstudiante", datos);
+		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 		
-		System.out.println("Este es el id del curso = " + curso.getId());
+
 	}
 
 	public List<Curso> getCursos() {

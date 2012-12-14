@@ -20,7 +20,7 @@ public class GuardarInscripcionFinal implements JavaDelegate {
 		// obtengo los datos
 		Student student = (Student) execution.getVariable("student");
 		Curso curso = (Curso) execution.getVariable("curso");
-		
+		// estoy en Activiti
 		
 		// obtengo la inscripcion
 		Inscripcion inscripcion = inscripcionService.getInscripcionByStudentYCurso(student, curso);

@@ -78,6 +78,29 @@
       </timerEventDefinition>
     </intermediateCatchEvent>
     <serviceTask id="guardarInscripcion" name="Guardar inscripcion condicional" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
+    <endEvent id="endevent5" name="End"></endEvent>
+    <serviceTask id="notificacionInscripcionOk" name="Notificar inscripción" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to" expression="${para}"></activiti:field>
+        <activiti:field name="subject" expression="${asunto}"></activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[${cuerpo}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="guardarInscripcionFinal" name="Guardar inscripcion" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionFinal"></serviceTask>
+    <serviceTask id="notificacionInscripcionOk" name="Notificar inscripción" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to" expression="${para}"></activiti:field>
+        <activiti:field name="subject" expression="${asunto}"></activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[${cuerpo}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
+    <endEvent id="endevent5" name="End"></endEvent>
+    <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
     <sequenceFlow id="flow10" name="" sourceRef="startevent2" targetRef="guardarInscripcion"></sequenceFlow>
     <sequenceFlow id="flow15" name="NoDesistio" sourceRef="exclusivegateway1" targetRef="validarPrevias">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio==false}]]></conditionExpression>
@@ -109,41 +132,18 @@
     </sequenceFlow>
     <sequenceFlow id="flow29" name="" sourceRef="timerintermediatecatchevent3" targetRef="guardarDesistimiento"></sequenceFlow>
     <sequenceFlow id="flow28" name="" sourceRef="guardarInscripcion" targetRef="timerintermediatecatchevent3"></sequenceFlow>
-    <endEvent id="endevent5" name="End"></endEvent>
-    <serviceTask id="notificacionInscripcionOk" name="Notificar inscripción" activiti:type="mail">
-      <extensionElements>
-        <activiti:field name="to" expression="${para}"></activiti:field>
-        <activiti:field name="subject" expression="${asunto}"></activiti:field>
-        <activiti:field name="html">
-          <activiti:expression><![CDATA[${cuerpo}]]></activiti:expression>
-        </activiti:field>
-      </extensionElements>
-    </serviceTask>
     <sequenceFlow id="flow21" name="" sourceRef="notificacionInscripcionOk" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow21" name="" sourceRef="notificacionInscripcionOk" targetRef="endevent5"></sequenceFlow>
-    <serviceTask id="guardarInscripcionFinal" name="Guardar inscripcion" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionFinal"></serviceTask>
     <sequenceFlow id="flow23" name="" sourceRef="guardarInscripcionFinal" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow23" name="" sourceRef="guardarInscripcionFinal" targetRef="endevent5"></sequenceFlow>
-    <serviceTask id="notificacionInscripcionOk" name="Notificar inscripción" activiti:type="mail">
-      <extensionElements>
-        <activiti:field name="to" expression="${para}"></activiti:field>
-        <activiti:field name="subject" expression="${asunto}"></activiti:field>
-        <activiti:field name="html">
-          <activiti:expression><![CDATA[${cuerpo}]]></activiti:expression>
-        </activiti:field>
-      </extensionElements>
-    </serviceTask>
-    <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
     <sequenceFlow id="flow26" name="" sourceRef="parallelgateway1" targetRef="guardarInscripcionFinal"></sequenceFlow>
     <sequenceFlow id="flow27" name="" sourceRef="parallelgateway1" targetRef="notificacionInscripcionOk"></sequenceFlow>
     <sequenceFlow id="flow26" name="" sourceRef="parallelgateway1" targetRef="guardarInscripcionFinal"></sequenceFlow>
     <sequenceFlow id="flow27" name="" sourceRef="parallelgateway1" targetRef="notificacionInscripcionOk"></sequenceFlow>
-    <endEvent id="endevent5" name="End"></endEvent>
-    <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
   </process>
   <process id="process1" name="process1">
-    <sequenceFlow id="flow36" name="" sourceRef="verificacionManual" targetRef="servicetask1"></sequenceFlow>
     <serviceTask id="servicetask1" name="User Task" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarValidacionManual"></serviceTask>
+    <sequenceFlow id="flow36" name="" sourceRef="verificacionManual" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow37" name="" sourceRef="servicetask1" targetRef="parallelgateway1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
