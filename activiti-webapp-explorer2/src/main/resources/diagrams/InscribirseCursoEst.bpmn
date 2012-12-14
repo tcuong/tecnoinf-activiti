@@ -5,43 +5,11 @@
   </collaboration>
   <process id="inscripcionCursoEstudiante" name="Inscripcion curso estudiante" activiti:candidateStarterGroups="bedelias">
     <laneSet id="laneSet_inscripcionCursoEstudiante">
-      <lane id="lane2" name="Bedelias">
-        <flowNodeRef>startevent2</flowNodeRef>
-        <flowNodeRef>servicetask2</flowNodeRef>
-        <flowNodeRef>timerstartevent1</flowNodeRef>
-        <flowNodeRef>timerstartevent1</flowNodeRef>
-        <flowNodeRef>timerintermediatecatchevent2</flowNodeRef>
-        <flowNodeRef>servicetask3</flowNodeRef>
-        <flowNodeRef>timerintermediatecatchevent3</flowNodeRef>
-        <flowNodeRef>exclusivegateway1</flowNodeRef>
-        <flowNodeRef>servicetask4</flowNodeRef>
-        <flowNodeRef>servicetask5</flowNodeRef>
-        <flowNodeRef>exclusivegateway2</flowNodeRef>
-        <flowNodeRef>endevent2</flowNodeRef>
-        <flowNodeRef>usertask2</flowNodeRef>
-        <flowNodeRef>endevent3</flowNodeRef>
-        <flowNodeRef>endevent4</flowNodeRef>
-        <flowNodeRef>exclusivegateway2</flowNodeRef>
-        <flowNodeRef>parallelgateway5</flowNodeRef>
-        <flowNodeRef>servicetask1</flowNodeRef>
-        <flowNodeRef>mailtask1</flowNodeRef>
-        <flowNodeRef>endevent1</flowNodeRef>
-        <flowNodeRef>parallelgateway1</flowNodeRef>
-        <flowNodeRef>parallelgateway4</flowNodeRef>
-        <flowNodeRef>endevent5</flowNodeRef>
-        <flowNodeRef>mailtask1</flowNodeRef>
-        <flowNodeRef>servicetask5</flowNodeRef>
-        <flowNodeRef>exclusivegateway2</flowNodeRef>
-        <flowNodeRef>parallelgateway1</flowNodeRef>
-        <flowNodeRef>timerintermediatecatchevent3</flowNodeRef>
-        <flowNodeRef>mailtask2</flowNodeRef>
-        <flowNodeRef>mailtask3</flowNodeRef>
-        <flowNodeRef>mailtask4</flowNodeRef>
-      </lane>
+      <lane id="lane2" name="Bedelias"></lane>
     </laneSet>
     <startEvent id="startevent2" name="Start"></startEvent>
     <serviceTask id="guardarInscripcion" name="Guardar inscripcion condicional" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
-    <serviceTask id="guardarDesistimiento" name="Guardar desistimiento" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
+    <serviceTask id="guardarDesistimiento" name="Guardar desistimiento" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarDesistimiento"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow32"></exclusiveGateway>
     <serviceTask id="servicetask4" name="Validar previas" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
     <endEvent id="endevent5" name="End"></endEvent>
@@ -58,7 +26,7 @@
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
     <intermediateCatchEvent id="timerintermediatecatchevent3" name="finPeriodoDesistimiento">
       <timerEventDefinition>
-        <timeDuration>100</timeDuration>
+        <timeDate>${fechaFinDesistimiento}</timeDate>
       </timerEventDefinition>
     </intermediateCatchEvent>
     <serviceTask id="mailtask4" name="Confirmar Desistimiento" activiti:type="mail">
@@ -72,7 +40,7 @@
     </serviceTask>
     <sequenceFlow id="flow10" name="" sourceRef="startevent2" targetRef="guardarInscripcion"></sequenceFlow>
     <sequenceFlow id="flow15" name="NoDesistio" sourceRef="exclusivegateway1" targetRef="servicetask4">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio==true}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${desistio==false}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow21" name="" sourceRef="mailtask1" targetRef="endevent5"></sequenceFlow>
     <sequenceFlow id="flow23" name="" sourceRef="servicetask5" targetRef="endevent5"></sequenceFlow>

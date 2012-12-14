@@ -311,4 +311,10 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return null;
 	}
 
+	@Override
+	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso) {
+		// por ahora retorno null pero hay que implementarla
+		return null;
+	}
+
 }

@@ -11,6 +11,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 
+import org.activiti.engine.ProcessEngine;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.PeriodoInscripcion;
@@ -23,7 +26,7 @@ import edu.bedelias.services.StudentService;
 
 @ManagedBean(name = "inscripcionCursoMB")
 @RequestScoped
-public class InscripcionCursoMB extends GenericActivitiMB{
+public class InscripcionCursoMB extends GenericMB{
 
 	private static final long serialVersionUID = 1L;
 
@@ -73,6 +76,7 @@ public class InscripcionCursoMB extends GenericActivitiMB{
 					carrerasListItem = new ArrayList<SelectItem>();
 					for (Carreer c : carreras) {
 						carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
+						cursos = cursoService.getCursosByCarrearId(c.getId());
 					}
 				} else {
 					sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cedula dada");
@@ -84,15 +88,20 @@ public class InscripcionCursoMB extends GenericActivitiMB{
 	public void actualizarCursos() {
 		cursos = cursoService.getCursosByCarrearId(carreraId);
 	}
-
+	
 	public void inscribirse(Curso curso) {
+		
 		
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
 		datos.put("curso", curso);
 		datos.put("periodo", periodo);
 		
-		this.instanciarProceso("inscripcionCursoEstudiante", (HashMap<String, Object>) datos);
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
+		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
+		pe.getRuntimeService().startProcessInstanceByKey("inscripcionCursoEstudiante", datos);
+		
+		System.out.println("Este es el id del curso = " + curso.getId());
 	}
 
 	public List<Curso> getCursos() {
@@ -174,4 +183,22 @@ public class InscripcionCursoMB extends GenericActivitiMB{
 	public void setExistePeriodo(boolean noExistePeriodo) {
 		this.existePeriodo = noExistePeriodo;
 	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public PeriodoInscripcion getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(PeriodoInscripcion periodo) {
+		this.periodo = periodo;
+	}
+	
+	
 }
