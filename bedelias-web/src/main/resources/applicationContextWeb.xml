@@ -86,5 +86,32 @@
 		<property name="serviceInterface" value="edu.bedelias.services.InscripcionService" />
 	</bean>
 
-
+	<bean id="evaluacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/EvaluacionService" />
+		<property name="serviceInterface" value="edu.bedelias.services.EvaluacionService" />
+	</bean>
+	
+		<bean id="carreerService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/CarreerService" />
+		<property name="serviceInterface" value="edu.bedelias.services.CarreerService" />
+	</bean>
+	
+	<bean id="materiaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/MateriaService" />
+		<property name="serviceInterface" value="edu.bedelias.services.MateriaService" />
+	</bean>
+	
+	<bean id="studentService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="http://localhost:8080/bedelias-web/remote/StudentService" />
+		<property name="serviceInterface" value="edu.bedelias.services.StudentService" />
+	</bean>
+	
 </beans>

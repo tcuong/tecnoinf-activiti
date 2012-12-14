@@ -1,6 +1,7 @@
 package edu.bedelias.beans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import edu.bedelias.services.StudentService;
 
 @ManagedBean
 @RequestScoped
-public class SolicitarTituloMB extends GenericMB {
+public class SolicitarTituloMB extends GenericActivitiMB {
 
 	private static final long serialVersionUID = 1L;
 
@@ -48,26 +49,30 @@ public class SolicitarTituloMB extends GenericMB {
 				carreras = inscripcionService.getCarrerasByStudent(student);
 				carrerasListItem = new ArrayList<SelectItem>();
 				for (Carreer c : carreras) {
-					carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
+					carrerasListItem
+							.add(new SelectItem(c.getId(), c.getName()));
 				}
 			} else {
-				sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cédula dada");
+				sendErrorMessage("Estudiante no encontrado",
+						"No se han encontrado el estudiante con la cédula dada");
 			}
 		}
 	}
 
 	public void solicitar() {
-		
+
 		// ACA ESTA EL CODIGO PARA LLAMAR AL PROCESO
-		
-		// HashMap<String, Object> datos = new HashMap<>();
-		// datos.put("saludo", "Hola amiguito vamos a jugar????!!!!!!");
-		//
-		// String key = "GenerarActaDeCurso";
-		//
-		// instanciarProceso(key, datos);
-		
-		this.sendErrorMessage("Error", "Su solicitud se ha enviado correctamente");
+
+		HashMap<String, Object> datos = new HashMap<>();
+		datos.put("carreraId", carreraId);
+		datos.put("studentId", student.getId());
+
+		String key = "entregaTitulo";
+
+		instanciarProceso(key, datos);
+
+		this.sendErrorMessage("Error",
+				"Su solicitud se ha enviado correctamente");
 
 	}
 
@@ -110,5 +115,5 @@ public class SolicitarTituloMB extends GenericMB {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-	
+
 }
