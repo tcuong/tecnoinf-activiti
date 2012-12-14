@@ -12,7 +12,7 @@ INSERT INTO `AsigMaterias` VALUES (1,1),(1,2),(1,3),(1,4);
 
 INSERT INTO `Previas` VALUES (1,2);
 
-INSERT INTO `PeriodoInscripcion` VALUES (1,'2012-11-30 20:38:00','Periodo de Carrera',NULL,NULL,NULL,1,0),(2,'2012-11-30 20:38:00','Periodo de curso',NULL,NULL,NULL,1,1),(3,'2012-11-30 20:38:00','Periodo de curso',NULL,NULL,NULL,1,2);
+INSERT INTO `PeriodoInscripcion` VALUES (1,'2012-11-30 20:38:00','Periodo de Carrera',NULL,NULL,NULL,1,0),(2,'2012-11-30 20:38:00','Periodo de curso','2012-12-13 00:00:00','2012-12-30 00:00:00','2012-12-10 20:38:00',1,1),(3,'2012-11-30 20:38:00','Periodo de curso',NULL,NULL,NULL,1,2);
 
 INSERT INTO `Curso` VALUES (1,'2012-12-02 19:28:20','Calculo 1 vesp.','codigoCurso',NULL,'2012-12-02 19:28:20','2012-12-02 19:28:20','Los jueves de 9 a 10:30',NULL,'Par',1,1), (2,'2012-12-02 19:28:20','Prog. 3 1 vesp.','codigoCursoDos',NULL,'2012-12-02 19:28:20','2012-12-02 19:28:20','Los viernes de 9 a 10:30',NULL,'Impar',1,1);
 

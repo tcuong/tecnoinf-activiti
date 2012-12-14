@@ -29,8 +29,7 @@ public class DesistirInscripcionMB extends GenericMB {
 	public void init() {
 		if (estaLogueado()) {
 			String ciEst = getFromSession("ci_est").toString();
-			inscripcionesCuros = inscripcionService
-					.getInscripcionesParaDesistir(ciEst);
+			inscripcionesCuros = inscripcionService.getInscripcionesParaDesistir(ciEst);
 		}
 	}
 

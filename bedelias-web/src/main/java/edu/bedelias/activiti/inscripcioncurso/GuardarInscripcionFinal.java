@@ -11,7 +11,7 @@ import edu.bedelias.services.InscripcionService;
 
 public class GuardarInscripcionFinal implements JavaDelegate {
 
-	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
+	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 	private InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");
 	
 	@Override
