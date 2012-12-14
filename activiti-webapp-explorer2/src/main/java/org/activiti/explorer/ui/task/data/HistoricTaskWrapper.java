@@ -28,113 +28,119 @@ import org.activiti.engine.task.Task;
  */
 public class HistoricTaskWrapper implements Task {
 
-  protected String id;
-  protected String name;
-  protected String description;
-  protected int priority;
-  protected String owner;
-  protected String assignee;
-  protected Date dueDate;
-  protected String parentTaskId;
+	protected String id;
+	protected String name;
+	protected String description;
+	protected int priority;
+	protected String owner;
+	protected String assignee;
+	protected Date dueDate;
+	protected String parentTaskId;
 
-  public HistoricTaskWrapper(HistoricTaskInstance historicTaskInstance) {
-    this.id = historicTaskInstance.getId();
-    setName(historicTaskInstance.getName());
-    setDescription(historicTaskInstance.getDescription());
-    setDueDate(historicTaskInstance.getDueDate());
-    setPriority(historicTaskInstance.getPriority());
-    setOwner(historicTaskInstance.getOwner());
-    setAssignee(historicTaskInstance.getAssignee());
-  }
+	public HistoricTaskWrapper(HistoricTaskInstance historicTaskInstance) {
+		this.id = historicTaskInstance.getId();
+		setName(historicTaskInstance.getName());
+		setDescription(historicTaskInstance.getDescription());
+		setDueDate(historicTaskInstance.getDueDate());
+		setPriority(historicTaskInstance.getPriority());
+		setOwner(historicTaskInstance.getOwner());
+		setAssignee(historicTaskInstance.getAssignee());
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getDescription() {
-    return description;
-  }
+	public String getDescription() {
+		return description;
+	}
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-  public int getPriority() {
-    return priority;
-  }
+	public int getPriority() {
+		return priority;
+	}
 
-  public void setPriority(int priority) {
-    this.priority = priority;
-  }
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
-  public String getOwner() {
-    return owner;
-  }
+	public String getOwner() {
+		return owner;
+	}
 
-  public void setOwner(String owner) {
-    this.owner = owner;
-  }
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
 
-  public String getAssignee() {
-    return assignee;
-  }
+	public String getAssignee() {
+		return assignee;
+	}
 
-  public void setAssignee(String assignee) {
-    this.assignee = assignee;
-  }
+	public void setAssignee(String assignee) {
+		this.assignee = assignee;
+	}
 
-  public DelegationState getDelegationState() {
-    return null;
-  }
+	public DelegationState getDelegationState() {
+		return null;
+	}
 
-  public void setDelegationState(DelegationState delegationState) {
-  }
+	public void setDelegationState(DelegationState delegationState) {
+	}
 
-  public String getProcessInstanceId() {
-    return null;
-  }
+	public String getProcessInstanceId() {
+		return null;
+	}
 
-  public String getExecutionId() {
-    return null;
-  }
+	public String getExecutionId() {
+		return null;
+	}
 
-  public String getProcessDefinitionId() {
-    return null;
-  }
+	public String getProcessDefinitionId() {
+		return null;
+	}
 
-  public Date getCreateTime() {
-    return null;
-  }
+	public Date getCreateTime() {
+		return null;
+	}
 
-  public String getTaskDefinitionKey() {
-    return null;
-  }
+	public String getTaskDefinitionKey() {
+		return null;
+	}
 
-  public Date getDueDate() {
-    return dueDate;
-  }
+	public Date getDueDate() {
+		return dueDate;
+	}
 
-  public void setDueDate(Date dueDate) {
-    this.dueDate = dueDate;
-  }
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
 
-  public void delegate(String userId) {
-  }
+	public void delegate(String userId) {
+	}
 
-  public void setParentTaskId(String parentTaskId) {
-    this.parentTaskId = parentTaskId;
-  }
+	public void setParentTaskId(String parentTaskId) {
+		this.parentTaskId = parentTaskId;
+	}
 
-  public String getParentTaskId() {
-    return parentTaskId;
-  }
+	public String getParentTaskId() {
+		return parentTaskId;
+	}
+
+	@Override
+	public boolean isSuspended() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
