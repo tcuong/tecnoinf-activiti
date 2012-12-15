@@ -9,17 +9,21 @@
 <ui:composition name="menuIzquierda">
 	<h:form>
 		<p:menu>
-			<p:submenu label="#{localization['common.estudiante']}">
+		
+			<p:submenu label="#{localization['common.estudiante']}" style="padding:0.1em 1%;">
+			
 				<p:menuitem value="#{localization['login.login']}"
 					actionListener="#{menuIzqMB.iniciarSesion}" />
-				<p:separator style="height:25px; background:none; border:none;" />
+				<p:separator style="height:20px; background:none; border:none;" />
+				
 			</p:submenu>
-			<p:submenu label=" Previas ">
-				<p:menuitem value="#{localization['common.previas']}"
-					actionListener="#{menuIzqMB.verPrevias}" />
-				<p:menuitem value="#{localization['common.previasDe']}"
-					actionListener="#{menuIzqMB.previasDeQuien}" />
-				<p:separator style="height:25px; background:none; border:none;" />
+			
+			<p:submenu label=" Previas" style="padding:0.1em 1%;">
+			
+				<p:menuitem value="#{localization['common.previas']}" actionListener="#{menuIzqMB.verPrevias}" />
+				<p:menuitem value="#{localization['common.previasDe']}" actionListener="#{menuIzqMB.previasDeQuien}" />
+				<p:separator style="height:20px; background:none; border:none;" />
+				
 			</p:submenu>
 		</p:menu>
 	</h:form>

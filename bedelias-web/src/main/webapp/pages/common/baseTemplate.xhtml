@@ -11,13 +11,13 @@
 
 <h:body style="background:green;">
 	<p:layout fullPage="true"  style="background:green;">
-		<p:layoutUnit position="north" height="85px" style="border:none; margin:0; padding:0;">
-			<ui:include src="header.xhtml" />
+		<p:layoutUnit position="north" height="85px" style="background:green; border:none;">
+			<ui:include src="header.xhtml"/>
 		</p:layoutUnit>
-		<p:layoutUnit position="west" size="20px">
+		<p:layoutUnit position="west" size="20px" style="font-size: 14px;" >
 			<ui:include src="menuIzq.xhtml" />
 		</p:layoutUnit>
-		<p:layoutUnit position="center" size="60px">
+		<p:layoutUnit position="center" size="60px" style="font-size: 14px;" >
 			<ui:insert name="content" />
 		</p:layoutUnit>
 	</p:layout>

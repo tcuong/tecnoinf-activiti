@@ -7,17 +7,22 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+
+<style type="text/css">
+
+</style>
+
 </h:head>
 
-<h:body>
-	<p:layout fullPage="true">
-		<p:layoutUnit position="north" size="100px" height="130px">
+<h:body style="background:green;">
+	<p:layout fullPage="true"  style="background:green;">
+		<p:layoutUnit position="north" height="85px" style="background:green; border:none;">
 			<ui:include src="../common/header.xhtml" />
 		</p:layoutUnit>
-		<p:layoutUnit position="west" size="80px">
+		<p:layoutUnit position="west" size="80px" style="font-size: 14px;" >
 			<ui:include src="menuIzqEst.xhtml" />
 		</p:layoutUnit>
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center" style="font-size:14px;" >
 			<ui:insert name="content" />
 		</p:layoutUnit>
 	</p:layout>
