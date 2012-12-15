@@ -55,14 +55,10 @@ public class InscripcionCursoMB extends GenericMB {
 
 		if (estaLogueado()) {
 
-			// primero pregunto si existe un período de inscripcion a cursos
-			// abierto
-			periodo = periodoService.getPeriodoActivoByTipo(true,
-					TipoInscripcionEnum.CURSO);
-
+			// primero pregunto si existe un período de inscripcion a cursos abierto
+			periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 			if (periodo == null) {
-				// muestro mensaje diciendo que no hay periodo de inscripcion
-				// habilitado
+				// muestro mensaje diciendo que no hay periodo de inscripcion habilitado
 				existePeriodo = false;
 			} else {
 				existePeriodo = true;
@@ -73,12 +69,10 @@ public class InscripcionCursoMB extends GenericMB {
 					carreras = inscripcionService.getCarrerasByStudent(student);
 					carrerasListItem = new ArrayList<SelectItem>();
 					for (Carreer c : carreras) {
-						carrerasListItem.add(new SelectItem(c.getId(), c
-								.getName()));
+						carrerasListItem.add(new SelectItem(c.getId(), c.getName()));
 					}
 				} else {
-					sendErrorMessage("Estudiante no encontrado",
-							"No se han encontrado el estudiante con la cedula dada");
+					sendErrorMessage("Estudiante no encontrado","No se han encontrado el estudiante con la cedula dada");
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 package edu.bedelias.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,4 +36,7 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
 	@Query("select i from Inscripcion i where i.examen = ?1")
 	public List<Inscripcion> findInscripcionesByExamen(Examen examen);
+	
+	@Query("select i from Inscripcion i where i.isValid = ?1 and i.tipo = ?2 and i.fechaInscripcion >= ?3")
+	public List<Inscripcion> fetchInscripcionesByIsValidAndTipo(boolean isValid, TipoInscripcionEnum tipo, Date fechaInscripcion);
 }

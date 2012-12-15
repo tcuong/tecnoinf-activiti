@@ -264,11 +264,15 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst) {
-		// aca hay que poner la logica que retorne un listado con las
-		// inscripciones que el estudiante puede desistir.
-		// ie: todas las inscripciones que al dia de hoy tengan un periodo de
-		// desistimiento habilitado
-		return new ArrayList<Inscripcion>();
+		
+		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
+		PeriodoInscripcion insc = periodoInscripcionRepo.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
+		
+		if(insc != null){
+			// obtengo todas las inscripciones no validadas aún, del tipo Curso y que esten en el periodo de desistimiento
+			inscripciones = inscripcionRepo.fetchInscripcionesByIsValidAndTipo(false, TipoInscripcionEnum.CURSO, insc.getFechaDesist());
+		}
+		return inscripciones;
 	}
 
 	public PeriodoInscripcionRepository getPeriodoInscripcionRepo() {
