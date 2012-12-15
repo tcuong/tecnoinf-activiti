@@ -62,9 +62,9 @@ Gracias.]]></activiti:expression>
         <activiti:field name="to" expression="${mailEstudiante}"></activiti:field>
         <activiti:field name="subject" expression="Entrega de titulo"></activiti:field>
         <activiti:field name="text">
-          <activiti:expression><![CDATA[Estimado Estudiantes,
+          <activiti:expression><![CDATA[Estimado Estudiante,
 
-Lamentamos informarle que ha ocurrido un error en la entrega de si titulo, por
+Lamentamos informarle que ha ocurrido un error en la entrega de su titulo, por
 favor acerquese a Bedelias y regularemos su situacion.
 
 Atentamente, Bedelias.]]></activiti:expression>
