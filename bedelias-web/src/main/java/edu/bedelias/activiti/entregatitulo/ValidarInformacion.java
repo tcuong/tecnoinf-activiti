@@ -40,6 +40,7 @@ public class ValidarInformacion implements JavaDelegate {
 				.toString());
 		Long studentId = Long.valueOf(execution.getVariable("studentId")
 				.toString());
+		Student student = studentService.findStudentById(studentId);
 
 		// Me traigo las materias para la carrera
 		List<Materia> materias = carreerService
@@ -91,18 +92,21 @@ public class ValidarInformacion implements JavaDelegate {
 
 			// Si no complete los creditos minimos por materias seteo el flag pa
 			// salir del while
+			creditosEstudiantes = 100;
 			if (creditosMateria > creditosEstudiantes) {
 				seRecibe = false;
 			} else {
 				creditosTotalesEstudiante += creditosMateria;
+				// FIXME revisar lo q estoy sumadno
 			}
 		}
 
 		// Aca me fijo si cumple con los creditos de la carrera
+		// FIXME Revisar lo q viene en carrera
 		if (seRecibe && creditosTotalesEstudiante >= carrera.getTotalCredits()) {
 			execution.setVariable("seRecibe", true);
-			Student student = studentService.findStudentById(studentId);
 			execution.setVariable("mailEstudiante", student.getEmail());
+			execution.setVariable("nombreEstudiante", student.getName());
 
 		} else {
 			execution.setVariable("seRecibe", false);
