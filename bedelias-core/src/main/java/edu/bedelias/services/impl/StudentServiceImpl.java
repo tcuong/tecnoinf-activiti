@@ -54,7 +54,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	public List<Student> findAll() {
 		return studentRepo.findAll();
 	}
-	
+
 	@Override
 	public Student findStudentByStudentNumber(String studentNum) {
 		return studentRepo.findStudentByStudentNum(studentNum);
@@ -175,28 +175,29 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	}
 
 	@Override
-	public void generarEscolaridad(Student student, List<Evaluacion> evaluaciones) {
-		 ReportsService.imprimirEscolaridad(student, evaluaciones);
+	public void generarEscolaridad(Student student,
+			List<Evaluacion> evaluaciones) {
+		ReportsService.imprimirEscolaridad(student, evaluaciones);
 	}
 
 	@Override
 	public String generatePass(String cedula) {
 		// genero la clave en base a la cédula
 		String pass = SecUtils.hashPassword(cedula);
-		
+
 		// casteo a una clave del tamaño que usan en bedelías
-		pass = pass.substring(0, 6);
+		pass = pass.substring(pass.length() / 2, pass.length() / 2 + 6);
 		return pass;
-		
+
 	}
 
 	@Override
 	public Student login(String cedula, String pass) {
 		Student student = studentRepo.findStudentByCedula(cedula);
 		// existe el estudiante, cédula ok
-		if(student != null){
+		if (student != null) {
 			// las claves coinciden, login ok
-			if(pass.equals(student.getPassword())){
+			if (pass.equals(student.getPassword())) {
 				return student;
 			}
 		}

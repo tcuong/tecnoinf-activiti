@@ -103,14 +103,20 @@ public class ValidarInformacion implements JavaDelegate {
 			}
 		}
 
+		execution.setVariable("mailEstudiante", student.getEmail());
+		execution.setVariable("nombreEstudiante", student.getName());
+
 		// Aca me fijo si cumple con los creditos de la carrera
 		if (seRecibe && creditosTotalesEstudiante >= carrera.getTotalCredits()) {
 			execution.setVariable("seRecibe", true);
-			execution.setVariable("mailEstudiante", student.getEmail());
-			execution.setVariable("nombreEstudiante", student.getName());
-
 		} else {
 			execution.setVariable("seRecibe", false);
+			execution.setVariable("cedeulaEstudiante", student.getCedula());
+			execution.setVariable("nombreCarrera", carrera.getName());
+			execution.setVariable("creditosCarrera", carrera.getTotalCredits());
+			execution.setVariable("creditosEstudiantes",
+					creditosTotalesEstudiante);
+
 		}
 	}
 
