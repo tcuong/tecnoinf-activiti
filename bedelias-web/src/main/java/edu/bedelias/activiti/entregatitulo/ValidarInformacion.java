@@ -72,7 +72,9 @@ public class ValidarInformacion implements JavaDelegate {
 			// Recorro las asignaturas de examen y sumo creditos
 			for (Asignatura a : asignaturasExamen) {
 				for (Evaluacion e : evaluacionesExamen) {
-					if (e.getExamen().getAsignatura().getId() == a.getId()) {
+					long evExAsId = e.getExamen().getAsignatura().getId();
+					long asigId = a.getId();
+					if (evExAsId == asigId) {
 						creditosEstudiantes += a.getCredits();
 					}
 				}
@@ -84,7 +86,9 @@ public class ValidarInformacion implements JavaDelegate {
 			// Recorro promero las asignaturas de curso y sumo los creditos
 			for (Asignatura a : asignaturasCurso) {
 				for (Evaluacion e : evaluacionesCurso) {
-					if (e.getCurso().getAsignatura().getId() == a.getId()) {
+					long evCursoAsId = e.getCurso().getAsignatura().getId();
+					long asigId = a.getId();
+					if (evCursoAsId == asigId) {
 						creditosEstudiantes += a.getCredits();
 					}
 				}
@@ -92,17 +96,14 @@ public class ValidarInformacion implements JavaDelegate {
 
 			// Si no complete los creditos minimos por materias seteo el flag pa
 			// salir del while
-			creditosEstudiantes = 100;
 			if (creditosMateria > creditosEstudiantes) {
 				seRecibe = false;
 			} else {
 				creditosTotalesEstudiante += creditosMateria;
-				// FIXME revisar lo q estoy sumadno
 			}
 		}
 
 		// Aca me fijo si cumple con los creditos de la carrera
-		// FIXME Revisar lo q viene en carrera
 		if (seRecibe && creditosTotalesEstudiante >= carrera.getTotalCredits()) {
 			execution.setVariable("seRecibe", true);
 			execution.setVariable("mailEstudiante", student.getEmail());
