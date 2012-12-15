@@ -7,8 +7,13 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition name="header">
-	<div style="text-align: center; font-size: 30px" class="cabezita">
-		<p:outputLabel value="#{localization['common.mainTitle']}" style=""/>
-	</div>
+
+		<div style=" text-align: center; font-size: 29px; background: green; border:none; padding:0; margin:0; height: 85px; color:#ffffff;">
+			<div style="float:left; margin:5px 50px;"><img src="/bedelias-web/pages/common/UdelaLogo.jpg"/></div>
+			<p:outputLabel value="#{localization['common.mainTitle']}"/>
+			<BR />
+			<p:outputLabel value="#{localization['common.mainSubTitle']}" style="font-size:15px;"/>
+			
+		</div>
 </ui:composition>
 </html>
