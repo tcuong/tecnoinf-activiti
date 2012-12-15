@@ -10,7 +10,7 @@
 			<p:panelGrid columns="1" style="height:100%">
 				<f:facet name="header"> #{localization['desistir.header']}.</f:facet>
 				<p:dataTable id="tabla" var="inscripcion"
-					value="#{inscripcionCursoMB.cursos}" paginator="true" rows="10"
+					value="#{desistirInscripcionMB.inscripcionesCuros}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
 					style="margin:10px" emptyMessage="#{localization['misc.noRecordsFound']}">
@@ -28,9 +28,7 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header"></f:facet>
-						<p:commandButton value="Desistir"
-							action="#{desistirInscripcionMB.desistir(inscripcion.id)}"
-							style="padding:0;" />
+						<p:commandButton value="Desistir" action="#{desistirInscripcionMB.desistir(inscripcion.id)}" style="padding:0;" />
 					</p:column>
 				</p:dataTable>
 			</p:panelGrid>
