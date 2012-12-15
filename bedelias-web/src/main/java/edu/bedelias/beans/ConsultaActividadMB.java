@@ -56,9 +56,8 @@ public class ConsultaActividadMB extends GenericMB {
 			}
 			evaluaciones = new ArrayList<Evaluacion>();
 			for (Curso c : cursos) {
-				Evaluacion e = evaluacionService
-						.getEvaluacionByStudentAndCurso(student, c);
-				if (e.isNoAsistio() == false) {
+				Evaluacion e = evaluacionService.getEvaluacionByStudentAndCurso(student, c);
+				if (e!= null && e.isNoAsistio() == false) {
 					evaluaciones.add(e);
 				}
 			}
