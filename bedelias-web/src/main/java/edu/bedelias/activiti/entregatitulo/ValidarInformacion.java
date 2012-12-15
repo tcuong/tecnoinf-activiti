@@ -63,10 +63,10 @@ public class ValidarInformacion implements JavaDelegate {
 		boolean seRecibe = true;
 
 		while (iterator.hasNext() && seRecibe) {
-			Integer creditosMateria = iterator.next().getMinCredits();
+			Materia m = iterator.next();
+			Integer creditosMateria = m.getMinCredits();
 			List<Asignatura> asignaturasExamen = materiaService
-					.getAsignaturasByMateriaIdAndTipoAprobacionExamen(iterator
-							.next().getId());
+					.getAsignaturasByMateriaIdAndTipoAprobacionExamen(m.getId());
 
 			// Recorro las asignaturas de examen y sumo creditos
 			for (Asignatura a : asignaturasExamen) {
@@ -78,8 +78,7 @@ public class ValidarInformacion implements JavaDelegate {
 			}
 
 			List<Asignatura> asignaturasCurso = materiaService
-					.getAsignaturasByMateriaIdAndTipoAprobacionCurso((iterator
-							.next().getId()));
+					.getAsignaturasByMateriaIdAndTipoAprobacionCurso((m.getId()));
 
 			// Recorro promero las asignaturas de curso y sumo los creditos
 			for (Asignatura a : asignaturasCurso) {

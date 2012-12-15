@@ -6,7 +6,7 @@ INSERT INTO `Materia` VALUES (1,'2012-11-25 15:37:58','Matematica','mat01',9);
 
 INSERT INTO `CarreraMateria` VALUES (5,1);
 
-INSERT INTO `Asignatura` VALUES (1,'2012-11-25 15:37:57','Calculo 1','calc01',5,NULL,1),(2,'2012-11-25 15:37:57','Fisica 1','soyPrevia',8,NULL,0), (3,'2012-11-25 15:37:57','Algebra','al001',NULL,NULL,NULL), (4,'2012-11-25 15:37:57','Asign 2','Asignatura dos',NULL,NULL,NULL);
+INSERT INTO `Asignatura` VALUES (1,'2012-11-25 15:37:57','Calculo 1','calc01',5,NULL,1),(2,'2012-11-25 15:37:57','Fisica 1','soyPrevia',8,NULL,0), (3,'2012-11-25 15:37:57','Algebra','al001',NULL,NULL,1), (4,'2012-11-25 15:37:57','Asign 2','Asignatura dos',NULL,NULL,1);
 
 INSERT INTO `AsigMaterias` VALUES (1,1),(1,2),(1,3),(1,4);
 
