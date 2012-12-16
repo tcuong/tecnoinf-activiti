@@ -111,8 +111,8 @@ public class TaskDetailPanel extends DetailPanel {
     initHeader();
     initDescriptionAndClaimButton();
     initProcessLink();
-    initParentTaskLink();
     initPeopleDetails();
+    initParentTaskLink();
     initSubTasks();
     initRelatedContent();
     initTaskForm();

@@ -226,7 +226,7 @@ body {
   color: white; /* color of text */
   font-family:  Helvetica, Arial, sans-serif;
 /*   background: #1b7ec3; non-white part of page */
-  background: #7AB93D; /* non-white part of page */
+  background: #008000; /* non-white part of page */
   font-size: 14px;
   font-weight: bold;
    min-width:20px;
@@ -259,7 +259,7 @@ body {
 #login-logo {
   margin: 0 auto;
   height: 130px;
-  padding-top: 110px;
+  padding-top: 55px;
   text-align: center;
 }
 
@@ -365,11 +365,11 @@ input.login-field {
 }
 
 .logo {
-	margin:12px 0;
+	margin:4px 0;
 	background:url(img/logo.png) no-repeat;
 	text-indent:-9999px;
 	width:207px;
-	height:30px;
+	height:46px;
 	float:left;
 }
 
@@ -710,7 +710,7 @@ div.searchbox {
 }
 
 .title-block .h2 {
-	color:#007dc3;
+	color:#008000;
 	font:24px/26px Arial, Helvetica, sans-serif;
 }
 
@@ -755,7 +755,7 @@ div.searchbox {
 
 .block-holder .h3, .block-holder.h3  {
 	margin:0;
-	color:#007dc3;
+	color:#008000;
 	font:16px Arial, Helvetica, sans-serif;
 }
 
