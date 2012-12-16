@@ -138,7 +138,7 @@ public class CargarDatosTest {
 		Examen examen = new Examen();
 		examen.setCodigo("codigo");
 		examen.setFecha(new Date(System.currentTimeMillis()));
-		examen = examenService.createExamen(examen, previa);
+		examen = examenService.createExamen(examen, asignatura);
 
 		PeriodoInscripcion periodoCarrera = new PeriodoInscripcion();
 		periodoCarrera.setIsHabilitado(true);
@@ -178,6 +178,8 @@ public class CargarDatosTest {
 		inscripcionService.InscripcionACurso(student.getId(), curso.getId(), periodoCurso.getId());
 		// Inscripcion a Examen
 		inscripcionService.inscripcionAExamen(student.getId(), examen.getId(), periodoExamen.getId());
+
+		List<Asignatura> asigsss = studentService.validarPreviasEstudianteCurso(student, curso);
 
 		Evaluacion evaluacionEx = new Evaluacion();
 		evaluacionEx.setResultado(8);

@@ -4,6 +4,8 @@
 package edu.bedelias.services.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.bedelias.entities.Asignatura;
+import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.repositories.AsignaturaRepository;
 import edu.bedelias.repositories.EvaluacionRepository;
 import edu.bedelias.repositories.StudentRepository;
+import edu.bedelias.services.EvaluacionService;
 import edu.bedelias.services.StudentService;
 import edu.bedelias.utils.ReportsService;
 import edu.bedelias.utils.SecUtils;
@@ -35,6 +41,12 @@ public class StudentServiceImpl implements StudentService, Serializable {
 
 	@Autowired
 	private EvaluacionRepository evaluacionRepo;
+
+	@Autowired
+	private EvaluacionService evaluacionService;
+
+	@Autowired
+	private AsignaturaRepository asignaturaRepository;
 
 	public StudentServiceImpl() {
 
@@ -167,16 +179,14 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		String numPase3 = "3";
 		String numPase4 = "4";
 
-		if (numPase.equals(numPase1) || numPase.equals(numPase2)
-				|| numPase.equals(numPase3) || numPase.equals(numPase4)) {
+		if (numPase.equals(numPase1) || numPase.equals(numPase2) || numPase.equals(numPase3) || numPase.equals(numPase4)) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public void generarEscolaridad(Student student,
-			List<Evaluacion> evaluaciones) {
+	public void generarEscolaridad(Student student, List<Evaluacion> evaluaciones) {
 		ReportsService.imprimirEscolaridad(student, evaluaciones);
 	}
 
@@ -203,6 +213,67 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		}
 		// cédula o clave tudo cagadu
 		return null;
+	}
+
+	@Override
+	public List<Asignatura> validarPreviasEstudianteCurso(Student student, Curso curso) {
+
+		// Traigo las evalucaiones aprobadas a curso
+		List<Evaluacion> evaluacionesCurso = evaluacionService.getEvaluacionesAprobadasByStudentAndCurso(student.getId());
+		// Traigo las evaluaciones aprobadas a examen
+		List<Evaluacion> evaluacionesExamen = evaluacionService.getEvaluacionesAprobadasByStudentAndExamen(student.getId());
+		// Traigo las asignaturas previas de la asigantura q corresponde al
+		// curso q me pasan por parametro
+		List<Asignatura> asignaturasPrevias = asignaturaRepository.getPrevias(curso.getAsignatura().getId());
+
+		// Cargo la lista de asignaturas q aprobo el estudiante ya sea por curso
+		// o por examen
+		List<Asignatura> asignaturasAprobadas = new ArrayList<Asignatura>();
+		for (Evaluacion e : evaluacionesCurso) {
+			asignaturasAprobadas.add(e.getCurso().getAsignatura());
+		}
+		for (Evaluacion e : evaluacionesExamen) {
+			asignaturasAprobadas.add(e.getExamen().getAsignatura());
+		}
+
+		// Itero por asignaturas para ir checkeando la lista de las previas
+		HashMap<Long, Asignatura> retorno = new HashMap<Long, Asignatura>();
+		for (Asignatura asig : asignaturasPrevias) {
+			for (Asignatura a : asignaturasAprobadas) {
+				long aId = a.getId();
+				long asigId = asig.getId();
+				if (aId != asigId) {
+					retorno.put(asig.getId(), asig);
+				}
+			}
+		}
+
+		List<Asignatura> asgisRet = new ArrayList<Asignatura>(retorno.values());
+		return asgisRet;
+	}
+
+	public EvaluacionRepository getEvaluacionRepo() {
+		return evaluacionRepo;
+	}
+
+	public void setEvaluacionRepo(EvaluacionRepository evaluacionRepo) {
+		this.evaluacionRepo = evaluacionRepo;
+	}
+
+	public EvaluacionService getEvaluacionService() {
+		return evaluacionService;
+	}
+
+	public void setEvaluacionService(EvaluacionService evaluacionService) {
+		this.evaluacionService = evaluacionService;
+	}
+
+	public AsignaturaRepository getAsignaturaRepository() {
+		return asignaturaRepository;
+	}
+
+	public void setAsignaturaRepository(AsignaturaRepository asignaturaRepository) {
+		this.asignaturaRepository = asignaturaRepository;
 	}
 
 }

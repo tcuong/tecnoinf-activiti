@@ -11,7 +11,7 @@ import edu.bedelias.enums.TipoInscripcionEnum;
 public interface InscripcionService {
 
 	public Inscripcion createInscripcion(Inscripcion inscripcion);
-	
+
 	public String createInscripcion_Activiti(long idCarrera, String cedula);
 
 	public void updateInscripcion(Inscripcion inscripcion);
@@ -20,27 +20,21 @@ public interface InscripcionService {
 
 	public List<Inscripcion> getInscripcionesByStudent(Student student);
 
-	public List<Inscripcion> getInscripcionesByTipo(String ciEst,
-			TipoInscripcionEnum tipo);
+	public List<Inscripcion> getInscripcionesByTipo(String ciEst, TipoInscripcionEnum tipo);
 
 	public List<Carreer> getCarrerasByStudent(Student student);
 
 	public List<Curso> getCursoByStudent(Student student);
 
-	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId,
-			Long periodoId);
+	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId, Long periodoId);
 
-	public Inscripcion InscripcionACurso(Long studentId, Long cursoId,
-			Long periodoId);
+	public Inscripcion InscripcionACurso(Long studentId, Long cursoId, Long periodoId);
 
-	public Inscripcion inscripcionAExamen(Long studentId, Long examenId,
-			Long periodoId);
+	public Inscripcion inscripcionAExamen(Long studentId, Long examenId, Long periodoId);
 
 	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst);
 
 	public List<Inscripcion> findInscripcionesByCursoId(Curso curso);
-	
-	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida);
 
 	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso);
 
