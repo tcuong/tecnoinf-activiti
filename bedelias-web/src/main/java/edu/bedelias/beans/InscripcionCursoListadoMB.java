@@ -1,6 +1,5 @@
 package edu.bedelias.beans;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +13,12 @@ import org.activiti.engine.ProcessEngine;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Curso;
-import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
 import edu.bedelias.services.InscripcionService;
+import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean
@@ -94,7 +93,7 @@ public class InscripcionCursoListadoMB extends GenericMB {
 //				inscripcionService.createInscripcion(inscripcion);
 //				
 
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
 		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
