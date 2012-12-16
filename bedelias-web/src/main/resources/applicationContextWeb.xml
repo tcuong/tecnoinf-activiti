@@ -13,14 +13,13 @@
 			http://www.springframework.org/schema/data/jpa 
 			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<context:property-placeholder
-		location="classpath*:mail.properties, classpath*:jdbc.properties" />
+	<context:property-placeholder location="classpath*:mail.properties, classpath*:jdbc.properties" />
 
 	<import resource="classpath*:*applicationContextCommon.xml" />
 	<import resource="classpath*:applicationContextCore.xml" />
+	<import resource="classpath*:activiti.cfg.xml" />
 
-	<!-- Scan this classpath for annotated components that will be auto-registered 
-		as Spring beans -->
+	<!-- Scan this classpath for annotated components that will be auto-registered as Spring beans -->
 	<context:annotation-config />
 
 	<bean
@@ -47,7 +46,7 @@
 					database on each run; 'update' = modify an existing database; 'create-drop' 
 					= 'create' and also drops tables when Hibernate closes; 'validate' = makes 
 					no changes to the database -->
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
