@@ -29,8 +29,7 @@ import edu.bedelias.services.InscripcionService;
 @Transactional(readOnly = true)
 public class InscripcionServiceImpl implements InscripcionService {
 
-	private static Logger logger = Logger
-			.getLogger(InscripcionServiceImpl.class.getName());
+	private static Logger logger = Logger.getLogger(InscripcionServiceImpl.class.getName());
 
 	@Autowired
 	private InscripcionRepository inscripcionRepo;
@@ -110,8 +109,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Carreer> getCarrerasByStudent(Student student) {
-		List<Inscripcion> inscripciones = this
-				.getInscripcionesByStudent(student);
+		List<Inscripcion> inscripciones = this.getInscripcionesByStudent(student);
 		List<Carreer> carreers = new ArrayList<Carreer>();
 		for (Inscripcion ins : inscripciones) {
 			if (ins.getTipo() == TipoInscripcionEnum.CARRERA) {
@@ -124,8 +122,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 	@Override
 	public List<Curso> getCursoByStudent(Student student) {
 
-		List<Inscripcion> inscripciones = this
-				.getInscripcionesByStudent(student);
+		List<Inscripcion> inscripciones = this.getInscripcionesByStudent(student);
 		List<Curso> cursos = new ArrayList<Curso>();
 		for (Inscripcion ins : inscripciones) {
 			if (ins.getTipo() == TipoInscripcionEnum.CURSO) {
@@ -147,14 +144,12 @@ public class InscripcionServiceImpl implements InscripcionService {
 	}
 
 	@Override
-	public List<Inscripcion> getInscripcionesByTipo(String ciEst,
-			TipoInscripcionEnum tipo) {
+	public List<Inscripcion> getInscripcionesByTipo(String ciEst, TipoInscripcionEnum tipo) {
 		List<Inscripcion> ins = null;
 		Student student = null;
 		try {
 			student = studentRepo.findStudentByCedula(ciEst);
-			ins = inscripcionRepo.findInscripcionByEstudianteAndTipo(student,
-					tipo);
+			ins = inscripcionRepo.findInscripcionByEstudianteAndTipo(student, tipo);
 		} catch (IllegalArgumentException e) {
 			logger.error("Estudiante o Inscripcion invalidos");
 			e.printStackTrace();
@@ -165,16 +160,14 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId,
-			Long periodoId) {
+	public Inscripcion InscripcionACarrera(Long studentId, Long carreerId, Long periodoId) {
 		Inscripcion ins = null;
 
 		if (studentId != null && carreerId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
 				Carreer carreer = carreerRepo.findOne(carreerId);
-				PeriodoInscripcion periodo = periodoInscripcionRepo
-						.findOne(periodoId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo.findOne(periodoId);
 
 				ins = new Inscripcion();
 				ins.setEstudiante(student);
@@ -194,16 +187,14 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion InscripcionACurso(Long studentId, Long cursoId,
-			Long periodoId) {
+	public Inscripcion InscripcionACurso(Long studentId, Long cursoId, Long periodoId) {
 		Inscripcion ins = null;
 
 		if (studentId != null && cursoId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
 				Curso curso = cursoRepo.findOne(cursoId);
-				PeriodoInscripcion periodo = periodoInscripcionRepo
-						.findOne(periodoId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo.findOne(periodoId);
 
 				ins = new Inscripcion();
 				ins.setEstudiante(student);
@@ -223,15 +214,13 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	@Transactional
-	public Inscripcion inscripcionAExamen(Long studentId, Long examenId,
-			Long periodoId) {
+	public Inscripcion inscripcionAExamen(Long studentId, Long examenId, Long periodoId) {
 		Inscripcion inscripcion = null;
 		if (studentId != null && examenId != null) {
 			try {
 				Student student = studentRepo.findOne(studentId);
 				Examen examen = examenRepo.findOne(examenId);
-				PeriodoInscripcion periodo = periodoInscripcionRepo
-						.findOne(periodoId);
+				PeriodoInscripcion periodo = periodoInscripcionRepo.findOne(periodoId);
 
 				inscripcion = new Inscripcion();
 				inscripcion.setEstudiante(student);
@@ -264,12 +253,13 @@ public class InscripcionServiceImpl implements InscripcionService {
 
 	@Override
 	public List<Inscripcion> getInscripcionesParaDesistir(String ciEst) {
-		
+
 		List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
 		PeriodoInscripcion insc = periodoInscripcionRepo.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
-		
-		if(insc != null){
-			// obtengo todas las inscripciones no validadas aún, del tipo Curso y que esten en el periodo de desistimiento
+
+		if (insc != null) {
+			// obtengo todas las inscripciones no validadas aún, del tipo Curso
+			// y que esten en el periodo de desistimiento
 			inscripciones = inscripcionRepo.fetchInscripcionesByIsValidAndTipo(false, TipoInscripcionEnum.CURSO, insc.getFechaDesist());
 		}
 		return inscripciones;
@@ -279,8 +269,7 @@ public class InscripcionServiceImpl implements InscripcionService {
 		return periodoInscripcionRepo;
 	}
 
-	public void setPeriodoInscripcionRepo(
-			PeriodoInscripcionRepository periodoInscripcionRepo) {
+	public void setPeriodoInscripcionRepo(PeriodoInscripcionRepository periodoInscripcionRepo) {
 		this.periodoInscripcionRepo = periodoInscripcionRepo;
 	}
 
@@ -305,15 +294,13 @@ public class InscripcionServiceImpl implements InscripcionService {
 			inscripcionRepo.save(inscripcion);
 
 		} catch (Exception e) {
-			msg = "Se generó un error al guardar la inscripción"
-					+ e.getStackTrace();
+			msg = "Se generó un error al guardar la inscripción" + e.getStackTrace();
 		}
 		return msg;
 	}
 
 	@Override
-	public List<Student> getInscriptosCursoSinEvaluar(long idCurso,
-			boolean valida) {
+	public List<Student> getInscriptosCursoSinEvaluar(long idCurso, boolean valida) {
 		// Acá tengo que devolver todas los estudiantes que tienen una
 		// inscripcion al curso y con el tipo de inscripcion == valida
 		// y además que no tengan una evaluación creada para ese curso, es para
@@ -322,10 +309,8 @@ public class InscripcionServiceImpl implements InscripcionService {
 	}
 
 	@Override
-	public Inscripcion getInscripcionByStudentYCurso(Student student,
-			Curso curso) {
-		// por ahora retorno null pero hay que implementarla
-		return null;
+	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso) {
+		return inscripcionRepo.getInscripcionByStudentAndCurso(student, curso);
 	}
 
 }

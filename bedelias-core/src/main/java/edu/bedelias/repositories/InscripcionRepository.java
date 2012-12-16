@@ -21,13 +21,11 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 	 * @return
 	 */
 
-	public List<Inscripcion> findInscripcionByEstudianteAndTipo(
-			Student estudiante, TipoInscripcionEnum tipo);
+	public List<Inscripcion> findInscripcionByEstudianteAndTipo(Student estudiante, TipoInscripcionEnum tipo);
 
 	// FIXME probar hacerlo con un findBy
 	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.tipo = ?2")
-	public List<Inscripcion> getInscripcionesByTipo(Student student,
-			TipoInscripcionEnum tipoIns);
+	public List<Inscripcion> getInscripcionesByTipo(Student student, TipoInscripcionEnum tipoIns);
 
 	public List<Inscripcion> findInscripcionByEstudiante(Student estudiante);
 
@@ -36,7 +34,10 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
 	@Query("select i from Inscripcion i where i.examen = ?1")
 	public List<Inscripcion> findInscripcionesByExamen(Examen examen);
-	
+
 	@Query("select i from Inscripcion i where i.isValid = ?1 and i.tipo = ?2 and i.fechaInscripcion >= ?3")
 	public List<Inscripcion> fetchInscripcionesByIsValidAndTipo(boolean isValid, TipoInscripcionEnum tipo, Date fechaInscripcion);
+
+	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.curso = ?2")
+	public Inscripcion getInscripcionByStudentAndCurso(Student student, Curso curso);
 }

@@ -15,7 +15,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
+import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean
@@ -23,12 +25,23 @@ import edu.bedelias.services.StudentService;
 public class InscripcionCursoListadoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
-	
+
 	@ManagedProperty(value = "#{studentServiceImpl}")
 	private StudentService studentService;
+
+	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
+	private PeriodoInscripcionService periodoService;
+
+	public PeriodoInscripcionService getPeriodoService() {
+		return periodoService;
+	}
+
+	public void setPeriodoService(PeriodoInscripcionService periodoService) {
+		this.periodoService = periodoService;
+	}
 
 	private List<Curso> cursos;
 	private long carreraId = 0;
@@ -41,12 +54,12 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		
+
 		if (estaLogueado()) {
-			
+
 			carreraId = (Long) this.getFromSession("carrera");
-			
-			if(carreraId > 0){
+
+			if (carreraId > 0) {
 				cursos = cursoService.getCursosByCarrearId(carreraId);
 				String cedulaEst = getFromSession(this.cedula).toString();
 				student = studentService.findStudentByCedula(cedulaEst);
@@ -56,16 +69,16 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	public void inscribirse(Curso curso) {
 
+		// primero pregunto si existe un período de inscripcion a cursos abierto
+		periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
-		 datos.put("curso", curso);
+		datos.put("curso", curso);
 		datos.put("periodo", periodo);
 
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
-				"classpath:activiti.cfg.xml");
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceByKey(
-				"inscribirseCursoEstudiante", datos);
+		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
 	}
 
@@ -116,5 +129,5 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-	
+
 }

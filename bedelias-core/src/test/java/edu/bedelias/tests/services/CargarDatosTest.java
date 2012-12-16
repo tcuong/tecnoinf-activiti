@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import edu.bedelias.entities.Carreer;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Evaluacion;
 import edu.bedelias.entities.Examen;
+import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.Materia;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
@@ -67,13 +69,15 @@ public class CargarDatosTest {
 
 	private Long carreraId;
 	private Long studentId;
+	private Student student;
+	private Curso curso;
 
 	@Before
 	public void cargarDatos() {
 
 		// Creo un Estudiante
 
-		Student student = new Student();
+		student = new Student();
 		student.setName("Chupito");
 		student.setCedula("cedula");
 		student.setEmail("chupame@eltobonia.net");
@@ -90,8 +94,7 @@ public class CargarDatosTest {
 		carreras.add(new Carreer("Ingenieria Quimica"));
 		carreras.add(new Carreer("Ingenieria Computacion"));
 		carreraService.createCarreer(carreras);
-		Carreer carrera = carreraService.createCarreer(new Carreer(
-				"Ing. Alimentos"));
+		Carreer carrera = carreraService.createCarreer(new Carreer("Ing. Alimentos"));
 
 		// Creo Materia Asignatura y las linkeo
 		Asignatura asignatura = new Asignatura();
@@ -120,7 +123,7 @@ public class CargarDatosTest {
 		carreraService.agregarMateriaACarrera(carrera, materia);
 
 		// Creo un curso y le asigno una asignatura
-		Curso curso = new Curso();
+		curso = new Curso();
 		curso.setCode("codigoCurso");
 		curso.setName("Plastilina 101 vesp.");
 		curso.setSemestre("Par");
@@ -142,24 +145,21 @@ public class CargarDatosTest {
 		periodoCarrera.setCreationDate(new Date(System.currentTimeMillis()));
 		periodoCarrera.setDescripcion("Periodo de Carrera");
 		periodoCarrera.setTipoInscripcion(TipoInscripcionEnum.CARRERA);
-		periodoCarrera = periodoInscripcionService
-				.createPeriodoInscripcion(periodoCarrera);
+		periodoCarrera = periodoInscripcionService.createPeriodoInscripcion(periodoCarrera);
 
 		PeriodoInscripcion periodoCurso = new PeriodoInscripcion();
 		periodoCurso.setIsHabilitado(true);
 		periodoCurso.setCreationDate(new Date(System.currentTimeMillis()));
 		periodoCurso.setDescripcion("Periodo de curso");
 		periodoCurso.setTipoInscripcion(TipoInscripcionEnum.CURSO);
-		periodoCurso = periodoInscripcionService
-				.createPeriodoInscripcion(periodoCurso);
+		periodoCurso = periodoInscripcionService.createPeriodoInscripcion(periodoCurso);
 
 		PeriodoInscripcion periodoExamen = new PeriodoInscripcion();
 		periodoExamen.setIsHabilitado(true);
 		periodoExamen.setCreationDate(new Date(System.currentTimeMillis()));
 		periodoExamen.setDescripcion("Periodo de curso");
 		periodoExamen.setTipoInscripcion(TipoInscripcionEnum.EXAMEN);
-		periodoExamen = periodoInscripcionService
-				.createPeriodoInscripcion(periodoExamen);
+		periodoExamen = periodoInscripcionService.createPeriodoInscripcion(periodoExamen);
 
 		Evaluacion evaluacion = new Evaluacion();
 		evaluacion.setResultado(8);
@@ -171,16 +171,13 @@ public class CargarDatosTest {
 		evaluacion = evaluacionService.createEvaluacion(evaluacion);
 
 		// Inscripcion a Carrera
-		inscripcionService.InscripcionACarrera(student.getId(),
-				carrera.getId(), periodoCarrera.getId());
+		inscripcionService.InscripcionACarrera(student.getId(), carrera.getId(), periodoCarrera.getId());
 		carreraId = carrera.getId();
 
 		// Inscripcion a Curso
-		inscripcionService.InscripcionACurso(student.getId(), curso.getId(),
-				periodoCurso.getId());
+		inscripcionService.InscripcionACurso(student.getId(), curso.getId(), periodoCurso.getId());
 		// Inscripcion a Examen
-		inscripcionService.inscripcionAExamen(student.getId(), examen.getId(),
-				periodoExamen.getId());
+		inscripcionService.inscripcionAExamen(student.getId(), examen.getId(), periodoExamen.getId());
 
 		Evaluacion evaluacionEx = new Evaluacion();
 		evaluacionEx.setResultado(8);
@@ -193,19 +190,24 @@ public class CargarDatosTest {
 	}
 
 	@Test
+	public void test2() {
+		Inscripcion i = inscripcionService.getInscripcionByStudentYCurso(student, curso);
+		System.out.println("lalallalal" + i);
+
+	}
+
+	@Test
+	@Ignore
 	public void test() {
 		// Me traigo las materias para la carrera
-		List<Materia> materias = carreraService
-				.findMateriaByCarreerId(carreraId);
+		List<Materia> materias = carreraService.findMateriaByCarreerId(carreraId);
 
 		// Me traigo las evaluaciones de examen y de curso q estan aprobadas
 		// para un estudiante dado
-		List<Evaluacion> evaluacionesExamen = evaluacionService
-				.getEvaluacionesAprobadasByStudentAndExamen(studentId);
+		List<Evaluacion> evaluacionesExamen = evaluacionService.getEvaluacionesAprobadasByStudentAndExamen(studentId);
 
 		// TODO revisar lo de la concurrency
-		List<Evaluacion> evaluacionesCurso = evaluacionService
-				.getEvaluacionesAprobadasByStudentAndCurso(studentId);
+		List<Evaluacion> evaluacionesCurso = evaluacionService.getEvaluacionesAprobadasByStudentAndCurso(studentId);
 		Integer creditosTotales = 0;
 		Integer creditosEstudiantes = 0;
 
@@ -213,8 +215,7 @@ public class CargarDatosTest {
 		for (Materia m : materias) {
 			Integer creditosMateria = m.getMinCredits();
 
-			List<Asignatura> asignaturasExamen = materiaService
-					.getAsignaturasByMateriaIdAndTipoAprobacionExamen(m.getId());
+			List<Asignatura> asignaturasExamen = materiaService.getAsignaturasByMateriaIdAndTipoAprobacionExamen(m.getId());
 
 			// // Recorro las asignaturas de examen
 			for (Asignatura a : asignaturasExamen) {
@@ -225,8 +226,7 @@ public class CargarDatosTest {
 				}
 			}
 
-			List<Asignatura> asignaturasCurso = materiaService
-					.getAsignaturasByMateriaIdAndTipoAprobacionCurso((m.getId()));
+			List<Asignatura> asignaturasCurso = materiaService.getAsignaturasByMateriaIdAndTipoAprobacionCurso((m.getId()));
 
 			// Recorro promero las asignaturas de curso
 			for (Asignatura a : asignaturasCurso) {
@@ -316,8 +316,7 @@ public class CargarDatosTest {
 		return periodoInscripcionService;
 	}
 
-	public void setPeriodoInscripcionService(
-			PeriodoInscripcionService periodoInscripcionService) {
+	public void setPeriodoInscripcionService(PeriodoInscripcionService periodoInscripcionService) {
 		this.periodoInscripcionService = periodoInscripcionService;
 	}
 
@@ -335,6 +334,22 @@ public class CargarDatosTest {
 
 	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
 	}
 
 }
