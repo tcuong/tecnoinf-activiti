@@ -17,6 +17,7 @@ import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
+import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
@@ -25,12 +26,15 @@ import edu.bedelias.services.StudentService;
 public class InscripcionCursoListadoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
-
+	
 	@ManagedProperty(value = "#{studentServiceImpl}")
 	private StudentService studentService;
+	
+	@ManagedProperty(value = "#{inscripcionServiceImpl}")
+	private InscripcionService inscripcionService;
 
 	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
 	private PeriodoInscripcionService periodoService;
@@ -54,12 +58,12 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-
+		
 		if (estaLogueado()) {
-
+			
 			carreraId = (Long) this.getFromSession("carrera");
-
-			if (carreraId > 0) {
+			
+			if(carreraId > 0){
 				cursos = cursoService.getCursosByCarrearId(carreraId);
 				String cedulaEst = getFromSession(this.cedula).toString();
 				student = studentService.findStudentByCedula(cedulaEst);
@@ -73,10 +77,23 @@ public class InscripcionCursoListadoMB extends GenericMB {
 		periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
-		datos.put("curso", curso);
+		 datos.put("curso", curso);
 		datos.put("periodo", periodo);
+		
+//		// creo la inscripcion
+//				Inscripcion inscripcion = new Inscripcion();
+////				inscripcion.setCarrera(carrera);
+//				inscripcion.setCurso(curso);
+//				inscripcion.setEstudiante(student);
+//				inscripcion.setFechaInscripcion(new Date());
+//				inscripcion.setPeriodo(periodo);
+//				inscripcion.setTipo(TipoInscripcionEnum.CURSO);
+//				
+//				// la guardo
+//				inscripcionService.createInscripcion(inscripcion);
+//				
 
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
 		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
@@ -130,4 +147,14 @@ public class InscripcionCursoListadoMB extends GenericMB {
 		this.studentService = studentService;
 	}
 
+	public InscripcionService getInscripcionService() {
+		return inscripcionService;
+	}
+
+	public void setInscripcionService(InscripcionService inscripcionService) {
+		this.inscripcionService = inscripcionService;
+	}
+	
+	
+	
 }

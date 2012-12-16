@@ -1,5 +1,6 @@
 package edu.bedelias.services.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,9 @@ import edu.bedelias.services.InscripcionService;
 @Service(value = "inscripcionServiceImpl")
 @Scope(value = "session")
 @Transactional(readOnly = true)
-public class InscripcionServiceImpl implements InscripcionService {
+public class InscripcionServiceImpl implements InscripcionService, Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(InscripcionServiceImpl.class.getName());
 

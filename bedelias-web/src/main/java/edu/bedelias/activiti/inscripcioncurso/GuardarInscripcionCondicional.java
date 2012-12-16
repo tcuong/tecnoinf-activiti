@@ -48,6 +48,7 @@ public class GuardarInscripcionCondicional implements JavaDelegate {
 		execution.setVariable("fechaFinDesistimiento", fecha);
 		execution.setVariable("student", student);
 		execution.setVariable("curso", curso);
+		//execution.setVariable("pija", inscripcionService);
 
 	}
 

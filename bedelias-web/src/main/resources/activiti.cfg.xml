@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
 
 	
-	<import resource="classpath:*applicationContextWeb.xml"/>
+<!-- 	<import resource="classpath:*applicationContextWeb.xml"/> -->
 	<bean id="activitiDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
@@ -41,7 +41,20 @@
 		<property name="mailServerUsername" value="carlosactiviti@gmail.com"/>
 		<property name="mailServerPassword" value="noobsaibotrules"/>
 		<property name="mailServerUseTLS" value="true"/>
+		
+		<property name="beans">
+		
+			<map>
+			
+				<entry key="printer" value-ref="printer"/>
+			
+			</map>
+		
+		</property>
 	</bean>
+
+	<bean id="printer" class="edu.bedelias.activiti.Printer" />
+
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean"
 		destroy-method="destroy">
