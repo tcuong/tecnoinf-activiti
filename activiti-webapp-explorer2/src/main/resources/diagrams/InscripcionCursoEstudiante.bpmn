@@ -2,13 +2,13 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="inscribirseCursoEstudiante" name="inscribirseCursoEstudiante" activiti:candidateStarterGroups="bedelias">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <serviceTask id="guardarInscripcionCondicional" name="Guardar Inscripcion Condicional" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionCondicional"></serviceTask>
+    <serviceTask id="guardarInscripcionCondicional" name="Guardar Inscripcion Condicional" activiti:expression="#{printer.guardarInscripcionCondicional(execution)}"></serviceTask>
     <intermediateCatchEvent id="timerintermediatecatchevent1" name="TimerCatchEvent">
       <timerEventDefinition>
-        <timeDate>${fechaFinDesistimiento}</timeDate>
+        <timeDate>#{printer.fechaFinDesistimiento}</timeDate>
       </timerEventDefinition>
     </intermediateCatchEvent>
-    <serviceTask id="gaurdarDesistimiento" name="Guardar Desistimiento" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarDesistimiento"></serviceTask>
+    <serviceTask id="gaurdarDesistimiento" name="Guardar Desistimiento" activiti:expression="#{printer.guardarDesistimiento(execution)}"></serviceTask>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="desistio"></exclusiveGateway>
     <endEvent id="endevent1" name="End"></endEvent>
     <serviceTask id="confirmarDesistimiento" name="Confirmar Desistimiento" activiti:type="mail">
@@ -20,10 +20,10 @@
         </activiti:field>
       </extensionElements>
     </serviceTask>
-    <serviceTask id="validarPrevias" name="Validar Previas" activiti:class="edu.bedelias.activiti.inscripcioncurso.ValidarPrevias"></serviceTask>
+    <serviceTask id="validarPrevias" name="Validar Previas" activiti:expression="#{printer.validarPrevias(execution)}"></serviceTask>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="noValida"></exclusiveGateway>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
-    <serviceTask id="guardarInscripcionFinal" name="Guardar Inscripcion Final" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarInscripcionFinal"></serviceTask>
+    <serviceTask id="guardarInscripcionFinal" name="Guardar Inscripcion Final" activiti:expression="#{printer.guardarInscripcionFinal()}"></serviceTask>
     <serviceTask id="notificarInscripcion" name="Notificar Inscripcion" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to" expression="${para}"></activiti:field>
@@ -34,7 +34,9 @@
       </extensionElements>
     </serviceTask>
     <userTask id="validacionManual" name="Validacion Manual" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
-    <serviceTask id="servicetask1" name="Guardar Validacion Manual" activiti:class="edu.bedelias.activiti.inscripcioncurso.GuardarValidacionManual"></serviceTask>
+    <serviceTask id="servicetask1" name="Guardar Validacion Manual" activiti:expression="#{printer.guardarValidacionManual(execution)}"></serviceTask>
+    <parallelGateway id="parallelgateway2" name="Exclusive Gateway"></parallelGateway>
+    <inclusiveGateway id="inclusivegateway1" name="Exclusive Gateway"></inclusiveGateway>
     <sequenceFlow id="flow1" name="" sourceRef="startevent1" targetRef="guardarInscripcionCondicional"></sequenceFlow>
     <sequenceFlow id="flow2" name="" sourceRef="guardarInscripcionCondicional" targetRef="timerintermediatecatchevent1"></sequenceFlow>
     <sequenceFlow id="flow3" name="" sourceRef="timerintermediatecatchevent1" targetRef="gaurdarDesistimiento"></sequenceFlow>
@@ -55,9 +57,7 @@
     <sequenceFlow id="flow15" name="" sourceRef="validacionManual" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow16" name="" sourceRef="servicetask1" targetRef="inclusivegateway1"></sequenceFlow>
     <sequenceFlow id="flow17" name="" sourceRef="guardarInscripcionFinal" targetRef="parallelgateway2"></sequenceFlow>
-    <parallelGateway id="parallelgateway2" name="Exclusive Gateway"></parallelGateway>
     <sequenceFlow id="flow19" name="" sourceRef="parallelgateway2" targetRef="endevent1"></sequenceFlow>
-    <inclusiveGateway id="inclusivegateway1" name="Exclusive Gateway"></inclusiveGateway>
     <sequenceFlow id="flow20" name="" sourceRef="inclusivegateway1" targetRef="parallelgateway1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_inscribirseCursoEstudiante">

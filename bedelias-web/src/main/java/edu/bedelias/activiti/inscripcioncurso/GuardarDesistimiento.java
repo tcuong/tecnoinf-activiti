@@ -12,8 +12,8 @@ import edu.bedelias.services.InscripcionService;
 
 public class GuardarDesistimiento implements JavaDelegate {
 
-	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
-	private InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");
+//	ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
+//	private InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
@@ -21,12 +21,13 @@ public class GuardarDesistimiento implements JavaDelegate {
 		// obtengo los datos
 		Student student = (Student) execution.getVariable("student");
 		Curso curso = (Curso) execution.getVariable("curso");
+		InscripcionService inscripcionService = (InscripcionService) execution.getVariable("pija"); 
 
 		// consulto si hay algun desistimiento para el estudiante y curso pasado
 		Inscripcion desistimiento = inscripcionService.getInscripcionByStudentYCurso(student, curso);
 		// TODO
 
-		if (desistimiento != null && !desistimiento.getTipo().equals(TipoInscripcionEnum.DESISTIR)) {
+		if (desistimiento != null && !desistimiento.getTipo().equals(TipoInscripcionEnum.DESISTIO)) {
 			// el estudiante no desistio
 
 			// seteo las variables para el registro final de la inscripcion

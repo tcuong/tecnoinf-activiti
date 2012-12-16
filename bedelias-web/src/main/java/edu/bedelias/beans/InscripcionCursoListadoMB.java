@@ -93,7 +93,7 @@ public class InscripcionCursoListadoMB extends GenericMB {
 //				inscripcionService.createInscripcion(inscripcion);
 //				
 
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:activiti.cfg.xml");
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
 		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
