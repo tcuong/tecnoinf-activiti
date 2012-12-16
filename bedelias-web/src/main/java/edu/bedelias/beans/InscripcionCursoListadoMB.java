@@ -1,5 +1,6 @@
 package edu.bedelias.beans;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +14,12 @@ import org.activiti.engine.ProcessEngine;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.bedelias.entities.Curso;
+import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
+import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.CursoService;
+import edu.bedelias.services.InscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean
@@ -29,6 +33,9 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	
 	@ManagedProperty(value = "#{studentServiceImpl}")
 	private StudentService studentService;
+	
+	@ManagedProperty(value = "#{inscripcionServiceImpl}")
+	private InscripcionService inscripcionService;
 
 	private List<Curso> cursos;
 	private long carreraId = 0;
@@ -60,9 +67,21 @@ public class InscripcionCursoListadoMB extends GenericMB {
 		datos.put("student", student);
 		 datos.put("curso", curso);
 		datos.put("periodo", periodo);
+		
+//		// creo la inscripcion
+//				Inscripcion inscripcion = new Inscripcion();
+////				inscripcion.setCarrera(carrera);
+//				inscripcion.setCurso(curso);
+//				inscripcion.setEstudiante(student);
+//				inscripcion.setFechaInscripcion(new Date());
+//				inscripcion.setPeriodo(periodo);
+//				inscripcion.setTipo(TipoInscripcionEnum.CURSO);
+//				
+//				// la guardo
+//				inscripcionService.createInscripcion(inscripcion);
+//				
 
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext(
-				"classpath:activiti.cfg.xml");
+		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
 		pe.getRuntimeService().startProcessInstanceByKey(
 				"inscribirseCursoEstudiante", datos);
@@ -116,5 +135,15 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
+
+	public InscripcionService getInscripcionService() {
+		return inscripcionService;
+	}
+
+	public void setInscripcionService(InscripcionService inscripcionService) {
+		this.inscripcionService = inscripcionService;
+	}
+	
+	
 	
 }
