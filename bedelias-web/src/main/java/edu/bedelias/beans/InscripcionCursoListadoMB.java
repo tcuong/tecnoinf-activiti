@@ -37,6 +37,17 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	@ManagedProperty(value = "#{inscripcionServiceImpl}")
 	private InscripcionService inscripcionService;
 
+	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
+	private PeriodoInscripcionService periodoService;
+
+	public PeriodoInscripcionService getPeriodoService() {
+		return periodoService;
+	}
+
+	public void setPeriodoService(PeriodoInscripcionService periodoService) {
+		this.periodoService = periodoService;
+	}
+
 	private List<Curso> cursos;
 	private long carreraId = 0;
 	private Student student;
@@ -63,6 +74,8 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	public void inscribirse(Curso curso) {
 
+		// primero pregunto si existe un período de inscripcion a cursos abierto
+		periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
 		 datos.put("curso", curso);
@@ -83,8 +96,7 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
 		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceByKey(
-				"inscribirseCursoEstudiante", datos);
+		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
 	}
 

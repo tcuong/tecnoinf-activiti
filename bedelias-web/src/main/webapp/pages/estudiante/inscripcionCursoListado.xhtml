@@ -6,51 +6,62 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-	
-		<h:form id="formulario">
-		
-				<p:panel header="Estos son los cursos habilitados para la carrera ingresada" style="margin:30px;">
 
-					<p:dataTable id="tabla" var="curso"
-						value="#{inscripcionCursoListadoMB.cursos}" paginator="true" rows="10"
-						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						paginatorAlwaysVisible="false" paginatorPosition="bottom"
-						style="margin:10px"
-						emptyMessage="#{localization['misc.noRecordsFound']}">
-		
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#{localization['common.cursos']}" />
-							</f:facet>
-							<h:outputText value="#{curso.descripcion}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#{localization['common.semestre']}" />
-							</f:facet>
-							<h:outputText value="#{curso.semestre}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#{localization['common.horario']}" />
-							</f:facet>
-							<h:outputText value="#{curso.horario}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#{localization['common.salon']}" />
-							</f:facet>
-							<h:outputText value="#{curso.salon}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#{localization['common.select']}" />
-							</f:facet>
-							<p:commandButton value="#{localization['common.inscribirme']}" action="#{inscripcionCursoListadoMB.inscribirse(curso)}" />
-						</p:column>
-					</p:dataTable>
-					
-				</p:panel>
-			</h:form>
+		<h:form id="formulario">
+
+			<p:panel
+				header="Estos son los cursos habilitados para la carrera ingresada"
+				style="margin:30px;">
+
+				<p:dataTable id="tabla" var="curso"
+					value="#{inscripcionCursoListadoMB.cursos}" paginator="true"
+					rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					style="margin:10px"
+					emptyMessage="#{localization['misc.noRecordsFound']}">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{localization['common.cursos']}" />
+						</f:facet>
+						<h:outputText value="#{curso.name}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Descripcion" />
+						</f:facet>
+						<h:outputText value="#{curso.descripcion}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{localization['common.semestre']}" />
+						</f:facet>
+						<h:outputText value="#{curso.semestre}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{localization['common.horario']}" />
+						</f:facet>
+						<h:outputText value="#{curso.horario}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{localization['common.salon']}" />
+						</f:facet>
+						<h:outputText value="#{curso.salon}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{localization['common.select']}" />
+						</f:facet>
+						<p:commandButton value="#{localization['common.inscribirme']}"
+							action="#{inscripcionCursoListadoMB.inscribirse(curso)}" />
+					</p:column>
+				</p:dataTable>
+
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
