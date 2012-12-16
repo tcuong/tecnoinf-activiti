@@ -225,9 +225,10 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		// Traigo las asignaturas previas de la asigantura q corresponde al
 		// curso q me pasan por parametro
 		List<Asignatura> asignaturasPrevias = asignaturaRepository.getPrevias(curso.getAsignatura().getId());
+		
+		List<Asignatura> asgisRet = null;
 
-		// Cargo la lista de asignaturas q aprobo el estudiante ya sea por curso
-		// o por examen
+		// Cargo la lista de asignaturas q aprobo el estudiante ya sea por curso o por examen
 		List<Asignatura> asignaturasAprobadas = new ArrayList<Asignatura>();
 		for (Evaluacion e : evaluacionesCurso) {
 			asignaturasAprobadas.add(e.getCurso().getAsignatura());
@@ -238,17 +239,21 @@ public class StudentServiceImpl implements StudentService, Serializable {
 
 		// Itero por asignaturas para ir checkeando la lista de las previas
 		HashMap<Long, Asignatura> retorno = new HashMap<Long, Asignatura>();
-		for (Asignatura asig : asignaturasPrevias) {
-			for (Asignatura a : asignaturasAprobadas) {
-				long aId = a.getId();
-				long asigId = asig.getId();
-				if (aId != asigId) {
-					retorno.put(asig.getId(), asig);
+		if(asignaturasAprobadas.isEmpty()){
+			asgisRet = asignaturasPrevias;
+		} else {
+			for (Asignatura asig : asignaturasPrevias) {
+				for (Asignatura a : asignaturasAprobadas) {
+					long aId = a.getId();
+					long asigId = asig.getId();
+					if (aId != asigId) {
+						retorno.put(asig.getId(), asig);
+					}
 				}
 			}
+			asgisRet = new ArrayList<Asignatura>(retorno.values());
 		}
-
-		List<Asignatura> asgisRet = new ArrayList<Asignatura>(retorno.values());
+		
 		return asgisRet;
 	}
 

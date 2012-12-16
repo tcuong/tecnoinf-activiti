@@ -1,21 +1,27 @@
 package edu.bedelias.activiti;
 
 import java.util.Date;
+import java.util.List;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.bedelias.entities.Asignatura;
 import edu.bedelias.entities.Curso;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.entities.PeriodoInscripcion;
 import edu.bedelias.entities.Student;
 import edu.bedelias.enums.TipoInscripcionEnum;
 import edu.bedelias.services.InscripcionService;
+import edu.bedelias.services.StudentService;
 
 public class Printer {
 
 	@Autowired
 	private InscripcionService inscripcionService;
+	
+	@Autowired
+	private StudentService studentService;
 
 	private Curso curso;
 	private Student student;
@@ -53,9 +59,9 @@ public class Printer {
 	public void guardarDesistimiento(DelegateExecution execution) {
 		
 		// consulto si hay algun desistimiento para el estudiante y curso
-		Inscripcion desistimiento = inscripcionService.getInscripcionByStudentYCurso(student, curso);
+		Inscripcion desistimiento = inscripcionService.getDesistimientoByStudentYCurso(student, curso);
 
-		if (desistimiento != null && !desistimiento.getTipo().equals(TipoInscripcionEnum.DESISTIO)) {
+		if (desistimiento == null) {
 			// el estudiante NO desistio
 
 			// seteo las variable que indica que el estudiante no desistio del curso
@@ -75,30 +81,43 @@ public class Printer {
 	public void validarPrevias(DelegateExecution execution){
 		
 		// valido las previas del curso para ver si la inscripcion es válida o no
+		List<Asignatura> previas = studentService.validarPreviasEstudianteCurso(student, curso);
 		
-		
-		if(true){
+		if(previas.isEmpty()){
 			// si valida correctamente las previas seguimos con las demás tareas
 			aprobada = true;
 			execution.setVariable("validacion", true);
+			
+			// seteo las variables para el envio del email
+			execution.setVariable("para", "brunovierag@gmail.com");
+			execution.setVariable("asunto", "Confirmación de Inscripción");
+			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + "a sido aprobada.");
 		} else {
 			// si NO valida las previas pasamos a una manualTask para que la revisen
 			aprobada = false;
 			
 			// setemos la variable que avisa que no se validaron
 			execution.setVariable("validacion", false);
+			
+			String previasTexto = " ";
+			for(Asignatura previa: previas){
+				previasTexto = previasTexto + previa.getName() + " - ";
+			}
 			// setemos el mensaje que le vamos a mostrar al funcionario
-			execution.setVariable("mensaje", "Las siguientes previas no se validaron correctamente");
+			String mensaje = "Las siguientes previas no se validaron correctamente: " + previasTexto;
+			mensaje = mensaje + " ----- Estudiante: " + student.getName() + " ----- Cédula:" + student.getCedula();
+			execution.setVariable("mensaje", mensaje);
 		}
 	}
 	
 	public void guardarValidacionManual(DelegateExecution execution){
-		// en la variable aprobada se guarda la desición del funcionario de aprobar o no la inscripcion
-		// esa variable esta mapeada en el formulario que se le muestra
-		
+				
 		// estas variables siempre van a ir por que son para el envio del email
 		execution.setVariable("para", "brunovierag@gmail.com");
 		execution.setVariable("asunto", "Confirmación de Inscripción");
+		
+		// obtengo el valor ingresado por el funcionario de bedelias para la inscripción		
+		aprobada = (boolean) execution.getVariable("aprobada");
 		
 		if(aprobada){
 			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + "a sido aprobada.");
@@ -124,6 +143,16 @@ public class Printer {
 		
 		// la guardo
 		inscripcionService.updateInscripcion(inscripcion);
+		
+		
+		// limpio todas las variables
+		aprobada = false;
+		curso = null;
+		student = null;
+		inscripcion = null;
+		fechaFinDesistimiento = "";
+		periodoInscripcion = null;
+		
 		
 	}
 	
@@ -175,4 +204,12 @@ public class Printer {
 		this.aprobada = aprobada;
 	}
 
+	public StudentService getStudentService() {
+		return studentService;
+	}
+
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
+	
 }

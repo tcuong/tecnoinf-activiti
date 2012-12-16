@@ -37,5 +37,7 @@ public interface InscripcionService {
 	public List<Inscripcion> findInscripcionesByCursoId(Curso curso);
 
 	public Inscripcion getInscripcionByStudentYCurso(Student student, Curso curso);
+	
+	public Inscripcion getDesistimientoByStudentYCurso(Student student, Curso curso);
 
 }

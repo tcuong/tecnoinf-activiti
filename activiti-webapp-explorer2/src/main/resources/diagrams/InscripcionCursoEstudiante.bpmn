@@ -33,7 +33,12 @@
         </activiti:field>
       </extensionElements>
     </serviceTask>
-    <userTask id="validacionManual" name="Validacion Manual" activiti:assignee="kermit" activiti:candidateGroups="bedelias"></userTask>
+    <userTask id="validacionManual" name="Validacion Manual" activiti:assignee="kermit" activiti:candidateGroups="bedelias">
+      <documentation>${mensaje}</documentation>
+      <extensionElements>
+        <activiti:formProperty id="aprobada" name="Aprobar la Inscripción" type="boolean" variable="aprobada"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
     <serviceTask id="servicetask1" name="Guardar Validacion Manual" activiti:expression="#{printer.guardarValidacionManual(execution)}"></serviceTask>
     <parallelGateway id="parallelgateway2" name="Exclusive Gateway"></parallelGateway>
     <inclusiveGateway id="inclusivegateway1" name="Exclusive Gateway"></inclusiveGateway>

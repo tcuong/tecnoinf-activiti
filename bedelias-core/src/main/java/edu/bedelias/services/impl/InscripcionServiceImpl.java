@@ -307,4 +307,9 @@ public class InscripcionServiceImpl implements InscripcionService, Serializable{
 		return inscripcionRepo.getInscripcionByStudentAndCurso(student, curso);
 	}
 
+	@Override
+	public Inscripcion getDesistimientoByStudentYCurso(Student student, Curso curso) {
+		return inscripcionRepo.findInscripcionByEstudianteAndCursoAndTipo(student, curso, TipoInscripcionEnum.DESISTIO);
+	}
+
 }

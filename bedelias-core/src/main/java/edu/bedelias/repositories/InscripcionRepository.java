@@ -40,4 +40,6 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
 	@Query("select i from Inscripcion i where i.estudiante = ?1 and i.curso = ?2")
 	public Inscripcion getInscripcionByStudentAndCurso(Student student, Curso curso);
+
+	public Inscripcion findInscripcionByEstudianteAndCursoAndTipo(Student estudiante, Curso curso, TipoInscripcionEnum desistio);
 }
