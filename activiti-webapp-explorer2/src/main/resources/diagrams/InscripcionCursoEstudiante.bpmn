@@ -23,7 +23,7 @@
     <serviceTask id="validarPrevias" name="Validar Previas" activiti:expression="#{printer.validarPrevias(execution)}"></serviceTask>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="noValida"></exclusiveGateway>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
-    <serviceTask id="guardarInscripcionFinal" name="Guardar Inscripcion Final" activiti:expression="#{printer.guardarInscripcionFinal()}"></serviceTask>
+    <serviceTask id="guardarInscripcionFinal" name="Guardar Inscripcion Final" activiti:expression="#{printer.guardarInscripcionFinal(execution)}"></serviceTask>
     <serviceTask id="notificarInscripcion" name="Notificar Inscripcion" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to" expression="${para}"></activiti:field>

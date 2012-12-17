@@ -67,9 +67,24 @@
 		<property name="mailServerUsername" value="carlosactiviti@gmail.com"/>
 		<property name="mailServerPassword" value="noobsaibotrules"/>
 		<property name="mailServerUseTLS" value="true"/>
+		
+		
+		<property name="beans">
+		
+			<map>
+			
+				<entry key="printer" value-ref="printer"/>
+			
+			</map>
+		
+		</property>
 
 	</bean>
 
+
+	<bean id="printer" class="edu.bedelias.activiti.PrinterActiviti" />
+	
+	
 	<!-- Componentes de formularios - Brus -->
 	<bean id="textAreaFormType" class="org.activiti.explorer.ui.form.TextAreaFormType" />
 	<bean id="comboCarreraFormType" class="org.activiti.explorer.ui.form.ComboCarreraFormType" />

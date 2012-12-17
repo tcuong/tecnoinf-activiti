@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.activiti.engine.ProcessEngine;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +22,7 @@ import edu.bedelias.services.PeriodoInscripcionService;
 import edu.bedelias.services.StudentService;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class InscripcionCursoListadoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +38,23 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
 	private PeriodoInscripcionService periodoService;
+	
+	private ClassPathXmlApplicationContext cpx;
+	private ProcessEngine pe;
+	
+    private ClassPathXmlApplicationContext getClassPathXmlApplicationContext(){
+		if(cpx==null){
+			cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
+		} 
+		return cpx;
+	}
+    
+    private ProcessEngine getProcessEngine(){
+    	if(pe==null){
+    		pe = (ProcessEngine) getClassPathXmlApplicationContext().getBean("processEngine");
+    	}
+    	return pe;
+    }
 
 	public PeriodoInscripcionService getPeriodoService() {
 		return periodoService;
@@ -77,25 +94,10 @@ public class InscripcionCursoListadoMB extends GenericMB {
 		periodo = periodoService.getPeriodoActivoByTipo(true, TipoInscripcionEnum.CURSO);
 		Map<String, Object> datos = new HashMap<String, Object>();
 		datos.put("student", student);
-		 datos.put("curso", curso);
+		datos.put("curso", curso);
 		datos.put("periodo", periodo);
 		
-//		// creo la inscripcion
-//				Inscripcion inscripcion = new Inscripcion();
-////				inscripcion.setCarrera(carrera);
-//				inscripcion.setCurso(curso);
-//				inscripcion.setEstudiante(student);
-//				inscripcion.setFechaInscripcion(new Date());
-//				inscripcion.setPeriodo(periodo);
-//				inscripcion.setTipo(TipoInscripcionEnum.CURSO);
-//				
-//				// la guardo
-//				inscripcionService.createInscripcion(inscripcion);
-//				
-
-		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
-		ProcessEngine pe = (ProcessEngine) cpx.getBean("processEngine");
-		pe.getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
+		getProcessEngine().getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
 	}
 

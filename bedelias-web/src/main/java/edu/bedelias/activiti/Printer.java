@@ -91,13 +91,15 @@ public class Printer {
 			// seteo las variables para el envio del email
 			execution.setVariable("para", "brunovierag@gmail.com");
 			execution.setVariable("asunto", "Confirmación de Inscripción");
-			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + "a sido aprobada.");
+			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + " ha sido aprobada.");
 		} else {
 			// si NO valida las previas pasamos a una manualTask para que la revisen
 			aprobada = false;
 			
 			// setemos la variable que avisa que no se validaron
 			execution.setVariable("validacion", false);
+			execution.setVariable("student", student);
+			execution.setVariable("curso", curso);
 			
 			String previasTexto = " ";
 			for(Asignatura previa: previas){
@@ -110,51 +112,25 @@ public class Printer {
 		}
 	}
 	
-	public void guardarValidacionManual(DelegateExecution execution){
-				
-		// estas variables siempre van a ir por que son para el envio del email
-		execution.setVariable("para", "brunovierag@gmail.com");
-		execution.setVariable("asunto", "Confirmación de Inscripción");
-		
-		// obtengo el valor ingresado por el funcionario de bedelias para la inscripción		
-		aprobada = (boolean) execution.getVariable("aprobada");
-		
-		if(aprobada){
-			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + "a sido aprobada.");
-		}else {
-			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + 
-					"ha sido REPROBADA en la validación de privas.");
-		}
-	}
-	
-	public void guardarInscripcionFinal(){
+	public void guardarInscripcionFinal(DelegateExecution execution) {
 		
 		// obtengo la inscripcion
 		Inscripcion inscripcion = inscripcionService.getInscripcionByStudentYCurso(student, curso);
-		
+
 		// dependiendo el estado de la solicitud la guardo como valida o no
-		if(aprobada){
+		if (aprobada) {
 			// la seteo como válida
 			inscripcion.setIsValid(true);
 		} else {
 			// la seteo como NO válida
 			inscripcion.setIsValid(false);
 		}
-		
+
 		// la guardo
 		inscripcionService.updateInscripcion(inscripcion);
-		
-		
-		// limpio todas las variables
-		aprobada = false;
-		curso = null;
-		student = null;
-		inscripcion = null;
-		fechaFinDesistimiento = "";
-		periodoInscripcion = null;
-		
-		
+
 	}
+
 	
 	public String getFechaFinDesistimiento() {
 		return fechaFinDesistimiento;
