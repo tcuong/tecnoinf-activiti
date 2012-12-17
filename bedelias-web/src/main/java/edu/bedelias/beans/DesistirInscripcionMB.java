@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 import edu.bedelias.entities.Inscripcion;
 import edu.bedelias.services.InscripcionService;
 
-@ManagedBean(name = "DesistirInscripcionMB")
+@ManagedBean(name = "desistirInscripcionMB")
 @RequestScoped
 public class DesistirInscripcionMB extends GenericMB {
 
@@ -28,7 +28,7 @@ public class DesistirInscripcionMB extends GenericMB {
 	@PostConstruct
 	public void init() {
 		if (estaLogueado()) {
-			String ciEst = getFromSession("ci_est").toString();
+			String ciEst = getFromSession(this.cedula).toString();
 			inscripcionesCuros = inscripcionService.getInscripcionesParaDesistir(ciEst);
 		}
 	}

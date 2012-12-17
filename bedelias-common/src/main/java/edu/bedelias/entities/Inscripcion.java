@@ -3,6 +3,7 @@
  */
 package edu.bedelias.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -123,6 +124,11 @@ public class Inscripcion extends GenericEntity {
 
 	public void setPeriodo(PeriodoInscripcion periodo) {
 		this.periodo = periodo;
+	}
+	
+	public String getDateInscripcionForPage(){
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+		return format.format(fechaInscripcion);
 	}
 	
 }

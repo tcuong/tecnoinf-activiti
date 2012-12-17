@@ -3,6 +3,7 @@
  */
 package edu.bedelias.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -116,6 +117,11 @@ public class Evaluacion extends GenericEntity {
 
 	public void setExamen(Examen examen) {
 		this.examen = examen;
+	}
+	
+	public String getFechaEvaluacionForPage(){
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+		return format.format(fechaEvaluacion);
 	}
 
 }

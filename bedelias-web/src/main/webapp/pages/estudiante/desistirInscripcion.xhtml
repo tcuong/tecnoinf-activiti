@@ -13,18 +13,19 @@
 					value="#{desistirInscripcionMB.inscripcionesCuros}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					paginatorAlwaysVisible="false" paginatorPosition="bottom"
-					style="margin:10px" emptyMessage="#{localization['misc.noRecordsFound']}">
+					style="margin:5px"
+					emptyMessage="#{localization['misc.noRecordsFound']}">
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="#{localization['desistir.fechaInscripcion']}" />
 						</f:facet>
-						<h:outputText value="#{inscripcion.descripcion}" />
+						<h:outputText value="#{inscripcion.getDateInscripcionForPage()}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="#{localization['common.asignatura']}" />
 						</f:facet>
-						<h:outputText value="#{inscripcion.curso.nombre}" />
+						<h:outputText value="#{inscripcion.curso.name}" />
 					</p:column>
 					<p:column>
 						<f:facet name="header"></f:facet>
