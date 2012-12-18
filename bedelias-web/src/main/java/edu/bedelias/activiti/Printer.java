@@ -1,5 +1,6 @@
 package edu.bedelias.activiti;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -52,8 +53,15 @@ public class Printer {
 		inscripcion = inscripcionService.createInscripcion(inscripcion);
 		
 		// obtengo del periodo de inscripcion la fecha de cierre
-		//TODO hacer la lógica para guardar en esta variable la fecha con el formato solicitado por activiti
-		fechaFinDesistimiento = "2012-12-14T12:35:00";
+		String horas = "";
+		String fecha = "";
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		fecha = format.format(periodoInscripcion.getFechaFin());
+		format = new SimpleDateFormat("hh:mm:ss");
+		horas = format.format(periodoInscripcion.getFechaFin());
+		
+//		fechaFinDesistimiento = "2012-12-14T12:35:00";
+		fechaFinDesistimiento = fecha + "T" + horas;
 	}
 	
 	public void guardarDesistimiento(DelegateExecution execution) {

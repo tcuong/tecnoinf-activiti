@@ -26,35 +26,35 @@ import edu.bedelias.services.StudentService;
 public class InscripcionCursoListadoMB extends GenericMB {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManagedProperty(value = "#{cursoServiceImpl}")
 	private CursoService cursoService;
-	
+
 	@ManagedProperty(value = "#{studentServiceImpl}")
 	private StudentService studentService;
-	
+
 	@ManagedProperty(value = "#{inscripcionServiceImpl}")
 	private InscripcionService inscripcionService;
 
 	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
 	private PeriodoInscripcionService periodoService;
-	
+
 	private ClassPathXmlApplicationContext cpx;
 	private ProcessEngine pe;
-	
-    private ClassPathXmlApplicationContext getClassPathXmlApplicationContext(){
-		if(cpx==null){
+
+	private ClassPathXmlApplicationContext getClassPathXmlApplicationContext() {
+		if (cpx == null) {
 			cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
-		} 
+		}
 		return cpx;
 	}
-    
-    private ProcessEngine getProcessEngine(){
-    	if(pe==null){
-    		pe = (ProcessEngine) getClassPathXmlApplicationContext().getBean("processEngine");
-    	}
-    	return pe;
-    }
+
+	private ProcessEngine getProcessEngine() {
+		if (pe == null) {
+			pe = (ProcessEngine) getClassPathXmlApplicationContext().getBean("processEngine");
+		}
+		return pe;
+	}
 
 	public PeriodoInscripcionService getPeriodoService() {
 		return periodoService;
@@ -75,12 +75,12 @@ public class InscripcionCursoListadoMB extends GenericMB {
 
 	@PostConstruct
 	public void init() {
-		
+
 		if (estaLogueado()) {
-			
+
 			carreraId = (Long) this.getFromSession("carrera");
-			
-			if(carreraId > 0){
+
+			if (carreraId > 0) {
 				cursos = cursoService.getCursosByCarrearId(carreraId);
 				String cedulaEst = getFromSession(this.cedula).toString();
 				student = studentService.findStudentByCedula(cedulaEst);
@@ -96,9 +96,9 @@ public class InscripcionCursoListadoMB extends GenericMB {
 		datos.put("student", student);
 		datos.put("curso", curso);
 		datos.put("periodo", periodo);
-		
-		getProcessEngine().getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
 
+		getProcessEngine().getRuntimeService().startProcessInstanceByKey("inscribirseCursoEstudiante", datos);
+		this.sendInfoMessage("Información", "Su inscripción ha sido ingresada con éxito, lo notificaremos la resolución");
 	}
 
 	public List<Curso> getCursos() {
@@ -156,7 +156,5 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	public void setInscripcionService(InscripcionService inscripcionService) {
 		this.inscripcionService = inscripcionService;
 	}
-	
-	
-	
+
 }

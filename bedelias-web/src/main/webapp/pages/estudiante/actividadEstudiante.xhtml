@@ -9,7 +9,6 @@
 		<h:form >
 			<p:panelGrid columns="1" style="height:100%; width: 100%;">
 				<f:facet name="header"> #{localization['activEst.header']} </f:facet>
-				<h:outputLabel value="#{localization['activEst.resumen']}"></h:outputLabel>
 				
 				<p:dataTable id="tabla" var="eval" widgetVar="table"
 					value="#{consultaActividadMB.evaluaciones}" paginator="true" rows="10"
@@ -18,7 +17,7 @@
 					style="margin:10px"
 					emptyMessage="#{localization['misc.noRecordsFound']}">
 					
-					<p:column headerText="#{localization['activEst.curso']}" filterBy="#{eval.curso.name}" filterMatchMode="contains">
+					<p:column headerText="#{localization['activEst.curso']}" filterBy="#{eval.curso.name}" filterMatchMode="contains" >
 						<h:outputText value="#{eval.curso.name}" />
 					</p:column>
 
@@ -31,7 +30,7 @@
 					</p:column>
 
 					<p:column headerText="#{localization['activEst.fecha']}" sortBy="#{eval.fechaEvaluacion}">
-						<h:outputText value="#{eval.fechaEvaluacion}" />
+						<h:outputText value="#{eval.getFechaEvaluacionForPage()}" />
 					</p:column>
 
 				</p:dataTable>

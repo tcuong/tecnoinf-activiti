@@ -53,8 +53,7 @@ public class SolicitarTituloMB extends GenericActivitiMB {
 							.add(new SelectItem(c.getId(), c.getName()));
 				}
 			} else {
-				sendErrorMessage("Estudiante no encontrado",
-						"No se han encontrado el estudiante con la cédula dada");
+				sendErrorMessage("Estudiante no encontrado", "No se han encontrado el estudiante con la cédula dada");
 			}
 		}
 	}
@@ -71,9 +70,7 @@ public class SolicitarTituloMB extends GenericActivitiMB {
 
 		instanciarProceso(key, datos);
 
-		this.sendErrorMessage("Error",
-				"Su solicitud se ha enviado correctamente");
-
+		this.sendInfoMessage("Información", "Su solicitud se ha enviado, lo notificaremos por email cuando existan cambios.");
 	}
 
 	public List<SelectItem> getCarrerasListItem() {

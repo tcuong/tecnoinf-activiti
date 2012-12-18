@@ -7,7 +7,8 @@
 
 	<ui:define name="content">
 		<h:form>
-			<p:panelGrid columns="1" style="height:100%">
+			
+			<p:panelGrid columns="1" style="margin:5px auto; height:100%">
 				<f:facet name="header"> #{localization['desistir.header']}.</f:facet>
 				<p:dataTable id="tabla" var="inscripcion"
 					value="#{desistirInscripcionMB.inscripcionesCuros}" paginator="true" rows="10"
@@ -29,7 +30,8 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header"></f:facet>
-						<p:commandButton value="Desistir" action="#{desistirInscripcionMB.desistir(inscripcion.id)}" style="padding:0;" />
+						<p:commandButton value="Desistir" action="#{desistirInscripcionMB.desistir(inscripcion)}" style="padding:0;" update="growl"/>
+						<p:growl id="growl" showDetail="true" sticky="true" />
 					</p:column>
 				</p:dataTable>
 			</p:panelGrid>

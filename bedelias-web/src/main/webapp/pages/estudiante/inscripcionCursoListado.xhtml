@@ -7,12 +7,12 @@
 
 	<ui:define name="content">
 
-		<h:form id="formulario">
+		<h:form>
+			
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:panel header="Estos son los cursos habilitados para la carrera ingresada" style="margin:5px;">
 
-			<p:panel
-				header="Estos son los cursos habilitados para la carrera ingresada"
-				style="margin:30px;">
-
+				
 				<p:dataTable id="tabla" var="curso"
 					value="#{inscripcionCursoListadoMB.cursos}" paginator="true"
 					rows="10"
@@ -56,8 +56,8 @@
 						<f:facet name="header">
 							<h:outputText value="#{localization['common.select']}" />
 						</f:facet>
-						<p:commandButton value="#{localization['common.inscribirme']}"
-							action="#{inscripcionCursoListadoMB.inscribirse(curso)}" />
+						<p:commandButton value="#{localization['common.inscribirme']}" action="#{inscripcionCursoListadoMB.inscribirse(curso)}" update="growl"/>
+						<p:growl id="growl" showDetail="true" sticky="true" />
 					</p:column>
 				</p:dataTable>
 

@@ -7,8 +7,11 @@
 
 	<ui:define name="content">
 		<h:form>
+		
 			<p:panelGrid columns="1" style="height:100%; width: 100%;">
+		
 				<f:facet name="header"> #{localization['previasDeQuien.header']}</f:facet>
+		
 				<p:panelGrid columns="3"
 					style="margin:15px auto; border: none !important;">
 					<h:outputText value="#{localization['previasDeQuien.selectOne']}" />
@@ -20,6 +23,7 @@
 						<p:ajax update="tabla" listener="#{previasMB.deQuienEsPrevia}" />
 					</p:selectOneMenu>
 				</p:panelGrid>
+		
 				<p:dataTable id="tabla" var="asignatura"
 					value="#{previasMB.previas}" paginator="true" rows="10"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -32,9 +36,9 @@
 						</f:facet>
 						<h:outputText value="#{asignatura.name}" />
 					</p:column>
-					<p:column>
+					<p:column style="text-align:center;">
 						<f:facet name="header">
-							<h:outputText value="#{localization['common.credits']}" />
+							<h:outputText value="#{localization['common.creditos']}" />
 						</f:facet>
 						<h:outputText value="#{asignatura.credits}" />
 					</p:column>
@@ -42,8 +46,9 @@
 						<f:facet name="header">
 							<h:outputText value="#{localization['common.electiva']}" />
 						</f:facet>
-						<h:selectBooleanCheckbox value="#{asignatura.isElectiva}"
-							disabled="true" />
+						<div style="margin:0 auto; text-align: center;">
+							<h:selectBooleanCheckbox value="#{asignatura.isElectiva}" disabled="true" style="margin:0 auto;"/>
+						</div>
 					</p:column>
 					<p:column>
 						<f:facet name="header">

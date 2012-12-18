@@ -9,7 +9,7 @@
 
 	<ui:define name="content">
 		<h:form>
-			<p:growl id="growl" showDetail="true" sticky="true" />
+	
 			<p:panelGrid columns="3" style="margin:50px auto; border: none !important;">
 				
 				<h:outputText value="#{localization['inscripciones.selectCarrera']}" />
@@ -20,6 +20,7 @@
 				</p:selectOneMenu>
 				
 				<p:commandButton value="#{localization['common.confirmarsolicitarTitulo']}" action="#{solicitarTituloMB.solicitar}" update="growl"/>
+				<p:growl id="growl" showDetail="true" sticky="true" />
 				
 			</p:panelGrid>
 			
