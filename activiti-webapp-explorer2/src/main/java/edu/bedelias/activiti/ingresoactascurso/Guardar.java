@@ -1,6 +1,7 @@
 package edu.bedelias.activiti.ingresoactascurso;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.activiti.engine.delegate.DelegateExecution;
@@ -53,6 +54,7 @@ public class Guardar implements JavaDelegate {
 				evaluacion.setEstudiante(student);
 				evaluacion.setCurso(curso);
 				evaluacion.setTipoEvaluacion(TipoEvaluacionEnum.CURSO);
+				evaluacion.setFechaEvaluacion(new Date());
 			}
 
 			if (acta.getNota().equals("No se presento")) {

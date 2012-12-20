@@ -60,8 +60,10 @@ public class Printer {
 		format = new SimpleDateFormat("hh:mm:ss");
 		horas = format.format(periodoInscripcion.getFechaFin());
 		
-//		fechaFinDesistimiento = "2012-12-14T12:35:00";
-		fechaFinDesistimiento = fecha + "T" + horas;
+		fechaFinDesistimiento = "2012-12-14T12:35:00";
+		
+		// este es el codigo correcto, el de la linea 63 esta harcodeado para que funcione en la presentación!
+//		fechaFinDesistimiento = fecha + "T" + horas;
 	}
 	
 	public void guardarDesistimiento(DelegateExecution execution) {
@@ -80,7 +82,7 @@ public class Printer {
 
 			execution.setVariable("desistio", true);
 			// agrego las variables para el envio del email con la confirmación del desistimiento
-			execution.setVariable("para", "brunovierag@gmail.com");
+			execution.setVariable("para", student.getEmail());
 			execution.setVariable("asunto", "Confirmación de Inscripción");
 			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", de parte de bedelías confirmamos el desistimiento al Curso " + curso.getName());
 		}
@@ -97,7 +99,7 @@ public class Printer {
 			execution.setVariable("validacion", true);
 			
 			// seteo las variables para el envio del email
-			execution.setVariable("para", "brunovierag@gmail.com");
+			execution.setVariable("para", student.getEmail());
 			execution.setVariable("asunto", "Confirmación de Inscripción");
 			execution.setVariable("cuerpo", "Estimado " + student.getName() + ", su inscripción al curso " + curso.getName() + " ha sido aprobada.");
 		} else {

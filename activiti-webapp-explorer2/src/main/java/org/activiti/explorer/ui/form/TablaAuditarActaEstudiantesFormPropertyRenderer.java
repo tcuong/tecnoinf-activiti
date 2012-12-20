@@ -45,7 +45,9 @@ public class TablaAuditarActaEstudiantesFormPropertyRenderer extends AbstractFor
     	for (Evaluacion evaluacion: evaluaciones) {
     		RowActaEstudiante fila = new RowActaEstudiante();
     		fila.setStudent(evaluacion.getEstudiante());
-    		fila.setNota(evaluacion.getResultado().toString());
+    		if(evaluacion.getResultado() != null){
+    			fila.setNota(evaluacion.getResultado().toString());
+    		}
     		bic.addItem(fila);
 		}
         

@@ -120,8 +120,11 @@ public class Evaluacion extends GenericEntity {
 	}
 	
 	public String getFechaEvaluacionForPage(){
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
-		return format.format(fechaEvaluacion);
+		if(fechaEvaluacion != null){
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+			return format.format(fechaEvaluacion);
+		}
+		return "";
 	}
 
 }

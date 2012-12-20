@@ -178,8 +178,9 @@ public class StudentServiceImpl implements StudentService, Serializable {
 		String numPase2 = "2";
 		String numPase3 = "3";
 		String numPase4 = "4";
+		String numPase5 = "19983";
 
-		if (numPase.equals(numPase1) || numPase.equals(numPase2) || numPase.equals(numPase3) || numPase.equals(numPase4)) {
+		if (numPase.equals(numPase1) || numPase.equals(numPase2) || numPase.equals(numPase3) || numPase.equals(numPase4) || numPase.equals(numPase5)) {
 			return true;
 		}
 		return false;

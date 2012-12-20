@@ -39,15 +39,15 @@ public class InscripcionCursoListadoMB extends GenericMB {
 	@ManagedProperty(value = "#{periodoInscripcionServiceImpl}")
 	private PeriodoInscripcionService periodoService;
 
-	private ClassPathXmlApplicationContext cpx;
+//	private ClassPathXmlApplicationContext cpx;
 	private ProcessEngine pe;
 
-	private ClassPathXmlApplicationContext getClassPathXmlApplicationContext() {
-		if (cpx == null) {
-			cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
-		}
-		return cpx;
-	}
+//	private ClassPathXmlApplicationContext getClassPathXmlApplicationContext() {
+//		if (cpx == null) {
+//			cpx = new ClassPathXmlApplicationContext("classpath:applicationContextWeb.xml");
+//		}
+//		return cpx;
+//	}
 
 	private ProcessEngine getProcessEngine() {
 		if (pe == null) {

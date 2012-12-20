@@ -16,11 +16,12 @@ public class PrinterActiviti {
 
 	public void guardarValidacionManual(DelegateExecution execution) {
 
-		// estas variables siempre van a ir por que son para el envio del email
-		execution.setVariable("para", "brunovierag@gmail.com");
-		execution.setVariable("asunto", "Confirmación de Inscripción");
 		student = (Student) execution.getVariable("student");
 		curso = (Curso) execution.getVariable("curso");
+
+		// estas variables siempre van a ir por que son para el envio del email
+		execution.setVariable("para", student.getEmail());
+		execution.setVariable("asunto", "Confirmación de Inscripción");
 
 		// obtengo el valor ingresado por el funcionario de bedelias para la
 		// inscripción
@@ -34,7 +35,7 @@ public class PrinterActiviti {
 	}
 
 	public void guardarInscripcionFinal(DelegateExecution execution) {
-		
+
 		ClassPathXmlApplicationContext cpx = new ClassPathXmlApplicationContext("classpath:applicationContextRemote.xml");
 		InscripcionService inscripcionService = (InscripcionService) cpx.getBean("inscripcionService");
 
